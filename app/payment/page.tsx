@@ -318,7 +318,7 @@ const SubscriptionCheckout = () => {
   };
 
   const handleSubmitPayment = async () => {
-    if (!selectedPlan || !screenshot || !userId || !token) {
+    if (!selectedPlan || !screenshot || !token) {
       setError('Missing required information');
       return;
     }
