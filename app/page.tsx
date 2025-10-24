@@ -5,6 +5,8 @@ import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
 import ImageUploader from "@/components/ImageUploader";
 
+import { Analytics } from "@vercel/analytics/next"
+
 import StructuredData from "@/components/StructuredData";
 
 export const metadata: Metadata = {
