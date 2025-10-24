@@ -343,7 +343,7 @@ const SubscriptionCheckout = () => {
         hasFile: !!screenshot
       });
 
-      const response = await fetch('http://localhost:3001/api/receipt/pending-subscription', {
+      const response = await fetch('https://api.hubreceipts.com/api/receipt/pending-subscription', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

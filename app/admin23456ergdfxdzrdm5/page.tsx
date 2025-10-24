@@ -98,7 +98,7 @@ export default function AdminPanel() {
     setLoginError("");
 
     try {
-      const res = await fetch("http://localhost:3001/api/admin/auth/login", {
+      const res = await fetch("https://api.hubreceipts.com/api/admin/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -148,7 +148,7 @@ export default function AdminPanel() {
   const fetchSubscriptions = async () => {
     try {
       const token = localStorage.getItem("auth_token");
-      const res = await fetch("http://localhost:3001/api/admin/subscriptions", {
+      const res = await fetch("https://api.hubreceipts.com/api/admin/subscriptions", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -188,7 +188,7 @@ export default function AdminPanel() {
   const fetchPendingSubscriptions = async () => {
     try {
       const token = localStorage.getItem("auth_token");
-      const res = await fetch("http://localhost:3001/api/admin/pending-subscriptions", {
+      const res = await fetch("https://api.hubreceipts.com/api/admin/pending-subscriptions", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -214,7 +214,7 @@ export default function AdminPanel() {
     try {
       const token = localStorage.getItem("auth_token");
 
-      const res = await fetch("http://localhost:3001/api/admin/subscribe", {
+      const res = await fetch("https://api.hubreceipts.com/api/admin/subscribe", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -263,7 +263,7 @@ export default function AdminPanel() {
     
     try {
       const token = localStorage.getItem("auth_token");
-      const res = await fetch(`http://localhost:3001/api/admin/subscribe/${id}`, {
+      const res = await fetch(`https://api.hubreceipts.com/api/admin/subscribe/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -287,7 +287,7 @@ export default function AdminPanel() {
     
     try {
       const token = localStorage.getItem("auth_token");
-      const res = await fetch(`http://localhost:3001/api/admin/pending-subscriptions/${id}/approve`, {
+      const res = await fetch(`https://api.hubreceipts.com/api/admin/pending-subscriptions/${id}/approve`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -314,7 +314,7 @@ export default function AdminPanel() {
     
     try {
       const token = localStorage.getItem("auth_token");
-      const res = await fetch(`http://localhost:3001/api/admin/pending-subscriptions/${id}`, {
+      const res = await fetch(`https://api.hubreceipts.com/api/admin/pending-subscriptions/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

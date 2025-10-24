@@ -122,35 +122,7 @@ export default function Header() {
       {/* Mobile Navigation Links */}
       <div style={{ display: "flex", flexDirection: "column", gap: 16, flex: 1 }}>
         {/* Pricing Dropdown */}
-        <div style={{ borderBottom: "1px solid #f0f0f0", paddingBottom: 16 }}>
-          <button
-            onClick={() => router.push("/pricing")}
-            style={{
-              background: "none",
-              border: "none",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              width: "100%",
-              cursor: "pointer",
-              fontWeight: 500,
-              color: "#000",
-              fontSize: "18px",
-              padding: "12px 0",
-            }}
-          >
-            <span>💰 Pricing</span>
-            <ChevronDown 
-              color="black" 
-              size={20} 
-              style={{
-                transition: "transform 0.2s",
-                transform: activeDropdown === 'pricing-mobile' ? 'rotate(180deg)' : 'rotate(0deg)'
-              }} 
-            />
-          </button>
-        </div>
-
+      
         {/* Examples */}
         <a
           href="#examples"
@@ -335,7 +307,7 @@ export default function Header() {
             {/* Pricing */}
             <div style={{ position: "relative" }}>
               <button
-                onClick={() => toggleDropdown('pricing')}
+                onClick={() => router.push('pricing')}
                 style={{
                   background: "none",
                   border: "none",
@@ -353,10 +325,7 @@ export default function Header() {
                 <span style={{ color: 'black' }}>
                   💰 Pricing
                 </span>
-                <ChevronDown color="black" size={16} style={{
-                  transition: "transform 0.2s",
-                  transform: activeDropdown === 'pricing' ? 'rotate(180deg)' : 'rotate(0deg)'
-                }} />
+               
               </button>
 
               {activeDropdown === 'pricing' && (
@@ -509,7 +478,7 @@ export default function Header() {
                     border: "none",
                     fontWeight: 600,
                     whiteSpace: "nowrap",
-                    borderRadius: 10,
+               
                     cursor: "pointer",
                   }}
                 >
@@ -525,7 +494,7 @@ export default function Header() {
                     border: "none",
                     fontWeight: 600,
                     whiteSpace: "nowrap",
-                    borderRadius: 10,
+               
                     cursor: "pointer",
                   }}
                 >
