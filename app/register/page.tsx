@@ -51,7 +51,7 @@ export default function RegisterPage() {
       return;
     }
 
-    try {
+    try { 
       const res = await fetch("https://api.hubreceipts.com/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
