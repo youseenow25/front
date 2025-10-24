@@ -4,8 +4,8 @@ import './globals.css'
 import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
-title: 'Flux — The #1 Automation Toolkit',
-description: 'Generate reports, orchestrate emulators, and access the complete reseller toolkit. Turn small ops into 10x outcomes.'
+title: 'HubReceipts — Stock, Louis Vuitton, Dior +60 brands receipts.',
+description: 'Make receipts for StockX,Dior, Flannels, Apple'
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -13,6 +13,7 @@ return (
 <html lang="en">
 <body>
 {children}
+ <Analytics />
 </body>
 </html>
 )
