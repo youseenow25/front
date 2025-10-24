@@ -5,14 +5,50 @@ import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
 import ImageUploader from "@/components/ImageUploader";
 
+import StructuredData from "@/components/StructuredData";
+
 export const metadata: Metadata = {
-  title: "LuxReceipt — Premium Luxury Receipt Generator",
-  description: "Generate authentic-looking luxury receipts for Dior, Louis Vuitton, Stocks, and other premium brands. Professional receipt creation for luxury goods and investments.",
+  title: "HubReceipts — Professional Luxury Receipt Generator | StockX, Louis Vuitton, Dior",
+  description: "Generate authentic luxury receipts for StockX, Louis Vuitton, Dior, Gucci & 60+ premium brands. Create professional receipt documentation instantly with our secure platform.",
+  keywords: "luxury receipts, StockX receipts, Louis Vuitton receipts, Dior receipts, receipt generator, fake receipts, luxury documentation, purchase verification, receipt maker, authentic receipts",
+  authors: [{ name: "HubReceipts" }],
+  creator: "HubReceipts",
+  publisher: "HubReceipts",
+  robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+  openGraph: {
+    title: "HubReceipts — Professional Luxury Receipt Generator",
+    description: "Generate authentic luxury receipts for StockX, Louis Vuitton, Dior & 60+ premium brands",
+    type: "website",
+    locale: "en_US",
+    siteName: "HubReceipts",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "HubReceipts - Luxury Receipt Generator",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "HubReceipts — Luxury Receipt Generator",
+    description: "Generate authentic luxury receipts for 60+ brands",
+    images: ["/twitter-image.jpg"],
+    creator: "@hubreceipts",
+  },
+  verification: {
+    google: "your-google-verification-code", // Add when you get it
+  },
+  alternates: {
+    canonical: "https://hubreceipts.com",
+  },
 };
 
 export default function Page() {
   return (
     <>
+     <StructuredData />
       <main className="main">
         <div className="luxury-radial" aria-hidden />
         <Header />
@@ -26,7 +62,7 @@ export default function Page() {
         {/* Features Section */}
         <section className="luxury-features">
           <div className="container">
-            <h2 className="features-title">Why Choose LuxReceipt?</h2>
+            <h2 className="features-title">Why Choose HubReceipts?</h2>
             
             <div className="features-grid">
               <div className="feature-card">
