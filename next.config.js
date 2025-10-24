@@ -1,9 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  output: 'standalone', // Optional: for better deployment
   images: {
-    domains: ["lh3.googleusercontent.com"],
+    domains: ['api.hubreceipts.com'], // Add your image domains if needed
   },
-};
+  // Add any other config you need
+}
 
-export default nextConfig;
+module.exports = nextConfig
