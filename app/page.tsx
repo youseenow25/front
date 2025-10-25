@@ -9,43 +9,7 @@ import { Analytics } from "@vercel/analytics/next"
 
 import StructuredData from "@/components/StructuredData";
 
-export const metadata: Metadata = {
-  title: "Receipt generator StockX, Louis Vuitton, Dior, +60 brands",
-  description: "Generate receipts for StockX, Louis Vuitton, Dior, Gucci & 60+ premium brands. Create professional receipt documentation instantly with our secure platform.",
-  keywords: "luxury receipts, StockX receipts, Louis Vuitton receipts, Dior receipts, receipt generator, fake receipts, luxury documentation, purchase verification, receipt maker, authentic receipts,Flannels receipts, Dyson receipts, Apple receipts, Trapstar receipts  ",
-  authors: [{ name: "HubReceipts" }],
-  creator: "HubReceipts",
-  publisher: "HubReceipts",
-  robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
-  openGraph: {
-    title: "HubReceipts — Professional Luxury Receipt Generator",
-    description: "Generate authentic luxury receipts for StockX, Louis Vuitton, Dior & 60+ premium brands",
-    type: "website",
-    locale: "en_US",
-    siteName: "HubReceipts",
-    images: [
-      {
-        url: "/hublogo.png",
-        width: 1200,
-        height: 630,
-        alt: "HubReceipts - Receipt Generator",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "HubReceipts — Luxury Receipt Generator",
-    description: "Generate authentic luxury receipts for 60+ brands",
-    images: ["/twitter-image.jpg"],
-    creator: "@hubreceipts",
-  },
-  verification: {
-    google: "your-google-verification-code", // Add when you get it
-  },
-  alternates: {
-    canonical: "https://hubreceipts.com",
-  },
-};
+
 
 export default function Page() {
   return (
