@@ -10,9 +10,9 @@ import { Analytics } from "@vercel/analytics/next"
 import StructuredData from "@/components/StructuredData";
 
 export const metadata: Metadata = {
-  title: "HubReceipts — Professional Luxury Receipt Generator | StockX, Louis Vuitton, Dior",
-  description: "Generate authentic luxury receipts for StockX, Louis Vuitton, Dior, Gucci & 60+ premium brands. Create professional receipt documentation instantly with our secure platform.",
-  keywords: "luxury receipts, StockX receipts, Louis Vuitton receipts, Dior receipts, receipt generator, fake receipts, luxury documentation, purchase verification, receipt maker, authentic receipts",
+  title: "Receipt generator StockX, Louis Vuitton, Dior, +60 brands",
+  description: "Generate receipts for StockX, Louis Vuitton, Dior, Gucci & 60+ premium brands. Create professional receipt documentation instantly with our secure platform.",
+  keywords: "luxury receipts, StockX receipts, Louis Vuitton receipts, Dior receipts, receipt generator, fake receipts, luxury documentation, purchase verification, receipt maker, authentic receipts,Flannels receipts, Dyson receipts, Apple receipts, Trapstar receipts  ",
   authors: [{ name: "HubReceipts" }],
   creator: "HubReceipts",
   publisher: "HubReceipts",
@@ -25,10 +25,10 @@ export const metadata: Metadata = {
     siteName: "HubReceipts",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/hublogo.png",
         width: 1200,
         height: 630,
-        alt: "HubReceipts - Luxury Receipt Generator",
+        alt: "HubReceipts - Receipt Generator",
       },
     ],
   },
