@@ -3,8 +3,8 @@ import './globals.css'
 import { Analytics } from "@vercel/analytics/react"
 
 export const metadata: Metadata = {
-  title: 'HubReceipts - Generate Authentic Receipts for 60+ Luxury Brands',
-  description: 'Create realistic receipts for StockX, Louis Vuitton, Dior, Gucci, Apple, Nike, Supreme & 60+ premium brands. Professional receipt generator for luxury documentation.',
+  title: 'HubReceipts - Generate Authentic Receipts for 100+ Luxury & Streetwear Brands',
+  description: 'Create realistic receipts for StockX, Louis Vuitton, Dior, Gucci, Nike, Supreme, Balenciaga, Off-White & 100+ premium brands. Professional receipt generator for luxury documentation and purchase verification.',
   metadataBase: new URL('https://hubreceipts.com'),
   keywords: [
     // Primary keywords
@@ -12,52 +12,191 @@ export const metadata: Metadata = {
     'receipt generator',
     'luxury receipts',
     'receipt maker',
-    
-    // Brand-specific receipt keywords
-    'stockx receipt',
-    'stockx receipt generator',
-    'louis vuitton receipt',
-    'dior receipt',
-    'gucci receipt',
-    'apple receipt',
-    'nike receipt',
-    'supreme receipt',
-    'flannels receipt',
-    'dyson receipt',
-    'trapstar receipt',
-    'off white receipt',
-    'balenciaga receipt',
-    'supreme receipt generator',
-    'bape receipt',
-    'stone island receipt',
-    'moncler receipt',
-    'chrome hearts receipt',
-    
-    // Store receipts
-    'selfridges receipt',
-    'harrods receipt',
-    'ssense receipt',
-    'farfetch receipt',
-    'goat receipt',
-    'flight club receipt',
-    
-    // Category keywords
-    'luxury brand receipts',
-    'premium receipts',
-    'authentic receipts',
-    'receipt documentation',
-    'purchase verification',
-    
     'online receipt generator',
     'digital receipts',
     'receipt template',
-    
-    // Action keywords
     'generate receipt',
     'create receipt',
     'make receipt online',
     'receipt creator',
-    'custom receipt maker'
+    'custom receipt maker',
+    'purchase verification',
+    'receipt documentation',
+    
+    // Luxury Fashion Brands
+    'louis vuitton receipt',
+    'dior receipt',
+    'gucci receipt',
+    'balenciaga receipt',
+    'chanel receipt',
+    'prada receipt',
+    'hermes receipt',
+    'celine receipt',
+    'fendi receipt',
+    'givenchy receipt',
+    'versace receipt',
+    'dolce gabbana receipt',
+    'bottega veneta receipt',
+    'valentino receipt',
+    'burberry receipt',
+    'loewe receipt',
+    'cartier receipt',
+    'bulgari receipt',
+    'tiffany receipt',
+    'van cleef arpels receipt',
+    
+    // Streetwear Brands
+    'supreme receipt',
+    'bape receipt',
+    'off white receipt',
+    'stone island receipt',
+    'palace receipt',
+    'kith receipt',
+    'stussy receipt',
+    'carhartt receipt',
+    'vetements receipt',
+    'alyx receipt',
+    'ambush receipt',
+    'human made receipt',
+    'noah receipt',
+    'brain dead receipt',
+    
+    // Sneaker & Sportswear Brands
+    'nike receipt',
+    'adidas receipt',
+    'jordan receipt',
+    'yeezy receipt',
+    'new balance receipt',
+    'puma receipt',
+    'reebok receipt',
+    'converse receipt',
+    'vans receipt',
+    'asics receipt',
+    'saucony receipt',
+    
+    // High-End Streetwear & Designer
+    'acne studios receipt',
+    'corteiz receipt',
+    'denim tears receipt',
+    'gallery dept receipt',
+    'broken planet receipt',
+    'trapstar receipt',
+    'pop mort receipt',
+    'yeezy gap receipt',
+    'vivienne westwood receipt',
+    'maison margiela receipt',
+    'rick owens receipt',
+    'yohji yamamoto receipt',
+    'comme des garcons receipt',
+    
+    // Marketplaces & Resellers
+    'stockx receipt',
+    'goat receipt',
+    'grailed receipt',
+    'depop receipt',
+    'ebay receipt',
+    'vinted receipt',
+    'farfetch receipt',
+    'ssense receipt',
+    'end receipt',
+    'cettire receipt',
+    
+    // Department Stores & Retailers
+    'selfridges receipt',
+    'harrods receipt',
+    'flannels receipt',
+    'nordstrom receipt',
+    'neiman marcus receipt',
+    'saks fifth avenue receipt',
+    'barneys receipt',
+    'bloomingdales receipt',
+    'macy receipt',
+    'john lewis receipt',
+    'de bijenkorf receipt',
+    'breuninger receipt',
+    'frasers receipt',
+    'zalando receipt',
+    
+    // Specialty Stores
+    'jd sports receipt',
+    'foot locker receipt',
+    'stadium goods receipt',
+    'flight club receipt',
+    'kith receipt',
+    'a ma maniere receipt',
+    'sneakersnstuff receipt',
+    'size receipt',
+    
+    // Luxury Goods & Jewelry
+    'rolex receipt',
+    'omega receipt',
+    'patek philippe receipt',
+    'audemars piguet receipt',
+    'breitling receipt',
+    'tag heuer receipt',
+    'cartier receipt',
+    'tiffany receipt',
+    'bulgari receipt',
+    'van cleef receipt',
+    'xerjoff receipt',
+    'creed receipt',
+    'tom ford receipt',
+    
+    // Electronics & Home
+    'apple receipt',
+    'dyson receipt',
+    'sony receipt',
+    'samsung receipt',
+    'bose receipt',
+    'bang olufsen receipt',
+    'nest receipt',
+    'ring receipt',
+    
+    // Outdoor & Sport
+    'arcteryx receipt',
+    'patagonia receipt',
+    'the north face receipt',
+    'columbia receipt',
+    'canada goose receipt',
+    'moncler receipt',
+    'woolrich receipt',
+    'barbour receipt',
+    
+    // Vintage & Secondhand
+    'the realreal receipt',
+    'vestiaire collective receipt',
+    'rebag receipt',
+    'fashionphile receipt',
+    'what goes around comes around receipt',
+    
+    // Additional Brands from your list
+    'culture kings receipt',
+    'loro piana receipt',
+    'stanley receipt',
+    'argos receipt',
+    'best secret receipt',
+    'boots receipt',
+    'pacsun receipt',
+    'taylor made golf receipt',
+    'ugg receipt',
+    'sephora receipt',
+    'chrono24 receipt',
+    'sp5der receipt',
+    
+    // Category-specific keywords
+    'luxury brand receipts',
+    'designer receipts',
+    'streetwear receipts',
+    'sneaker receipts',
+    'high fashion receipts',
+    'premium receipts',
+    'authentic receipts',
+    'receipt documentation',
+    'purchase verification',
+    'fake purchase receipts',
+    'online receipt generator',
+    'digital receipts',
+    'receipt template'
   ],
   authors: [{ name: 'HubReceipts' }],
   creator: 'HubReceipts',
@@ -73,11 +212,23 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  
+  // PROPER FAVICON CONFIGURATION
   icons: {
-    icon: '/hublogo.png',
-    apple: '/hublogo.png',
-    shortcut: '/hublogo.png',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+    other: [
+      { rel: 'icon', url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
+      { rel: 'icon', url: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
+    ],
   },
+  
   manifest: '/site.webmanifest',
   themeColor: '#000000',
   appleWebApp: {
@@ -86,10 +237,10 @@ export const metadata: Metadata = {
     title: 'HubReceipts',
   },
   
-  // Open Graph for social media
+  // Open Graph - Use a different image for social media
   openGraph: {
-    title: 'HubReceipts - Generate Authentic Receipts for 60+ Luxury Brands',
-    description: 'Create realistic receipts for StockX, Louis Vuitton, Dior, Gucci, Apple & 60+ premium brands. Professional receipt documentation.',
+    title: 'HubReceipts - Generate Authentic Receipts for 100+ Luxury & Streetwear Brands',
+    description: 'Create realistic receipts for StockX, Louis Vuitton, Dior, Gucci, Nike, Supreme, Balenciaga & 100+ premium brands. Professional receipt documentation.',
     url: 'https://hubreceipts.com',
     siteName: 'HubReceipts',
     images: [
@@ -104,26 +255,19 @@ export const metadata: Metadata = {
     type: 'website',
   },
   
-  // Twitter Card
   twitter: {
     card: 'summary_large_image',
-    title: 'HubReceipts - Luxury Brand Receipt Generator',
-    description: 'Generate authentic receipts for StockX, LV, Dior, Gucci & 60+ brands',
+    title: 'HubReceipts - Luxury & Streetwear Receipt Generator',
+    description: 'Generate authentic receipts for 100+ brands including StockX, LV, Dior, Gucci, Nike, Supreme',
     images: ['/hublogo.png'],
     creator: '@hubreceipts',
   },
   
-  // Additional SEO enhancements
   alternates: {
     canonical: 'https://hubreceipts.com',
   },
   category: 'ecommerce',
   classification: 'Receipt Generator Service',
-  
-  // Structured data hints
-  other: {
-    'google-site-verification': 'your-google-verification-code', // Add when available
-  }
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -134,18 +278,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://hubreceipts.com" />
         
-        {/* Explicit favicon links for maximum compatibility */}
-        <link rel="icon" type="image/png" href="/hublogo.png" />
-        <link rel="apple-touch-icon" href="/hublogo.png" />
-        <link rel="shortcut icon" href="/hublogo.png" />
+        {/* EXPLICIT FAVICON LINKS AS FALLBACK */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
+        <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+        <link rel="manifest" href="/site.webmanifest" />
         
-        {/* Additional meta tags for receipt-specific SEO */}
+        {/* Additional meta tags */}
         <meta name="application-name" content="HubReceipts" />
         <meta name="apple-mobile-web-app-title" content="HubReceipts" />
         <meta name="msapplication-TileColor" content="#000000" />
-        <meta name="msapplication-config" content="/browserconfig.xml" />
         
-        {/* Schema.org structured data for better SEO */}
+        {/* Comprehensive Schema.org structured data */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -153,7 +298,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@context": "https://schema.org",
               "@type": "WebApplication",
               "name": "HubReceipts",
-              "description": "Professional receipt generator for luxury brands including StockX, Louis Vuitton, Dior, Gucci and 60+ premium brands",
+              "description": "Professional receipt generator for 100+ luxury and streetwear brands including StockX, Louis Vuitton, Dior, Gucci, Nike, Supreme, Balenciaga, Off-White and premium retailers",
               "url": "https://hubreceipts.com",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Web Browser",
@@ -165,9 +310,54 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               },
               "author": {
                 "@type": "Organization",
-                "name": "HubReceipts"
+                "name": "HubReceipts",
+                "url": "https://hubreceipts.com"
               },
-              "keywords": "receipt generator, fake receipts, luxury brand receipts, stockx receipt, louis vuitton receipt, dior receipt"
+              "keywords": [
+                "fake receipts", "receipt generator", "luxury receipts", "stockx receipt", 
+                "louis vuitton receipt", "dior receipt", "gucci receipt", "nike receipt",
+                "supreme receipt", "balenciaga receipt", "off white receipt", "adidas receipt",
+                "bape receipt", "stone island receipt", "apple receipt", "dyson receipt",
+                "farfetch receipt", "ssense receipt", "selfridges receipt", "harrods receipt"
+              ],
+              "mainEntity": {
+                "@type": "ItemList",
+                "name": "Supported Brands",
+                "numberOfItems": 100,
+                "itemListElement": [
+                  {"@type": "ListItem", "position": 1, "name": "StockX"},
+                  {"@type": "ListItem", "position": 2, "name": "Louis Vuitton"},
+                  {"@type": "ListItem", "position": 3, "name": "Dior"},
+                  {"@type": "ListItem", "position": 4, "name": "Gucci"},
+                  {"@type": "ListItem", "position": 5, "name": "Nike"},
+                  {"@type": "ListItem", "position": 6, "name": "Supreme"},
+                  {"@type": "ListItem", "position": 7, "name": "Balenciaga"},
+                  {"@type": "ListItem", "position": 8, "name": "Off-White"},
+                  {"@type": "ListItem", "position": 9, "name": "Adidas"},
+                  {"@type": "ListItem", "position": 10, "name": "Apple"}
+                ]
+              }
+            })
+          }}
+        />
+        
+        {/* Additional schema for local business */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "HubReceipts",
+              "url": "https://hubreceipts.com",
+              "logo": "https://hubreceipts.com/hublogo.png",
+              "description": "Professional receipt generator for luxury and streetwear brands",
+              "sameAs": [],
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "email": "support@hubreceipts.com",
+                "contactType": "customer service"
+              }
             })
           }}
         />
