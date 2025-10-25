@@ -8,23 +8,23 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: '/hubogo.png',
+        url: '/hublogo.png',
         sizes: 'any',
       },
       {
-        url: '/hubogo.png',
+        url: '/hublogo.png',
         sizes: '32x32',
         type: 'image/png',
       },
       {
-        url: '/hubogo.png',
+        url: '/hublogo.png',
         sizes: '16x16',
         type: 'image/png',
       },
     ],
     apple: [
       {
-        url: '/hubogo.png',
+        url: '/hublogo.png',
         sizes: '180x180',
         type: 'image/png',
       },
@@ -32,13 +32,13 @@ export const metadata: Metadata = {
     other: [
       {
         rel: 'android-chrome',
-        url: '/hubogo.png',
+        url: '/hublogo.png',
         sizes: '192x192',
         type: 'image/png',
       },
       {
         rel: 'android-chrome',
-        url: '/hubogo.png',
+        url: '/hublogo.png',
         sizes: '512x512',
         type: 'image/png',
       },
@@ -51,13 +51,12 @@ export const metadata: Metadata = {
     statusBarStyle: 'default',
     title: 'HubReceipts',
   },
-  // Open Graph Meta Tags (for social media)
   openGraph: {
     title: 'Receipts StockX, Louis Vuitton, Dior +60 brands receipts.',
     description: 'Make receipts for StockX, Dior, Flannels, Apple',
     images: [
       {
-        url: '/hubogo.png',
+        url: '/hublogo.png', // Make sure this file exists
         width: 1200,
         height: 630,
         alt: 'HubReceipts - Generate Fake Receipts',
@@ -66,14 +65,12 @@ export const metadata: Metadata = {
     url: 'https://hubreceipts.com',
     type: 'website',
   },
-  // Twitter Card Meta Tags
   twitter: {
     card: 'summary_large_image',
     title: 'Receipts StockX, Louis Vuitton, Dior +60 brands receipts.',
     description: 'Make receipts for StockX, Dior, Flannels, Apple',
-    images: ['/hubogo.png'],
+    images: ['/hublogo.png'], // Make sure this file exists
   },
-  // Additional SEO Meta Tags
   keywords: ['receipts', 'fake receipts', 'generator', 'stockx', 'dior', 'louis vuitton', 'apple', 'flannels'],
 }
 
@@ -81,7 +78,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
-        {/* Additional meta tags for better SEO */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://hubreceipts.com" />
