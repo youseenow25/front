@@ -117,6 +117,92 @@ function ensureCurrencySymbol(value: string): string {
   return value;
 }
 
+// Toast Component
+const Toast = ({ message, type = "success", onClose }: { 
+  message: string; 
+  type?: "success" | "error"; 
+  onClose: () => void;
+}) => {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      onClose();
+    }, 4000);
+
+    return () => clearTimeout(timer);
+  }, [onClose]);
+
+  return (
+    <div className={`toast toast-${type}`}>
+      <div className="toast-content">
+        <span className="toast-icon">
+          
+        </span>
+        <span className="toast-message">{message}</span>
+      </div>
+
+      <style>{`
+        .toast {
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          padding: 16px 20px;
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+          z-index: 10000;
+          animation: slideIn 0.3s ease-out;
+          max-width: 400px;
+        }
+        .toast-success {
+          background: #d4edda;
+          border: 1px solid #c3e6cb;
+          color: #155724;
+        }
+        .toast-error {
+          background: #f8d7da;
+          border: 1px solid #f5c6cb;
+          color: #721c24;
+        }
+        .toast-content {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+        .toast-icon {
+          font-size: 16px;
+        }
+        .toast-message {
+          flex: 1;
+          font-size: 14px;
+          font-weight: 500;
+        }
+        .toast-close {
+          background: none;
+          border: none;
+          font-size: 18px;
+          cursor: pointer;
+          padding: 0;
+          margin-left: 12px;
+          color: inherit;
+          opacity: 0.7;
+        }
+        .toast-close:hover {
+          opacity: 1;
+        }
+        @keyframes slideIn {
+          from {
+            transform: translateX(100%);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+      `}</style>
+    </div>
+  );
+};
+
 export default function ImageUploader() {
   const router = useRouter();
 
@@ -132,6 +218,7 @@ export default function ImageUploader() {
   const [loading, setLoading] = useState(false);
   const [userEmail, setUserEmail] = useState<string>("");
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const brandPickerRef = useRef<HTMLDivElement>(null);
@@ -470,8 +557,16 @@ export default function ImageUploader() {
 
       const html = await res.text();
       setGeneratedHtml(html);
+      
+      // Show success toast
+      setToast({
+        message: `✅ Email sent to ${emailValue}`,
+        type: "success"
+      });
+
     } catch (err) {
       console.error("❌ Receipt generation error:", err);
+      
       router.push("/payment");
     } finally {
       setLoading(false);
@@ -480,6 +575,15 @@ export default function ImageUploader() {
 
   return (
     <div className="wrap" ref={wrapRef}>
+      {/* Toast Notification */}
+      {toast && (
+        <Toast 
+          message={toast.message} 
+          type={toast.type}
+          onClose={() => setToast(null)} 
+        />
+      )}
+
       {/* LEFT: Image picker */}
       <div
         className="image-uploader"
