@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   description: 'Create realistic receipts for StockX, Louis Vuitton, Dior, Gucci, Nike, Supreme, Balenciaga, Off-White & 100+ premium brands. Professional receipt generator for luxury documentation and purchase verification.',
   metadataBase: new URL('https://hubreceipts.com'),
   keywords: [
+    'maison receipts discord',
+    'maison receipts',
     // Primary keywords
     'fake receipts',
     'receipt generator',
