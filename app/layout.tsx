@@ -292,7 +292,51 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="apple-mobile-web-app-title" content="HubReceipts" />
         <meta name="msapplication-TileColor" content="#000000" />
         
-        {/* Comprehensive Schema.org structured data */}
+        {/* GOOGLE SEARCH LOGO - CRITICAL FOR SEARCH RESULTS */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "HubReceipts",
+              "url": "https://hubreceipts.com",
+              "logo": "https://hubreceipts.com/hublogo.png",
+              "description": "Professional receipt generator for 100+ luxury and streetwear brands",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://hubreceipts.com/search?q={search_term_string}"
+                },
+                "query-input": "required name=search_term_string"
+              }
+            })
+          }}
+        />
+        
+        {/* Organization Schema - Important for Google Business Profile */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "HubReceipts",
+              "url": "https://hubreceipts.com",
+              "logo": "https://hubreceipts.com/hublogo.png",
+              "description": "Professional receipt generator for luxury and streetwear brands",
+              "sameAs": [],
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "email": "support@hubreceipts.com",
+                "contactType": "customer service"
+              }
+            })
+          }}
+        />
+        
+        {/* WebApplication Schema */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -314,55 +358,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 "@type": "Organization",
                 "name": "HubReceipts",
                 "url": "https://hubreceipts.com"
-              },
-              "keywords": [
-                "fake receipts", "receipt generator", "luxury receipts", "stockx receipt", 
-                "louis vuitton receipt", "dior receipt", "gucci receipt", "nike receipt",
-                "supreme receipt", "balenciaga receipt", "off white receipt", "adidas receipt",
-                "bape receipt", "stone island receipt", "apple receipt", "dyson receipt",
-                "farfetch receipt", "ssense receipt", "selfridges receipt", "harrods receipt"
-              ],
-              "mainEntity": {
-                "@type": "ItemList",
-                "name": "Supported Brands",
-                "numberOfItems": 100,
-                "itemListElement": [
-                  {"@type": "ListItem", "position": 1, "name": "StockX"},
-                  {"@type": "ListItem", "position": 2, "name": "Louis Vuitton"},
-                  {"@type": "ListItem", "position": 3, "name": "Dior"},
-                  {"@type": "ListItem", "position": 4, "name": "Gucci"},
-                  {"@type": "ListItem", "position": 5, "name": "Nike"},
-                  {"@type": "ListItem", "position": 6, "name": "Supreme"},
-                  {"@type": "ListItem", "position": 7, "name": "Balenciaga"},
-                  {"@type": "ListItem", "position": 8, "name": "Off-White"},
-                  {"@type": "ListItem", "position": 9, "name": "Adidas"},
-                  {"@type": "ListItem", "position": 10, "name": "Apple"}
-                ]
               }
             })
           }}
         />
         
-        {/* Additional schema for local business */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              "name": "HubReceipts",
-              "url": "https://hubreceipts.com",
-              "logo": "https://hubreceipts.com/hublogo.png",
-              "description": "Professional receipt generator for luxury and streetwear brands",
-              "sameAs": [],
-              "contactPoint": {
-                "@type": "ContactPoint",
-                "email": "support@hubreceipts.com",
-                "contactType": "customer service"
-              }
-            })
-          }}
-        />
+        {/* Additional logo meta tags for social platforms */}
+        <meta property="og:logo" content="https://hubreceipts.com/hublogo.png" />
+        <meta name="twitter:image:alt" content="HubReceipts Logo" />
+        
       </head>
       <body>
         {children}
