@@ -59,10 +59,7 @@ const PricingPage = () => {
             <div className="features-grid">
               <div className="feature">
                 <div className="feature-icon">⚡</div>
-                <div className="feature-text">
-                  <strong>Instant Access</strong>
-                  <span>Get started immediately</span>
-                </div>
+               
               </div>
               <div className="feature">
                 <div className="feature-icon">🔧</div>
@@ -71,13 +68,7 @@ const PricingPage = () => {
                   <span>Help from admins & community</span>
                 </div>
               </div>
-              <div className="feature">
-                <div className="feature-icon">🔄</div>
-                <div className="feature-text">
-                  <strong>Regular Updates</strong>
-                  <span>New features constantly</span>
-                </div>
-              </div>
+             
               <div className="feature">
                 <div className="feature-icon">💬</div>
                 <div className="feature-text">
