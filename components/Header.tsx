@@ -287,8 +287,8 @@ export default function Header() {
         {/* Left: Brand */}
         <button onClick={() => router.push("/")} style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <Image 
-            width={isMobile ? 60 : 100} 
-            height={isMobile ? 60 : 100} 
+            width={isMobile ? 60 : 90} 
+            height={isMobile ? 60 : 900} 
             alt="Webpage logo" 
             src={'/logoheader.png'} 
           />
