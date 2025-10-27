@@ -863,7 +863,7 @@ export default function ImageUploader() {
         
         /* Native Select Styles */
         .native-select {
-          padding: 12px;
+       
           border: 1px solid #ccc;
           border-radius: 8px;
           font-size: 16px;

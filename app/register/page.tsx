@@ -13,21 +13,17 @@ export default function RegisterPage() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Password validation
+  // Password validation - only check length
   const validatePassword = (password: string) => {
-    const hasNumber = /\d/.test(password);
-    const hasMinLength = password.length >= 7;
-    return hasNumber && hasMinLength;
+    return password.length >= 7;
   };
 
   const getPasswordRequirements = () => {
-    const hasNumber = /\d/.test(password);
     const hasMinLength = password.length >= 7;
     
     return {
-      number: hasNumber,
       length: hasMinLength,
-      isValid: hasNumber && hasMinLength
+      isValid: hasMinLength
     };
   };
 
@@ -40,7 +36,7 @@ export default function RegisterPage() {
 
     // Validate password
     if (!validatePassword(password)) {
-      setError("Password must be at least 7 characters long and include at least one number");
+      setError("Password must be at least 7 characters long");
       setIsLoading(false);
       return;
     }
@@ -178,12 +174,6 @@ export default function RegisterPage() {
                   }`}>
                     <span className="mr-1">{passwordRequirements.length ? '✓' : '○'}</span>
                     At least 7 characters
-                  </div>
-                  <div className={`text-xs flex items-center ${
-                    passwordRequirements.number ? 'text-green-600' : 'text-gray-500'
-                  }`}>
-                    <span className="mr-1">{passwordRequirements.number ? '✓' : '○'}</span>
-                    Contains at least one number
                   </div>
                 </div>
               )}

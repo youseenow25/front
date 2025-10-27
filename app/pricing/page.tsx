@@ -3,19 +3,19 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-
 import Header from '@/components/Header';
-
 import Footer from '@/components/Footer';
 
 interface Plan {
   id: string;
   name: string;
   price: number;
+  originalPrice?: number;
   description: string;
   features: string[];
   popular?: boolean;
   bestValue?: boolean;
+  savings?: string;
 }
 
 const PricingPage = () => {
@@ -24,71 +24,82 @@ const PricingPage = () => {
   const plans: Plan[] = [
     {
       id: '1-receipt',
-      name: '1 Receipt',
-      price: 4.99,
+      name: 'Single Receipt',
+      price: 4,
+      originalPrice: 8,
       description: 'Perfect for one-time use',
       features: [
         'Generate 1 professional receipt',
         'All premium templates',
-
-    
-     
-      ]
+        'Instant download',
+        'Money-back guarantee'
+      ],
+      savings: '50% OFF'
     },
     {
       id: '1-day',
-      name: '1 Day Access',
-      price: 7.99,
+      name: '24 Hours',
+      price: 7,
+      originalPrice: 15,
       description: 'Full access for 24 hours',
       features: [
         'Unlimited receipts for 1 day',
         'All premium templates',
-
-      
-      ]
+        'Priority support',
+        'Export multiple formats'
+      ],
+      savings: '53% OFF'
     },
     {
       id: '1-week',
-      name: '1 Week Access',
-      price: 14.99,
+      name: '1 Week',
+      price: 11,
+      originalPrice: 25,
       description: 'Our most popular plan',
       features: [
         'Unlimited receipts for 7 days',
         'All premium templates',
-      
-       
+        'Priority support',
+        'Custom branding'
       ],
-
+      popular: true,
+      savings: '56% OFF'
     },
     {
       id: '1-month',
-      name: '1 Month Access',
-      price: 22.99,
+      name: '1 Month',
+      price: 19,
+      originalPrice: 45,
       description: 'Best for regular users',
       features: [
         'Unlimited receipts for 30 days',
         'All premium templates',
         'Priority support',
-        
+        'Custom branding',
+        'Advanced analytics'
       ],
-      popular: true
+      bestValue: true,
+      savings: '58% OFF'
     },
     {
       id: 'lifetime',
-      name: 'Lifetime Access',
-      price: 39.99,
+      name: 'Lifetime',
+      price: 35,
+      originalPrice: 99,
       description: 'Never pay again',
       features: [
         'Lifetime unlimited receipts',
         'All current & future templates',
         'Priority support',
-       
-      ]
+        'Custom branding',
+        'Advanced analytics',
+        'Early access to new features'
+      ],
+      savings: '65% OFF'
     }
   ];
 
   const handleGetStarted = (plan: Plan) => {
-    // Store selected plan in session storage or context
     sessionStorage.setItem('selectedPlan', JSON.stringify(plan));
     router.push('/payment');
   };
@@ -100,8 +111,29 @@ const PricingPage = () => {
       {/* Header Section */}
       <div className="pricing-header">
         <div className="header-content">
-          <span style={{fontSize:30, fontWeight:'600'}} >⚡ Best quality receipts, if not, we'll give back the money</span>
-          <p>No hidden fees. No contracts. Cancel anytime.</p>
+          <h1>⚡ Create Professional Receipts in Seconds</h1>
+          <p className="subtitle">Trusted by thousands of businesses worldwide</p>
+          
+          {/* Social Proof */}
+          <div className="social-proof">
+            <div className="rating">
+              <div className="stars">★★★★★</div>
+              <span>4.9/5 from 2,500+ reviews</span>
+            </div>
+            <div className="trust-badges">
+              <div className="badge">✅ 30-Day Money Back</div>
+              <div className="badge">🔒 Secure Payment</div>
+              <div className="badge">⚡ Instant Access</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Limited Time Offer Banner */}
+      <div className="offer-banner">
+        <div className="offer-content">
+          <span className="offer-tag">LIMITED TIME OFFER</span>
+          <span className="offer-text">Get up to 65% OFF on all plans! Prices increase soon.</span>
         </div>
       </div>
 
@@ -115,10 +147,21 @@ const PricingPage = () => {
             >
               {/* Badges */}
               {plan.bestValue && (
-                <div className="best-value-badge">BEST VALUE</div>
+                <div className="best-value-badge">
+                  <span>🔥 BEST VALUE</span>
+                </div>
               )}
               {plan.popular && !plan.bestValue && (
-                <div className="popular-badge">MOST POPULAR</div>
+                <div className="popular-badge">
+                  <span>⭐ MOST POPULAR</span>
+                </div>
+              )}
+
+              {/* Savings Badge */}
+              {plan.savings && (
+                <div className="savings-badge">
+                  {plan.savings}
+                </div>
               )}
 
               {/* Plan Header */}
@@ -129,15 +172,21 @@ const PricingPage = () => {
 
               {/* Pricing */}
               <div className="plan-pricing">
+                {plan.originalPrice && (
+                  <div className="original-price">
+                    ${plan.originalPrice} USD
+                  </div>
+                )}
                 <div className="price-main">
                   <span className="price-currency">$</span>
                   <span className="price-amount">{plan.price}</span>
-                  <span className="price-period">
-                    {plan.id === '1-receipt' ? ' one time' : plan.id === 'lifetime' ? ' one time' : ''}
-                  </span>
+                  <span className="price-period">USD</span>
                 </div>
                 
                 {plan.id !== '1-receipt' && plan.id !== 'lifetime' && (
+                  <div className="billed-text">one time payment</div>
+                )}
+                {(plan.id === '1-receipt' || plan.id === 'lifetime') && (
                   <div className="billed-text">one time payment</div>
                 )}
               </div>
@@ -159,20 +208,45 @@ const PricingPage = () => {
                 className="plan-button"
                 onClick={() => handleGetStarted(plan)}
               >
-                <span style={{fontSize:20, fontWeight:'bold'}} >
-
-                     Buy now ⚡
-
+                <span className="button-text">
+                  Get Started Now ⚡
                 </span>
-
+                <span className="button-subtext">Instant Access · No Setup Fees</span>
               </button>
+
+              {/* Guarantee */}
+              <div className="guarantee">
+                <span>✅ 30-day money-back guarantee</span>
+              </div>
             </div>
           ))}
         </div>
       </div>
 
+      {/* FAQ Section */}
+      <div className="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <div className="faq-grid">
+          <div className="faq-item">
+            <h3>Can I cancel my subscription?</h3>
+            <p>All our plans are one-time payments with no subscriptions. You pay once and get access for the duration you selected.</p>
+          </div>
+          <div className="faq-item">
+            <h3>Is there a money-back guarantee?</h3>
+            <p>Yes! We offer a 30-day money-back guarantee on all plans. If you're not satisfied, we'll refund your payment.</p>
+          </div>
+          <div className="faq-item">
+            <h3>How do I access my receipts?</h3>
+            <p>You can access and download your receipts instantly after generation. All receipts are stored in your account dashboard.</p>
+          </div>
+          <div className="faq-item">
+            <h3>Can I upgrade my plan later?</h3>
+            <p>Absolutely! You can upgrade to a higher plan at any time, and we'll apply your previous payment as credit.</p>
+          </div>
+        </div>
+      </div>
+
       <Footer/>
-      
 
       <style jsx>{`
         .pricing-container {
@@ -182,70 +256,126 @@ const PricingPage = () => {
 
         .pricing-header {
           text-align: center;
-          margin-top: 60px;
+          padding: 80px 20px 40px;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
         }
 
         .header-content {
-          max-width: 600px;
+          max-width: 800px;
           margin: 0 auto;
         }
 
         .header-content h1 {
-          font-size: 30px;
-          font-weight: 700;
-          color: #1a1a1a;
+          font-size: 3.5rem;
+          font-weight: 800;
           margin: 0 0 16px 0;
-          background: linear-gradient(135deg, #000 0%, #333 100%);
+          background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
         }
 
-        .header-content p {
-          font-size: 20px;
-          color: #666;
+        .subtitle {
+          font-size: 1.5rem;
+          color: #e2e8f0;
           margin: 0 0 40px 0;
+          font-weight: 300;
+        }
+
+        .social-proof {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          align-items: center;
+        }
+
+        .rating {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          font-size: 1.1rem;
+        }
+
+        .stars {
+          color: #ffd700;
+          font-size: 1.4rem;
+        }
+
+        .trust-badges {
+          display: flex;
+          gap: 20px;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .badge {
+          background: rgba(255, 255, 255, 0.2);
+          padding: 8px 16px;
+          border-radius: 20px;
+          font-size: 0.9rem;
+          backdrop-filter: blur(10px);
+        }
+
+        .offer-banner {
+          background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+          color: white;
+          padding: 16px;
+          text-align: center;
+        }
+
+        .offer-content {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 16px;
+          flex-wrap: wrap;
+        }
+
+        .offer-tag {
+          background: white;
+          color: #ee5a24;
+          padding: 4px 12px;
+          border-radius: 12px;
+          font-weight: 700;
+          font-size: 0.8rem;
+        }
+
+        .offer-text {
+          font-weight: 600;
+          font-size: 1rem;
         }
 
         .plans-section {
-          max-width: 1200px;
-          margin: 0 auto 80px;
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 60px 20px;
         }
 
         .plans-grid {
           display: grid;
-          grid-template-columns: repeat(5, 1fr);
-          gap: 24px;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 30px;
           align-items: start;
-        }
-
-        @media (max-width: 1200px) {
-          .plans-grid {
-            grid-template-columns: repeat(3, 1fr);
-          }
-        }
-
-        @media (max-width: 768px) {
-          .plans-grid {
-            grid-template-columns: repeat(1, 1fr);
-          }
         }
 
         .plan-card {
           background: white;
-          border: 1px solid #e2e8f0;
-          border-radius: 16px;
+          border: 2px solid #e2e8f0;
+          border-radius: 20px;
           padding: 32px;
           position: relative;
           transition: all 0.3s ease;
           display: flex;
           flex-direction: column;
           height: fit-content;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         }
 
         .plan-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+          transform: translateY(-8px);
+          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+          border-color: #6366f1;
         }
 
         .plan-card.popular {
@@ -254,14 +384,14 @@ const PricingPage = () => {
         }
 
         .plan-card.best-value {
-          border-color: #000;
-          background: linear-gradient(135deg, #000 0%, #333 100%);
+          border-color: #6366f1;
+          background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
           color: white;
           transform: scale(1.05);
         }
 
         .plan-card.best-value:hover {
-          transform: scale(1.05) translateY(-4px);
+          transform: scale(1.05) translateY(-8px);
         }
 
         .best-value-badge {
@@ -269,18 +399,15 @@ const PricingPage = () => {
           top: -12px;
           left: 50%;
           transform: translateX(-50%);
-          background: #000;
+          background: linear-gradient(135deg, #ffd700 0%, #ff6b6b 100%);
           color: white;
           padding: 8px 24px;
           border-radius: 20px;
-          font-size: 12px;
+          font-size: 0.8rem;
           font-weight: 700;
           letter-spacing: 0.5px;
           text-transform: uppercase;
-        }
-
-        .plan-card.best-value .best-value-badge {
-          background: #10b981;
+          box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
         }
 
         .popular-badge {
@@ -290,11 +417,23 @@ const PricingPage = () => {
           transform: translateX(-50%);
           background: #6366f1;
           color: white;
-          padding: 6px 20px;
+          padding: 8px 20px;
           border-radius: 20px;
-          font-size: 12px;
-          font-weight: 600;
+          font-size: 0.8rem;
+          font-weight: 700;
           letter-spacing: 0.5px;
+        }
+
+        .savings-badge {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          background: #10b981;
+          color: white;
+          padding: 4px 12px;
+          border-radius: 12px;
+          font-size: 0.8rem;
+          font-weight: 700;
         }
 
         .plan-header {
@@ -303,7 +442,7 @@ const PricingPage = () => {
         }
 
         .plan-name {
-          font-size: 24px;
+          font-size: 1.5rem;
           font-weight: 700;
           color: #1a1a1a;
           margin: 0 0 8px 0;
@@ -314,7 +453,7 @@ const PricingPage = () => {
         }
 
         .plan-description {
-          font-size: 14px;
+          font-size: 0.9rem;
           color: #666;
           margin: 0;
           line-height: 1.5;
@@ -332,7 +471,18 @@ const PricingPage = () => {
         }
 
         .plan-card.best-value .plan-pricing {
-          border-bottom-color: #334155;
+          border-bottom-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .original-price {
+          font-size: 1rem;
+          color: #94a3b8;
+          text-decoration: line-through;
+          margin-bottom: 8px;
+        }
+
+        .plan-card.best-value .original-price {
+          color: rgba(255, 255, 255, 0.7);
         }
 
         .price-main {
@@ -344,7 +494,7 @@ const PricingPage = () => {
         }
 
         .price-currency {
-          font-size: 24px;
+          font-size: 1.5rem;
           font-weight: 600;
           color: #1a1a1a;
         }
@@ -354,8 +504,8 @@ const PricingPage = () => {
         }
 
         .price-amount {
-          font-size: 48px;
-          font-weight: 700;
+          font-size: 3.5rem;
+          font-weight: 800;
           color: #1a1a1a;
           line-height: 1;
         }
@@ -365,7 +515,7 @@ const PricingPage = () => {
         }
 
         .price-period {
-          font-size: 18px;
+          font-size: 1.1rem;
           color: #666;
           font-weight: 500;
         }
@@ -375,7 +525,7 @@ const PricingPage = () => {
         }
 
         .billed-text {
-          font-size: 14px;
+          font-size: 0.9rem;
           color: #666;
           font-weight: 500;
         }
@@ -399,8 +549,8 @@ const PricingPage = () => {
         }
 
         .feature-icon {
-          width: 20px;
-          height: 20px;
+          width: 18px;
+          height: 18px;
           color: #10b981;
           flex-shrink: 0;
           margin-top: 2px;
@@ -411,7 +561,7 @@ const PricingPage = () => {
         }
 
         .feature-text {
-          font-size: 14px;
+          font-size: 0.9rem;
           color: #666;
           line-height: 1.5;
         }
@@ -422,31 +572,65 @@ const PricingPage = () => {
 
         .plan-button {
           width: 100%;
-          padding: 10px;
-          border: 2px solid #0a77fe;
-          background: #0a77fe;
+          padding: 16px;
+          border: none;
+          background: linear-gradient(135deg, #0a77fe 0%, #0066e0 100%);
           color: white;
-          border-radius: 4px;
-          font-size: 16px;
-          font-weight: 600;
+          border-radius: 12px;
+          font-size: 1.1rem;
+          font-weight: 700;
           cursor: pointer;
           transition: all 0.2s ease;
+          margin-bottom: 16px;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+
+        .plan-card.best-value .plan-button {
+          background: linear-gradient(135deg, #ffd700 0%, #ff6b6b 100%);
+          color: #1a1a1a;
         }
 
         .plan-button:hover {
-          background: #0066e0;
-          border-color: #0066e0;
-          transform: translateY(-1px);
+          transform: translateY(-2px);
+          box-shadow: 0 8px 20px rgba(10, 119, 254, 0.4);
+        }
+
+        .plan-card.best-value .plan-button:hover {
+          box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .button-text {
+          font-size: 1.1rem;
+          font-weight: 700;
+        }
+
+        .button-subtext {
+          font-size: 0.8rem;
+          opacity: 0.9;
+          font-weight: 500;
+        }
+
+        .guarantee {
+          text-align: center;
+          font-size: 0.8rem;
+          color: #666;
+        }
+
+        .plan-card.best-value .guarantee {
+          color: #e2e8f0;
         }
 
         .faq-section {
           max-width: 1000px;
-          margin: 0 auto;
+          margin: 0 auto 80px;
+          padding: 0 20px;
           text-align: center;
         }
 
         .faq-section h2 {
-          font-size: 36px;
+          font-size: 2.5rem;
           font-weight: 700;
           color: #1a1a1a;
           margin: 0 0 40px 0;
@@ -454,36 +638,44 @@ const PricingPage = () => {
 
         .faq-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
           gap: 32px;
           text-align: left;
         }
 
+        .faq-item {
+          background: white;
+          padding: 24px;
+          border-radius: 12px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
         .faq-item h3 {
-          font-size: 18px;
+          font-size: 1.2rem;
           font-weight: 600;
           color: #1a1a1a;
           margin: 0 0 12px 0;
         }
 
         .faq-item p {
-          font-size: 16px;
+          font-size: 1rem;
           color: #666;
           line-height: 1.6;
           margin: 0;
         }
 
         @media (max-width: 768px) {
-          .pricing-container {
-            padding: 20px 16px;
-          }
-
           .header-content h1 {
-            font-size: 36px;
+            font-size: 2.5rem;
           }
 
-          .header-content p {
-            font-size: 18px;
+          .subtitle {
+            font-size: 1.2rem;
+          }
+
+          .trust-badges {
+            flex-direction: column;
+            gap: 10px;
           }
 
           .plans-grid {
@@ -496,11 +688,16 @@ const PricingPage = () => {
           }
 
           .plan-card.best-value:hover {
-            transform: translateY(-4px);
+            transform: translateY(-8px);
           }
 
           .faq-grid {
             grid-template-columns: 1fr;
+          }
+
+          .offer-content {
+            flex-direction: column;
+            gap: 8px;
           }
         }
 
@@ -514,7 +711,7 @@ const PricingPage = () => {
           }
           
           .price-amount {
-            font-size: 40px;
+            font-size: 2.5rem;
           }
         }
       `}</style>

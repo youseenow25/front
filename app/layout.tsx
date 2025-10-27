@@ -218,56 +218,41 @@ export const metadata: Metadata = {
   // PROPER FAVICON CONFIGURATION
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-    ],
-    apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
-    ],
-    other: [
-      { rel: 'icon', url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
-      { rel: 'icon', url: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
-    ],
-  },
-  
-  manifest: '/site.webmanifest',
-  themeColor: '#000000',
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: 'default',
-    title: 'HubReceipts',
-  },
-  
-  // Open Graph - Use a different image for social media
-  openGraph: {
-    title: 'HubReceipts - Generate Authentic Receipts for 100+ Luxury & Streetwear Brands',
-    description: 'Create realistic receipts for StockX, Louis Vuitton, Dior, Gucci, Nike, Supreme, Balenciaga & 100+ premium brands. Professional receipt documentation.',
-    url: 'https://hubreceipts.com',
-    siteName: 'HubReceipts',
-    images: [
       {
-        url: '/hublogo.png',
-        width: 1200,
-        height: 630,
-        alt: 'HubReceipts - Professional Receipt Generator for Luxury Brands',
+        url: '/favicon.ico',
+        sizes: 'any',
+      },
+      {
+        url: '/favicon-16x16.png',
+        sizes: '16x16',
+        type: 'image/png',
+      },
+      {
+        url: '/favicon-32x32.png',
+        sizes: '32x32',
+        type: 'image/png',
+      },
+      {
+        url: '/android-chrome-192x192.png',
+        sizes: '192x192',
+        type: 'image/png',
+      },
+      {
+        url: '/android-chrome-512x512.png',
+        sizes: '512x512',
+        type: 'image/png',
       },
     ],
-    locale: 'en_US',
-    type: 'website',
+    apple: [
+      {
+        url: '/apple-touch-icon.png',
+        sizes: '180x180',
+        type: 'image/png',
+      },
+    ],
   },
-  
-  twitter: {
-    card: 'summary_large_image',
-    title: 'HubReceipts - Luxury & Streetwear Receipt Generator',
-    description: 'Generate authentic receipts for 100+ brands including StockX, LV, Dior, Gucci, Nike, Supreme',
-    images: ['/hublogo.png'],
-    creator: '@hubreceipts',
-  },
-  
-  alternates: {
-    canonical: 'https://hubreceipts.com',
-  },
+  manifest: '/site.webmanifest',
+
   category: 'ecommerce',
   classification: 'Receipt Generator Service',
 }
@@ -279,19 +264,40 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://hubreceipts.com" />
-        
-        {/* EXPLICIT FAVICON LINKS AS FALLBACK */}
-        <link rel="icon" href="/favicon.ico" sizes="any" />
+
+          <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
         <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+        <link rel="icon" href="/android-chrome-192x192.png" type="image/png" sizes="192x192" />
+        <link rel="icon" href="/android-chrome-512x512.png" type="image/png" sizes="512x512" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
         <link rel="manifest" href="/site.webmanifest" />
         
-        {/* Additional meta tags */}
-        <meta name="application-name" content="HubReceipts" />
-        <meta name="apple-mobile-web-app-title" content="HubReceipts" />
+        {/* ADD THESE META TAGS FOR BETTER LOGO DISPLAY */}
+        <meta name="theme-color" content="#000000" />
         <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+        <meta name="msapplication-config" content="/browserconfig.xml" />
+
+        {/* GOOGLE SEARCH LOGO SCHEMA */}
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite", 
+      "name": "HubReceipts",
+      "url": "https://hubreceipts.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://hubreceipts.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    })
+  }}
+/>
         
+
         {/* GOOGLE SEARCH LOGO - CRITICAL FOR SEARCH RESULTS */}
         <script
           type="application/ld+json"

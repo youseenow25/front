@@ -287,8 +287,8 @@ export default function Header() {
         {/* Left: Brand */}
         <button onClick={() => router.push("/")} style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <Image 
-            width={isMobile ? 80 : 110} 
-            height={isMobile ? 80 : 110} 
+            width={isMobile ? 30 : 60} 
+            height={isMobile ? 30 : 60} 
             alt="Webpage logo" 
             src={'/hublogo.png'} 
           />
@@ -421,7 +421,7 @@ export default function Header() {
               }}
             >
               <Image src="/discord.png" alt="Discord" width={20} height={20} />
-              <span>Join our Discord</span>
+              <span>Gain acces by joining our Discord</span>
             </a>
           )}
 

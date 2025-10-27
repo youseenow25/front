@@ -110,7 +110,7 @@ export default function Hero() {
             </div>
 
             <p style={{ fontSize: isMobile ? "14px" : "18px", color: "#555", margin: isMobile ? "8px 0" : "0" }}>
-              For any help, contact us at this Discord
+              To get acces or any help, contact us at this Discord
             </p>
 
             <a
