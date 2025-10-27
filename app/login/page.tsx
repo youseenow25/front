@@ -58,7 +58,7 @@ export default function LoginPage() {
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center">
-          <Image width={150} height={150} src={"/hublogo.png"} alt="logo"  >
+          <Image width={150} height={150} src={"/logoheader.png"} alt="logo"  >
 
           </Image>
         </div>
