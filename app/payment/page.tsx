@@ -58,7 +58,7 @@ const PricingPage = () => {
           <div className="card-body">
             <div className="features-grid">
               <div className="feature">
-                <div className="feature-icon">⚡</div>
+              
                
               </div>
               <div className="feature">
