@@ -114,7 +114,7 @@ export default function Hero() {
             </p>
 
             <a
-              href="https://discord.gg/Mn8ZJTgcz5"
+              href="https://discord.gg/2ZRQu2uT62"
               target="_blank"
               rel="noopener noreferrer"
               style={{
