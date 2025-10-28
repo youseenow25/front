@@ -550,7 +550,7 @@ export default function ImageUploader() {
         credentials: "include",
       });
 
-      if (res.status === 402 || res.status === 403 || !res.ok) {
+      if (res.status === 402 || res.status === 403) {
         router.push("/payment");
         return;
       }
@@ -793,8 +793,7 @@ export default function ImageUploader() {
 
       </form>
 
-      {/* PREVIEW GENERATED RECEIPT */}
-      {generatedHtml && (
+      {/*  {generatedHtml && (
         <div className="receipt-preview">
           <h2>Generated Receipt ({selectedLanguage.name})</h2>
           <iframe
@@ -804,7 +803,8 @@ export default function ImageUploader() {
             sandbox="allow-same-origin" // Security measure
           />
         </div>
-      )}
+      )} */}
+     
 
       {/* UPDATED CSS */}
       <style>{`
