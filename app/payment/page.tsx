@@ -31,7 +31,7 @@ const PricingPage = () => {
         <div className="header-section">
          
           
-          <p>Join our discord to get HubReceipts with instant support and regular updates</p>
+          <p>Get the receipt generator for free, just join our discord.</p>
         </div>
 
         {/* Main Card */}
