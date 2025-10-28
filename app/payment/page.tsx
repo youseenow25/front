@@ -59,10 +59,10 @@ const PricingPage = () => {
             <div className="features-grid">
               
               <div className="feature">
-                <div className="feature-icon">🔧</div>
+                <div className="feature-icon">🎁</div>
                 <div className="feature-text">
-                  <strong>Direct Support</strong>
-                  <span>Help from admins & community</span>
+                  <strong>Free</strong>
+                  <span>Make receipt for free</span>
                 </div>
               </div>
              
