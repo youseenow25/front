@@ -32,7 +32,7 @@ export default function Page() {
       <iframe
         width="560"
         height="405"
-        src="https://www.youtube.com/embed/bLoxx8Rm7us?si=5dTRGzdzC-utkpwX"
+        src="https://youtu.be/lSIbSG7K5MM"
         title="YouTube video player"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
