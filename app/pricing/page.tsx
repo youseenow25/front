@@ -157,7 +157,7 @@ const PricingPage = () => {
               {/* CTA Button */}
               <button
                 className="plan-button"
-                onClick={() => handleGetStarted(plan)}
+                onClick={() => window.open("https://discord.gg/hubreceipts", "_blank")}
               >
                 <span style={{fontSize:20, fontWeight:'bold'}} >
 
