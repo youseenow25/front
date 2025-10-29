@@ -24,8 +24,30 @@ export default function Page() {
         <Hero />
         <ImageUploader />
 
+        <section className="luxury-features">
+  <div className="container">
+    <h2 className="features-title">Check our video example</h2>
 
-        {/* Features Section */}
+    <div className="video-wrapper">
+      <iframe
+        width="560"
+        height="405"
+        src="https://www.youtube.com/embed/bLoxx8Rm7us?si=5dTRGzdzC-utkpwX"
+        title="YouTube video player"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+      ></iframe>
+    </div>
+  </div>
+</section>
+
+
+
+       
+
+
+        
         <section className="luxury-features">
           <div className="container">
             <h2 className="features-title">Why Choose HubReceipts?</h2>
@@ -187,7 +209,7 @@ export default function Page() {
 
         /* Features Section */
         .luxury-features {
-          padding: 80px 0;
+          padding: 10px 0;
           background: white;
         }
 
@@ -196,7 +218,7 @@ export default function Page() {
           font-size: 2.5rem;
           font-weight: 700;
           color: #1a1a1a;
-          margin-bottom: 60px;
+          margin-bottom: 20px;
           background: linear-gradient(135deg, #1a1a1a, #333);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
