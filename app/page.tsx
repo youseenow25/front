@@ -24,7 +24,7 @@ export default function Page() {
         <Hero />
         <ImageUploader />
 
-        <section className="luxury-features">
+      <section className="luxury-features">
   <div className="container">
     <h2 className="features-title">Check our video example</h2>
 
@@ -32,7 +32,7 @@ export default function Page() {
       <iframe
         width="560"
         height="405"
-        src="https://www.youtube.com/watch?v=lSIbSG7K5MM"
+        src="https://www.youtube.com/embed/lSIbSG7K5MM?si=_T6UfwB3XPKVFNhA"
         title="YouTube video player"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -41,6 +41,7 @@ export default function Page() {
     </div>
   </div>
 </section>
+
 
 
 
@@ -310,3 +311,5 @@ export default function Page() {
     </>
   );
 }
+
+
