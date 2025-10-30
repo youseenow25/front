@@ -551,7 +551,7 @@ export default function ImageUploader() {
       });
 
       if (res.status === 402 || res.status === 403) {
-        window.open("https://discord.gg/hubreceipts", "_blank");
+        window.open("https://discord.gg/2ZRQu2uT62", "_blank");
         return;
       }
 
