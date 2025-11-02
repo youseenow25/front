@@ -558,7 +558,6 @@ export default function ImageUploader() {
       const html = await res.text();
       setGeneratedHtml(html);
       
-      // Show success toast
       setToast({
         message: `✅ Email sent to ${emailValue}`,
         type: "success"
