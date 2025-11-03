@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-11-02T17:48:44Z",
+  "generated_at": "2025-11-03T10:47:42Z",
   "root": "/Users/adamanhari/receiptfaker/templates",
   "brands": {
     "acne_studios": {
@@ -21,21 +21,21 @@
         "zip_code"
       ],
       "counts": {
-        "name": 21,
-        "order_number": 7,
-        "order_date": 7,
-        "street": 14,
-        "city": 14,
-        "zip_code": 14,
-        "country": 14,
-        "currency": 42,
-        "product_price": 21,
-        "quantity": 7,
-        "product_name": 7,
-        "size": 7,
-        "shipping_cost": 7,
-        "tax_amount": 7,
-        "total": 7
+        "name": 30,
+        "order_number": 10,
+        "order_date": 10,
+        "street": 20,
+        "city": 20,
+        "zip_code": 20,
+        "country": 20,
+        "currency": 60,
+        "product_price": 30,
+        "quantity": 10,
+        "product_name": 10,
+        "size": 10,
+        "shipping_cost": 10,
+        "tax_amount": 10,
+        "total": 10
       }
     },
     "adidas": {
@@ -57,21 +57,21 @@
         "zip_code"
       ],
       "counts": {
-        "order_number": 7,
-        "product_name": 14,
-        "currency": 21,
-        "product_price": 7,
-        "color": 7,
-        "size": 7,
-        "quantity": 7,
-        "product_id": 7,
-        "name": 14,
-        "street": 14,
-        "city": 14,
-        "zip_code": 14,
-        "country": 14,
-        "tax_amount": 7,
-        "total": 7
+        "order_number": 10,
+        "product_name": 20,
+        "currency": 30,
+        "product_price": 10,
+        "color": 10,
+        "size": 10,
+        "quantity": 10,
+        "product_id": 10,
+        "name": 20,
+        "street": 20,
+        "city": 20,
+        "zip_code": 20,
+        "country": 20,
+        "tax_amount": 10,
+        "total": 10
       }
     },
     "amazon": {
@@ -87,15 +87,15 @@
         "seller_name"
       ],
       "counts": {
-        "name": 14,
-        "city": 7,
-        "country": 7,
-        "order_number": 14,
-        "product_name": 7,
-        "seller_name": 7,
-        "quantity": 7,
-        "product_price": 7,
-        "currency": 14
+        "name": 20,
+        "city": 10,
+        "country": 10,
+        "order_number": 20,
+        "product_name": 10,
+        "seller_name": 10,
+        "quantity": 10,
+        "product_price": 10,
+        "currency": 20
       }
     },
     "apple": {
@@ -115,19 +115,19 @@
         "zip_code"
       ],
       "counts": {
-        "order_number": 8,
-        "order_date": 8,
-        "product_name": 8,
-        "currency": 40,
-        "product_price": 24,
-        "quantity": 8,
-        "street": 16,
-        "city": 16,
-        "zip_code": 16,
-        "country": 16,
-        "name": 8,
-        "shipping_cost": 8,
-        "total": 8
+        "order_number": 11,
+        "order_date": 11,
+        "product_name": 11,
+        "currency": 55,
+        "product_price": 33,
+        "quantity": 11,
+        "street": 22,
+        "city": 22,
+        "zip_code": 22,
+        "country": 22,
+        "name": 11,
+        "shipping_cost": 11,
+        "total": 11
       }
     },
     "arcteryx": {
@@ -153,25 +153,25 @@
         "zip_code"
       ],
       "counts": {
-        "name": 21,
-        "order_number": 7,
-        "order_date": 7,
-        "street": 14,
-        "city": 14,
-        "country": 14,
-        "zip_code": 14,
-        "product_name": 7,
-        "color": 7,
-        "size": 7,
-        "quantity": 7,
-        "currency": 49,
-        "product_price": 21,
-        "shipping_cost": 7,
-        "taxes_percentatge": 7,
-        "tax_amount": 7,
-        "total": 14,
-        "card_end": 7,
-        "email": 14
+        "name": 30,
+        "order_number": 10,
+        "order_date": 10,
+        "street": 20,
+        "city": 20,
+        "country": 20,
+        "zip_code": 20,
+        "product_name": 10,
+        "color": 10,
+        "size": 10,
+        "quantity": 10,
+        "currency": 70,
+        "product_price": 30,
+        "shipping_cost": 10,
+        "taxes_percentatge": 10,
+        "tax_amount": 10,
+        "total": 20,
+        "card_end": 10,
+        "email": 20
       }
     },
     "argos": {
@@ -193,21 +193,21 @@
         "zip_code"
       ],
       "counts": {
-        "order_date": 14,
-        "name": 14,
-        "street": 14,
-        "city": 14,
-        "zip_code": 14,
-        "spain": 7,
-        "product_id": 7,
-        "product_name": 7,
-        "quantity": 7,
-        "currency": 28,
-        "product_price": 14,
-        "shipping_cost": 7,
-        "total": 7,
-        "order_number": 7,
-        "country": 7
+        "order_date": 20,
+        "name": 20,
+        "street": 20,
+        "city": 20,
+        "zip_code": 20,
+        "spain": 10,
+        "product_id": 10,
+        "product_name": 10,
+        "quantity": 10,
+        "currency": 40,
+        "product_price": 20,
+        "shipping_cost": 10,
+        "total": 10,
+        "order_number": 10,
+        "country": 10
       }
     },
     "balenciaga": {
@@ -227,19 +227,19 @@
         "zip_code"
       ],
       "counts": {
-        "name": 7,
-        "order_number": 7,
-        "product_name": 7,
-        "currency": 28,
-        "product_price": 14,
-        "color": 7,
-        "quantity": 7,
-        "shipping_cost": 7,
-        "total": 7,
-        "street": 14,
-        "city": 14,
-        "zip_code": 14,
-        "country": 14
+        "name": 10,
+        "order_number": 10,
+        "product_name": 10,
+        "currency": 40,
+        "product_price": 20,
+        "color": 10,
+        "quantity": 10,
+        "shipping_cost": 10,
+        "total": 10,
+        "street": 20,
+        "city": 20,
+        "zip_code": 20,
+        "country": 20
       }
     },
     "bape": {
@@ -258,18 +258,18 @@
         "zip_code"
       ],
       "counts": {
-        "order_number": 7,
-        "product_name": 7,
-        "currency": 35,
-        "product_price": 14,
-        "shipping_cost": 7,
-        "tax_amount": 7,
-        "total": 7,
-        "street": 14,
-        "city": 14,
-        "zip_code": 14,
-        "country": 14,
-        "card_end": 7
+        "order_number": 10,
+        "product_name": 10,
+        "currency": 50,
+        "product_price": 20,
+        "shipping_cost": 10,
+        "tax_amount": 10,
+        "total": 10,
+        "street": 20,
+        "city": 20,
+        "zip_code": 20,
+        "country": 20,
+        "card_end": 10
       }
     },
     "best_secret": {
@@ -290,20 +290,20 @@
         "zip_code"
       ],
       "counts": {
-        "name": 21,
-        "order_number": 7,
-        "order_date": 7,
-        "street": 7,
-        "city": 14,
-        "zip_code": 7,
-        "country": 7,
-        "product_name": 7,
-        "size": 7,
-        "quantity": 7,
-        "currency": 28,
-        "product_price": 14,
-        "shipping_cost": 7,
-        "total": 7
+        "name": 30,
+        "order_number": 10,
+        "order_date": 10,
+        "street": 10,
+        "city": 20,
+        "zip_code": 10,
+        "country": 10,
+        "product_name": 10,
+        "size": 10,
+        "quantity": 10,
+        "currency": 40,
+        "product_price": 20,
+        "shipping_cost": 10,
+        "total": 10
       }
     },
     "boots": {
@@ -324,20 +324,20 @@
         "zip_code"
       ],
       "counts": {
-        "order_number": 7,
-        "product_name": 7,
-        "quantity": 7,
-        "currency": 35,
-        "tax_amount": 14,
-        "product_price": 7,
-        "shipping_cost": 7,
-        "total": 7,
-        "name": 7,
-        "street": 7,
-        "city": 7,
-        "zip_code": 7,
-        "country": 7,
-        "delivery_date": 7
+        "order_number": 10,
+        "product_name": 10,
+        "quantity": 10,
+        "currency": 50,
+        "tax_amount": 20,
+        "product_price": 10,
+        "shipping_cost": 10,
+        "total": 10,
+        "name": 10,
+        "street": 10,
+        "city": 10,
+        "zip_code": 10,
+        "country": 10,
+        "delivery_date": 10
       }
     },
     "breuninger": {
@@ -357,19 +357,19 @@
         "zip_code"
       ],
       "counts": {
-        "name": 14,
-        "order_number": 14,
-        "street": 7,
-        "city": 7,
-        "zip_code": 7,
-        "card_end": 7,
-        "brand_shop": 7,
-        "product_name": 7,
-        "size": 7,
-        "color": 7,
-        "currency": 28,
-        "product_price": 21,
-        "total": 7
+        "name": 20,
+        "order_number": 20,
+        "street": 10,
+        "city": 10,
+        "zip_code": 10,
+        "card_end": 10,
+        "brand_shop": 10,
+        "product_name": 10,
+        "size": 10,
+        "color": 10,
+        "currency": 40,
+        "product_price": 30,
+        "total": 10
       }
     },
     "broken_planet": {
@@ -391,21 +391,21 @@
         "zip_code"
       ],
       "counts": {
-        "order_number": 7,
-        "product_name": 7,
-        "color": 7,
-        "quantity": 7,
-        "currency": 35,
-        "product_price": 14,
-        "shipping_cost": 7,
-        "tax_amount": 7,
-        "total": 7,
-        "name": 14,
-        "street": 14,
-        "city": 14,
-        "zip_code": 14,
-        "country": 14,
-        "card_end": 7
+        "order_number": 10,
+        "product_name": 10,
+        "color": 10,
+        "quantity": 10,
+        "currency": 50,
+        "product_price": 20,
+        "shipping_cost": 10,
+        "tax_amount": 10,
+        "total": 10,
+        "name": 20,
+        "street": 20,
+        "city": 20,
+        "zip_code": 20,
+        "country": 20,
+        "card_end": 10
       }
     },
     "bulgari": {
@@ -424,18 +424,18 @@
         "zip_code"
       ],
       "counts": {
-        "name": 21,
-        "order_number": 7,
-        "order_date": 7,
-        "street": 14,
-        "city": 14,
-        "zip_code": 14,
-        "country": 14,
-        "product_name": 7,
-        "currency": 28,
-        "product_price": 21,
-        "quantity": 7,
-        "total": 7
+        "name": 30,
+        "order_number": 10,
+        "order_date": 10,
+        "street": 20,
+        "city": 20,
+        "zip_code": 20,
+        "country": 20,
+        "product_name": 10,
+        "currency": 40,
+        "product_price": 30,
+        "quantity": 10,
+        "total": 10
       }
     },
     "burberry": {
@@ -460,24 +460,24 @@
         "zip_code"
       ],
       "counts": {
-        "name": 21,
-        "order_number": 7,
-        "delivery_date": 7,
-        "product_name": 7,
-        "size": 7,
-        "color": 7,
-        "product_id": 7,
-        "currency": 35,
-        "product_price": 21,
-        "quantity": 7,
-        "shipping_cost": 7,
-        "total": 7,
-        "street": 14,
-        "city": 14,
-        "zip_code": 14,
-        "country": 14,
-        "phone_number": 14,
-        "card_end": 7
+        "name": 30,
+        "order_number": 10,
+        "delivery_date": 10,
+        "product_name": 10,
+        "size": 10,
+        "color": 10,
+        "product_id": 10,
+        "currency": 50,
+        "product_price": 30,
+        "quantity": 10,
+        "shipping_cost": 10,
+        "total": 10,
+        "street": 20,
+        "city": 20,
+        "zip_code": 20,
+        "country": 20,
+        "phone_number": 20,
+        "card_end": 10
       }
     },
     "canada_goose": {
@@ -496,18 +496,18 @@
         "total"
       ],
       "counts": {
-        "invoice_date": 7,
-        "order_number": 7,
-        "order_date": 7,
-        "name": 14,
-        "street": 14,
-        "card_end": 7,
-        "product_name": 7,
-        "size": 7,
-        "currency": 42,
-        "product_price": 21,
-        "tax_amount": 14,
-        "total": 7
+        "name": 29,
+        "invoice_date": 10,
+        "order_number": 10,
+        "order_date": 10,
+        "street": 20,
+        "card_end": 10,
+        "product_name": 10,
+        "size": 10,
+        "currency": 60,
+        "product_price": 30,
+        "tax_amount": 20,
+        "total": 10
       }
     },
     "cartier": {
@@ -530,22 +530,22 @@
         "zip_code"
       ],
       "counts": {
-        "name": 21,
-        "order_number": 7,
-        "product_name": 7,
-        "color": 7,
-        "size": 7,
-        "currency": 35,
-        "product_price": 14,
-        "quantity": 7,
-        "delivery_date": 7,
-        "shipping_cost": 7,
-        "tax_amount": 7,
-        "total": 7,
-        "street": 14,
-        "zip_code": 14,
-        "city": 14,
-        "country": 14
+        "name": 30,
+        "order_number": 10,
+        "product_name": 10,
+        "color": 10,
+        "size": 10,
+        "currency": 50,
+        "product_price": 20,
+        "quantity": 10,
+        "delivery_date": 10,
+        "shipping_cost": 10,
+        "tax_amount": 10,
+        "total": 10,
+        "street": 20,
+        "zip_code": 20,
+        "city": 20,
+        "country": 20
       }
     },
     "cettire": {
@@ -568,22 +568,22 @@
         "zip_code"
       ],
       "counts": {
-        "order_number": 7,
-        "name": 21,
-        "product_name": 7,
-        "quantity": 7,
-        "size": 7,
-        "color": 7,
-        "currency": 42,
-        "product_price": 14,
-        "shipping_cost": 7,
-        "tax_amount": 7,
-        "total": 7,
-        "street": 14,
-        "city": 14,
-        "zip_code": 14,
-        "country": 14,
-        "card_end": 7
+        "order_number": 10,
+        "name": 30,
+        "product_name": 10,
+        "quantity": 10,
+        "size": 10,
+        "color": 10,
+        "currency": 60,
+        "product_price": 20,
+        "shipping_cost": 10,
+        "tax_amount": 10,
+        "total": 10,
+        "street": 20,
+        "city": 20,
+        "zip_code": 20,
+        "country": 20,
+        "card_end": 10
       }
     },
     "chanel": {
@@ -606,22 +606,22 @@
         "zip_code"
       ],
       "counts": {
-        "name": 21,
-        "order_number": 7,
-        "order_date": 7,
-        "product_name": 7,
-        "size": 7,
-        "color": 7,
-        "quantity": 7,
-        "currency": 35,
-        "product_price": 14,
-        "tax_amount": 7,
-        "shipping_cost": 7,
-        "total": 7,
-        "street": 14,
-        "city": 14,
-        "zip_code": 14,
-        "country": 14
+        "name": 30,
+        "order_number": 10,
+        "order_date": 10,
+        "product_name": 10,
+        "size": 10,
+        "color": 10,
+        "quantity": 10,
+        "currency": 50,
+        "product_price": 20,
+        "tax_amount": 10,
+        "shipping_cost": 10,
+        "total": 10,
+        "street": 20,
+        "city": 20,
+        "zip_code": 20,
+        "country": 20
       }
     },
     "chrono24": {
@@ -633,11 +633,11 @@
         "total"
       ],
       "counts": {
-        "product_name": 7,
-        "currency": 14,
-        "product_price": 7,
-        "seller_name": 7,
-        "total": 7
+        "product_name": 10,
+        "currency": 20,
+        "product_price": 10,
+        "seller_name": 10,
+        "total": 10
       }
     },
     "corteiz": {
@@ -657,19 +657,19 @@
         "zip_code"
       ],
       "counts": {
-        "product_name": 7,
-        "quantity": 7,
-        "size": 7,
-        "currency": 35,
-        "product_price": 14,
-        "shipping_cost": 7,
-        "tax_amount": 7,
-        "total": 7,
-        "street": 14,
-        "city": 14,
-        "zip_code": 14,
-        "country": 14,
-        "card_end": 7
+        "product_name": 10,
+        "quantity": 10,
+        "size": 10,
+        "currency": 50,
+        "product_price": 20,
+        "shipping_cost": 10,
+        "tax_amount": 10,
+        "total": 10,
+        "street": 20,
+        "city": 20,
+        "zip_code": 20,
+        "country": 20,
+        "card_end": 10
       }
     },
     "culture_kings": {
@@ -679,9 +679,9 @@
         "quantity"
       ],
       "counts": {
-        "order_number": 7,
-        "product_name": 7,
-        "quantity": 7
+        "order_number": 10,
+        "product_name": 10,
+        "quantity": 10
       }
     },
     "debijenkorf": {
@@ -702,20 +702,20 @@
         "zip_code"
       ],
       "counts": {
-        "name": 7,
-        "order_number": 7,
-        "delivery_date": 14,
-        "brand_name": 7,
-        "product_name": 7,
-        "currency": 21,
-        "product_price": 7,
-        "size": 7,
-        "quantity": 7,
-        "total": 14,
-        "street": 7,
-        "zip_code": 7,
-        "city": 7,
-        "country": 7
+        "name": 10,
+        "order_number": 10,
+        "delivery_date": 20,
+        "brand_name": 10,
+        "product_name": 10,
+        "currency": 30,
+        "product_price": 10,
+        "size": 10,
+        "quantity": 10,
+        "total": 20,
+        "street": 10,
+        "zip_code": 10,
+        "city": 10,
+        "country": 10
       }
     },
     "denim_tears": {
@@ -738,22 +738,22 @@
         "zip_code"
       ],
       "counts": {
-        "name": 21,
-        "order_date": 14,
-        "order_number": 7,
-        "product_name": 7,
-        "size": 7,
-        "color": 7,
-        "quantity": 7,
-        "currency": 35,
-        "product_price": 14,
-        "shipping_cost": 7,
-        "tax_amount": 7,
-        "total": 7,
-        "street": 14,
-        "city": 14,
-        "zip_code": 14,
-        "country": 14
+        "name": 30,
+        "order_date": 20,
+        "order_number": 10,
+        "product_name": 10,
+        "size": 10,
+        "color": 10,
+        "quantity": 10,
+        "currency": 50,
+        "product_price": 20,
+        "shipping_cost": 10,
+        "tax_amount": 10,
+        "total": 10,
+        "street": 20,
+        "city": 20,
+        "zip_code": 20,
+        "country": 20
       }
     },
     "dior": {
@@ -772,18 +772,18 @@
         "zip_code"
       ],
       "counts": {
-        "name": 21,
-        "order_number": 14,
-        "product_name": 7,
-        "quantity": 7,
-        "currency": 28,
-        "product_price": 14,
-        "tax_amount": 7,
-        "total": 7,
-        "street": 14,
-        "city": 14,
-        "zip_code": 14,
-        "country": 14
+        "name": 30,
+        "order_number": 20,
+        "product_name": 10,
+        "quantity": 10,
+        "currency": 40,
+        "product_price": 20,
+        "tax_amount": 10,
+        "total": 10,
+        "street": 20,
+        "city": 20,
+        "zip_code": 20,
+        "country": 20
       }
     },
     "dyson": {
@@ -801,17 +801,17 @@
         "zip_code"
       ],
       "counts": {
-        "order_number": 7,
-        "street": 14,
-        "city": 14,
-        "zip_code": 14,
-        "country": 14,
-        "product_name": 7,
-        "quantity": 7,
-        "currency": 28,
-        "product_price": 14,
-        "tax_amount": 7,
-        "total": 7
+        "order_number": 10,
+        "street": 20,
+        "city": 20,
+        "zip_code": 20,
+        "country": 20,
+        "product_name": 10,
+        "quantity": 10,
+        "currency": 40,
+        "product_price": 20,
+        "tax_amount": 10,
+        "total": 10
       }
     },
     "ebay": {
@@ -827,15 +827,15 @@
         "seller_name"
       ],
       "counts": {
-        "name": 7,
-        "product_name": 7,
-        "currency": 14,
-        "product_price": 14,
-        "order_number": 7,
-        "product_id": 7,
-        "order_date": 7,
-        "quantity": 7,
-        "seller_name": 7
+        "name": 10,
+        "product_name": 10,
+        "currency": 20,
+        "product_price": 20,
+        "order_number": 10,
+        "product_id": 10,
+        "order_date": 10,
+        "quantity": 10,
+        "seller_name": 10
       }
     },
     "end": {
@@ -857,21 +857,21 @@
         "zip_code"
       ],
       "counts": {
-        "name": 7,
-        "order_number": 7,
-        "product_name": 7,
-        "color": 7,
-        "size": 7,
-        "quantity": 7,
-        "currency": 35,
-        "product_price": 14,
-        "shipping_cost": 7,
-        "tax_amount": 7,
-        "total": 7,
-        "street": 14,
-        "city": 14,
-        "zip_code": 14,
-        "delivery_date": 7
+        "name": 10,
+        "order_number": 10,
+        "product_name": 10,
+        "color": 10,
+        "size": 10,
+        "quantity": 10,
+        "currency": 50,
+        "product_price": 20,
+        "shipping_cost": 10,
+        "tax_amount": 10,
+        "total": 10,
+        "street": 20,
+        "city": 20,
+        "zip_code": 20,
+        "delivery_date": 10
       }
     },
     "farfetch": {
@@ -889,17 +889,17 @@
         "zip_code"
       ],
       "counts": {
-        "order_number": 14,
-        "name": 7,
-        "delivery_date": 21,
-        "street": 7,
-        "city": 7,
-        "zip_code": 7,
-        "country": 7,
-        "brand_name": 7,
-        "product_name": 7,
-        "currency": 7,
-        "product_price": 7
+        "order_number": 20,
+        "name": 10,
+        "delivery_date": 30,
+        "street": 10,
+        "city": 10,
+        "zip_code": 10,
+        "country": 10,
+        "brand_name": 10,
+        "product_name": 10,
+        "currency": 10,
+        "product_price": 10
       }
     },
     "flannels": {
@@ -920,20 +920,20 @@
         "zip_code"
       ],
       "counts": {
-        "delivery_date": 7,
-        "street": 14,
-        "city": 14,
-        "zip_code": 14,
-        "country": 14,
-        "order_date": 7,
-        "order_number": 7,
-        "product_name": 7,
-        "product_id": 7,
-        "quantity": 14,
-        "currency": 28,
-        "product_price": 14,
-        "shipping_cost": 7,
-        "total": 7
+        "delivery_date": 10,
+        "street": 20,
+        "city": 20,
+        "zip_code": 20,
+        "country": 20,
+        "order_date": 10,
+        "order_number": 10,
+        "product_name": 10,
+        "product_id": 10,
+        "quantity": 20,
+        "currency": 40,
+        "product_price": 20,
+        "shipping_cost": 10,
+        "total": 10
       }
     },
     "flight_club": {
@@ -954,20 +954,20 @@
         "zip_code"
       ],
       "counts": {
-        "product_name": 14,
-        "order_number": 7,
-        "size": 7,
-        "currency": 28,
-        "product_price": 14,
-        "shipping_cost": 7,
-        "card_end": 7,
-        "total": 7,
-        "street": 7,
-        "city": 7,
-        "zip_code": 7,
-        "country": 7,
-        "name": 7,
-        "phone_number": 7
+        "product_name": 20,
+        "order_number": 10,
+        "size": 10,
+        "currency": 40,
+        "product_price": 20,
+        "shipping_cost": 10,
+        "card_end": 10,
+        "total": 10,
+        "street": 10,
+        "city": 10,
+        "zip_code": 10,
+        "country": 10,
+        "name": 10,
+        "phone_number": 10
       }
     },
     "frasers": {
@@ -989,21 +989,21 @@
         "zip_code"
       ],
       "counts": {
-        "delivery_date": 7,
-        "name": 14,
-        "street": 14,
-        "city": 14,
-        "zip_code": 14,
-        "country": 14,
-        "order_date": 7,
-        "order_number": 7,
-        "product_name": 7,
-        "product_id": 7,
-        "quantity": 7,
-        "currency": 28,
-        "product_price": 14,
-        "shipping_cost": 7,
-        "total": 7
+        "delivery_date": 10,
+        "name": 20,
+        "street": 20,
+        "city": 20,
+        "zip_code": 20,
+        "country": 20,
+        "order_date": 10,
+        "order_number": 10,
+        "product_name": 10,
+        "product_id": 10,
+        "quantity": 10,
+        "currency": 40,
+        "product_price": 20,
+        "shipping_cost": 10,
+        "total": 10
       }
     },
     "gallery_dept": {
@@ -1026,22 +1026,22 @@
         "zip_code"
       ],
       "counts": {
-        "order_number": 7,
-        "name": 21,
-        "product_name": 7,
-        "quantity": 7,
-        "size": 7,
-        "color": 7,
-        "currency": 42,
-        "product_price": 14,
-        "shipping_cost": 7,
-        "tax_amount": 7,
-        "total": 7,
-        "street": 14,
-        "city": 14,
-        "zip_code": 14,
-        "country": 14,
-        "card_end": 7
+        "order_number": 10,
+        "name": 30,
+        "product_name": 10,
+        "quantity": 10,
+        "size": 10,
+        "color": 10,
+        "currency": 60,
+        "product_price": 20,
+        "shipping_cost": 10,
+        "tax_amount": 10,
+        "total": 10,
+        "street": 20,
+        "city": 20,
+        "zip_code": 20,
+        "country": 20,
+        "card_end": 10
       }
     },
     "goat": {
@@ -1060,18 +1060,18 @@
         "zip_code"
       ],
       "counts": {
-        "order_number": 7,
-        "product_id": 7,
-        "product_name": 7,
-        "brand_name": 7,
-        "currency": 14,
-        "product_price": 7,
-        "total": 7,
-        "name": 7,
-        "street": 7,
-        "city": 7,
-        "zip_code": 7,
-        "country": 7
+        "order_number": 10,
+        "product_id": 10,
+        "product_name": 10,
+        "brand_name": 10,
+        "currency": 20,
+        "product_price": 10,
+        "total": 10,
+        "name": 10,
+        "street": 10,
+        "city": 10,
+        "zip_code": 10,
+        "country": 10
       }
     },
     "gucci": {
@@ -1093,21 +1093,21 @@
         "zip_code"
       ],
       "counts": {
-        "name": 21,
-        "order_number": 7,
-        "product_name": 7,
-        "color": 7,
-        "size": 7,
-        "delivery_date": 7,
-        "currency": 21,
-        "product_price": 14,
-        "quantity": 7,
-        "total": 7,
-        "street": 14,
-        "city": 14,
-        "zip_code": 14,
-        "country": 14,
-        "card_end": 7
+        "name": 30,
+        "order_number": 10,
+        "product_name": 10,
+        "color": 10,
+        "size": 10,
+        "delivery_date": 10,
+        "currency": 30,
+        "product_price": 20,
+        "quantity": 10,
+        "total": 10,
+        "street": 20,
+        "city": 20,
+        "zip_code": 20,
+        "country": 20,
+        "card_end": 10
       }
     },
     "harrods": {
@@ -1127,19 +1127,19 @@
         "zip_code"
       ],
       "counts": {
-        "order_number": 14,
-        "street": 7,
-        "city": 7,
-        "zip_code": 7,
-        "country": 7,
-        "product_name": 7,
-        "size": 7,
-        "quantity": 7,
-        "currency": 21,
-        "product_price": 7,
-        "delivery_date": 7,
-        "shipping_cost": 7,
-        "total": 7
+        "order_number": 20,
+        "street": 10,
+        "city": 10,
+        "zip_code": 10,
+        "country": 10,
+        "product_name": 10,
+        "size": 10,
+        "quantity": 10,
+        "currency": 30,
+        "product_price": 10,
+        "delivery_date": 10,
+        "shipping_cost": 10,
+        "total": 10
       }
     },
     "hermes": {
@@ -1160,20 +1160,20 @@
         "zip_code"
       ],
       "counts": {
-        "name": 21,
-        "order_date": 7,
-        "order_number": 14,
-        "product_name": 7,
-        "color": 7,
-        "size": 7,
-        "quantity": 7,
-        "currency": 28,
-        "product_price": 14,
-        "street": 7,
-        "zip_code": 7,
-        "city": 7,
-        "shipping_cost": 7,
-        "total": 7
+        "name": 30,
+        "order_date": 10,
+        "order_number": 20,
+        "product_name": 10,
+        "color": 10,
+        "size": 10,
+        "quantity": 10,
+        "currency": 40,
+        "product_price": 20,
+        "street": 10,
+        "zip_code": 10,
+        "city": 10,
+        "shipping_cost": 10,
+        "total": 10
       }
     },
     "jd_sports": {
@@ -1190,16 +1190,16 @@
         "total"
       ],
       "counts": {
-        "name": 28,
-        "order_number": 14,
-        "order_date": 7,
-        "delivery_date": 7,
-        "street": 14,
-        "currency": 21,
-        "product_price": 14,
-        "size": 7,
-        "quantity": 7,
-        "total": 7
+        "name": 40,
+        "order_number": 20,
+        "order_date": 10,
+        "delivery_date": 10,
+        "street": 20,
+        "currency": 30,
+        "product_price": 20,
+        "size": 10,
+        "quantity": 10,
+        "total": 10
       }
     },
     "john_lewis": {
@@ -1219,19 +1219,19 @@
         "zip_code"
       ],
       "counts": {
-        "name": 7,
-        "order_number": 7,
-        "order_date": 7,
-        "zip_code": 7,
-        "city": 7,
-        "street": 7,
-        "product_name": 7,
-        "product_id": 7,
-        "quantity": 14,
-        "currency": 28,
-        "product_price": 7,
-        "shipping_cost": 7,
-        "total": 14
+        "name": 10,
+        "order_number": 10,
+        "order_date": 10,
+        "zip_code": 10,
+        "city": 10,
+        "street": 10,
+        "product_name": 10,
+        "product_id": 10,
+        "quantity": 20,
+        "currency": 40,
+        "product_price": 10,
+        "shipping_cost": 10,
+        "total": 20
       }
     },
     "loro_piana": {
@@ -1251,19 +1251,19 @@
         "zip_code"
       ],
       "counts": {
-        "name": 14,
-        "order_number": 7,
-        "delivery_date": 7,
-        "product_name": 7,
-        "color": 7,
-        "size": 7,
-        "product_id": 7,
-        "quantity": 7,
-        "currency": 21,
-        "product_price": 21,
-        "street": 7,
-        "zip_code": 7,
-        "city": 7
+        "name": 20,
+        "order_number": 10,
+        "delivery_date": 10,
+        "product_name": 10,
+        "color": 10,
+        "size": 10,
+        "product_id": 10,
+        "quantity": 10,
+        "currency": 30,
+        "product_price": 30,
+        "street": 10,
+        "zip_code": 10,
+        "city": 10
       }
     },
     "louis_vuitton": {
@@ -1281,17 +1281,17 @@
         "zip_code"
       ],
       "counts": {
-        "name": 7,
-        "order_number": 7,
-        "product_name": 7,
-        "reference_number": 7,
-        "quantity": 7,
-        "currency": 28,
-        "product_price": 21,
-        "street": 14,
-        "city": 14,
-        "zip_code": 14,
-        "country": 14
+        "name": 10,
+        "order_number": 10,
+        "product_name": 10,
+        "reference_number": 10,
+        "quantity": 10,
+        "currency": 40,
+        "product_price": 30,
+        "street": 20,
+        "city": 20,
+        "zip_code": 20,
+        "country": 20
       }
     },
     "maison_margiela": {
@@ -1315,23 +1315,23 @@
         "zip_code"
       ],
       "counts": {
-        "name": 21,
-        "order_number": 7,
-        "order_date": 7,
-        "currency": 35,
-        "product_price": 7,
-        "shipping_cost": 7,
-        "tax_amount": 7,
-        "total": 14,
-        "street": 14,
-        "city": 14,
-        "zip_code": 14,
-        "country": 14,
-        "product_name": 7,
-        "color": 7,
-        "size": 7,
-        "quantity": 7,
-        "delivery_date": 7
+        "name": 30,
+        "order_number": 10,
+        "order_date": 10,
+        "currency": 50,
+        "product_price": 10,
+        "shipping_cost": 10,
+        "tax_amount": 10,
+        "total": 20,
+        "street": 20,
+        "city": 20,
+        "zip_code": 20,
+        "country": 20,
+        "product_name": 10,
+        "color": 10,
+        "size": 10,
+        "quantity": 10,
+        "delivery_date": 10
       }
     },
     "moncler": {
@@ -1354,22 +1354,22 @@
         "zip_code"
       ],
       "counts": {
-        "name": 7,
-        "order_number": 7,
-        "order_date": 14,
-        "product_name": 7,
-        "size": 7,
-        "color": 7,
-        "quantity": 7,
-        "currency": 21,
-        "product_price": 14,
-        "delivery_date": 7,
-        "total": 7,
-        "street": 14,
-        "city": 14,
-        "zip_code": 14,
-        "country": 14,
-        "card_end": 7
+        "name": 10,
+        "order_number": 10,
+        "order_date": 20,
+        "product_name": 10,
+        "size": 10,
+        "color": 10,
+        "quantity": 10,
+        "currency": 30,
+        "product_price": 20,
+        "delivery_date": 10,
+        "total": 10,
+        "street": 20,
+        "city": 20,
+        "zip_code": 20,
+        "country": 20,
+        "card_end": 10
       }
     },
     "neiman_marcus": {
@@ -1387,17 +1387,17 @@
         "total"
       ],
       "counts": {
-        "order_number": 7,
-        "brand_name": 7,
-        "product_name": 7,
-        "size": 7,
-        "color": 7,
-        "quantity": 14,
-        "currency": 49,
-        "product_price": 28,
-        "tax_amount": 7,
-        "total": 14,
-        "card_end": 7
+        "order_number": 10,
+        "brand_name": 10,
+        "product_name": 10,
+        "size": 10,
+        "color": 10,
+        "quantity": 20,
+        "currency": 70,
+        "product_price": 40,
+        "tax_amount": 10,
+        "total": 20,
+        "card_end": 10
       }
     },
     "nike": {
@@ -1420,22 +1420,22 @@
         "zip_code"
       ],
       "counts": {
-        "name": 14,
-        "street": 7,
-        "city": 7,
-        "zip_code": 7,
-        "country": 7,
-        "delivery_date": 7,
-        "product_name": 7,
-        "currency": 35,
-        "product_price": 14,
-        "size": 7,
-        "order_number": 7,
-        "order_date": 7,
-        "card_end": 7,
-        "shipping_cost": 7,
-        "tax_amount": 7,
-        "total": 7
+        "name": 20,
+        "street": 10,
+        "city": 10,
+        "zip_code": 10,
+        "country": 10,
+        "delivery_date": 10,
+        "product_name": 10,
+        "currency": 50,
+        "product_price": 20,
+        "size": 10,
+        "order_number": 10,
+        "order_date": 10,
+        "card_end": 10,
+        "shipping_cost": 10,
+        "tax_amount": 10,
+        "total": 10
       }
     },
     "nordstrom": {
@@ -1451,15 +1451,47 @@
         "size"
       ],
       "counts": {
-        "email": 14,
-        "order_number": 7,
-        "order_date": 14,
-        "product_name": 7,
-        "color": 7,
-        "size": 7,
-        "currency": 7,
-        "product_price": 7,
-        "quantity": 7
+        "email": 20,
+        "order_number": 10,
+        "order_date": 20,
+        "product_name": 10,
+        "color": 10,
+        "size": 10,
+        "currency": 10,
+        "product_price": 10,
+        "quantity": 10
+      }
+    },
+    "north_face": {
+      "placeholders": [
+        "color",
+        "country",
+        "currency",
+        "name",
+        "order_date",
+        "order_number",
+        "product_name",
+        "product_price",
+        "quantity",
+        "size",
+        "street",
+        "total",
+        "zip_code"
+      ],
+      "counts": {
+        "name": 20,
+        "order_number": 10,
+        "order_date": 10,
+        "product_name": 10,
+        "color": 10,
+        "size": 10,
+        "quantity": 10,
+        "product_price": 30,
+        "currency": 30,
+        "total": 10,
+        "street": 10,
+        "zip_code": 10,
+        "country": 10
       }
     },
     "off_white": {
@@ -1474,14 +1506,14 @@
         "total"
       ],
       "counts": {
-        "name": 7,
-        "order_number": 7,
-        "product_name": 7,
-        "currency": 21,
-        "product_price": 7,
-        "quantity": 7,
-        "shipping_cost": 7,
-        "total": 7
+        "name": 10,
+        "order_number": 10,
+        "product_name": 10,
+        "currency": 30,
+        "product_price": 10,
+        "quantity": 10,
+        "shipping_cost": 10,
+        "total": 10
       }
     },
     "pacsun": {
@@ -1503,21 +1535,21 @@
         "zip_code"
       ],
       "counts": {
-        "name": 24,
-        "order_number": 8,
-        "order_date": 8,
-        "product_name": 8,
-        "color": 8,
-        "size": 8,
-        "quantity": 8,
-        "currency": 40,
-        "product_price": 16,
-        "shipping_cost": 8,
-        "tax_amount": 8,
-        "total": 8,
-        "street": 16,
-        "city": 16,
-        "zip_code": 16
+        "name": 33,
+        "order_number": 11,
+        "order_date": 11,
+        "product_name": 11,
+        "color": 11,
+        "size": 11,
+        "quantity": 11,
+        "currency": 55,
+        "product_price": 22,
+        "shipping_cost": 11,
+        "tax_amount": 11,
+        "total": 11,
+        "street": 22,
+        "city": 22,
+        "zip_code": 22
       }
     },
     "pop_mort": {
@@ -1534,16 +1566,16 @@
         "total"
       ],
       "counts": {
-        "name": 7,
-        "order_number": 7,
-        "order_date": 7,
-        "product_name": 7,
-        "quantity": 7,
-        "currency": 42,
-        "product_price": 14,
-        "shipping_cost": 7,
-        "tax_amount": 7,
-        "total": 7
+        "name": 10,
+        "order_number": 10,
+        "order_date": 10,
+        "product_name": 10,
+        "quantity": 10,
+        "currency": 60,
+        "product_price": 20,
+        "shipping_cost": 10,
+        "tax_amount": 10,
+        "total": 10
       }
     },
     "prada": {
@@ -1567,23 +1599,23 @@
         "zip_code"
       ],
       "counts": {
-        "name": 21,
-        "email": 14,
-        "order_number": 7,
-        "product_name": 7,
-        "product_id": 7,
-        "currency": 35,
-        "product_price": 14,
-        "color": 7,
-        "size": 7,
-        "quantity": 7,
-        "shipping_cost": 7,
-        "tax_amount": 7,
-        "total": 7,
-        "street": 14,
-        "zip_code": 14,
-        "city": 14,
-        "country": 14
+        "name": 30,
+        "email": 20,
+        "order_number": 10,
+        "product_name": 10,
+        "product_id": 10,
+        "currency": 50,
+        "product_price": 20,
+        "color": 10,
+        "size": 10,
+        "quantity": 10,
+        "shipping_cost": 10,
+        "tax_amount": 10,
+        "total": 10,
+        "street": 20,
+        "zip_code": 20,
+        "city": 20,
+        "country": 20
       }
     },
     "saint_laurent": {
@@ -1604,20 +1636,20 @@
         "zip_code"
       ],
       "counts": {
-        "name": 21,
-        "order_number": 7,
-        "product_name": 7,
-        "currency": 28,
-        "product_price": 7,
-        "color": 7,
-        "product_id": 7,
-        "size": 7,
-        "quantity": 7,
-        "total": 14,
-        "street": 14,
-        "city": 14,
-        "zip_code": 14,
-        "country": 14
+        "name": 30,
+        "order_number": 10,
+        "product_name": 10,
+        "currency": 40,
+        "product_price": 10,
+        "color": 10,
+        "product_id": 10,
+        "size": 10,
+        "quantity": 10,
+        "total": 20,
+        "street": 20,
+        "city": 20,
+        "zip_code": 20,
+        "country": 20
       }
     },
     "sephora": {
@@ -1638,20 +1670,20 @@
         "zip_code"
       ],
       "counts": {
-        "name": 14,
-        "order_date": 14,
-        "product_name": 7,
-        "product_id": 7,
-        "currency": 42,
-        "product_price": 21,
-        "quantity": 7,
-        "tax_amount": 7,
-        "total": 14,
-        "card_end": 7,
-        "street": 7,
-        "city": 7,
-        "zip_code": 7,
-        "country": 7
+        "name": 20,
+        "order_date": 20,
+        "product_name": 10,
+        "product_id": 10,
+        "currency": 60,
+        "product_price": 30,
+        "quantity": 10,
+        "tax_amount": 10,
+        "total": 20,
+        "card_end": 10,
+        "street": 10,
+        "city": 10,
+        "zip_code": 10,
+        "country": 10
       }
     },
     "sp5der": {
@@ -1673,21 +1705,21 @@
         "zip_code"
       ],
       "counts": {
-        "order_number": 7,
-        "product_name": 7,
-        "quantity": 7,
-        "size": 7,
-        "currency": 35,
-        "product_price": 14,
-        "shipping_cost": 7,
-        "tax_amount": 7,
-        "total": 7,
-        "name": 14,
-        "street": 14,
-        "city": 14,
-        "zip_code": 14,
-        "country": 14,
-        "card_end": 7
+        "order_number": 10,
+        "product_name": 10,
+        "quantity": 10,
+        "size": 10,
+        "currency": 50,
+        "product_price": 20,
+        "shipping_cost": 10,
+        "tax_amount": 10,
+        "total": 10,
+        "name": 20,
+        "street": 20,
+        "city": 20,
+        "zip_code": 20,
+        "country": 20,
+        "card_end": 10
       }
     },
     "ssense": {
@@ -1709,21 +1741,21 @@
         "zip_code"
       ],
       "counts": {
-        "name": 21,
-        "order_number": 7,
-        "order_date": 7,
-        "currency": 42,
-        "total": 14,
-        "street": 14,
-        "city": 14,
-        "zip_code": 14,
-        "country": 14,
-        "product_name": 7,
-        "size": 7,
-        "product_price": 14,
-        "quantity": 7,
-        "shipping_cost": 7,
-        "tax_amount": 7
+        "name": 30,
+        "order_number": 10,
+        "order_date": 10,
+        "currency": 60,
+        "total": 20,
+        "street": 20,
+        "city": 20,
+        "zip_code": 20,
+        "country": 20,
+        "product_name": 10,
+        "size": 10,
+        "product_price": 20,
+        "quantity": 10,
+        "shipping_cost": 10,
+        "tax_amount": 10
       }
     },
     "stanley": {
@@ -1744,20 +1776,20 @@
         "zip_code"
       ],
       "counts": {
-        "order_number": 7,
-        "name": 21,
-        "product_name": 7,
-        "quantity": 7,
-        "color": 7,
-        "currency": 35,
-        "product_price": 14,
-        "shipping_cost": 7,
-        "tax_amount": 7,
-        "total": 7,
-        "street": 14,
-        "city": 14,
-        "zip_code": 14,
-        "country": 14
+        "order_number": 10,
+        "name": 30,
+        "product_name": 10,
+        "quantity": 10,
+        "color": 10,
+        "currency": 50,
+        "product_price": 20,
+        "shipping_cost": 10,
+        "tax_amount": 10,
+        "total": 10,
+        "street": 20,
+        "city": 20,
+        "zip_code": 20,
+        "country": 20
       }
     },
     "stockx": {
@@ -1775,17 +1807,17 @@
         "total"
       ],
       "counts": {
-        "delivery_date": 7,
-        "product_name": 7,
-        "style_id": 7,
-        "size": 7,
-        "condition": 7,
-        "order_number": 7,
-        "currency": 21,
-        "product_price": 7,
-        "processing_fee": 7,
-        "shipping_cost": 7,
-        "total": 7
+        "delivery_date": 10,
+        "product_name": 10,
+        "style_id": 10,
+        "size": 10,
+        "condition": 10,
+        "order_number": 10,
+        "currency": 30,
+        "product_price": 10,
+        "processing_fee": 10,
+        "shipping_cost": 10,
+        "total": 10
       }
     },
     "stussy": {
@@ -1807,21 +1839,21 @@
         "zip_code"
       ],
       "counts": {
-        "name": 21,
-        "order_number": 7,
-        "street": 14,
-        "city": 14,
-        "zip_code": 14,
-        "country": 14,
-        "email": 7,
-        "product_name": 7,
-        "size": 7,
-        "currency": 42,
-        "product_price": 14,
-        "quantity": 7,
-        "shipping_cost": 7,
-        "tax_amount": 7,
-        "total": 14
+        "name": 30,
+        "order_number": 10,
+        "street": 20,
+        "city": 20,
+        "zip_code": 20,
+        "country": 20,
+        "email": 10,
+        "product_name": 10,
+        "size": 10,
+        "currency": 60,
+        "product_price": 20,
+        "quantity": 10,
+        "shipping_cost": 10,
+        "tax_amount": 10,
+        "total": 20
       }
     },
     "taylor_made_golf": {
@@ -1844,22 +1876,22 @@
         "zip_code"
       ],
       "counts": {
-        "name": 14,
-        "order_date": 7,
-        "order_number": 7,
-        "street": 7,
-        "zip_code": 7,
-        "city": 7,
-        "card_end": 7,
-        "currency": 42,
-        "total": 14,
-        "product_name": 7,
-        "product_id": 7,
-        "size": 7,
-        "quantity": 7,
-        "product_price": 14,
-        "shipping_cost": 7,
-        "tax_amount": 7
+        "name": 20,
+        "order_date": 10,
+        "order_number": 10,
+        "street": 10,
+        "zip_code": 10,
+        "city": 10,
+        "card_end": 10,
+        "currency": 60,
+        "total": 20,
+        "product_name": 10,
+        "product_id": 10,
+        "size": 10,
+        "quantity": 10,
+        "product_price": 20,
+        "shipping_cost": 10,
+        "tax_amount": 10
       }
     },
     "trapstar": {
@@ -1882,22 +1914,22 @@
         "zip_code"
       ],
       "counts": {
-        "order_number": 7,
-        "name": 21,
-        "product_name": 7,
-        "quantity": 7,
-        "size": 7,
-        "color": 7,
-        "currency": 35,
-        "product_price": 14,
-        "shipping_cost": 7,
-        "tax_amount": 7,
-        "total": 7,
-        "street": 14,
-        "city": 14,
-        "zip_code": 14,
-        "country": 14,
-        "card_end": 7
+        "order_number": 10,
+        "name": 30,
+        "product_name": 10,
+        "quantity": 10,
+        "size": 10,
+        "color": 10,
+        "currency": 50,
+        "product_price": 20,
+        "shipping_cost": 10,
+        "tax_amount": 10,
+        "total": 10,
+        "street": 20,
+        "city": 20,
+        "zip_code": 20,
+        "country": 20,
+        "card_end": 10
       }
     },
     "ugg": {
@@ -1918,20 +1950,20 @@
         "zip_code"
       ],
       "counts": {
-        "order_number": 7,
-        "product_name": 7,
-        "quantity": 7,
-        "size": 7,
-        "currency": 35,
-        "total": 14,
-        "name": 7,
-        "street": 7,
-        "city": 7,
-        "zip_code": 7,
-        "country": 7,
-        "product_price": 7,
-        "shipping_cost": 7,
-        "tax_amount": 7
+        "order_number": 10,
+        "product_name": 10,
+        "quantity": 10,
+        "size": 10,
+        "currency": 50,
+        "total": 20,
+        "name": 10,
+        "street": 10,
+        "city": 10,
+        "zip_code": 10,
+        "country": 10,
+        "product_price": 10,
+        "shipping_cost": 10,
+        "tax_amount": 10
       }
     },
     "vinted": {
@@ -1949,17 +1981,17 @@
         "total"
       ],
       "counts": {
-        "name": 7,
-        "seller_name": 14,
-        "product_name": 14,
-        "currency": 42,
-        "total": 14,
-        "shipping_cost": 7,
-        "product_price": 7,
-        "processing_fee": 7,
-        "tax_amount": 7,
-        "card_end": 7,
-        "order_date": 7
+        "name": 10,
+        "seller_name": 20,
+        "product_name": 20,
+        "currency": 60,
+        "total": 20,
+        "shipping_cost": 10,
+        "product_price": 10,
+        "processing_fee": 10,
+        "tax_amount": 10,
+        "card_end": 10,
+        "order_date": 10
       }
     },
     "vivienne_westwood": {
@@ -1983,23 +2015,23 @@
         "zip_code"
       ],
       "counts": {
-        "name": 21,
-        "order_number": 7,
-        "order_date": 7,
-        "currency": 42,
-        "total": 21,
-        "product_name": 7,
-        "product_price": 14,
-        "color": 7,
-        "size": 7,
-        "quantity": 7,
-        "street": 14,
-        "city": 14,
-        "zip_code": 14,
-        "country": 14,
-        "card_end": 7,
-        "email": 28,
-        "shipping_cost": 7
+        "name": 30,
+        "order_number": 10,
+        "order_date": 10,
+        "currency": 60,
+        "total": 30,
+        "product_name": 10,
+        "product_price": 20,
+        "color": 10,
+        "size": 10,
+        "quantity": 10,
+        "street": 20,
+        "city": 20,
+        "zip_code": 20,
+        "country": 20,
+        "card_end": 10,
+        "email": 40,
+        "shipping_cost": 10
       }
     },
     "xerjoff": {
@@ -2020,20 +2052,20 @@
         "zip_code"
       ],
       "counts": {
-        "name": 21,
-        "order_date": 7,
-        "product_id": 7,
-        "product_name": 7,
-        "currency": 49,
-        "product_price": 21,
-        "quantity": 7,
-        "shipping_cost": 7,
-        "tax_amount": 7,
-        "total": 7,
-        "street": 14,
-        "zip_code": 14,
-        "city": 14,
-        "country": 14
+        "name": 30,
+        "order_date": 10,
+        "product_id": 10,
+        "product_name": 10,
+        "currency": 70,
+        "product_price": 30,
+        "quantity": 10,
+        "shipping_cost": 10,
+        "tax_amount": 10,
+        "total": 10,
+        "street": 20,
+        "zip_code": 20,
+        "city": 20,
+        "country": 20
       }
     },
     "zalando": {
@@ -2056,22 +2088,22 @@
         "zip_code"
       ],
       "counts": {
-        "delivery_date": 14,
-        "name": 14,
-        "street": 7,
-        "city": 7,
-        "zip_code": 7,
-        "order_date": 7,
-        "order_number": 7,
-        "brand_name": 7,
-        "product_name": 7,
-        "color": 7,
-        "size": 7,
-        "quantity": 7,
-        "currency": 28,
-        "product_price": 14,
-        "shipping_cost": 7,
-        "total": 7
+        "delivery_date": 20,
+        "name": 20,
+        "street": 10,
+        "city": 10,
+        "zip_code": 10,
+        "order_date": 10,
+        "order_number": 10,
+        "brand_name": 10,
+        "product_name": 10,
+        "color": 10,
+        "size": 10,
+        "quantity": 10,
+        "currency": 40,
+        "product_price": 20,
+        "shipping_cost": 10,
+        "total": 10
       }
     }
   }
