@@ -16,7 +16,7 @@ const SUPPORTED_LANGUAGES = [
   { code: "dutch", name: "Dutch", flag: "🇳🇱" },
   { code: "spanish", name: "Spanish", flag: "🇪🇸" },
   { code: "italian", name: "Italian", flag: "🇮🇹" },
-   { code: "swedish", name: "Swedish", flag: "🇮🇸🇪" },
+   { code: "swedish", name: "Swedish", flag: "🇮🇸" },
      { code: "Danish", name: "Danish", flag: "🇮🇩" },
 ];
 
