@@ -3,6 +3,8 @@ import React, { useMemo, useRef, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import brandsSchema from "./brands";
 
+import { Search, ChevronDown, X } from 'lucide-react';
+
 type FormState = Record<string, string>;
 
 const NUMERIC_HINT = /(amount|price|total|tax|quantity|percent|processing_fee)/i;
@@ -16,8 +18,8 @@ const SUPPORTED_LANGUAGES = [
   { code: "dutch", name: "Dutch", flag: "🇳🇱" },
   { code: "spanish", name: "Spanish", flag: "🇪🇸" },
   { code: "italian", name: "Italian", flag: "🇮🇹" },
-   { code: "swedish", name: "Swedish", flag: "🇮🇸" },
-     { code: "Danish", name: "Danish", flag: "🇮🇩" },
+  { code: "swedish", name: "Swedish", flag: "🇮🇸" },
+  { code: "danish", name: "Danish", flag: "🇩🇰" },
 ];
 
 // Currency configuration - SYMBOLS ONLY
@@ -119,6 +121,58 @@ function ensureCurrencySymbol(value: string): string {
   return value;
 }
 
+// Brand Logo Component
+const BrandLogo = ({ brand, size = 24 }: { brand: string; size?: number }) => {
+  const [logoError, setLogoError] = useState(false);
+  
+  const getLogoPath = (brandName: string) => {
+    // Convert brand name to filename format
+    const filename = brandName
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, '_')
+      .replace(/_+/g, '_')
+      .replace(/^_|_$/g, '') + '.png';
+    
+    return `/brand-logos/${filename}`;
+  };
+
+  if (logoError) {
+    return (
+      <div 
+        className="brand-logo-fallback"
+        style={{ 
+          width: size, 
+          height: size, 
+          borderRadius: 4,
+          background: '#f0f0f0',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: size * 0.6,
+          color: '#666',
+          fontWeight: 'bold'
+        }}
+      >
+        {brand.charAt(0).toUpperCase()}
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={getLogoPath(brand)}
+      alt={brand}
+      style={{
+        width: size,
+        height: size,
+        objectFit: 'contain',
+        borderRadius: 4
+      }}
+      onError={() => setLogoError(true)}
+    />
+  );
+};
+
 // Toast Component
 const Toast = ({ message, type = "success", onClose }: { 
   message: string; 
@@ -136,71 +190,125 @@ const Toast = ({ message, type = "success", onClose }: {
   return (
     <div className={`toast toast-${type}`}>
       <div className="toast-content">
-        <span className="toast-icon">
-          
-        </span>
         <span className="toast-message">{message}</span>
       </div>
+      <button className="toast-close" onClick={onClose}>
+        <X size={16} />
+      </button>
+    </div>
+  );
+};
 
-      <style>{`
-        .toast {
-          position: fixed;
-          top: 20px;
-          right: 20px;
-          padding: 16px 20px;
-          border-radius: 8px;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-          z-index: 10000;
-          animation: slideIn 0.3s ease-out;
-          max-width: 400px;
-        }
-        .toast-success {
-          background: #d4edda;
-          border: 1px solid #c3e6cb;
-          color: #155724;
-        }
-        .toast-error {
-          background: #f8d7da;
-          border: 1px solid #f5c6cb;
-          color: #721c24;
-        }
-        .toast-content {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-        }
-        .toast-icon {
-          font-size: 16px;
-        }
-        .toast-message {
-          flex: 1;
-          font-size: 14px;
-          font-weight: 500;
-        }
-        .toast-close {
-          background: none;
-          border: none;
-          font-size: 18px;
-          cursor: pointer;
-          padding: 0;
-          margin-left: 12px;
-          color: inherit;
-          opacity: 0.7;
-        }
-        .toast-close:hover {
-          opacity: 1;
-        }
-        @keyframes slideIn {
-          from {
-            transform: translateX(100%);
-            opacity: 0;
-          }
-          to {
-            transform: translateX(0);
-            opacity: 1;
-          }
-        }
-      `}</style>
+// Result Modal Component
+const ResultModal = ({ 
+  html, 
+  email, 
+  onClose, 
+  onCreateNew 
+}: { 
+  html: string; 
+  email: string; 
+  onClose: () => void; 
+  onCreateNew: () => void;
+}) => {
+  return (
+    <div className="result-modal-overlay">
+      <div className="result-modal">
+        <div className="modal-header">
+          <h3>Receipt Generated Successfully! 🎉</h3>
+          <button className="close-button" onClick={onClose}>
+            <X size={24} />
+          </button>
+        </div>
+        <div className="modal-content">
+          <div className="success-message">
+            <p>Email sent to <strong>{email}</strong></p>
+            <p className="preview-text">Preview of your receipt:</p>
+          </div>
+          <div 
+            className="html-preview"
+            dangerouslySetInnerHTML={{ __html: html }}
+          />
+          <div className="modal-actions">
+            <button className="secondary-btn" onClick={onClose}>
+              Close Preview
+            </button>
+            <button className="primary-btn" onClick={onCreateNew}>
+              Create Another Receipt
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Custom Select Component for consistent styling
+const CustomSelect = ({ 
+  value, 
+  onChange, 
+  options, 
+  placeholder = "Select...",
+  icon: Icon,
+  className = ""
+}: {
+  value: string;
+  onChange: (value: string) => void;
+  options: { value: string; label: string }[];
+  placeholder?: string;
+  icon?: React.ComponentType<{ className?: string }>;
+  className?: string;
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const selectRef = useRef<HTMLDivElement>(null);
+
+  const selectedOption = options.find(opt => opt.value === value);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  return (
+    <div className={`custom-select-container ${className}`} ref={selectRef}>
+      <button
+        type="button"
+        className="custom-select-button"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <div className="selected-option-content">
+          {Icon && <Icon className="select-icon" />}
+          <span className="selected-label">
+            {selectedOption ? selectedOption.label : placeholder}
+          </span>
+        </div>
+        <ChevronDown className={`dropdown-arrow ${isOpen ? 'open' : ''}`} />
+      </button>
+      
+      {isOpen && (
+        <div className="custom-select-panel">
+          <div className="select-list">
+            {options.map((option) => (
+              <div
+                key={option.value}
+                className={`select-option ${value === option.value ? "active" : ""}`}
+                onClick={() => {
+                  onChange(option.value);
+                  setIsOpen(false);
+                }}
+              >
+                {option.label}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
@@ -217,6 +325,7 @@ export default function ImageUploader() {
   const [selectedLanguage, setSelectedLanguage] = useState(SUPPORTED_LANGUAGES[0]);
   const [selectedCurrency, setSelectedCurrency] = useState(SUPPORTED_CURRENCIES[0]);
   const [generatedHtml, setGeneratedHtml] = useState<string | null>(null);
+  const [showResult, setShowResult] = useState(false);
   const [loading, setLoading] = useState(false);
   const [userEmail, setUserEmail] = useState<string>("");
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -425,16 +534,16 @@ export default function ImageUploader() {
     setBrandPickerOpen(!brandPickerOpen);
   }
 
-  function handleLanguageChange(event: React.ChangeEvent<HTMLSelectElement>) {
+  function handleLanguageChange(value: string) {
     const selectedLang = SUPPORTED_LANGUAGES.find(
-      lang => lang.code === event.target.value
+      lang => lang.code === value
     ) || SUPPORTED_LANGUAGES[0];
     setSelectedLanguage(selectedLang);
   }
 
-  function handleCurrencyChange(event: React.ChangeEvent<HTMLSelectElement>) {
+  function handleCurrencyChange(value: string) {
     const selectedCurr = SUPPORTED_CURRENCIES.find(
-      curr => curr.code === event.target.value
+      curr => curr.code === value
     ) || SUPPORTED_CURRENCIES[0];
     setSelectedCurrency(selectedCurr);
     // ALWAYS STORE THE SYMBOL, NEVER THE CODE
@@ -552,26 +661,77 @@ export default function ImageUploader() {
         credentials: "include",
       });
 
-      if (res.status === 402 || res.status === 403) {
-        window.open("https://discord.gg/2ZRQu2uT62", "_blank");
+      // Handle subscription required cases (402, 403, 405)
+      if (res.status === 402 || res.status === 403 || res.status === 405) {
+        const html = await res.text();
+        
+        // Store the generated HTML and form data for the payment page
+        const paymentData = {
+          generatedHtml: html,
+          formData: {
+            brand,
+            email: emailValue,
+            language: selectedLanguage.code,
+            currency: formData.currency || selectedCurrency.symbol,
+            otherFields: formData
+          },
+          timestamp: new Date().toISOString()
+        };
+        
+        localStorage.setItem('pendingReceipt', JSON.stringify(paymentData));
+        
+        // Redirect to payment page
+        router.push("/payment");
         return;
       }
 
-      const html = await res.text();
-      setGeneratedHtml(html);
-      
-      setToast({
-        message: `✅ Email sent to ${emailValue}`,
-        type: "success"
-      });
+      // Handle rate limiting
+      if (res.status === 429) {
+        setToast({
+          message: "❌ Daily limit reached. Please try again tomorrow.",
+          type: "error"
+        });
+        return;
+      }
+
+      // Handle successful generation (active subscriber)
+      if (res.ok) {
+        const html = await res.text();
+        setGeneratedHtml(html);
+        
+        setToast({
+          message: `✅ Email sent to ${emailValue}`,
+          type: "success"
+        });
+        
+        // Show the result modal
+        setShowResult(true);
+      } else {
+        // Handle other errors
+        const errorData = await res.json();
+        throw new Error(errorData.error || `HTTP error! status: ${res.status}`);
+      }
 
     } catch (err) {
       console.error("❌ Receipt generation error:", err);
-      
-      router.push("/payment");
+      setToast({
+        message: "Failed to generate receipt. Please try again.",
+        type: "error"
+      });
     } finally {
       setLoading(false);
     }
+  }
+
+  function handleCreateNewReceipt() {
+    setShowResult(false);
+    setGeneratedHtml(null);
+    // Reset form for new receipt
+    setImage(null);
+    setFile(null);
+    setBrand("");
+    setFormData({});
+    setBrandSearch("");
   }
 
   return (
@@ -582,6 +742,16 @@ export default function ImageUploader() {
           message={toast.message} 
           type={toast.type}
           onClose={() => setToast(null)} 
+        />
+      )}
+
+      {/* Result Modal */}
+      {showResult && generatedHtml && (
+        <ResultModal 
+          html={generatedHtml}
+          email={formData.email || userEmail}
+          onClose={() => setShowResult(false)}
+          onCreateNew={handleCreateNewReceipt}
         />
       )}
 
@@ -604,10 +774,10 @@ export default function ImageUploader() {
               📎
               </span> 
               </div>
-                          <div className="upload-text">
-                            <p>Upload the product image </p>
-                            <span>PNG, JPG up to 5MB</span>
-                          </div>
+              <div className="upload-text">
+                <p>Upload the product image</p>
+                <span>PNG, JPG up to 5MB</span>
+              </div>
           </div>
         )}
         <input
@@ -627,23 +797,18 @@ export default function ImageUploader() {
           <label htmlFor="language" className="field-label">
             Language
           </label>
-          <select
-            style={{height:40}}
-            id="language"
-            name="language"
+          <CustomSelect
             value={selectedLanguage.code}
             onChange={handleLanguageChange}
-            className="native-select"
-          >
-            {SUPPORTED_LANGUAGES.map((lang) => (
-              <option key={lang.code} value={lang.code}>
-                {lang.flag} {lang.name}
-              </option>
-            ))}
-          </select>
+            options={SUPPORTED_LANGUAGES.map(lang => ({
+              value: lang.code,
+              label: `${lang.flag} ${lang.name}`
+            }))}
+            placeholder="Select language"
+          />
         </div>
 
-        {/* Brand Selector - Custom Dropdown */}
+        {/* Brand Selector - Custom Dropdown with Logos */}
         <div className="brand-picker" ref={brandPickerRef}>
           <label htmlFor="brand" className="field-label">Brand *</label>
           <div className="picker-container">
@@ -652,10 +817,18 @@ export default function ImageUploader() {
               className={`picker-btn ${errors.brand ? 'error' : ''}`}
               onClick={toggleBrandPicker}
             >
-              <span className="selected-option">
-                {brand ? toLabel(brand) : "Select a Brand"}
-              </span>
-              <span className="dropdown-arrow">▼</span>
+              <div className="selected-option-content">
+                <Search className="select-icon" />
+                <span className="selected-label">
+                  {brand ? (
+                    <span className="brand-option">
+                      <BrandLogo brand={brand} size={20} />
+                      {toLabel(brand)}
+                    </span>
+                  ) : "Select a Brand"}
+                </span>
+              </div>
+              <ChevronDown className={`dropdown-arrow ${brandPickerOpen ? 'open' : ''}`} />
             </button>
             {brandPickerOpen && (
               <div className="picker-panel">
@@ -682,6 +855,7 @@ export default function ImageUploader() {
                           }
                         }}
                       >
+                        <BrandLogo brand={b} size={24} />
                         {toLabel(b)}
                       </div>
                     ))
@@ -695,25 +869,20 @@ export default function ImageUploader() {
           {errors.brand && <div className="error-message">{errors.brand}</div>}
         </div>
 
-        {/* Currency Selector - Shows symbol and ALWAYS sends symbol */}
+        {/* Currency Selector */}
         <div className="field">
           <label htmlFor="currency" className="field-label">
             Currency
           </label>
-          <select
-            style={{height:40}}
-            id="currency"
-            name="currency"
+          <CustomSelect
             value={selectedCurrency.code}
             onChange={handleCurrencyChange}
-            className="native-select"
-          >
-            {SUPPORTED_CURRENCIES.map((currency) => (
-              <option key={currency.code} value={currency.code}>
-                {currency.symbol} {currency.name} ({currency.code})
-              </option>
-            ))}
-          </select>
+            options={SUPPORTED_CURRENCIES.map(currency => ({
+              value: currency.code,
+              label: `${currency.symbol} ${currency.name} (${currency.code})`
+            }))}
+            placeholder="Select currency"
+          />
           <div className="currency-display-note">
             Selected: <strong>{selectedCurrency.symbol}</strong> - {selectedCurrency.name}
           </div>
@@ -747,7 +916,7 @@ export default function ImageUploader() {
         {brand ? (
           <div className="form-grid">
             {visibleFields
-              .filter(field => field !== "email" && field !== "currency") // Remove email and currency from visible fields since they're always shown
+              .filter(field => field !== "email" && field !== "currency")
               .map((field) => {
                 const type = inputTypeFor(field);
                 const isDateField = DATE_HINT.test(field);
@@ -791,41 +960,31 @@ export default function ImageUploader() {
         >
           {loading ? "Generating..." : "Send receipt to my email"}
         </button>
-
       </form>
 
-      {/*  {generatedHtml && (
-        <div className="receipt-preview">
-          <h2>Generated Receipt ({selectedLanguage.name})</h2>
-          <iframe
-            srcDoc={generatedHtml}
-            title="Generated Receipt"
-            style={{ width: "100%", height: "600px", border: "1px solid #ccc" }}
-            sandbox="allow-same-origin" // Security measure
-          />
-        </div>
-      )} */}
-     
-
-      {/* UPDATED CSS */}
       <style>{`
         .wrap {
           display: grid;
           grid-template-columns: 1fr 1.4fr;
           gap: 24px;
           align-items: start;
-          width: 95%;
-          max-width: 1200px;
-          margin: 20px auto 40px;
+          width: 100%;
+          max-width: none;
+          margin: 20px 0 40px;
           position: relative;
           min-height: 400px;
+          padding: 0 20px;
+          box-sizing: border-box;
         }
+        
         @media (max-width: 900px) {
           .wrap { 
             grid-template-columns: 1fr;
             min-height: auto;
+            padding: 0 16px;
           }
         }
+        
         .image-uploader {
           border: 2px dashed #ccc;
           border-radius: 12px;
@@ -838,52 +997,152 @@ export default function ImageUploader() {
           align-items: center;
           justify-content: center;
           position: relative;
+          width: 100%;
+          box-sizing: border-box;
         }
+        
         .image-uploader:hover { background: #f0f0f0; }
+        
         .image-preview {
           max-width: 100%;
           max-height: 500px;
           border-radius: 12px;
           object-fit: contain;
+          width: 100%;
         }
+        
         .upload-placeholder {
           color: #666;
+          width: 100%;
         }
-        .upload-required {
-          font-size: 12px;
-          color: #d32f2f;
-          margin-top: 8px;
+        
+        .upload-icon {
+          margin-bottom: 12px;
+        }
+        
+        .upload-text p {
+          margin: 0 0 4px 0;
           font-weight: 500;
         }
+        
+        .upload-text span {
+          font-size: 14px;
+          color: #888;
+        }
+        
         .data-form {
           display: flex;
           flex-direction: column;
           gap: 16px;
           position: relative;
+          width: 100%;
         }
         
-        /* Native Select Styles */
-        .native-select {
-       
-          border: 1px solid #ccc;
+        /* Custom Select Styles */
+        .custom-select-container {
+          position: relative;
+          width: 100%;
+        }
+        
+        .custom-select-button {
+          width: 100%;
+          padding: 12px 16px;
+          background: #efefef;
+          border: none;
           border-radius: 8px;
           font-size: 16px;
-          width: 100%;
-          background: transparent;
-          color: #333;
           cursor: pointer;
-          appearance: menulist;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          transition: all 0.2s ease;
         }
         
-        .native-select:focus {
-          outline: none;
-          border-color: #000;
+        .custom-select-button:hover {
+          background: #e5e5e5;
+        }
+        
+        .selected-option-content {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          flex: 1;
+        }
+        
+        .select-icon {
+          width: 20px;
+          height: 20px;
+          color: #666;
+          flex-shrink: 0;
+        }
+        
+        .selected-label {
+          text-align: left;
+          flex: 1;
+        }
+        
+        .brand-option {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+        
+        .dropdown-arrow {
+          width: 16px;
+          height: 16px;
+          color: #666;
+          transition: transform 0.2s ease;
+          flex-shrink: 0;
+        }
+        
+        .dropdown-arrow.open {
+          transform: rotate(180deg);
+        }
+        
+        .custom-select-panel {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: white;
+          border: 1px solid #ccc;
+          border-radius: 8px;
+          padding: 8px;
+          box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+          z-index: 9999;
+          overflow: hidden;
+          margin-top: 4px;
+        }
+        
+        .select-list {
+          max-height: 200px;
+          overflow-y: auto;
+        }
+        
+        .select-option {
+          padding: 12px 14px;
+          cursor: pointer;
+          border-radius: 6px;
+          background: transparent;
+          transition: background 0.2s ease;
+          font-size: 14px;
+        }
+        
+        .select-option:hover {
+          background: #f8f8f8;
+        }
+        
+        .select-option.active {
+          background: #000;
+          color: #fff;
         }
         
         /* Picker Styles */
         .picker-container {
           position: relative;
+          width: 100%;
         }
+        
         .field-label {
           font-size: 14px;
           font-weight: 500;
@@ -891,38 +1150,27 @@ export default function ImageUploader() {
           margin-bottom: 6px;
           display: block;
         }
+        
         .picker-btn {
-          padding: 12px;
-          background: transparent;
-          border: 1px solid #ccc;
+          width: 100%;
+          padding: 12px 16px;
+          background: #efefef;
+          border: none;
           border-radius: 8px;
           font-size: 16px;
           cursor: pointer;
-          width: 100%;
           display: flex;
           justify-content: space-between;
           align-items: center;
-          transition: border-color 0.2s ease;
+          transition: all 0.2s ease;
         }
+        
         .picker-btn:hover {
-          border-color: #999;
-          background: #f5f5f5;
+          background: #e5e5e5;
         }
+        
         .picker-btn.error {
-          border-color: #d32f2f;
-        }
-        .selected-option {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-        }
-        .dropdown-arrow {
-          font-size: 12px;
-          color: #666;
-          transition: transform 0.2s ease;
-        }
-        .picker-btn:hover .dropdown-arrow {
-          transform: translateY(1px);
+          border: 1px solid #d32f2f;
         }
         
         .picker-panel {
@@ -938,6 +1186,8 @@ export default function ImageUploader() {
           z-index: 9999;
           overflow: hidden;
           margin-top: 4px;
+          width: 100%;
+          box-sizing: border-box;
         }
         
         .picker-search {
@@ -951,15 +1201,20 @@ export default function ImageUploader() {
           color: #333;
           box-sizing: border-box;
         }
+        
         .picker-search::placeholder { color: #999; }
+        
         .picker-search:focus {
           outline: none;
           border-color: #000;
         }
+        
         .picker-list {
           max-height: 300px;
           overflow-y: auto;
+          width: 100%;
         }
+        
         .picker-item {
           padding: 12px 14px;
           cursor: pointer;
@@ -968,30 +1223,46 @@ export default function ImageUploader() {
           transition: background 0.2s ease;
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: 12px;
           font-size: 14px;
           min-height: 44px;
           box-sizing: border-box;
+          width: 100%;
         }
+        
         .picker-item:hover { background: #f8f8f8; }
+        
         .picker-item.active {
           background: #000;
           color: #fff;
         }
+        
         .picker-empty {
           text-align: center;
           color: #888;
           font-size: 14px;
           padding: 20px 0;
+          width: 100%;
         }
+        
         .brand-hint { color: #777; margin: 6px 0 12px; }
+        
         .form-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
           gap: 14px;
+          width: 100%;
         }
-        .field { display: flex; flex-direction: column; gap: 6px; }
+        
+        .field { 
+          display: flex; 
+          flex-direction: column; 
+          gap: 6px; 
+          width: 100%;
+        }
+        
         .field label { font-size: 13px; color: #444; }
+        
         .field input {
           padding: 10px 12px;
           border: 1px solid #ccc;
@@ -1001,23 +1272,28 @@ export default function ImageUploader() {
           background: transparent;
           box-sizing: border-box;
         }
+        
         .field input:focus {
           outline: none;
           border-color: #000;
         }
+        
         .field input.error {
           border-color: #d32f2f;
         }
+        
         .email-field {
           background-color: #f8f8f8;
           border-color: #ddd;
         }
+        
         .default-badge {
           font-size: 11px;
           color: #666;
           font-weight: normal;
           margin-left: 4px;
         }
+        
         .auto-detected-badge {
           font-size: 11px;
           color: #0066cc;
@@ -1025,27 +1301,32 @@ export default function ImageUploader() {
           margin-left: 4px;
           font-style: italic;
         }
+        
         .email-note {
           font-size: 12px;
           color: #666;
           font-style: italic;
           margin-top: 4px;
         }
+        
         .currency-display-note {
           font-size: 12px;
           color: #666;
           margin-top: 4px;
           font-style: italic;
         }
+        
         .currency-display-note strong {
           color: #000;
           font-weight: 600;
         }
+        
         .error-message {
           font-size: 12px;
           color: #d32f2f;
           margin-top: 4px;
         }
+        
         .submit-btn {
           margin-top: 6px;
           padding: 12px 24px;
@@ -1059,28 +1340,254 @@ export default function ImageUploader() {
           width: fit-content;
           font-size: 16px;
         }
+        
         .submit-btn:disabled {
           background: #bbb;
           cursor: not-allowed;
         }
+        
         .submit-btn:hover:not(:disabled) { background: #333; }
-        .receipt-preview {
-          margin-top: 32px;
-          grid-column: 1 / -1;
-        }
-        .validation-hint {
-          background: #fff3cd;
-          border: 1px solid #ffeaa7;
+        
+        /* Toast Styles */
+        .toast {
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          padding: 16px 20px;
           border-radius: 8px;
-          padding: 12px;
-          color: #856404;
-          font-size: 14px;
-          margin-top: 10px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+          z-index: 10000;
+          animation: slideIn 0.3s ease-out;
+          max-width: 400px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
         }
-
-        /* Ensure dropdowns are properly positioned */
-        .brand-picker {
-          position: relative;
+        .toast-success {
+          background: #d4edda;
+          border: 1px solid #c3e6cb;
+          color: #155724;
+        }
+        .toast-error {
+          background: #f8d7da;
+          border: 1px solid #f5c6cb;
+          color: #721c24;
+        }
+        .toast-content {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+        .toast-message {
+          flex: 1;
+          font-size: 14px;
+          font-weight: 500;
+        }
+        .toast-close {
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 4px;
+          color: inherit;
+          opacity: 0.7;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .toast-close:hover {
+          opacity: 1;
+        }
+        
+        /* Result Modal Styles */
+        .result-modal-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.7);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 10000;
+          padding: 20px;
+        }
+        
+        .result-modal {
+          background: white;
+          border-radius: 12px;
+          max-width: 90%;
+          max-height: 90vh;
+          width: 800px;
+          display: flex;
+          flex-direction: column;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .modal-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 20px 24px;
+          border-bottom: 1px solid #eee;
+        }
+        
+        .modal-header h3 {
+          margin: 0;
+          color: #333;
+          font-size: 20px;
+        }
+        
+        .close-button {
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 4px;
+          border-radius: 4px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #666;
+        }
+        
+        .close-button:hover {
+          background: #f5f5f5;
+          color: #333;
+        }
+        
+        .modal-content {
+          padding: 24px;
+          overflow-y: auto;
+          flex: 1;
+        }
+        
+        .success-message {
+          text-align: center;
+          margin-bottom: 20px;
+          padding: 16px;
+          background: #f8f9fa;
+          border-radius: 8px;
+        }
+        
+        .success-message p {
+          margin: 0 0 8px 0;
+          font-size: 16px;
+        }
+        
+        .preview-text {
+          font-weight: 600;
+          margin-top: 8px;
+          color: #333;
+          font-size: 14px;
+        }
+        
+        .html-preview {
+          border: 1px solid #e0e0e0;
+          border-radius: 8px;
+          padding: 20px;
+          background: white;
+          max-height: 400px;
+          overflow-y: auto;
+          margin-bottom: 20px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .modal-actions {
+          display: flex;
+          gap: 12px;
+          justify-content: flex-end;
+        }
+        
+        .primary-btn {
+          background: #000;
+          color: white;
+          border: none;
+          padding: 10px 20px;
+          border-radius: 6px;
+          cursor: pointer;
+          font-weight: 500;
+          font-size: 14px;
+        }
+        
+        .primary-btn:hover {
+          background: #333;
+        }
+        
+        .secondary-btn {
+          background: #f0f0f0;
+          color: #333;
+          border: none;
+          padding: 10px 20px;
+          border-radius: 6px;
+          cursor: pointer;
+          font-weight: 500;
+          font-size: 14px;
+        }
+        
+        .secondary-btn:hover {
+          background: #e0e0e0;
+        }
+        
+        @keyframes slideIn {
+          from {
+            transform: translateX(100%);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+          .wrap {
+            padding: 0 16px;
+            gap: 20px;
+          }
+          
+          .form-grid {
+            grid-template-columns: 1fr;
+            gap: 12px;
+          }
+          
+          .image-uploader {
+            min-height: 280px;
+            padding: 20px;
+          }
+          
+          .modal-actions {
+            flex-direction: column;
+          }
+          
+          .result-modal {
+            width: 95%;
+            max-height: 85vh;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .wrap {
+            padding: 0 12px;
+          }
+          
+          .image-uploader {
+            min-height: 240px;
+            padding: 16px;
+          }
+          
+          .modal-header {
+            padding: 16px 20px;
+          }
+          
+          .modal-header h3 {
+            font-size: 18px;
+          }
+          
+          .modal-content {
+            padding: 20px;
+          }
         }
       `}</style>
     </div>

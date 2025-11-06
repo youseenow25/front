@@ -19,10 +19,15 @@ export default function Page() {
         <div className="luxury-radial" aria-hidden />
         <Header />
 
-        <div style={{height:1, width:'100%', background:'linear-gradient(90deg, transparent, #d4af37, #c9b037, transparent)'}} />
+        <div style={{height:1, width:'150%', background:'linear-gradient(90deg, transparent, #d4af37, #c9b037, transparent)'}} />
+        <div style={{width:'100%'}} >
+
+
 
         <Hero />
         <ImageUploader />
+
+                </div>
 
       <section className="luxury-features">
   <div className="container">
@@ -88,7 +93,7 @@ export default function Page() {
         * {
           box-sizing: border-box;
           margin: 0;
-          padding: 0;
+          padding: 20;
         }
 
         html, body {

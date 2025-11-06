@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X, ChevronRight } from "lucide-react";
 
 interface User {
   name: string;
@@ -119,43 +119,7 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile Navigation Links */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 16, flex: 1 }}>
-        {/* Pricing Dropdown */}
-      
-        {/* Examples */}
-        <a
-          href="#examples"
-          style={{
-            textDecoration: "none",
-            color: "#000",
-            fontWeight: 500,
-            fontSize: "18px",
-            padding: "12px 0",
-            borderBottom: "1px solid #f0f0f0"
-          }}
-          onClick={() => setIsMobileMenuOpen(false)}
-        >
-          🎯 Examples
-        </a>
-
-        {/* FAQ */}
-        <a
-          href="#faq"
-          style={{
-            textDecoration: "none",
-            color: "#000",
-            fontWeight: 500,
-            fontSize: "18px",
-            padding: "12px 0",
-            borderBottom: "1px solid #f0f0f0"
-          }}
-          onClick={() => setIsMobileMenuOpen(false)}
-        >
-      
-        </a>
-
-      </div>
+     
 
       {/* Mobile Auth Buttons */}
       <div style={{ marginTop: "auto", paddingTop: "20px", borderTop: "1px solid #eee" }}>
@@ -323,8 +287,9 @@ export default function Header() {
                 }}
               >
                 <span style={{ color: 'black' }}>
-                  💰 Pricing
+                  Pricing
                 </span>
+                   <ChevronRight size={20}/>
                
               </button>
 
@@ -368,8 +333,9 @@ export default function Header() {
               }}
             >
               <span style={{ color: 'black' }}>
-                🎯 Examples
+                Examples of usage
               </span>
+                 <ChevronRight size={20}/>
             </a>
 
             {/* FAQ */}
@@ -387,8 +353,9 @@ export default function Header() {
               }}
             >
               <span style={{ color: 'black' }}>
-                ❓ FAQ
+                FAQ
               </span>
+              <ChevronRight size={20}/>
             </a>
           </div>
         )}
@@ -401,29 +368,7 @@ export default function Header() {
             gap: 16,
           }}
         >
-          {/* Discord Button (Desktop only) */}
-          {!isMobile && (
-            <a
-              href="https://discord.gg/2ZRQu2uT62"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                backgroundColor: "#5462ea",
-                padding: "8px 16px",
-                color: "white",
-                display: "flex",
-                alignItems: "center",
-                gap: 8,
-                textDecoration: "none",
-                whiteSpace: "nowrap",
-                borderRadius: 10,
-                fontWeight: 500,
-              }}
-            >
-              <Image src="/discord.png" alt="Discord" width={20} height={20} />
-              <span>Gain acces by joining our Discord</span>
-            </a>
-          )}
+          
 
           {user ? (
             /* User is authenticated */
@@ -474,7 +419,7 @@ export default function Header() {
                   style={{
                     backgroundColor: "black",
                     color: "white",
-                    padding: "8px 24px",
+                    padding: "10px 40px",
                     border: "none",
                     fontWeight: 600,
                     whiteSpace: "nowrap",
@@ -488,17 +433,26 @@ export default function Header() {
                 <button
                   onClick={goToLogin}
                   style={{
-                    backgroundColor: "#0d83fe",
+                    background:'#5462ea',
+              
+                
+                    
                     color: "white",
-                    padding: "8px 24px",
-                    border: "none",
+                    padding: "10px 50px",
+                 
                     fontWeight: 600,
                     whiteSpace: "nowrap",
+                    
+                    borderColor:"gray",
                
                     cursor: "pointer",
                   }}
                 >
-                  Log in
+                  <span style={{color:'white'}} >
+                      Log in
+
+                  </span>
+                
                 </button>
               </>
             ) : (
