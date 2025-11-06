@@ -215,7 +215,7 @@ const ResultModal = ({
     <div className="result-modal-overlay">
       <div className="result-modal">
         <div className="modal-header">
-          <h3>Receipt Generated Successfully! 🎉</h3>
+          <h3 style={{color:'white'}}  >Receipt Generated Successfully, check your inbox.</h3>
           <button className="close-button" onClick={onClose}>
             <X size={24} />
           </button>
@@ -1399,8 +1399,8 @@ export default function ImageUploader() {
         }
         
         .result-modal {
-          background: white;
-          border-radius: 12px;
+          background: black;
+          
           max-width: 90%;
           max-height: 90vh;
           width: 800px;
