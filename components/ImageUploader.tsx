@@ -1049,7 +1049,7 @@ export default function ImageUploader() {
           padding: 12px 16px;
           background: #efefef;
           border: none;
-          border-radius: 8px;
+         
           font-size: 16px;
           cursor: pointer;
           display: flex;
@@ -1156,7 +1156,7 @@ export default function ImageUploader() {
           padding: 12px 16px;
           background: #efefef;
           border: none;
-          border-radius: 8px;
+          
           font-size: 16px;
           cursor: pointer;
           display: flex;
