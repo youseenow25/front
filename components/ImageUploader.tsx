@@ -220,24 +220,8 @@ const ResultModal = ({
             <X size={24} />
           </button>
         </div>
-        <div className="modal-content">
-          <div className="success-message">
-            <p>Email sent to <strong>{email}</strong></p>
-            <p className="preview-text">Preview of your receipt:</p>
-          </div>
-          <div 
-            className="html-preview"
-            dangerouslySetInnerHTML={{ __html: html }}
-          />
-          <div className="modal-actions">
-            <button className="secondary-btn" onClick={onClose}>
-              Close Preview
-            </button>
-            <button className="primary-btn" onClick={onCreateNew}>
-              Create Another Receipt
-            </button>
-          </div>
-        </div>
+       
+    
       </div>
     </div>
   );
