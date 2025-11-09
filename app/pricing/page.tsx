@@ -148,9 +148,7 @@ export default function PricingPage() {
       {/* Header */}
       <section className="mx-auto max-w-6xl px-6 pt-10 text-center">
         <h1 className="text-4xl font-semibold text-gray-900">Choose Your Plan</h1>
-        <p className="mt-3 mx-auto max-w-2xl text-lg text-gray-600">
-          One-time payments. No subscriptions. No auto-renewals.
-        </p>
+     
       </section>
 
       {/* Top Row */}
