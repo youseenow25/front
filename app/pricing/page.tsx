@@ -69,7 +69,7 @@ export default function PricingPage() {
     {
       id: '1-month',
       name: '1 Month',
-      price: 22.99,
+      price: 23.99,
       description: 'Best for regular business use.',
       popular: true,
       features: ['30 days unlimited access', 'All premium features', 'Dedicated support'],
