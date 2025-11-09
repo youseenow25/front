@@ -18,7 +18,7 @@ export default function PricingPage() {
       const user = userData ? JSON.parse(userData) : null;
       const email = user?.email || null;
 
-      const response = await fetch('http://api.hubreceipts.com/api/payment/create-checkout-session', {
+      const response = await fetch('https://api.hubreceipts.com/api/payment/create-checkout-session', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ productId, email }),
