@@ -43,7 +43,7 @@ export default function PricingPage() {
     {
       id: '1-receipt',
       name: '1 Receipt',
-      price: 4.99,
+      price: 5.99,
       description: 'Perfect for trying out our generator.',
       features: ['1 professional receipt', 'All templates'],
       badge: 'Pay per use'
