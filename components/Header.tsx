@@ -5,6 +5,9 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ChevronDown, Menu, X, ChevronRight } from "lucide-react";
 
+import { Lock } from 'lucide-react';
+
+
 interface User {
   name: string;
   email: string;
@@ -286,7 +289,7 @@ export default function Header() {
                   borderRadius: 6,
                 }}
               >
-                <span style={{ color: 'black' }}>
+                <span style={{ color: 'black', fontWeight:'bold' }}>
                   Pricing
                 </span>
                    <ChevronRight size={20}/>
@@ -332,7 +335,7 @@ export default function Header() {
                 borderRadius: 6,
               }}
             >
-              <span style={{ color: 'black' }}>
+               <span style={{ color: 'black', fontWeight:'bold' }}>
                 Examples of usage
               </span>
                  <ChevronRight size={20}/>
@@ -352,7 +355,7 @@ export default function Header() {
                 borderRadius: 6,
               }}
             >
-              <span style={{ color: 'black' }}>
+                 <span style={{ color: 'black', fontWeight:'bold' }}>
                 FAQ
               </span>
               <ChevronRight size={20}/>
@@ -414,26 +417,13 @@ export default function Header() {
             /* User is not authenticated */
             !isMobile ? (
               <>
-                <button
-                  onClick={goToRegister}
-                  style={{
-                    backgroundColor: "black",
-                    color: "white",
-                    padding: "10px 40px",
-                    border: "none",
-                    fontWeight: 600,
-                    whiteSpace: "nowrap",
-               
-                    cursor: "pointer",
-                  }}
-                >
-                  Create account
-                </button>
-
+                
                 <button
                   onClick={goToLogin}
                   style={{
-                    background:'#5462ea',
+                    background:'#efefef',
+                    display:'flex',
+                
               
                 
                     
@@ -446,14 +436,33 @@ export default function Header() {
                     borderColor:"gray",
                
                     cursor: "pointer",
+                    alignItems:'center',
+                    gap:5
                   }}
                 >
-                  <span style={{color:'white'}} >
-                      Log in
+                    <Lock size={18} color="black" className="icon-lock" />
+                  <span style={{color:'black'}} >
+                       Log in
 
                   </span>
                 
                 </button>
+                <button
+                  onClick={goToRegister}
+                  style={{
+                    backgroundColor: "#4468f9",
+                    color: "white",
+                    padding: "10px 40px",
+                    border: "none",
+                    fontWeight: 600,
+                    whiteSpace: "nowrap",
+               
+                    cursor: "pointer",
+                  }}
+                >
+                  Sign up For Free
+                </button>
+
               </>
             ) : (
               <button

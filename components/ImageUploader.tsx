@@ -665,7 +665,7 @@ export default function ImageUploader() {
         localStorage.setItem('pendingReceipt', JSON.stringify(paymentData));
         
         // Redirect to payment page
-        router.push("/payment");
+        router.push("/pricing");
         return;
       }
 
