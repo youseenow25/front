@@ -290,7 +290,7 @@ export default function Header() {
                 }}
               >
                 <span style={{ color: 'black', fontWeight:'bold' }}>
-                  Pricing
+                  💰 Pricing
                 </span>
                    <ChevronRight size={20}/>
                
@@ -336,7 +336,7 @@ export default function Header() {
               }}
             >
                <span style={{ color: 'black', fontWeight:'bold' }}>
-                Examples of usage
+               ✨ Examples of usage
               </span>
                  <ChevronRight size={20}/>
             </a>
@@ -356,7 +356,7 @@ export default function Header() {
               }}
             >
                  <span style={{ color: 'black', fontWeight:'bold' }}>
-                FAQ
+               ❓ FAQ
               </span>
               <ChevronRight size={20}/>
             </a>
