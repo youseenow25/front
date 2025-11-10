@@ -3,12 +3,13 @@ import React, { useMemo, useRef, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import brandsSchema from "./brands";
 
-import { Search, ChevronDown, X } from 'lucide-react';
+import { Search, ChevronDown, X, AlertCircle } from 'lucide-react';
 
 type FormState = Record<string, string>;
 
 const NUMERIC_HINT = /(amount|price|total|tax|quantity|percent|processing_fee)/i;
 const DATE_HINT = /(order_date|delivery_date|invoice_date)/i;
+const PRICE_FIELDS = /(price|total|tax|amount|cost|fee)/i;
 
 // Supported languages
 const SUPPORTED_LANGUAGES = [
@@ -121,6 +122,35 @@ function ensureCurrencySymbol(value: string): string {
   return value;
 }
 
+// Price validation and formatting - SIMPLIFIED
+function validatePrice(value: string): { isValid: boolean; message?: string; formattedValue?: string } {
+  if (!value.trim()) {
+    return { isValid: false, message: "Price is required" };
+  }
+
+  // Only allow numbers and optional single decimal point
+  if (!/^\d*\.?\d*$/.test(value)) {
+    return { 
+      isValid: false, 
+      message: "Only numbers allowed (no commas, currency symbols, or other characters)" 
+    };
+  }
+
+  // Check if it's a valid number
+  const numValue = parseFloat(value);
+  if (isNaN(numValue)) {
+    return { isValid: false, message: "Please enter a valid number" };
+  }
+
+  // Format with exactly 2 decimal places
+  const formattedValue = numValue.toFixed(2);
+  
+  return { 
+    isValid: true, 
+    formattedValue 
+  };
+}
+
 // Brand Logo Component
 const BrandLogo = ({ brand, size = 24 }: { brand: string; size?: number }) => {
   const [logoError, setLogoError] = useState(false);
@@ -221,7 +251,6 @@ const ResultModal = ({
           </button>
         </div>
        
-    
       </div>
     </div>
   );
@@ -297,6 +326,72 @@ const CustomSelect = ({
   );
 };
 
+// SIMPLIFIED Price Input Component - Only accepts numbers
+const PriceInput = ({ 
+  value, 
+  onChange, 
+  currencySymbol,
+  fieldName,
+  error,
+  onBlur
+}: {
+  value: string;
+  onChange: (value: string) => void;
+  currencySymbol: string;
+  fieldName: string;
+  error?: string;
+  onBlur?: () => void;
+}) => {
+  // Extract just the numeric part for display (remove currency symbol and .00)
+  const getDisplayValue = (val: string) => {
+    if (!val) return '';
+    // Remove currency symbol and .00 if present
+    const numericValue = val.replace(currencySymbol, '').replace(/\.00$/, '');
+    return numericValue;
+  };
+
+  const displayValue = getDisplayValue(value);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    
+    // Only allow numbers and decimal point
+    if (/^\d*\.?\d*$/.test(newValue)) {
+      onChange(newValue);
+    }
+  };
+
+  const handleBlur = () => {
+    if (displayValue.trim()) {
+      const validation = validatePrice(displayValue);
+      if (validation.isValid && validation.formattedValue) {
+        // Format the value with currency symbol and .00
+        const formattedValue = `${currencySymbol}${validation.formattedValue}`;
+        onChange(formattedValue);
+      }
+    }
+    onBlur?.();
+  };
+
+  return (
+    <div className="price-input-container">
+      
+      <input
+        type="text"
+        inputMode="decimal"
+        value={displayValue}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        placeholder="Enter numbers only"
+        className={`price-input ${error ? 'error' : ''}`}
+      />
+      {error && <div className="price-error-message">{error}</div>}
+           <span className="price-format-badge"> (enter numbers only)</span>
+      <div className="price-help-text">We'll add {currencySymbol} and .00 automatically</div>
+    </div>
+  );
+};
+
 export default function ImageUploader() {
   const router = useRouter();
 
@@ -331,6 +426,11 @@ export default function ImageUploader() {
       toLabel(b).toLowerCase().includes(brandSearch.toLowerCase())
     );
   }, [allBrands, brandSearch]);
+
+  // Get price fields from visible fields
+  const priceFields = useMemo(() => {
+    return visibleFields.filter(field => PRICE_FIELDS.test(field) && field !== "currency");
+  }, [visibleFields]);
 
   // Check if form is valid
   const isFormValid = useMemo(() => {
@@ -455,13 +555,32 @@ export default function ImageUploader() {
   }, []);
 
   function updateField(name: string, value: string) {
-    // Sanitize input - basic XSS protection
-    const sanitizedValue = value.replace(/[<>]/g, '');
+    // For price fields, store the raw numeric value
+    if (PRICE_FIELDS.test(name)) {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    } else {
+      // Sanitize input - basic XSS protection for non-price fields
+      const sanitizedValue = value.replace(/[<>]/g, '');
+      setFormData((prev) => ({ ...prev, [name]: sanitizedValue }));
+    }
     
-    setFormData((prev) => ({ ...prev, [name]: sanitizedValue }));
     // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: "" }));
+    }
+  }
+
+  // Handle price field validation on blur
+  function handlePriceBlur(fieldName: string, value: string) {
+    if (value.trim()) {
+      const validation = validatePrice(value);
+      if (!validation.isValid) {
+        setErrors(prev => ({ ...prev, [fieldName]: validation.message || "Invalid price format" }));
+      } else if (validation.formattedValue) {
+        // Format the value with currency symbol and .00
+        const formattedValue = `${selectedCurrency.symbol}${validation.formattedValue}`;
+        setFormData(prev => ({ ...prev, [fieldName]: formattedValue }));
+      }
     }
   }
 
@@ -532,6 +651,23 @@ export default function ImageUploader() {
     setSelectedCurrency(selectedCurr);
     // ALWAYS STORE THE SYMBOL, NEVER THE CODE
     updateField("currency", selectedCurr.symbol);
+    
+    // Update existing price fields with new currency symbol
+    setFormData(prev => {
+      const updated = { ...prev };
+      priceFields.forEach(field => {
+        if (updated[field]) {
+          const valueWithoutCurrency = updated[field].replace(/[^\d.]/g, '');
+          if (valueWithoutCurrency) {
+            const numValue = parseFloat(valueWithoutCurrency);
+            if (!isNaN(numValue)) {
+              updated[field] = `${selectedCurr.symbol}${numValue.toFixed(2)}`;
+            }
+          }
+        }
+      });
+      return updated;
+    });
   }
 
   function validateForm(): boolean {
@@ -549,6 +685,16 @@ export default function ImageUploader() {
     visibleFields.forEach(field => {
       if (field !== "email" && !formData[field]?.trim()) {
         newErrors[field] = `${toLabel(field)} is required`;
+      }
+      
+      // Special validation for price fields
+      if (PRICE_FIELDS.test(field) && formData[field]?.trim()) {
+        // Extract numeric value for validation (remove currency symbol and .00)
+        const numericValue = formData[field].replace(selectedCurrency.symbol, '').replace(/\.00$/, '');
+        const validation = validatePrice(numericValue);
+        if (!validation.isValid) {
+          newErrors[field] = validation.message || "Invalid price format";
+        }
       }
     });
 
@@ -607,6 +753,16 @@ export default function ImageUploader() {
           } else {
             // CONVERT ANY CODE TO SYMBOL - ROBUST PROTECTION
             value = ensureCurrencySymbol(value);
+          }
+        }
+        
+        // FOR PRICE FIELDS: Ensure proper formatting
+        if (PRICE_FIELDS.test(f) && value) {
+          // Extract numeric value and format properly
+          const numericValue = value.replace(selectedCurrency.symbol, '').replace(/\.00$/, '');
+          const validation = validatePrice(numericValue);
+          if (validation.isValid && validation.formattedValue) {
+            value = `${selectedCurrency.symbol}${validation.formattedValue}`;
           }
         }
         
@@ -904,6 +1060,7 @@ export default function ImageUploader() {
               .map((field) => {
                 const type = inputTypeFor(field);
                 const isDateField = DATE_HINT.test(field);
+                const isPriceField = PRICE_FIELDS.test(field);
                 
                 return (
                   <div key={field} className="field">
@@ -912,17 +1069,33 @@ export default function ImageUploader() {
                       {isDateField && !formData[field] && (
                         <span className="auto-detected-badge"> (auto-filled)</span>
                       )}
+                      {isPriceField && (
+                        <span className="price-format-badge"> </span>
+                      )}
                     </label>
-                    <input
-                      id={field}
-                      name={field}
-                      type={type}
-                      value={formData[field] || ""}
-                      onChange={(e) => updateField(field, e.target.value)}
-                      placeholder={toLabel(field)}
-                      className={errors[field] ? 'error' : ''}
-                      {...(type === "number" ? { step: "any" } : {})}
-                    />
+                    
+                    {isPriceField ? (
+                      <PriceInput
+                        value={formData[field] || ""}
+                        onChange={(value) => updateField(field, value)}
+                        currencySymbol={selectedCurrency.symbol}
+                        fieldName={field}
+                        error={errors[field]}
+                        onBlur={() => handlePriceBlur(field, formData[field] || "")}
+                      />
+                    ) : (
+                      <input
+                        id={field}
+                        name={field}
+                        type={type}
+                        value={formData[field] || ""}
+                        onChange={(e) => updateField(field, e.target.value)}
+                        placeholder={toLabel(field)}
+                        className={errors[field] ? 'error' : ''}
+                        {...(type === "number" ? { step: "any" } : {})}
+                      />
+                    )}
+                    
                     {isDateField && !formData[field] && (
                       <div className="email-note">
                         Today's date will be used if not specified
@@ -1245,7 +1418,13 @@ export default function ImageUploader() {
           width: 100%;
         }
         
-        .field label { font-size: 13px; color: #444; }
+        .field label { 
+          font-size: 13px; 
+          color: #444; 
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+        }
         
         .field input {
           padding: 10px 12px;
@@ -1264,6 +1443,51 @@ export default function ImageUploader() {
         
         .field input.error {
           border-color: #d32f2f;
+        }
+        
+        /* SIMPLIFIED Price Input Styles */
+        .price-input-container {
+          width: 100%;
+        }
+        
+        .price-input {
+          padding: 10px 12px;
+          border: 1px solid #ccc;
+          border-radius: 8px;
+          font-size: 16px;
+          width: 100%;
+          background: transparent;
+          box-sizing: border-box;
+        }
+        
+        .price-input:focus {
+          outline: none;
+          border-color: #000;
+        }
+        
+        .price-input.error {
+          border-color: #d32f2f;
+        }
+        
+        .price-error-message {
+          font-size: 12px;
+          color: #d32f2f;
+          margin-top: 4px;
+        }
+        
+        .price-help-text {
+          font-size: 11px;
+          color: #666;
+          margin-top: 4px;
+          font-style: italic;
+        }
+        
+        .price-format-badge {
+          font-size: 11px;
+          color: #2e7d32;
+          font-weight: normal;
+          margin-left: 4px;
+          font-style: italic;
         }
         
         .email-field {
