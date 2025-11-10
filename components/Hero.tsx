@@ -263,8 +263,21 @@ export default function Hero() {
             </a>
           </div>
         </div>
+
+   <div
+  style={{
+    width: '90%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: '0 auto' // centers the whole div if it's inside another block
+  }}
+>
+  <Counter />
+</div>
+
         
-        <Counter/>
+    
 
         {/* Scrolling Brand Rows - Full width */}
         <div style={{ 

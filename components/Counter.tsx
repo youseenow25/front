@@ -50,21 +50,25 @@ export default function SubscriptionTimer() {
     <div
       style={{
         marginTop: 10,
+        width:'95%',
         padding: "8px 12px",
         backgroundColor: "#e9ecff",
-        borderRadius: 6,
+     
         color: "#333",
         textAlign: "center",
         fontWeight: 500,
       }}
     >
-      {timeLeft === "lifetime" ? (
-        <p style={{ margin: 0 }}>🎉 Lifetime Access</p>
-      ) : timeLeft === 0 ? (
-        <p style={{ margin: 0, color: "red" }}>⏰ Subscription expired</p>
-      ) : (
-        <p style={{ margin: 0 }}>⏳ Time left: {timeLeft}</p>
-      )}
+     {timeLeft === "lifetime" ? (
+  <p style={{ margin: 0 }}>🎉 Lifetime Access</p>
+) : timeLeft === 0 ? (
+  <p style={{ margin: 0, color: "red" }}>⏰ Subscription expired</p>
+) : timeLeft === "single" ? (
+  <p style={{ margin: 0 }}>🧾 You can make 1 receipt</p>
+) : (
+  <p style={{ margin: 0 }}>⏳ Time left: {timeLeft}</p>
+)}
+
     </div>
   );
 }
