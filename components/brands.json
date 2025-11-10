@@ -486,6 +486,7 @@
         "currency",
         "invoice_date",
         "name",
+        "quantity",
         "order_date",
         "order_number",
         "product_name",
