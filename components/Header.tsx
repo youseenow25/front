@@ -121,7 +121,7 @@ export default function Header() {
         onClick={() => navigateTo("/")}
         style={{ display: "flex", alignItems: "center", gap: 8, border: "none", background: "none" }}
       >
-        <Image width={100} height={100} alt="Logo" src={"/hublogo.png"} />
+        <Image width={60} height={60} alt="Logo" src={"/logoheader.png"} />
       </button>
       <button onClick={toggleMobileMenu} style={{ border: "none", background: "none" }}>
         <X size={28} color="black" />

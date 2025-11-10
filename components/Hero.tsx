@@ -231,9 +231,10 @@ export default function Hero() {
               </p>
             </div>
 
-            <p style={{ fontSize: isMobile ? "14px" : "18px", color: "#555", margin: isMobile ? "8px 0" : "0" }}>
-              For any assistence or help, contact us at this Discord
-            </p>
+            {isMobile
+    ? "For any assistance, go to"
+    : "For any assistance or help, contact us at this Discord"}
+  <br />
 
             <a
               href="https://discord.gg/2ZRQu2uT62"
