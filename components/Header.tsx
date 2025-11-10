@@ -257,7 +257,7 @@ export default function Header() {
             width={isMobile ? 60 : 90} 
             height={isMobile ? 60 : 900} 
             alt="Webpage logo" 
-            src={'/l.png'} 
+            src={'/logoheader.png'} 
           />
         </button>
 
