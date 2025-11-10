@@ -147,7 +147,7 @@ export default function PricingPage() {
 
       {/* Header */}
       <section className="mx-auto max-w-6xl px-6 pt-10 text-center">
-        <h1 className="text-4xl font-semibold text-gray-900">Choose Your Plan</h1>
+
      
       </section>
 
