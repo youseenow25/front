@@ -92,109 +92,160 @@ export default function Header() {
 
   // Mobile Menu Component
   const MobileMenu = () => (
-    <div style={{
+  <div
+    style={{
       position: "fixed",
       top: 0,
       left: 0,
-      right: 0,
-      bottom: 0,
- 
+      width: "100%",
+      height: "100%",
+      backgroundColor: "white", // full white background
       zIndex: 1000,
-      padding: "20px",
       display: "flex",
       flexDirection: "column",
-      overflowY: "auto"
-    }}>
-      {/* Mobile Menu Header */}
-      <div style={{
+      justifyContent: "space-between",
+      overflowY: "auto",
+      padding: "24px",
+    }}
+  >
+    {/* Top: Header */}
+    <div
+      style={{
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        marginBottom: "30px",
-        paddingBottom: "20px",
-        borderBottom: "1px solid #eee"
-      }}>
-        <button onClick={() => navigateTo("/")} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <Image width={80} height={80} alt="Webpage logo" src={'/hublogo.png'} />
-        </button>
-        <button onClick={toggleMobileMenu} style={{ background: "none", border: "none", padding: 8 }}>
-          <X size={24} color="black" />
-        </button>
-      </div>
+        marginBottom: "20px",
+      }}
+    >
+      <button
+        onClick={() => navigateTo("/")}
+        style={{ display: "flex", alignItems: "center", gap: 8, border: "none", background: "none" }}
+      >
+        <Image width={100} height={100} alt="Logo" src={"/hublogo.png"} />
+      </button>
+      <button onClick={toggleMobileMenu} style={{ border: "none", background: "none" }}>
+        <X size={28} color="black" />
+      </button>
+    </div>
 
-     
+    {/* Middle: Navigation Links */}
+    <div style={{ display: "flex", flexDirection: "column", gap: 24, textAlign: "center" }}>
+      <button
+        onClick={() => navigateTo("/pricing")}
+        style={{
+          background: "none",
+          border: "none",
+          fontSize: 20,
+          fontWeight: 600,
+          color: "#000",
+          cursor: "pointer",
+        }}
+      >
+        💰 Pricing
+      </button>
 
-      {/* Mobile Auth Buttons */}
-      <div style={{ marginTop: "auto", paddingTop: "20px", borderTop: "1px solid #eee" }}>
-        {user ? (
-          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-            <div style={{ 
-              color: "#000", 
+      <button
+        onClick={() => navigateTo("/#examples")}
+        style={{
+          background: "none",
+          border: "none",
+          fontSize: 20,
+          fontWeight: 600,
+          color: "#000",
+          cursor: "pointer",
+        }}
+      >
+        🧾 Examples of Usage
+      </button>
+
+      <button
+        onClick={() => navigateTo("/#faq")}
+        style={{
+          background: "none",
+          border: "none",
+          fontSize: 20,
+          fontWeight: 600,
+          color: "#000",
+          cursor: "pointer",
+        }}
+      >
+        ❓ FAQ
+      </button>
+    </div>
+
+    {/* Bottom: Auth Actions */}
+    <div style={{ borderTop: "1px solid #eee", paddingTop: 20 }}>
+      {user ? (
+        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+          <div
+            style={{
+              color: "#000",
               fontWeight: 500,
               fontSize: "16px",
               padding: "12px 16px",
               backgroundColor: "#f8f9fa",
               borderRadius: 8,
               border: "1px solid #ddd",
-              textAlign: "center"
-            }}>
-              {user.email}
-            </div>
-            
-            <button
-              onClick={handleLogout}
-              style={{
-                color: "#e53e3e",
-                padding: "12px 16px",
-                border: "2px solid #e53e3e",
-                borderRadius: 8,
-                fontWeight: 500,
-                cursor: "pointer",
-                fontSize: "16px",
-     
-              }}
-            >
-              Logout
-            </button>
+              textAlign: "center",
+            }}
+          >
+            {user.email}
           </div>
-        ) : (
-          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-            <button
-              onClick={goToRegister}
-              style={{
-                backgroundColor: "black",
-                color: "white",
-                padding: "12px 16px",
-                border: "none",
-                fontWeight: 600,
-                borderRadius: 10,
-                cursor: "pointer",
-                fontSize: "16px"
-              }}
-            >
-              Create account
-            </button>
 
-            <button
-              onClick={goToLogin}
-              style={{
-                backgroundColor: "#0d83fe",
-                color: "white",
-                padding: "12px 16px",
-                border: "none",
-                fontWeight: 600,
-                borderRadius: 10,
-                cursor: "pointer",
-                fontSize: "16px"
-              }}
-            >
-              Log in
-            </button>
-          </div>
-        )}
-      </div>
+          <button
+            onClick={handleLogout}
+            style={{
+              color: "#e53e3e",
+              padding: "12px 16px",
+              border: "2px solid #e53e3e",
+              borderRadius: 8,
+              fontWeight: 500,
+              cursor: "pointer",
+              fontSize: "16px",
+            }}
+          >
+            Logout
+          </button>
+        </div>
+      ) : (
+        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+          <button
+            onClick={goToRegister}
+            style={{
+              backgroundColor: "#4468f9",
+              color: "white",
+              padding: "12px 16px",
+              border: "none",
+              fontWeight: 600,
+              borderRadius: 10,
+              cursor: "pointer",
+              fontSize: "16px",
+            }}
+          >
+            Sign up for Free
+          </button>
+
+          <button
+            onClick={goToLogin}
+            style={{
+              backgroundColor: "#efefef",
+              color: "black",
+              padding: "12px 16px",
+              border: "none",
+              fontWeight: 600,
+              borderRadius: 10,
+              cursor: "pointer",
+              fontSize: "16px",
+            }}
+          >
+            Log in
+          </button>
+        </div>
+      )}
     </div>
-  );
+  </div>
+);
+
 
   // Don't render anything until component is mounted to avoid hydration mismatch
   if (!isMounted) {
