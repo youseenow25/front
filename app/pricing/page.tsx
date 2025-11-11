@@ -43,7 +43,7 @@ export default function PricingPage() {
     {
       id: '1-receipt',
       name: '1 Receipt',
-      price: 4.99,
+      price: 3.99,
       description: 'Perfect for trying out our generator.',
       features: ['1 professional receipt', 'All templates'],
       badge: 'Pay per use'
@@ -51,14 +51,14 @@ export default function PricingPage() {
     {
       id: '1-day',
       name: 'Day Pass',
-      price: 7.99,
+      price: 6.99,
       description: '24 hours of unlimited access.',
       features: ['Unlimited receipts for 24 hours', 'All templates'],
     },
     {
       id: '1-week',
       name: 'Weekly',
-      price: 13.99,
+      price: 10.99,
       description: 'Ideal for short-term projects.',
       features: ['7 days unlimited access', 'All templates', 'Priority support'],
       badge: 'Most Flexible'
@@ -69,7 +69,7 @@ export default function PricingPage() {
     {
       id: '1-month',
       name: '1 Month',
-      price: 19.99,
+      price: 17.99,
       description: 'Best for regular business use.',
       popular: true,
       features: ['30 days unlimited access', 'All premium features', 'Dedicated support'],
@@ -77,7 +77,7 @@ export default function PricingPage() {
     {
       id: '6-months',
       name: '6 Months',
-      price: 39.99,
+      price: 33.99,
       description: 'Maximum value for power users.',
       features: ['6 months unlimited access', 'All enterprise features', '24/7 dedicated support'],
       badge: 'Best Value'
@@ -113,7 +113,7 @@ export default function PricingPage() {
         <p className="mt-2 text-gray-600">{plan.description}</p>
 
         <div className="mt-6 flex items-baseline gap-2">
-          <span className="text-5xl font-light text-gray-900">${plan.price}</span>
+          <span className="text-5xl font-light text-gray-900">€{plan.price}</span>
         </div>
 
         <p className="mt-1 text-sm text-gray-500">One-time payment • No auto-renewal</p>
