@@ -151,6 +151,21 @@ function validatePrice(value: string): { isValid: boolean; message?: string; for
   };
 }
 
+// Extract numeric value from formatted price (remove currency symbol and .00)
+function extractNumericValue(formattedValue: string): string {
+  if (!formattedValue) return '';
+  
+  // Remove any currency symbols and .00 suffix
+  let numericValue = formattedValue
+    .replace(/[^\d.]/g, '') // Remove non-numeric characters except decimal point
+    .replace(/\.00$/, ''); // Remove .00 suffix
+  
+  // If it ends with .0, remove that too
+  numericValue = numericValue.replace(/\.0$/, '');
+  
+  return numericValue;
+}
+
 // Brand Logo Component
 const BrandLogo = ({ brand, size = 24 }: { brand: string; size?: number }) => {
   const [logoError, setLogoError] = useState(false);
@@ -365,7 +380,7 @@ const PriceInput = ({
     if (displayValue.trim()) {
       const validation = validatePrice(displayValue);
       if (validation.isValid && validation.formattedValue) {
-        // Format the value with currency symbol and .00
+        // Format the value with currency symbol and .00 for display only
         const formattedValue = `${currencySymbol}${validation.formattedValue}`;
         onChange(formattedValue);
       }
@@ -555,7 +570,8 @@ export default function ImageUploader() {
   }, []);
 
   function updateField(name: string, value: string) {
-    // For price fields, store the raw numeric value
+    // For price fields, store the formatted value (with currency symbol) for display
+    // The actual numeric value will be extracted when submitting
     if (PRICE_FIELDS.test(name)) {
       setFormData((prev) => ({ ...prev, [name]: value }));
     } else {
@@ -577,7 +593,7 @@ export default function ImageUploader() {
       if (!validation.isValid) {
         setErrors(prev => ({ ...prev, [fieldName]: validation.message || "Invalid price format" }));
       } else if (validation.formattedValue) {
-        // Format the value with currency symbol and .00
+        // Format the value with currency symbol and .00 for display only
         const formattedValue = `${selectedCurrency.symbol}${validation.formattedValue}`;
         setFormData(prev => ({ ...prev, [fieldName]: formattedValue }));
       }
@@ -652,15 +668,16 @@ export default function ImageUploader() {
     // ALWAYS STORE THE SYMBOL, NEVER THE CODE
     updateField("currency", selectedCurr.symbol);
     
-    // Update existing price fields with new currency symbol
+    // Update existing price fields with new currency symbol for display
     setFormData(prev => {
       const updated = { ...prev };
       priceFields.forEach(field => {
         if (updated[field]) {
-          const valueWithoutCurrency = updated[field].replace(/[^\d.]/g, '');
-          if (valueWithoutCurrency) {
-            const numValue = parseFloat(valueWithoutCurrency);
+          const numericValue = extractNumericValue(updated[field]);
+          if (numericValue) {
+            const numValue = parseFloat(numericValue);
             if (!isNaN(numValue)) {
+              // Update display value with new currency symbol
               updated[field] = `${selectedCurr.symbol}${numValue.toFixed(2)}`;
             }
           }
@@ -690,7 +707,7 @@ export default function ImageUploader() {
       // Special validation for price fields
       if (PRICE_FIELDS.test(field) && formData[field]?.trim()) {
         // Extract numeric value for validation (remove currency symbol and .00)
-        const numericValue = formData[field].replace(selectedCurrency.symbol, '').replace(/\.00$/, '');
+        const numericValue = extractNumericValue(formData[field]);
         const validation = validatePrice(numericValue);
         if (!validation.isValid) {
           newErrors[field] = validation.message || "Invalid price format";
@@ -756,14 +773,10 @@ export default function ImageUploader() {
           }
         }
         
-        // FOR PRICE FIELDS: Ensure proper formatting
+        // FOR PRICE FIELDS: Extract only the numeric value (remove currency symbol and .00)
         if (PRICE_FIELDS.test(f) && value) {
-          // Extract numeric value and format properly
-          const numericValue = value.replace(selectedCurrency.symbol, '').replace(/\.00$/, '');
-          const validation = validatePrice(numericValue);
-          if (validation.isValid && validation.formattedValue) {
-            value = `${selectedCurrency.symbol}${validation.formattedValue}`;
-          }
+          // Extract only the numeric value without currency symbol or .00
+          value = extractNumericValue(value);
         }
         
         if (value) {
@@ -786,10 +799,14 @@ export default function ImageUploader() {
         language: selectedLanguage.code,
         currency: formData.currency ? ensureCurrencySymbol(formData.currency) : selectedCurrency.symbol,
         email: emailValue,
-        visibleFields: visibleFields.map(f => ({ 
-          field: f, 
-          value: f === 'currency' ? ensureCurrencySymbol(formData[f] || '') : formData[f] 
-        }))
+        visibleFields: visibleFields.map(f => { 
+          let value = formData[f];
+          // For price fields, show the extracted numeric value
+          if (PRICE_FIELDS.test(f) && value) {
+            value = extractNumericValue(value);
+          }
+          return { field: f, value };
+        })
       });
 
       const res = await fetch("https://api.hubreceipts.com/api/receipt/generate", {
