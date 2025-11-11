@@ -1,13 +1,13 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { Analytics } from "@vercel/analytics/react"
+import Script from 'next/script'
 
 export const metadata: Metadata = {
   title: 'HubReceipts - Generate Authentic Receipts for 100+ Luxury & Streetwear Brands',
   description: 'Create realistic receipts for StockX, Louis Vuitton, Dior, Gucci, Nike, Supreme, Balenciaga, Off-White & 100+ premium brands. Professional receipt generator for luxury documentation and purchase verification.',
   metadataBase: new URL('https://hubreceipts.com'),
   
-  // OPEN GRAPH FOR FACEBOOK & LINKEDIN
   openGraph: {
     title: 'HubReceipts - Professional Receipt Generator for Luxury Brands',
     description: 'Generate authentic receipts for 100+ luxury and streetwear brands. Create professional receipt templates instantly.',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     siteName: 'HubReceipts',
     images: [
       {
-        url: '/og-image.jpg', // or https://hubreceipts.com/og-image.jpg
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'HubReceipts - Professional Receipt Generator',
@@ -25,18 +25,15 @@ export const metadata: Metadata = {
     type: 'website',
   },
 
-  // TWITTER CARD FOR TWITTER
   twitter: {
     card: 'summary_large_image',
     title: 'HubReceipts - Professional Receipt Generator',
     description: 'Generate authentic receipts for 100+ luxury and streetwear brands',
-    images: ['/og-image.jpg'], // or https://hubreceipts.com/og-image.jpg
-    creator: '@hubreceipts', // Add your Twitter handle if you have one
+    images: ['/og-image.jpg'],
   },
 
-  // REST OF YOUR EXISTING METADATA
   keywords: [
-    // ... your existing keywords array
+    // ... tus keywords existentes
   ],
   authors: [{ name: 'HubReceipts' }],
   creator: 'HubReceipts',
@@ -97,6 +94,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
+        {/* GOOGLE TAG (GTAG.JS) - ADD THIS */}
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17709466697"
+        />
+        <Script id="google-analytics">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17709466697');
+          `}
+        </Script>
+
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://hubreceipts.com" />
@@ -116,7 +127,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
         <meta name="msapplication-config" content="/browserconfig.xml" />
 
-        {/* ADDITIONAL OG TAGS FOR BETTER CONTROL */}
+        {/* ADDITIONAL OG TAGS */}
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:type" content="image/jpeg" />
@@ -124,7 +135,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         
         {/* TWITTER ADDITIONAL TAGS */}
         <meta name="twitter:image:alt" content="HubReceipts - Generate authentic receipts for luxury brands" />
-        <meta name="twitter:site" content="@hubreceipts" />
 
         {/* SCHEMA MARKUP */}
         <script
