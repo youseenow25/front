@@ -46,26 +46,25 @@ export default function StructuredData() {
     ]
   }
 
+  // CHANGE THIS: Use "Service" instead of "Product"
   const brandStructuredData = brands.map((brand) => ({
     '@context': 'https://schema.org',
-    '@type': 'Product',
+    '@type': 'Service', // ✅ CHANGED FROM "Product" TO "Service"
     name: `${toLabel(brand)} Receipt Generator`,
     description: `Generate authentic ${toLabel(brand)} receipts with official designs and formatting. Create professional ${toLabel(brand)} invoice templates instantly.`,
-    brand: {
-      '@type': 'Brand',
-      name: toLabel(brand)
+    provider: {
+      '@type': 'Organization',
+      name: 'HubReceipts'
     },
+    serviceType: 'Receipt Generation',
+    areaServed: 'Worldwide',
     offers: {
       '@type': 'Offer',
       url: `https://hubreceipts.com/brands/${brand}`,
       price: '0',
       priceCurrency: 'USD'
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      reviewCount: '150'
     }
+    // Remove aggregateRating unless you actually have reviews
   }))
 
   return (
