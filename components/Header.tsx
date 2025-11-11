@@ -325,7 +325,7 @@ export default function Header() {
             {/* Pricing */}
             <div style={{ position: "relative" }}>
               <button
-                onClick={() => router.push('pricing')}
+                onClick={() => router.push('/pricing')}
                 style={{
                   background: "none",
                   border: "none",

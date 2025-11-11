@@ -116,23 +116,8 @@ export default function BrandPage({ params }: Props) {
         <Header />
         <Hero brandName={brandName} />
         
-        {/* Hero Section for Brand Page */}
-        <div className="brand-hero-section">
-          <div className="container">
-            <div className="brand-hero-content">
-              <h1 className="brand-hero-title">
-                {brandName} Receipt Generator
-              </h1>
-              <p className="brand-hero-description">
-                Create authentic {brandName} receipts with professional designs, 
-                real logos, and accurate formatting. Generate professional {brandName} 
-                invoices in seconds.
-              </p>
-            </div>
-          </div>
-        </div>
+       
 
-        <div style={{height:1, width:'100%', background:'linear-gradient(90deg, transparent, #d4af37, #c9b037, transparent)'}} />
         
         {/* Brand Receipt Generator */}
         <div style={{width:'100%'}}>

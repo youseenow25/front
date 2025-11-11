@@ -150,7 +150,17 @@ function validatePrice(value: string): { isValid: boolean; message?: string; for
     formattedValue 
   };
 }
-
+ 
+  const getLogoPath = (brandName: string) => {
+    // Convert brand name to filename format
+    const filename = brandName
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, '_')
+      .replace(/_+/g, '_')
+      .replace(/^_|_$/g, '') + '.png';
+    
+    return `/brand-logos/${filename}`;
+  };
 // Brand Logo Component
 const BrandLogo = ({ brand, size = 24 }: { brand: string; size?: number }) => {
   const [logoError, setLogoError] = useState(false);
@@ -375,7 +385,7 @@ const PriceInput = ({
   return (
     <div className="price-input-container">
       <div className="price-input-wrapper">
-        <div className="currency-prefix">{currencySymbol}</div>
+
         <input
           type="text"
           inputMode="decimal"
@@ -385,11 +395,14 @@ const PriceInput = ({
           placeholder="0"
           className={`price-input ${error ? 'error' : ''}`}
         />
-        <div className="currency-suffix">.00</div>
-        {error && <AlertCircle className="price-error-icon" size={16} />}
+
+       
       </div>
       {error && <div className="price-error-message">{error}</div>}
-      <div className="price-help-text">Enter numbers only - we'll add {currencySymbol} and .00 automatically</div>
+      
+     
+                
+      <div className="price-format-badge">Enter numbers only - we'll add {currencySymbol} and .00 automatically</div>
     </div>
   );
 };
@@ -930,15 +943,22 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
       )}
 
       {/* Brand Header for SEO Pages */}
-      {isBrandPage && brand && (
-        <div className="brand-seo-header">
-          <h1>{toLabel(brand)} Receipt Generator</h1>
-          <p className="brand-seo-description">
-            Create authentic {toLabel(brand)} receipts with official designs and formatting. 
-            Generate professional {toLabel(brand)} invoice templates instantly.
-          </p>
-        </div>
-      )}
+ {isBrandPage && brand && (
+  <div className="brand-seo-header" style={{ display: 'flex', gap: '6px', justifyContent:'center' }}>
+   
+    <img 
+    alt = "Brand Logo"
+    style={{width:80, height:80}}
+     src={getLogoPath(brand)}
+     >
+    </img>
+    <h1 style={{ backgroundColor: 'black', color: 'white', padding: '8px', borderRadius: '8px' }}>
+       Create 1:1 {toLabel(brand)} Receipt and receive it in your inbox 
+    </h1>
+  
+  </div>
+)}
+
 
       {/* LEFT: Image picker */}
       <div
@@ -997,9 +1017,7 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
         <div className="brand-picker" ref={brandPickerRef}>
           <label htmlFor="brand" className="field-label">
             Brand *
-            {preSelectedBrand && brand === preSelectedBrand && (
-              <span className="pre-selected-indicator">(pre-selected)</span>
-            )}
+           
           </label>
           <div className="picker-container">
             <button
@@ -1014,9 +1032,7 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
                     <span className="brand-option">
                       <BrandLogo brand={brand} size={20} />
                       {toLabel(brand)}
-                      {preSelectedBrand && brand === preSelectedBrand && (
-                        <span className="matched-badge">✓ Matched</span>
-                      )}
+                      
                     </span>
                   ) : "Select a Brand"}
                 </span>
@@ -1062,12 +1078,7 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
               </div>
             )}
           </div>
-          {preSelectedBrand && (
-            <div className="pre-selected-note">
-              You're generating a receipt for {toLabel(preSelectedBrand)}. You can change the brand above if needed.
-            </div>
-          )}
-          {errors.brand && <div className="error-message">{errors.brand}</div>}
+         
         </div>
 
         {/* Currency Selector */}
@@ -1130,9 +1141,7 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
                       {isDateField && !formData[field] && (
                         <span className="auto-detected-badge"> (auto-filled)</span>
                       )}
-                      {isPriceField && (
-                        <span className="price-format-badge"> (enter numbers only)</span>
-                      )}
+                      
                     </label>
                     
                     {isPriceField ? (
@@ -1220,18 +1229,17 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
         .brand-seo-header {
           grid-column: 1 / -1;
           text-align: center;
-          margin-bottom: 30px;
-          padding: 20px;
-          background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-          border-radius: 12px;
-          border: 1px solid #e9ecef;
+         
+
+        
+
         }
 
         .brand-seo-header h1 {
           font-size: 2.5rem;
           font-weight: 700;
           margin-bottom: 12px;
-          background: linear-gradient(135deg, #d4af37, #c9b037);
+          
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -1309,10 +1317,7 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
           border-radius: 4px;
         }
 
-        .picker-btn.pre-selected {
-          border-left: 4px solid #d4af37;
-        }
-
+ 
         .matched-badge {
           font-size: 11px;
           color: #2e7d32;
@@ -1323,7 +1328,7 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
         }
 
         .pre-selected-item {
-          border-left: 3px solid #d4af37;
+
         }
 
         .item-pre-selected-badge {
@@ -1342,7 +1347,7 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
           padding: 8px 12px;
           background: #f8f9fa;
           border-radius: 6px;
-          border-left: 3px solid #d4af37;
+       
         }
 
         /* SEO Keywords Section */

@@ -61,8 +61,9 @@ interface HeroProps {
 
 export default function Hero({ brandName = "" }: HeroProps) {
   const phrases = [
-    `Generate ${brandName} Receipt`,
-    "🏆 Top #1 receipt generator"
+    "✉️ +60 email templates",
+    "🏆 Top #1 receipt generator ",
+    "🌍 +6500 users worlwide using it",
   ];
 
   const brands = [
@@ -275,15 +276,15 @@ export default function Hero({ brandName = "" }: HeroProps) {
           <Counter />
         </div>
 
-        {/* Scrolling Brand Rows - Full width */}
+        {/* Scrolling Brand Rows - Reduced spacing */}
         <div style={{ 
-          marginTop: isMobile ? '10%' : '1%', 
+          marginTop: isMobile ? '5%' : '1%',
           width: '100%',
           padding: isMobile ? '0 16px' : '0 20px'
-        }} className="overflow-hidden space-y-8 mt-20">
+        }} className="overflow-hidden space-y-2">
           {/* Row 1 (Right → Left) */}
           <div className="w-full overflow-hidden">
-            <ul className="flex animate-marquee-slow gap-4">
+            <ul className="flex animate-marquee-slow gap-2">
               {doubledBrands.map((brand, index) => (
                 <li
                   key={`row1-${index}`}
@@ -309,8 +310,8 @@ export default function Hero({ brandName = "" }: HeroProps) {
           </div>
 
           {/* Row 2 (Left → Right) */}
-          <div style={{marginTop:0}} className="w-full overflow-hidden">
-            <ul className="flex animate-marquee-reverse-slow gap-4">
+          <div className="w-full overflow-hidden">
+            <ul className="flex animate-marquee-reverse-slow gap-2">
               {doubledBrands.map((brand, index) => (
                 <li
                   key={`row2-${index}`}

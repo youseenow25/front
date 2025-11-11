@@ -49,21 +49,10 @@ export default function BrandReceiptGenerator({ preSelectedBrand }: BrandReceipt
 
   return (
     <div className="brand-receipt-generator">
-      <div className="brand-header">
-        <h1>{toLabel(preSelectedBrand)} Receipt Generator</h1>
-        <p className="brand-subtitle">
-          Create authentic {toLabel(preSelectedBrand)} receipts with official designs and formatting. 
-          Generate professional {toLabel(preSelectedBrand)} invoice templates instantly.
-        </p>
-        <div className="brand-features">
-          <span className="feature-badge">✓ Official {toLabel(preSelectedBrand)} Designs</span>
-          <span className="feature-badge">✓ Instant Generation</span>
-          <span className="feature-badge">✓ Free to Use</span>
-        </div>
-      </div>
-      
+      {/* ImageUploader comes first */}
       <ImageUploader preSelectedBrand={preSelectedBrand} isBrandPage={true} />
       
+      {/* SEO Content comes below ImageUploader */}
       <div className="brand-seo-content">
         <h2>Create Professional {toLabel(preSelectedBrand)} Receipts</h2>
         <p>
@@ -95,7 +84,7 @@ export default function BrandReceiptGenerator({ preSelectedBrand }: BrandReceipt
 
       <style jsx>{`
         .brand-receipt-generator {
-          max-width: 1200px;
+        
           margin: 0 auto;
           padding: 20px;
         }
@@ -104,7 +93,7 @@ export default function BrandReceiptGenerator({ preSelectedBrand }: BrandReceipt
           text-align: center;
           margin-bottom: 40px;
           padding: 40px 20px;
-          background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+         
           border-radius: 16px;
           border: 1px solid #e9ecef;
         }
@@ -113,7 +102,7 @@ export default function BrandReceiptGenerator({ preSelectedBrand }: BrandReceipt
           font-size: 3rem;
           font-weight: 700;
           margin-bottom: 16px;
-          background: linear-gradient(135deg, #d4af37, #c9b037);
+         
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -135,19 +124,18 @@ export default function BrandReceiptGenerator({ preSelectedBrand }: BrandReceipt
         }
         
         .feature-badge {
-          background: #e8f5e8;
-          color: #2e7d32;
+   
           padding: 8px 16px;
           border-radius: 20px;
           font-size: 0.9rem;
           font-weight: 500;
-          border: 1px solid #c8e6c9;
+          
         }
         
         .brand-seo-content {
           margin-top: 60px;
           padding: 40px;
-          background: #f8f9fa;
+  
           border-radius: 12px;
           line-height: 1.7;
         }
