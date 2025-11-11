@@ -5,7 +5,7 @@ import BrandReceiptGenerator from '@/components/BrandReceiptGenerator'
 import { Suspense } from 'react'
 
 import Header from '@/components/Header'
-import Hero from '@/components/Hero'
+import Hero from '@/components/Hero2'
 
 type Props = {
   params: { brand: string }
@@ -114,7 +114,7 @@ export default function BrandPage({ params }: Props) {
       <main className="main">
         <div className="luxury-radial" aria-hidden />
         <Header />
-        <Hero/>
+        <Hero brandName={brandName} />
         
         {/* Hero Section for Brand Page */}
         <div className="brand-hero-section">
