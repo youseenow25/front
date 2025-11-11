@@ -4,6 +4,9 @@ import brandsSchema from '@/components/brands'
 import BrandReceiptGenerator from '@/components/BrandReceiptGenerator'
 import { Suspense } from 'react'
 
+import Header from '@/components/Header'
+import Hero from '@/components/Hero'
+
 type Props = {
   params: { brand: string }
   searchParams: { [key: string]: string | string[] | undefined }
@@ -104,10 +107,121 @@ export default function BrandPage({ params }: Props) {
     notFound()
   }
 
+  const brandName = toLabel(brand)
+
   return (
-    <Suspense fallback={<BrandPageLoading />}>
-      <BrandReceiptGenerator preSelectedBrand={brand} />
-    </Suspense>
+    <>
+      <main className="main">
+        <div className="luxury-radial" aria-hidden />
+        <Header />
+        
+        {/* Hero Section for Brand Page */}
+        <div className="brand-hero-section">
+          <div className="container">
+            <div className="brand-hero-content">
+              <h1 className="brand-hero-title">
+                {brandName} Receipt Generator
+              </h1>
+              <p className="brand-hero-description">
+                Create authentic {brandName} receipts with professional designs, 
+                real logos, and accurate formatting. Generate professional {brandName} 
+                invoices in seconds.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div style={{height:1, width:'100%', background:'linear-gradient(90deg, transparent, #d4af37, #c9b037, transparent)'}} />
+        
+        {/* Brand Receipt Generator */}
+        <div style={{width:'100%'}}>
+          <Suspense fallback={<BrandPageLoading />}>
+            <BrandReceiptGenerator preSelectedBrand={brand} />
+          </Suspense>
+        </div>
+      </main>
+
+      <style>{`
+        .brand-hero-section {
+          padding: 80px 0 60px;
+          background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+          text-align: center;
+        }
+
+        .brand-hero-content {
+          max-width: 800px;
+          margin: 0 auto;
+        }
+
+        .brand-hero-title {
+          font-size: 3rem;
+          font-weight: 700;
+          color: #1a1a1a;
+          margin-bottom: 20px;
+          background: linear-gradient(135deg, #d4af37, #c9b037);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
+        .brand-hero-description {
+          font-size: 1.2rem;
+          color: #666;
+          line-height: 1.6;
+          max-width: 600px;
+          margin: 0 auto;
+        }
+
+        /* Luxury radial background */
+        .luxury-radial {
+          position: absolute;
+          inset: 0;
+          background: 
+            radial-gradient(ellipse 600px 400px at 20% 100px, rgba(212, 175, 55, 0.1), transparent 70%),
+            radial-gradient(ellipse 800px 500px at 80% 300px, rgba(201, 176, 55, 0.08), transparent 70%),
+            radial-gradient(ellipse 1000px 600px at center, rgba(0, 0, 0, 0.03), transparent 70%);
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+        }
+
+        .main {
+          position: relative;
+          overflow: hidden;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+          .brand-hero-section {
+            padding: 60px 0 40px;
+          }
+
+          .brand-hero-title {
+            font-size: 2.2rem;
+          }
+
+          .brand-hero-description {
+            font-size: 1.1rem;
+            padding: 0 20px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .brand-hero-title {
+            font-size: 1.8rem;
+          }
+
+          .brand-hero-description {
+            font-size: 1rem;
+          }
+        }
+      `}</style>
+    </>
   )
 }
 
