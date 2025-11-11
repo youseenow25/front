@@ -84,7 +84,7 @@ export default function Page() {
               <div className="feature-card">
                 <div className="feature-icon">🎨</div>
                 <h3>Authentic Designs</h3>
-                <p>Pixel-perfect replicas of luxury brand receipt designs with proper logos, fonts, and layouts.</p>
+                <p>StockX, Apple, Canada Goose +70 luxury brand receipts.</p>
               </div>
               
               <div className="feature-card">
