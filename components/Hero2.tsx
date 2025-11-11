@@ -309,7 +309,7 @@ export default function Hero({ brandName = "" }: HeroProps) {
           </div>
 
           {/* Row 2 (Left → Right) */}
-          <div style={{marginTop:5}} className="w-full overflow-hidden">
+          <div style={{marginTop:0}} className="w-full overflow-hidden">
             <ul className="flex animate-marquee-reverse-slow gap-4">
               {doubledBrands.map((brand, index) => (
                 <li
