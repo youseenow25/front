@@ -34,7 +34,7 @@ const PaymentSuccess = () => {
             className="continue-button"
             onClick={handleGoToDashboard}
           >
-            Continue to Dashboard
+            Go to Receipt Generator
           </button>
         </div>
       </div>
