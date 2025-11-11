@@ -818,6 +818,10 @@ export default function ImageUploader() {
         credentials: "include",
       });
 
+      if (res.status===401){
+        router.push("/login")
+      }
+
       // Handle subscription required cases (402, 403, 405)
       if (res.status === 402 || res.status === 403 || res.status === 405) {
         const html = await res.text();
