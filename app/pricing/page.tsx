@@ -5,8 +5,12 @@ import Footer from '@/components/Footer';
 import { Check } from 'lucide-react';
 import { useState } from 'react';
 
+import { useRouter } from "next/navigation";
+
 export default function PricingPage() {
   const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
+
+   const router = useRouter();
 
   // ✅ Handle checkout
   const handleCheckout = async (productId: string) => {
@@ -28,8 +32,9 @@ export default function PricingPage() {
       if (response.ok && data.url) {
         window.location.href = data.url; 
       } else {
-        console.error('Checkout failed:', data);
-        alert('⚠️ Failed to start checkout. Please try again.');
+          router.push("/register");
+
+       
       }
     } catch (err) {
       console.error('Checkout error:', err);
