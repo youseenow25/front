@@ -14,6 +14,24 @@ import { Analytics } from "@vercel/analytics/next"
 import StructuredData from "@/components/StructuredData";
 
 
+function toLabel(name: string): string {
+  const special: Record<string, string> = {
+    zip_code: "ZIP Code",
+    product_id: "Product ID",
+    order_number: "Order Number",
+    phone_number: "Phone Number",
+    brand_name: "Brand Name",
+    taxes_percentatge: "Taxes Percentage",
+    card_end: "Card Ending",
+    seller_name: "Seller Name",
+    spain: "Country",
+  };
+  if (special[name]) return special[name];
+  return name
+    .split("_")
+    .map((w) => (w.length ? w[0].toUpperCase() + w.slice(1) : w))
+    .join(" ");
+}
 
 export default function Page() {
   return (

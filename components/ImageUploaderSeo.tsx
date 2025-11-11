@@ -1,6 +1,6 @@
 "use client";
-import React, { useMemo, useRef, useState, useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import React, { useMemo, useRef, useState, useEffect, Suspense } from "react";
+import { useRouter } from "next/navigation";
 import brandsSchema from "./brands";
 
 import { Search, ChevronDown, X, AlertCircle } from 'lucide-react';
@@ -399,9 +399,9 @@ interface ImageUploaderProps {
   isBrandPage?: boolean;
 }
 
-export default function ImageUploader({ preSelectedBrand, isBrandPage = false }: ImageUploaderProps) {
+// Main component that doesn't use useSearchParams directly
+function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUploaderProps) {
   const router = useRouter();
-  const searchParams = useSearchParams();
 
   const [image, setImage] = useState<string | null>(null);
   const [file, setFile] = useState<File | null>(null);
@@ -461,9 +461,8 @@ export default function ImageUploader({ preSelectedBrand, isBrandPage = false }:
 
   // Handle pre-selected brand from URL or props
   useEffect(() => {
-    // Check URL parameters for brand
-    const urlBrand = searchParams?.get('brand');
-    const finalBrand = preSelectedBrand || urlBrand || '';
+    // If we have a pre-selected brand, use it directly
+    const finalBrand = preSelectedBrand || '';
     
     if (finalBrand && allBrands.includes(finalBrand)) {
       setBrand(finalBrand);
@@ -482,7 +481,7 @@ export default function ImageUploader({ preSelectedBrand, isBrandPage = false }:
         }
       }
     }
-  }, [preSelectedBrand, searchParams, allBrands, isBrandPage]);
+  }, [preSelectedBrand, allBrands, isBrandPage]);
 
   // Detect browser language on component mount and set default date values
   useEffect(() => {
@@ -2021,5 +2020,35 @@ export default function ImageUploader({ preSelectedBrand, isBrandPage = false }:
         }
       `}</style>
     </div>
+  );
+}
+
+// Main export with Suspense boundary
+export default function ImageUploader({ preSelectedBrand, isBrandPage = false }: ImageUploaderProps) {
+  return (
+    <Suspense fallback={
+      <div className="wrap">
+        <div className="image-uploader">
+          <div className="upload-placeholder">
+            <div className="upload-icon">
+              <span style={{fontSize:30}}>📎</span>
+            </div>
+            <div className="upload-text">
+              <p>Loading form...</p>
+            </div>
+          </div>
+        </div>
+        <form className="data-form">
+          <div className="field">
+            <label className="field-label">Loading...</label>
+            <div style={{padding: '12px 16px', background: '#efefef', borderRadius: '8px'}}>
+              Loading form data...
+            </div>
+          </div>
+        </form>
+      </div>
+    }>
+      <ImageUploaderContent preSelectedBrand={preSelectedBrand} isBrandPage={isBrandPage} />
+    </Suspense>
   );
 }

@@ -2,6 +2,7 @@ import type { Metadata, ResolvingMetadata } from 'next'
 import { notFound } from 'next/navigation'
 import brandsSchema from '@/components/brands'
 import BrandReceiptGenerator from '@/components/BrandReceiptGenerator'
+import { Suspense } from 'react'
 
 type Props = {
   params: { brand: string }
@@ -84,6 +85,17 @@ function toLabel(name: string): string {
     .join(" ");
 }
 
+// Loading component for Suspense fallback
+function BrandPageLoading() {
+  return (
+    <div className="brand-receipt-generator">
+      <div className="brand-header">
+        <h1>Loading...</h1>
+      </div>
+    </div>
+  )
+}
+
 export default function BrandPage({ params }: Props) {
   const brand = params.brand
   const brandData = brandsSchema.brands[brand]
@@ -92,7 +104,11 @@ export default function BrandPage({ params }: Props) {
     notFound()
   }
 
-  return <BrandReceiptGenerator preSelectedBrand={brand} />
+  return (
+    <Suspense fallback={<BrandPageLoading />}>
+      <BrandReceiptGenerator preSelectedBrand={brand} />
+    </Suspense>
+  )
 }
 
 // Generate static params for all brands
