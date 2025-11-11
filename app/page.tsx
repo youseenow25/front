@@ -5,6 +5,10 @@ import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
 import ImageUploader from "@/components/ImageUploader";
 
+
+import Link from 'next/link';
+
+
 import { Analytics } from "@vercel/analytics/next"
 
 import StructuredData from "@/components/StructuredData";

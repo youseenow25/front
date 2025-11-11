@@ -22,7 +22,7 @@ export async function generateMetadata(
   }
 
   const brandName = toLabel(brand)
-  const description = `Generate authentic ${brandName} receipts instantly. Create professional ${brandName} invoice templates with real designs, logos, and formatting.`
+  const description = `Generate authentic ${brandName} receipts instantly. Create professional ${brandName} invoice templates with real designs, logos, and formatting. Free ${brandName} receipt maker.`
   
   return {
     title: `${brandName} Receipt Generator - Create Authentic ${brandName} Invoices | HubReceipts`,
@@ -32,7 +32,8 @@ export async function generateMetadata(
       `${brandName} invoice`,
       `${brandName} receipt generator`,
       `${brandName} invoice template`,
-      `${brand.toLowerCase()} receipt maker`,
+      `${brandName.toLowerCase()} receipt maker`,
+      'free receipt generator',
       'luxury brand receipts',
       'authentic receipt generator'
     ].join(', '),
@@ -41,6 +42,8 @@ export async function generateMetadata(
       description: description,
       type: 'website',
       locale: 'en_US',
+      url: `https://hubreceipts.com/brands/${brand}`,
+      siteName: 'HubReceipts',
     },
     twitter: {
       card: 'summary_large_image',
@@ -49,7 +52,18 @@ export async function generateMetadata(
     },
     alternates: {
       canonical: `https://hubreceipts.com/brands/${brand}`
-    }
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
   }
 }
 
@@ -89,3 +103,6 @@ export async function generateStaticParams() {
     brand: brand,
   }))
 }
+
+// Revalidate every 24 hours
+export const revalidate = 86400
