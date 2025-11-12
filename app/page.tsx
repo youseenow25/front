@@ -36,7 +36,7 @@ function toLabel(name: string): string {
 export default function Page() {
   return (
     <>
-     <StructuredData />
+  
       <main className="main">
         <div className="luxury-radial" aria-hidden />
         <Header />

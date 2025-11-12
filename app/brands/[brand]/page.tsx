@@ -3,7 +3,6 @@ import { notFound } from 'next/navigation'
 import brandsSchema from '@/components/brands'
 import BrandReceiptGenerator from '@/components/BrandReceiptGenerator'
 import { Suspense } from 'react'
-
 import Header from '@/components/Header'
 import Hero from '@/components/Hero2'
 
@@ -27,6 +26,7 @@ export async function generateMetadata(
 
   const brandName = toLabel(brand)
   const description = `Generate authentic ${brandName} receipts instantly. Create professional ${brandName} invoice templates with real designs, logos, and formatting. Free ${brandName} receipt maker.`
+  const logoUrl = `https://hubreceipts.com/brand-logos/${brand.toLowerCase().replace(/[^a-z0-9]/g, '_')}.png`
   
   return {
     title: `${brandName} Receipt Generator - Create Authentic ${brandName} Invoices | HubReceipts`,
@@ -48,11 +48,20 @@ export async function generateMetadata(
       locale: 'en_US',
       url: `https://hubreceipts.com/brands/${brand}`,
       siteName: 'HubReceipts',
+      images: [
+        {
+          url: logoUrl,
+          width: 200,
+          height: 200,
+          alt: `${brandName} Logo`,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: `${brandName} Receipt Generator - HubReceipts`,
       description: description,
+      images: [logoUrl],
     },
     alternates: {
       canonical: `https://hubreceipts.com/brands/${brand}`
@@ -108,16 +117,47 @@ export default function BrandPage({ params }: Props) {
   }
 
   const brandName = toLabel(brand)
+  const logoUrl = `https://hubreceipts.com/brand-logos/${brand.toLowerCase().replace(/[^a-z0-9]/g, '_')}.png`
+
+  // ✅ CORRECT: Page-specific structured data for THIS brand only
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: `${brandName} Receipt Generator`,
+    description: `Generate authentic ${brandName} receipts with official designs and formatting. Create professional ${brandName} invoice templates instantly.`,
+    provider: {
+      '@type': 'Organization',
+      name: 'HubReceipts',
+      url: 'https://hubreceipts.com'
+    },
+    serviceType: 'Receipt Generation',
+    areaServed: 'Worldwide',
+    offers: {
+      '@type': 'Offer',
+      url: `https://hubreceipts.com/brands/${brand}`,
+      price: '0',
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+      hasMerchantReturnPolicy: {
+        '@type': 'MerchantReturnPolicy',
+        returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+        merchantReturnDays: 30
+      }
+    }
+  }
 
   return (
     <>
+      {/* ✅ Add structured data for THIS specific brand page */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      
       <main className="main">
         <div className="luxury-radial" aria-hidden />
         <Header />
         <Hero brandName={brandName} />
-        
-       
-
         
         {/* Brand Receipt Generator */}
         <div style={{width:'100%'}}>
@@ -203,7 +243,7 @@ export default function BrandPage({ params }: Props) {
           }
 
           .brand-hero-description {
-            font-size: 1rem;
+            fontSize: 1rem;
           }
         }
       `}</style>
