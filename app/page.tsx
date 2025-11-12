@@ -4,15 +4,14 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
 import ImageUploader from "@/components/ImageUploader";
-
-
 import Link from 'next/link';
-
-
+import Image from "next/image";
 import { Analytics } from "@vercel/analytics/next"
-
 import StructuredData from "@/components/StructuredData";
 
+const brands = [
+  "apple", "gucci", "stockx", "nike", "flightclub", "louisvuitton", "saintlaurent","trapstar"
+]
 
 function toLabel(name: string): string {
   const special: Record<string, string> = {
@@ -41,41 +40,54 @@ export default function Page() {
         <div className="luxury-radial" aria-hidden />
         <Header />
 
+        {/* Receipts Examples Section */}
+        <section className="receipts-examples">
+          <div className="container">
+           
+            
+            <div className="receipts-grid">
+              {brands.map((brand) => (
+                <div key={brand} className="receipt-card">
+                  <div className="receipt-image">
+                    <Image
+                      src={`/${brand}_example.png`}
+                      alt={`${brand} receipt example`}
+                      width={120}
+                      height={160}
+                      style={{
+                        objectFit: "contain",
+                      }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <div style={{height:1, width:'150%', background:'linear-gradient(90deg, transparent, #d4af37, #c9b037, transparent)'}} />
         <div style={{width:'100%'}} >
+          <Hero />
+          <ImageUploader />
+        </div>
 
+        <section className="luxury-features">
+          <div className="container">
+            <h2 className="features-title">Check our video example</h2>
+            <div className="video-wrapper">
+              <iframe
+                width="560"
+                height="405"
+                src="https://www.youtube.com/embed/lSIbSG7K5MM?si=_T6UfwB3XPKVFNhA"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        </section>
 
-
-        <Hero />
-        <ImageUploader />
-
-                </div>
-
-      <section className="luxury-features">
-  <div className="container">
-    <h2 className="features-title">Check our video example</h2>
-
-    <div className="video-wrapper">
-      <iframe
-        width="560"
-        height="405"
-        src="https://www.youtube.com/embed/lSIbSG7K5MM?si=_T6UfwB3XPKVFNhA"
-        title="YouTube video player"
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowFullScreen
-      ></iframe>
-    </div>
-  </div>
-</section>
-
-
-
-
-       
-
-
-        
         <section className="luxury-features">
           <div className="container">
             <h2 className="features-title">Why Choose HubReceipts?</h2>
@@ -152,6 +164,70 @@ export default function Page() {
           max-width: 1200px;
           margin: 0 auto;
           padding: 0 20px;
+        }
+
+        /* Receipts Examples Section */
+        .receipts-examples {
+          padding: 40px 0 30px 0;
+          background: transparent;
+          position: relative;
+        }
+
+        .examples-title {
+          text-align: center;
+          font-size: 1.75rem;
+          font-weight: 700;
+          color: #1a1a1a;
+          margin-bottom: 10px;
+          background: linear-gradient(135deg, #d4af37, #c9b037);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
+        .examples-subtitle {
+          text-align: center;
+          font-size: 0.9rem;
+          color: #666;
+          margin-bottom: 30px;
+          max-width: 500px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .receipts-grid {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 6px;
+          flex-wrap: nowrap;
+          max-width: 900px;
+          margin: 0 auto;
+        }
+
+        .receipt-card {
+          background: transparent;
+          padding: 0;
+          border-radius: 0;
+          text-align: center;
+          transition: all 0.2s ease;
+          border: none;
+          flex-shrink: 0;
+        }
+
+        .receipt-card:hover {
+          transform: translateY(-2px);
+        }
+
+        .receipt-image {
+          margin: 0;
+          border-radius: 2px;
+          overflow: hidden;
+          background: transparent;
+          padding: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
 
         /* Luxury Brands Section */
@@ -292,8 +368,44 @@ export default function Page() {
           font-size: 0.95rem;
         }
 
+        .video-wrapper {
+          text-align: center;
+          margin-top: 40px;
+        }
+
+        .video-wrapper iframe {
+          border-radius: 12px;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
+          .receipts-examples {
+            padding: 30px 0 20px 0;
+          }
+
+          .examples-title {
+            font-size: 1.5rem;
+          }
+
+          .examples-subtitle {
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+          }
+
+          .receipts-grid {
+            gap: 4px;
+            max-width: 100%;
+            overflow-x: auto;
+            justify-content: flex-start;
+            padding: 0 10px;
+          }
+
+          .receipt-image img {
+            width: 100px !important;
+            height: 130px !important;
+          }
+
           .luxury-brands,
           .luxury-features {
             padding: 60px 0;
@@ -321,22 +433,47 @@ export default function Page() {
           .feature-card {
             padding: 30px 20px;
           }
+
+          .video-wrapper iframe {
+            width: 100%;
+            height: 300px;
+          }
         }
 
         @media (max-width: 480px) {
-          .brands-title,
-          .features-title {
-            font-size: 1.75rem;
+          .receipts-grid {
+            gap: 3px;
           }
 
+          .receipt-image img {
+            width: 85px !important;
+            height: 110px !important;
+          }
+
+          .examples-title,
+          .brands-title,
+          .features-title {
+            font-size: 1.3rem;
+          }
+
+          .examples-subtitle,
           .brands-subtitle {
-            font-size: 1rem;
-            margin-bottom: 40px;
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+          }
+
+          .video-wrapper iframe {
+            height: 250px;
+          }
+        }
+
+        @media (max-width: 360px) {
+          .receipt-image img {
+            width: 75px !important;
+            height: 100px !important;
           }
         }
       `}</style>
     </>
   );
 }
-
-
