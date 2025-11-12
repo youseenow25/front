@@ -6,12 +6,12 @@ import Script from 'next/script'
 export const metadata: Metadata = {
   title: 'HubReceipts - Generate Authentic Receipts for 100+ Luxury & Streetwear Brands',
   description: 'Create realistic receipts for StockX, Louis Vuitton, Dior, Gucci, Nike, Supreme, Balenciaga, Off-White & 100+ premium brands. Professional receipt generator for luxury documentation and purchase verification.',
-  metadataBase: new URL('https://hubreceipts.com'),
+  metadataBase: new URL('https://www.hubreceipts.com'),
   
   openGraph: {
     title: 'HubReceipts - Professional Receipt Generator for Luxury Brands',
     description: 'Generate authentic receipts for 100+ luxury and streetwear brands. Create professional receipt templates instantly.',
-    url: 'https://hubreceipts.com',
+    url: 'https://www.hubreceipts.com',
     siteName: 'HubReceipts',
     images: [
       {
@@ -110,7 +110,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://hubreceipts.com" />
+        <link rel="canonical" href="https://www. hubreceipts.com" />
 
         {/* FAVICONS */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -144,12 +144,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@context": "https://schema.org",
               "@type": "WebSite", 
               "name": "HubReceipts",
-              "url": "https://hubreceipts.com",
+              "url": "https://www.hubreceipts.com",
               "description": "Professional receipt generator for 100+ luxury and streetwear brands",
-              "thumbnailUrl": "https://hubreceipts.com/og-image.jpg",
+              "thumbnailUrl": "https://www.hubreceipts.com/og-image.jpg",
               "potentialAction": {
                 "@type": "SearchAction",
-                "target": "https://hubreceipts.com/search?q={search_term_string}",
+                "target": "https://www.hubreceipts.com/search?q={search_term_string}",
                 "query-input": "required name=search_term_string"
               }
             })
@@ -163,8 +163,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@context": "https://schema.org",
               "@type": "Organization",
               "name": "HubReceipts",
-              "url": "https://hubreceipts.com",
-              "logo": "https://hubreceipts.com/hublogo.png",
+              "url": "https://www.hubreceipts.com",
+              "logo": "https://www.hubreceipts.com/hublogo.png",
               "description": "Professional receipt generator for luxury and streetwear brands",
               "sameAs": [],
               "contactPoint": {
