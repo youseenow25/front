@@ -33,7 +33,18 @@ export const metadata: Metadata = {
   },
 
   keywords: [
-    // ... tus keywords existentes
+    'receipt generator',
+    'luxury brand receipts', 
+    'invoice generator',
+    'stockx receipt',
+    'nike receipt',
+    'louis vuitton receipt',
+    'receipt maker',
+    'fake receipt generator',
+    'email receipt',
+    'professional receipts',
+    'luxury fashion receipts',
+    'streetwear receipts'
   ],
   authors: [{ name: 'HubReceipts' }],
   creator: 'HubReceipts',
@@ -86,15 +97,15 @@ export const metadata: Metadata = {
     ],
   },
   manifest: '/site.webmanifest',
-  category: 'ecommerce',
-  classification: 'Receipt Generator Service',
+  category: 'BusinessSoftware', // ✅ Cambiado de 'ecommerce'
+  classification: 'SaaS Receipt Generator', // ✅ Actualizado
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
-        {/* GOOGLE TAG (GTAG.JS) - ADD THIS */}
+        {/* GOOGLE TAG (GTAG.JS) */}
         <Script
           async
           src="https://www.googletagmanager.com/gtag/js?id=AW-17709466697"
@@ -110,7 +121,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://www. hubreceipts.com" />
+        <link rel="canonical" href="https://www.hubreceipts.com" /> {/* ✅ Corregido espacio */}
 
         {/* FAVICONS */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -136,7 +147,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* TWITTER ADDITIONAL TAGS */}
         <meta name="twitter:image:alt" content="HubReceipts - Generate authentic receipts for luxury brands" />
 
-        {/* SCHEMA MARKUP */}
+        {/* ✅ SCHEMA MARKUP CORREGIDO PARA SaaS */}
+        
+        {/* 1. Website Schema */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -145,7 +158,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@type": "WebSite", 
               "name": "HubReceipts",
               "url": "https://www.hubreceipts.com",
-              "description": "Professional receipt generator for 100+ luxury and streetwear brands",
+              "description": "SaaS platform for generating authentic receipts for 100+ luxury and streetwear brands",
               "thumbnailUrl": "https://www.hubreceipts.com/og-image.jpg",
               "potentialAction": {
                 "@type": "SearchAction",
@@ -156,6 +169,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
         
+        {/* 2. Organization Schema - Actualizado para SaaS */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -165,12 +179,88 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "name": "HubReceipts",
               "url": "https://www.hubreceipts.com",
               "logo": "https://www.hubreceipts.com/hublogo.png",
-              "description": "Professional receipt generator for luxury and streetwear brands",
+              "description": "SaaS platform providing professional receipt generation services for luxury brands",
               "sameAs": [],
+              "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "US"
+              },
               "contactPoint": {
                 "@type": "ContactPoint",
                 "email": "support@hubreceipts.com",
-                "contactType": "customer service"
+                "contactType": "customer service",
+                "areaServed": "US",
+                "availableLanguage": ["English", "Spanish", "French"]
+              }
+            })
+          }}
+        />
+        
+        {/* 3. SoftwareApplication Schema - NUEVO para SaaS */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              "name": "HubReceipts Receipt Generator",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web Browser",
+              "permissions": "InternetConnection",
+              "description": "SaaS platform for generating authentic receipts for 100+ luxury and streetwear brands",
+              "url": "https://www.hubreceipts.com",
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD",
+                "priceValidUntil": "2025-12-31"
+              },
+              "author": {
+                "@type": "Organization",
+                "name": "HubReceipts"
+              }
+            })
+          }}
+        />
+        
+        {/* 4. Service Schema - NUEVO para servicios digitales */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Service",
+              "serviceType": "Digital Receipt Generation",
+              "provider": {
+                "@type": "Organization",
+                "name": "HubReceipts"
+              },
+              "areaServed": "Worldwide",
+              "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "Receipt Generation Plans",
+                "itemListElement": [
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Free Receipt Generation",
+                      "description": "Generate receipts with basic features"
+                    },
+                    "price": "0",
+                    "priceCurrency": "USD"
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service", 
+                      "name": "Premium Receipt Generation",
+                      "description": "Generate receipts with advanced features and premium templates"
+                    },
+                    "price": "4.99",
+                    "priceCurrency": "USD"
+                  }
+                ]
               }
             })
           }}

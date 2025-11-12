@@ -120,31 +120,46 @@ export default function BrandPage({ params }: Props) {
   const logoUrl = `https://hubreceipts.com/brand-logos/${brand.toLowerCase().replace(/[^a-z0-9]/g, '_')}.png`
 
   // ✅ CORRECT: Page-specific structured data for THIS brand only
-  const structuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: `${brandName} Receipt Generator`,
-    description: `Generate authentic ${brandName} receipts with official designs and formatting. Create professional ${brandName} invoice templates instantly.`,
-    provider: {
-      '@type': 'Organization',
-      name: 'HubReceipts',
-      url: 'https://hubreceipts.com'
-    },
-    serviceType: 'Receipt Generation',
-    areaServed: 'Worldwide',
-    offers: {
-      '@type': 'Offer',
-      url: `https://hubreceipts.com/brands/${brand}`,
-      price: '0',
-      priceCurrency: 'USD',
-      availability: 'https://schema.org/InStock',
-      hasMerchantReturnPolicy: {
-        '@type': 'MerchantReturnPolicy',
-        returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
-        merchantReturnDays: 30
+  // ✅ CORRECTO para SaaS - Service Schema apropiado
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'name': `${brandName} Receipt Generator`,
+  'description': `Generate authentic ${brandName} receipts with official designs and formatting. Create professional ${brandName} invoice templates instantly.`,
+  'provider': {
+    '@type': 'Organization',
+    'name': 'HubReceipts',
+    'url': 'https://www.hubreceipts.com'
+  },
+  'areaServed': 'Worldwide',
+  'hasOfferCatalog': {
+    '@type': 'OfferCatalog',
+    'name': 'Receipt Generation Services',
+    'itemListElement': [
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'Free Receipt Generation',
+          'description': `Generate ${brandName} receipts with basic features`
+        },
+        'price': '0',
+        'priceCurrency': 'USD'
+      },
+      {
+        '@type': 'Offer', 
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'Premium Receipt Generation',
+          'description': `Generate ${brandName} receipts with advanced features and premium templates`
+        },
+        'price': '4.99',
+        'priceCurrency': 'USD'
       }
-    }
-  }
+    ]
+  },
+  'termsOfService': 'https://www.hubreceipts.com/tos'
+}
 
   return (
     <>
