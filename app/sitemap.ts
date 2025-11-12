@@ -1,8 +1,10 @@
 import { MetadataRoute } from 'next'
-import brandsSchema from '@/components/brands' // Import from the TS file, not JSON
+import brandsSchema from '@/components/brands'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://hubreceipts.com'
+  // CAMBIA ESTA LÍNEA:
+  const baseUrl = 'https://www.hubreceipts.com' // ← Agregar WWW aquí
+  
   const brands = Object.keys(brandsSchema.brands || {})
   
   const brandPages = brands.map((brand) => ({
