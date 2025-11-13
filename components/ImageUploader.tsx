@@ -122,46 +122,39 @@ function ensureCurrencySymbol(value: string): string {
   return value;
 }
 
-// Price validation and formatting - SIMPLIFIED
-function validatePrice(value: string): { isValid: boolean; message?: string; formattedValue?: string } {
+// INTEGER validation and formatting - SIMPLIFIED FOR INTEGERS ONLY
+function validateInteger(value: string): { isValid: boolean; message?: string; formattedValue?: string } {
   if (!value.trim()) {
-    return { isValid: false, message: "Price is required" };
+    return { isValid: false, message: "This field is required" };
   }
 
-  // Only allow numbers and optional single decimal point
-  if (!/^\d*\.?\d*$/.test(value)) {
+  // Only allow integers (no decimals, commas, or other characters)
+  if (!/^\d+$/.test(value)) {
     return { 
       isValid: false, 
-      message: "Only numbers allowed (no commas, currency symbols, or other characters)" 
+      message: "Only whole numbers allowed (no decimals, commas, or other characters)" 
     };
   }
 
-  // Check if it's a valid number
-  const numValue = parseFloat(value);
-  if (isNaN(numValue)) {
-    return { isValid: false, message: "Please enter a valid number" };
+  // Check if it's a valid integer
+  const intValue = parseInt(value, 10);
+  if (isNaN(intValue)) {
+    return { isValid: false, message: "Please enter a valid whole number" };
   }
 
-  // Format with exactly 2 decimal places
-  const formattedValue = numValue.toFixed(2);
-  
+  // Return the integer as string
   return { 
     isValid: true, 
-    formattedValue 
+    formattedValue: intValue.toString()
   };
 }
 
-// Extract numeric value from formatted price (remove currency symbol and .00)
+// Extract numeric value from formatted price (remove currency symbol)
 function extractNumericValue(formattedValue: string): string {
   if (!formattedValue) return '';
   
-  // Remove any currency symbols and .00 suffix
-  let numericValue = formattedValue
-    .replace(/[^\d.]/g, '') // Remove non-numeric characters except decimal point
-    .replace(/\.00$/, ''); // Remove .00 suffix
-  
-  // If it ends with .0, remove that too
-  numericValue = numericValue.replace(/\.0$/, '');
+  // Remove any currency symbols and return only numbers
+  const numericValue = formattedValue.replace(/[^\d]/g, '');
   
   return numericValue;
 }
@@ -341,8 +334,8 @@ const CustomSelect = ({
   );
 };
 
-// SIMPLIFIED Price Input Component - Only accepts numbers
-const PriceInput = ({ 
+// SIMPLIFIED Integer Input Component - Only accepts integers
+const IntegerInput = ({ 
   value, 
   onChange, 
   currencySymbol,
@@ -357,11 +350,11 @@ const PriceInput = ({
   error?: string;
   onBlur?: () => void;
 }) => {
-  // Extract just the numeric part for display (remove currency symbol and .00)
+  // Extract just the numeric part for display (remove currency symbol)
   const getDisplayValue = (val: string) => {
     if (!val) return '';
-    // Remove currency symbol and .00 if present
-    const numericValue = val.replace(currencySymbol, '').replace(/\.00$/, '');
+    // Remove currency symbol if present
+    const numericValue = val.replace(currencySymbol, '');
     return numericValue;
   };
 
@@ -370,17 +363,17 @@ const PriceInput = ({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     
-    // Only allow numbers and decimal point
-    if (/^\d*\.?\d*$/.test(newValue)) {
+    // Only allow integers (no decimals, commas, or other characters)
+    if (/^\d*$/.test(newValue)) {
       onChange(newValue);
     }
   };
 
   const handleBlur = () => {
     if (displayValue.trim()) {
-      const validation = validatePrice(displayValue);
+      const validation = validateInteger(displayValue);
       if (validation.isValid && validation.formattedValue) {
-        // Format the value with currency symbol and .00 for display only
+        // Format the value with currency symbol for display only
         const formattedValue = `${currencySymbol}${validation.formattedValue}`;
         onChange(formattedValue);
       }
@@ -389,20 +382,20 @@ const PriceInput = ({
   };
 
   return (
-    <div className="price-input-container">
+    <div className="integer-input-container">
       
       <input
         type="text"
-        inputMode="decimal"
+        inputMode="numeric"
         value={displayValue}
         onChange={handleChange}
         onBlur={handleBlur}
-        placeholder="Enter numbers only"
-        className={`price-input ${error ? 'error' : ''}`}
+        placeholder="Enter whole numbers only"
+        className={`integer-input ${error ? 'error' : ''}`}
       />
-      {error && <div className="price-error-message">{error}</div>}
-           <span className="price-format-badge"> (enter numbers only)</span>
-      <div className="price-help-text">We'll add {currencySymbol} and .00 automatically</div>
+      {error && <div className="integer-error-message">{error}</div>}
+           <span className="integer-format-badge"> (enter whole numbers only)</span>
+      <div className="integer-help-text">We'll add {currencySymbol} automatically</div>
     </div>
   );
 };
@@ -587,13 +580,13 @@ export default function ImageUploader() {
   }
 
   // Handle price field validation on blur
-  function handlePriceBlur(fieldName: string, value: string) {
+  function handleIntegerBlur(fieldName: string, value: string) {
     if (value.trim()) {
-      const validation = validatePrice(value);
+      const validation = validateInteger(value);
       if (!validation.isValid) {
-        setErrors(prev => ({ ...prev, [fieldName]: validation.message || "Invalid price format" }));
+        setErrors(prev => ({ ...prev, [fieldName]: validation.message || "Invalid number format" }));
       } else if (validation.formattedValue) {
-        // Format the value with currency symbol and .00 for display only
+        // Format the value with currency symbol for display only
         const formattedValue = `${selectedCurrency.symbol}${validation.formattedValue}`;
         setFormData(prev => ({ ...prev, [fieldName]: formattedValue }));
       }
@@ -675,11 +668,8 @@ export default function ImageUploader() {
         if (updated[field]) {
           const numericValue = extractNumericValue(updated[field]);
           if (numericValue) {
-            const numValue = parseFloat(numericValue);
-            if (!isNaN(numValue)) {
-              // Update display value with new currency symbol
-              updated[field] = `${selectedCurr.symbol}${numValue.toFixed(2)}`;
-            }
+            // Update display value with new currency symbol
+            updated[field] = `${selectedCurr.symbol}${numericValue}`;
           }
         }
       });
@@ -706,11 +696,11 @@ export default function ImageUploader() {
       
       // Special validation for price fields
       if (PRICE_FIELDS.test(field) && formData[field]?.trim()) {
-        // Extract numeric value for validation (remove currency symbol and .00)
+        // Extract numeric value for validation (remove currency symbol)
         const numericValue = extractNumericValue(formData[field]);
-        const validation = validatePrice(numericValue);
+        const validation = validateInteger(numericValue);
         if (!validation.isValid) {
-          newErrors[field] = validation.message || "Invalid price format";
+          newErrors[field] = validation.message || "Invalid number format";
         }
       }
     });
@@ -773,9 +763,9 @@ export default function ImageUploader() {
           }
         }
         
-        // FOR PRICE FIELDS: Extract only the numeric value (remove currency symbol and .00)
+        // FOR PRICE FIELDS: Extract only the numeric value (remove currency symbol)
         if (PRICE_FIELDS.test(f) && value) {
-          // Extract only the numeric value without currency symbol or .00
+          // Extract only the numeric value without currency symbol
           value = extractNumericValue(value);
         }
         
@@ -1091,18 +1081,18 @@ export default function ImageUploader() {
                         <span className="auto-detected-badge"> (auto-filled)</span>
                       )}
                       {isPriceField && (
-                        <span className="price-format-badge"> </span>
+                        <span className="integer-format-badge"> </span>
                       )}
                     </label>
                     
                     {isPriceField ? (
-                      <PriceInput
+                      <IntegerInput
                         value={formData[field] || ""}
                         onChange={(value) => updateField(field, value)}
                         currencySymbol={selectedCurrency.symbol}
                         fieldName={field}
                         error={errors[field]}
-                        onBlur={() => handlePriceBlur(field, formData[field] || "")}
+                        onBlur={() => handleIntegerBlur(field, formData[field] || "")}
                       />
                     ) : (
                       <input
@@ -1466,12 +1456,12 @@ export default function ImageUploader() {
           border-color: #d32f2f;
         }
         
-        /* SIMPLIFIED Price Input Styles */
-        .price-input-container {
+        /* SIMPLIFIED Integer Input Styles */
+        .integer-input-container {
           width: 100%;
         }
         
-        .price-input {
+        .integer-input {
           padding: 10px 12px;
           border: 1px solid #ccc;
           border-radius: 8px;
@@ -1481,29 +1471,29 @@ export default function ImageUploader() {
           box-sizing: border-box;
         }
         
-        .price-input:focus {
+        .integer-input:focus {
           outline: none;
           border-color: #000;
         }
         
-        .price-input.error {
+        .integer-input.error {
           border-color: #d32f2f;
         }
         
-        .price-error-message {
+        .integer-error-message {
           font-size: 12px;
           color: #d32f2f;
           margin-top: 4px;
         }
         
-        .price-help-text {
+        .integer-help-text {
           font-size: 11px;
           color: #666;
           margin-top: 4px;
           font-style: italic;
         }
         
-        .price-format-badge {
+        .integer-format-badge {
           font-size: 11px;
           color: #2e7d32;
           font-weight: normal;
