@@ -97,31 +97,31 @@ export const metadata: Metadata = {
     ],
   },
   manifest: '/site.webmanifest',
-  category: 'BusinessSoftware', // ✅ Cambiado de 'ecommerce'
-  classification: 'SaaS Receipt Generator', // ✅ Actualizado
+  category: 'BusinessSoftware',
+  classification: 'SaaS Receipt Generator',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
-        {/* GOOGLE TAG (GTAG.JS) */}
+        {/* ✅ UPDATED GOOGLE TAG (GTAG.JS) */}
         <Script
           async
-          src="https://www.googletagmanager.com/gtag/js?id=AW-17709466697"
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17728207333"
         />
         <Script id="google-analytics">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'AW-17709466697');
+            gtag('config', 'AW-17728207333');
           `}
         </Script>
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://www.hubreceipts.com" /> {/* ✅ Corregido espacio */}
+        <link rel="canonical" href="https://www.hubreceipts.com" />
 
         {/* FAVICONS */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -147,8 +147,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* TWITTER ADDITIONAL TAGS */}
         <meta name="twitter:image:alt" content="HubReceipts - Generate authentic receipts for luxury brands" />
 
-        {/* ✅ SCHEMA MARKUP CORREGIDO PARA SaaS */}
-        
+        {/* ✅ SCHEMA MARKUP FOR SaaS */}
+
         {/* 1. Website Schema */}
         <script
           type="application/ld+json"
@@ -168,8 +168,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             })
           }}
         />
-        
-        {/* 2. Organization Schema - Actualizado para SaaS */}
+
+        {/* 2. Organization Schema */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -195,8 +195,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             })
           }}
         />
-        
-        {/* 3. SoftwareApplication Schema - NUEVO para SaaS */}
+
+        {/* 3. SoftwareApplication Schema */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -222,8 +222,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             })
           }}
         />
-        
-        {/* 4. Service Schema - NUEVO para servicios digitales */}
+
+        {/* 4. Service Schema */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -265,7 +265,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             })
           }}
         />
-        
       </head>
       <body>
         {children}
