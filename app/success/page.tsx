@@ -1,9 +1,10 @@
 "use client";
-import React from 'react';
-import { useRouter } from 'next/navigation';
-import { CheckCircle } from 'lucide-react';
 
-// ✅ Declaración global para TypeScript
+import React from "react";
+import { useRouter } from "next/navigation";
+import { CheckCircle } from "lucide-react";
+
+// Declare global gtag type for TypeScript
 declare global {
   interface Window {
     gtag: (...args: any[]) => void;
@@ -13,60 +14,52 @@ declare global {
 const PaymentSuccess = () => {
   const router = useRouter();
 
-  // ✅ CÓDIGO DE CONVERSIÓN - Versión mejorada y segura
   React.useEffect(() => {
-    const trackConversion = () => {
-      if (typeof window !== 'undefined' && typeof window.gtag !== 'undefined') {
-        window.gtag('event', 'conversion', {
-          'send_to': 'AW-17728207333/YAcECKeRiMAbEOXzu4VC',
-          'value': 4.0,
-          'currency': 'EUR'
+    // 🔥 REQUIRED FOR URL DESTINATION CONVERSIONS IN NEXT.JS
+    const firePageView = () => {
+      if (typeof window !== "undefined" && typeof window.gtag !== "undefined") {
+        window.gtag("event", "page_view", {
+          page_path: "/success", // ← Must match your success URL
         });
-        console.log('✅ Conversión registrada en Google Ads');
+        console.log("🔥 Page view fired for URL destination conversion");
         return true;
       }
       return false;
     };
 
-    // Intentar registrar la conversión inmediatamente
-    if (!trackConversion()) {
-      // Si gtag no está disponible, esperar y reintentar
-      const timer = setTimeout(() => {
-        trackConversion();
-      }, 1000);
-      
+    // Try immediately, retry if gtag hasn't loaded yet
+    if (!firePageView()) {
+      const timer = setTimeout(() => firePageView(), 1000);
       return () => clearTimeout(timer);
     }
   }, []);
 
   const handleGoToDashboard = () => {
-    router.push('/');
+    router.push("/");
   };
 
   return (
     <div className="success-page">
       <div className="success-container">
         <div className="success-card">
-          {/* Success Icon */}
+          {/* Icon */}
           <div className="success-icon-wrapper">
             <div className="icon-circle">
               <CheckCircle className="success-icon" />
             </div>
           </div>
 
-          {/* Success Content */}
+          {/* Content */}
           <div className="success-content">
             <h1 className="success-title">Payment Successful</h1>
             <p className="success-message">
-              Your payment has been processed successfully. You can now access all premium features.
+              Your payment has been processed successfully. You can now access
+              all premium features.
             </p>
           </div>
 
-          {/* Action Button */}
-          <button 
-            className="continue-button"
-            onClick={handleGoToDashboard}
-          >
+          {/* Button */}
+          <button className="continue-button" onClick={handleGoToDashboard}>
             Go to Receipt Generator
           </button>
         </div>
@@ -80,7 +73,8 @@ const PaymentSuccess = () => {
           align-items: center;
           justify-content: center;
           padding: 20px;
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+            sans-serif;
         }
 
         .success-container {
@@ -93,8 +87,7 @@ const PaymentSuccess = () => {
           border-radius: 20px;
           padding: 48px 32px;
           text-align: center;
-          box-shadow: 
-            0 10px 30px rgba(0, 0, 0, 0.08),
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08),
             0 1px 3px rgba(0, 0, 0, 0.04);
           border: 1px solid rgba(255, 255, 255, 0.2);
         }
@@ -113,6 +106,7 @@ const PaymentSuccess = () => {
           justify-content: center;
           margin: 0 auto;
           box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+          animation: gentleBounce 2s ease-in-out;
         }
 
         .success-icon {
@@ -130,7 +124,6 @@ const PaymentSuccess = () => {
           font-weight: 700;
           color: #1f2937;
           margin-bottom: 12px;
-          letter-spacing: -0.5px;
         }
 
         .success-message {
@@ -161,43 +154,13 @@ const PaymentSuccess = () => {
           box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
         }
 
-        .continue-button:active {
-          transform: translateY(0);
-        }
-
-        /* Subtle animation for the icon */
         @keyframes gentleBounce {
-          0%, 100% { transform: scale(1); }
-          50% { transform: scale(1.05); }
-        }
-
-        .icon-circle {
-          animation: gentleBounce 2s ease-in-out;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 480px) {
-          .success-card {
-            padding: 40px 24px;
-            margin: 0 16px;
+          0%,
+          100% {
+            transform: scale(1);
           }
-
-          .success-title {
-            font-size: 24px;
-          }
-
-          .success-message {
-            font-size: 15px;
-          }
-
-          .icon-circle {
-            width: 70px;
-            height: 70px;
-          }
-
-          .success-icon {
-            width: 35px;
-            height: 35px;
+          50% {
+            transform: scale(1.05);
           }
         }
       `}</style>
