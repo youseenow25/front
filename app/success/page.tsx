@@ -3,8 +3,41 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import { CheckCircle } from 'lucide-react';
 
+// ✅ Declaración global para TypeScript
+declare global {
+  interface Window {
+    gtag: (...args: any[]) => void;
+  }
+}
+
 const PaymentSuccess = () => {
   const router = useRouter();
+
+  // ✅ CÓDIGO DE CONVERSIÓN - Versión mejorada y segura
+  React.useEffect(() => {
+    const trackConversion = () => {
+      if (typeof window !== 'undefined' && typeof window.gtag !== 'undefined') {
+        window.gtag('event', 'conversion', {
+          'send_to': 'AW-17728207333/YAcECKeRiMAbEOXzu4VC',
+          'value': 4.0,
+          'currency': 'EUR'
+        });
+        console.log('✅ Conversión registrada en Google Ads');
+        return true;
+      }
+      return false;
+    };
+
+    // Intentar registrar la conversión inmediatamente
+    if (!trackConversion()) {
+      // Si gtag no está disponible, esperar y reintentar
+      const timer = setTimeout(() => {
+        trackConversion();
+      }, 1000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   const handleGoToDashboard = () => {
     router.push('/');
