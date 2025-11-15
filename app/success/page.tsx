@@ -27,9 +27,26 @@ const PaymentSuccess = () => {
       return false;
     };
 
+    // 🔥 NEW: FIRE GOOGLE ADS CONVERSION
+    const fireConversion = () => {
+      if (typeof window !== "undefined" && typeof window.gtag !== "undefined") {
+        window.gtag('event', 'conversion', {
+          'send_to': 'AW-17728207333/wAlFCPWSzMAbEOXzu4VC', // ← Your Conversion ID + Label
+          'value': 4.00, // ← Match the value in Google Ads
+          'currency': 'EUR' // ← Match your currency
+        });
+        console.log("💰 Google Ads conversion fired!");
+        return true;
+      }
+      return false;
+    };
+
     // Try immediately, retry if gtag hasn't loaded yet
-    if (!firePageView()) {
-      const timer = setTimeout(() => firePageView(), 1000);
+    if (!firePageView() || !fireConversion()) {
+      const timer = setTimeout(() => {
+        firePageView();
+        fireConversion();
+      }, 1000);
       return () => clearTimeout(timer);
     }
   }, []);
