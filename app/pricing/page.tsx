@@ -146,14 +146,7 @@ export default function PricingPage() {
       <Header />
 
       {/* Header */}
-      <section className="mx-auto max-w-6xl px-6 pt-10 text-center">
-        <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl">
-          Simple, Transparent Pricing
-        </h1>
-        <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
-          Choose the plan that works best for you. All plans include access to all features.
-        </p>
-      </section>
+   
 
       {/* Top Row - Mobile: Stack, Desktop: 3 columns */}
       <section className="mx-auto w-full max-w-6xl px-6 pb-8">
