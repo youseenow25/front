@@ -4,17 +4,20 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Check } from 'lucide-react';
 import { useState } from 'react';
+
 import { useRouter } from "next/navigation";
 
 export default function PricingPage() {
   const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
-  const router = useRouter();
+
+   const router = useRouter();
 
   // ✅ Handle checkout
   const handleCheckout = async (productId: string) => {
     try {
       setLoadingPlan(productId);
 
+      
       const userData = localStorage.getItem("user");
       const user = userData ? JSON.parse(userData) : null;
       const email = user?.email || null;
@@ -29,7 +32,9 @@ export default function PricingPage() {
       if (response.ok && data.url) {
         window.location.href = data.url; 
       } else {
-        router.push("/register");
+          router.push("/register");
+
+       
       }
     } catch (err) {
       console.error('Checkout error:', err);
@@ -146,18 +151,21 @@ export default function PricingPage() {
       <Header />
 
       {/* Header */}
-   
+      <section className="mx-auto max-w-6xl px-6 pt-10 text-center">
 
-      {/* Top Row - Mobile: Stack, Desktop: 3 columns */}
+     
+      </section>
+
+      {/* Top Row */}
       <section className="mx-auto w-full max-w-6xl px-6 pb-8">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 lg:grid-cols-3">
           {topRowPlans.map(renderPlanCard)}
         </div>
       </section>
 
-      {/* Bottom Row - Mobile: Stack, Desktop: 2 columns centered */}
+      {/* Bottom Row */}
       <section className="mx-auto w-full max-w-4xl px-6 pb-16">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div className="grid gap-6 lg:grid-cols-2">
           {bottomRowPlans.map(renderPlanCard)}
         </div>
       </section>
