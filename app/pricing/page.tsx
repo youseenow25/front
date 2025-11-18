@@ -1,44 +1,42 @@
-'use client';
+"use client";
 
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import { Check } from 'lucide-react';
-import { useState } from 'react';
-
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { Check } from "lucide-react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function PricingPage() {
   const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
+  const router = useRouter();
 
-   const router = useRouter();
-
-  // ✅ Handle checkout
+  // Handle checkout
   const handleCheckout = async (productId: string) => {
     try {
       setLoadingPlan(productId);
 
-      
       const userData = localStorage.getItem("user");
       const user = userData ? JSON.parse(userData) : null;
       const email = user?.email || null;
 
-      const response = await fetch('https://api.hubreceipts.com/api/payment/create-checkout-session', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ productId, email }),
-      });
+      const response = await fetch(
+        "https://api.hubreceipts.com/api/payment/create-checkout-session",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ productId, email }),
+        }
+      );
 
       const data = await response.json();
       if (response.ok && data.url) {
-        window.location.href = data.url; 
+        window.location.href = data.url;
       } else {
-          router.push("/register");
-
-       
+        router.push("/register");
       }
     } catch (err) {
-      console.error('Checkout error:', err);
-      alert('Something went wrong. Please try again.');
+      console.error("Checkout error:", err);
+      alert("Something went wrong. Please try again.");
     } finally {
       setLoadingPlan(null);
     }
@@ -46,55 +44,74 @@ export default function PricingPage() {
 
   const topRowPlans = [
     {
-      id: '1-receipt',
-      name: '1 Receipt',
+      id: "1-receipt",
+      name: "1 Receipt",
       price: 3.99,
-      description: 'Perfect for trying out our generator.',
-      features: ['1 professional receipt', 'All templates'],
-      badge: 'Pay per use'
+      description: "Perfect for trying out our generator.",
+      features: ["1 professional receipt", "All templates"],
+      badge: "Pay per use",
     },
     {
-      id: '1-day',
-      name: 'Day Pass',
+      id: "1-day",
+      name: "Day Pass",
       price: 6.99,
-      description: '24 hours of unlimited access.',
-      features: ['Unlimited receipts for 24 hours', 'All templates'],
+      description: "24 hours of unlimited access.",
+      features: ["Unlimited receipts for 24 hours", "All templates"],
     },
     {
-      id: '1-week',
-      name: 'Weekly',
+      id: "1-week",
+      name: "Weekly",
       price: 10.99,
-      description: 'Ideal for short-term projects.',
-      features: ['7 days unlimited access', 'All templates', 'Priority support'],
-      badge: 'Most Flexible'
+      description: "Ideal for short-term projects.",
+      features: [
+        "7 days unlimited access",
+        "All templates",
+        "Priority support",
+      ],
+      badge: "Most Flexible",
     },
   ];
 
   const bottomRowPlans = [
     {
-      id: '1-month',
-      name: '1 Month',
+      id: "1-month",
+      name: "1 Month",
       price: 17.99,
-      description: 'Best for regular business use.',
+      description: "Best for regular business use.",
       popular: true,
-      features: ['30 days unlimited access', 'All premium features', 'Dedicated support'],
+      features: [
+        "30 days unlimited access",
+        "All premium features",
+        "Dedicated support",
+      ],
     },
     {
-      id: '6-months',
-      name: '6 Months',
+      id: "6-months",
+      name: "6 Months",
       price: 33.99,
-      description: 'Maximum value for power users.',
-      features: ['6 months unlimited access', 'All enterprise features', '24/7 dedicated support'],
-      badge: 'Best Value'
+      description: "Maximum value for power users.",
+      features: [
+        "6 months unlimited access",
+        "All enterprise features",
+        "24/7 dedicated support",
+      ],
+      badge: "Best Value",
     },
   ];
 
   const renderPlanCard = (plan: any) => (
     <div
       key={plan.id}
-      className={`relative rounded-2xl border bg-white transition hover:shadow-lg ${
-        plan.popular ? 'border-yellow-400 shadow-md scale-[1.02]' : 'border-gray-200'
-      }`}
+      className={`
+        relative rounded-2xl border bg-white transition hover:shadow-lg 
+        ${plan.popular ? "border-yellow-400 shadow-md scale-[1.02]" : "border-gray-200"}
+        
+        /* Mobile Square Card Style */
+        w-full 
+        sm:w-full 
+        flex flex-col 
+        min-h-[420px]
+      `}
     >
       {/* Badge */}
       {plan.badge && (
@@ -113,7 +130,7 @@ export default function PricingPage() {
       )}
 
       {/* Content */}
-      <div className="p-8">
+      <div className="p-8 flex-1 flex flex-col">
         <h2 className="text-3xl font-semibold text-gray-900">{plan.name}</h2>
         <p className="mt-2 text-gray-600">{plan.description}</p>
 
@@ -129,7 +146,7 @@ export default function PricingPage() {
             disabled={loadingPlan === plan.id}
             className="block w-full rounded-lg bg-green-600 px-4 py-3 text-center font-medium text-white hover:bg-green-700 disabled:opacity-60"
           >
-            {loadingPlan === plan.id ? 'Redirecting...' : `Get ${plan.name}`}
+            {loadingPlan === plan.id ? "Redirecting..." : `Get ${plan.name}`}
           </button>
         </div>
       </div>
@@ -150,14 +167,8 @@ export default function PricingPage() {
     <div className="flex min-h-screen flex-col bg-white">
       <Header />
 
-      {/* Header */}
-      <section className="mx-auto max-w-6xl px-6 pt-10 text-center">
-
-     
-      </section>
-
       {/* Top Row */}
-      <section className="mx-auto w-full max-w-6xl px-6 pb-8">
+      <section className="mx-auto w-full max-w-6xl px-6 pt-10 pb-8">
         <div className="grid gap-6 lg:grid-cols-3">
           {topRowPlans.map(renderPlanCard)}
         </div>
