@@ -122,59 +122,57 @@ function ensureCurrencySymbol(value: string): string {
   return value;
 }
 
-// Price validation and formatting - SIMPLIFIED
-function validatePrice(value: string): { isValid: boolean; message?: string; formattedValue?: string } {
+// INTEGER validation and formatting - SIMPLIFIED FOR INTEGERS ONLY
+function validateInteger(value: string): { isValid: boolean; message?: string; formattedValue?: string } {
   if (!value.trim()) {
-    return { isValid: false, message: "Price is required" };
+    return { isValid: false, message: "This field is required" };
   }
 
-  // Only allow numbers and optional single decimal point
-  if (!/^\d*\.?\d*$/.test(value)) {
+  // Only allow integers (no decimals, commas, or other characters)
+  if (!/^\d+$/.test(value)) {
     return { 
       isValid: false, 
-      message: "Only numbers allowed (no commas, currency symbols, or other characters)" 
+      message: "Only whole numbers allowed (no decimals, commas, or other characters)" 
     };
   }
 
-  // Check if it's a valid number
-  const numValue = parseFloat(value);
-  if (isNaN(numValue)) {
-    return { isValid: false, message: "Please enter a valid number" };
+  // Check if it's a valid integer
+  const intValue = parseInt(value, 10);
+  if (isNaN(intValue)) {
+    return { isValid: false, message: "Please enter a valid whole number" };
   }
 
-  // Format with exactly 2 decimal places
-  const formattedValue = numValue.toFixed(2);
-  
+  // Return the integer as string
   return { 
     isValid: true, 
-    formattedValue 
+    formattedValue: intValue.toString()
   };
 }
- 
-  const getLogoPath = (brandName: string) => {
-    // Convert brand name to filename format
-    const filename = brandName
-      .toLowerCase()
-      .replace(/[^a-z0-9]/g, '_')
-      .replace(/_+/g, '_')
-      .replace(/^_|_$/g, '') + '.png';
-    
-    return `/brand-logos/${filename}`;
-  };
+
+// Extract numeric value from formatted price (remove currency symbol)
+function extractNumericValue(formattedValue: string): string {
+  if (!formattedValue) return '';
+  
+  // Remove any currency symbols and return only numbers
+  const numericValue = formattedValue.replace(/[^\d]/g, '');
+  
+  return numericValue;
+}
+
+const getLogoPath = (brandName: string) => {
+  // Convert brand name to filename format
+  const filename = brandName
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, '_')
+    .replace(/_+/g, '_')
+    .replace(/^_|_$/g, '') + '.png';
+  
+  return `/brand-logos/${filename}`;
+};
+
 // Brand Logo Component
 const BrandLogo = ({ brand, size = 24 }: { brand: string; size?: number }) => {
   const [logoError, setLogoError] = useState(false);
-  
-  const getLogoPath = (brandName: string) => {
-    // Convert brand name to filename format
-    const filename = brandName
-      .toLowerCase()
-      .replace(/[^a-z0-9]/g, '_')
-      .replace(/_+/g, '_')
-      .replace(/^_|_$/g, '') + '.png';
-    
-    return `/brand-logos/${filename}`;
-  };
 
   if (logoError) {
     return (
@@ -200,9 +198,8 @@ const BrandLogo = ({ brand, size = 24 }: { brand: string; size?: number }) => {
 
   return (
     <img
-
       src={getLogoPath(brand)}
-      alt="Logo image"
+      alt={brand}
       style={{
         width: size,
         height: size,
@@ -336,8 +333,8 @@ const CustomSelect = ({
   );
 };
 
-// SIMPLIFIED Price Input Component - Only accepts numbers
-const PriceInput = ({ 
+// SIMPLIFIED Integer Input Component - Only accepts integers
+const IntegerInput = ({ 
   value, 
   onChange, 
   currencySymbol,
@@ -352,11 +349,11 @@ const PriceInput = ({
   error?: string;
   onBlur?: () => void;
 }) => {
-  // Extract just the numeric part for display (remove currency symbol and .00)
+  // Extract just the numeric part for display (remove currency symbol)
   const getDisplayValue = (val: string) => {
     if (!val) return '';
-    // Remove currency symbol and .00 if present
-    const numericValue = val.replace(currencySymbol, '').replace(/\.00$/, '');
+    // Remove currency symbol if present
+    const numericValue = val.replace(currencySymbol, '');
     return numericValue;
   };
 
@@ -365,17 +362,17 @@ const PriceInput = ({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     
-    // Only allow numbers and decimal point
-    if (/^\d*\.?\d*$/.test(newValue)) {
+    // Only allow integers (no decimals, commas, or other characters)
+    if (/^\d*$/.test(newValue)) {
       onChange(newValue);
     }
   };
 
   const handleBlur = () => {
     if (displayValue.trim()) {
-      const validation = validatePrice(displayValue);
+      const validation = validateInteger(displayValue);
       if (validation.isValid && validation.formattedValue) {
-        // Format the value with currency symbol and .00
+        // Format the value with currency symbol for display only
         const formattedValue = `${currencySymbol}${validation.formattedValue}`;
         onChange(formattedValue);
       }
@@ -384,26 +381,19 @@ const PriceInput = ({
   };
 
   return (
-    <div className="price-input-container">
-      <div className="price-input-wrapper">
-
-        <input
-          type="text"
-          inputMode="decimal"
-          value={displayValue}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          placeholder="0"
-          className={`price-input ${error ? 'error' : ''}`}
-        />
-
-       
-      </div>
-      {error && <div className="price-error-message">{error}</div>}
-      
-     
-                
-      <div className="price-format-badge">Enter numbers only - we'll add {currencySymbol} and .00 automatically</div>
+    <div className="integer-input-container">
+      <input
+        type="text"
+        inputMode="numeric"
+        value={displayValue}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        placeholder="Enter whole numbers only"
+        className={`integer-input ${error ? 'error' : ''}`}
+      />
+      {error && <div className="integer-error-message">{error}</div>}
+      <span className="integer-format-badge"> (enter whole numbers only)</span>
+      <div className="integer-help-text">We'll add {currencySymbol} automatically</div>
     </div>
   );
 };
@@ -588,7 +578,8 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
   }, []);
 
   function updateField(name: string, value: string) {
-    // For price fields, store the raw numeric value
+    // For price fields, store the formatted value (with currency symbol) for display
+    // The actual numeric value will be extracted when submitting
     if (PRICE_FIELDS.test(name)) {
       setFormData((prev) => ({ ...prev, [name]: value }));
     } else {
@@ -604,13 +595,13 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
   }
 
   // Handle price field validation on blur
-  function handlePriceBlur(fieldName: string, value: string) {
+  function handleIntegerBlur(fieldName: string, value: string) {
     if (value.trim()) {
-      const validation = validatePrice(value);
+      const validation = validateInteger(value);
       if (!validation.isValid) {
-        setErrors(prev => ({ ...prev, [fieldName]: validation.message || "Invalid price format" }));
+        setErrors(prev => ({ ...prev, [fieldName]: validation.message || "Invalid number format" }));
       } else if (validation.formattedValue) {
-        // Format the value with currency symbol and .00
+        // Format the value with currency symbol for display only
         const formattedValue = `${selectedCurrency.symbol}${validation.formattedValue}`;
         setFormData(prev => ({ ...prev, [fieldName]: formattedValue }));
       }
@@ -685,17 +676,15 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
     // ALWAYS STORE THE SYMBOL, NEVER THE CODE
     updateField("currency", selectedCurr.symbol);
     
-    // Update existing price fields with new currency symbol
+    // Update existing price fields with new currency symbol for display
     setFormData(prev => {
       const updated = { ...prev };
       priceFields.forEach(field => {
         if (updated[field]) {
-          const valueWithoutCurrency = updated[field].replace(/[^\d.]/g, '');
-          if (valueWithoutCurrency) {
-            const numValue = parseFloat(valueWithoutCurrency);
-            if (!isNaN(numValue)) {
-              updated[field] = `${selectedCurr.symbol}${numValue.toFixed(2)}`;
-            }
+          const numericValue = extractNumericValue(updated[field]);
+          if (numericValue) {
+            // Update display value with new currency symbol
+            updated[field] = `${selectedCurr.symbol}${numericValue}`;
           }
         }
       });
@@ -722,11 +711,11 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
       
       // Special validation for price fields
       if (PRICE_FIELDS.test(field) && formData[field]?.trim()) {
-        // Extract numeric value for validation (remove currency symbol and .00)
-        const numericValue = formData[field].replace(selectedCurrency.symbol, '').replace(/\.00$/, '');
-        const validation = validatePrice(numericValue);
+        // Extract numeric value for validation (remove currency symbol)
+        const numericValue = extractNumericValue(formData[field]);
+        const validation = validateInteger(numericValue);
         if (!validation.isValid) {
-          newErrors[field] = validation.message || "Invalid price format";
+          newErrors[field] = validation.message || "Invalid number format";
         }
       }
     });
@@ -789,14 +778,10 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
           }
         }
         
-        // FOR PRICE FIELDS: Ensure proper formatting
+        // FOR PRICE FIELDS: Extract only the numeric value (remove currency symbol)
         if (PRICE_FIELDS.test(f) && value) {
-          // Extract numeric value and format properly
-          const numericValue = value.replace(selectedCurrency.symbol, '').replace(/\.00$/, '');
-          const validation = validatePrice(numericValue);
-          if (validation.isValid && validation.formattedValue) {
-            value = `${selectedCurrency.symbol}${validation.formattedValue}`;
-          }
+          // Extract only the numeric value without currency symbol
+          value = extractNumericValue(value);
         }
         
         if (value) {
@@ -819,10 +804,14 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
         language: selectedLanguage.code,
         currency: formData.currency ? ensureCurrencySymbol(formData.currency) : selectedCurrency.symbol,
         email: emailValue,
-        visibleFields: visibleFields.map(f => ({ 
-          field: f, 
-          value: f === 'currency' ? ensureCurrencySymbol(formData[f] || '') : formData[f] 
-        }))
+        visibleFields: visibleFields.map(f => { 
+          let value = formData[f];
+          // For price fields, show the extracted numeric value
+          if (PRICE_FIELDS.test(f) && value) {
+            value = extractNumericValue(value);
+          }
+          return { field: f, value };
+        })
       });
 
       const res = await fetch("https://api.hubreceipts.com/api/receipt/generate", {
@@ -931,22 +920,18 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
       )}
 
       {/* Brand Header for SEO Pages */}
- {isBrandPage && brand && (
-  <div className="brand-seo-header" style={{ display: 'flex', gap: '6px', justifyContent:'center' }}>
-   
-    <img 
-    alt = "Brand Logo"
-    style={{width:80, height:80}}
-     src={getLogoPath(brand)}
-     >
-    </img>
-    <h1 style={{ backgroundColor: 'black', color: 'white', padding: '8px', borderRadius: '8px' }}>
-       Create 1:1 {toLabel(brand)} Receipt and receive it in your inbox 
-    </h1>
-  
-  </div>
-)}
-
+      {isBrandPage && brand && (
+        <div className="brand-seo-header" style={{ display: 'flex', gap: '6px', justifyContent:'center' }}>
+          <img 
+            alt="Brand Logo"
+            style={{width:80, height:80}}
+            src={getLogoPath(brand)}
+          />
+          <h1 style={{ backgroundColor: 'black', color: 'white', padding: '8px', borderRadius: '8px' }}>
+            Create 1:1 {toLabel(brand)} Receipt and receive it in your inbox 
+          </h1>
+        </div>
+      )}
 
       {/* LEFT: Image picker */}
       <div
@@ -1005,7 +990,6 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
         <div className="brand-picker" ref={brandPickerRef}>
           <label htmlFor="brand" className="field-label">
             Brand *
-           
           </label>
           <div className="picker-container">
             <button
@@ -1020,7 +1004,6 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
                     <span className="brand-option">
                       <BrandLogo brand={brand} size={20} />
                       {toLabel(brand)}
-                      
                     </span>
                   ) : "Select a Brand"}
                 </span>
@@ -1066,7 +1049,6 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
               </div>
             )}
           </div>
-         
         </div>
 
         {/* Currency Selector */}
@@ -1129,17 +1111,19 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
                       {isDateField && !formData[field] && (
                         <span className="auto-detected-badge"> (auto-filled)</span>
                       )}
-                      
+                      {isPriceField && (
+                        <span className="integer-format-badge"> </span>
+                      )}
                     </label>
                     
                     {isPriceField ? (
-                      <PriceInput
+                      <IntegerInput
                         value={formData[field] || ""}
                         onChange={(value) => updateField(field, value)}
                         currencySymbol={selectedCurrency.symbol}
                         fieldName={field}
                         error={errors[field]}
-                        onBlur={() => handlePriceBlur(field, formData[field] || "")}
+                        onBlur={() => handleIntegerBlur(field, formData[field] || "")}
                       />
                     ) : (
                       <input
@@ -1217,17 +1201,12 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
         .brand-seo-header {
           grid-column: 1 / -1;
           text-align: center;
-         
-
-        
-
         }
 
         .brand-seo-header h1 {
           font-size: 2.5rem;
           font-weight: 700;
           margin-bottom: 12px;
-          
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -1305,7 +1284,6 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
           border-radius: 4px;
         }
 
- 
         .matched-badge {
           font-size: 11px;
           color: #2e7d32;
@@ -1335,7 +1313,6 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
           padding: 8px 12px;
           background: #f8f9fa;
           border-radius: 6px;
-       
         }
 
         /* SEO Keywords Section */
@@ -1609,83 +1586,44 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
           border-color: #d32f2f;
         }
         
-        /* SIMPLIFIED Price Input Styles */
-        .price-input-container {
+        /* SIMPLIFIED Integer Input Styles */
+        .integer-input-container {
           width: 100%;
         }
         
-        .price-input-wrapper {
-          position: relative;
-          display: flex;
-          align-items: center;
+        .integer-input {
+          padding: 10px 12px;
           border: 1px solid #ccc;
           border-radius: 8px;
+          font-size: 16px;
+          width: 100%;
           background: transparent;
-          overflow: hidden;
+          box-sizing: border-box;
         }
         
-        .price-input-wrapper:focus-within {
+        .integer-input:focus {
+          outline: none;
           border-color: #000;
         }
         
-        .price-input-wrapper.error {
+        .integer-input.error {
           border-color: #d32f2f;
         }
         
-        .currency-prefix {
-          padding: 10px 0 10px 12px;
-          background: #f8f8f8;
-          color: #666;
-          font-weight: 500;
-          border-right: 1px solid #e0e0e0;
-          min-width: 30px;
-          text-align: center;
-        }
-        
-        .currency-suffix {
-          padding: 10px 12px 10px 0;
-          background: #f8f8f8;
-          color: #666;
-          font-weight: 500;
-          border-left: 1px solid #e0e0e0;
-          min-width: 30px;
-          text-align: center;
-        }
-        
-        .price-input {
-          padding: 10px 8px;
-          border: none;
-          font-size: 16px;
-          flex: 1;
-          background: transparent;
-          box-sizing: border-box;
-          text-align: center;
-        }
-        
-        .price-input:focus {
-          outline: none;
-        }
-        
-        .price-error-icon {
-          position: absolute;
-          right: 10px;
-          color: #d32f2f;
-        }
-        
-        .price-error-message {
+        .integer-error-message {
           font-size: 12px;
           color: #d32f2f;
           margin-top: 4px;
         }
         
-        .price-help-text {
+        .integer-help-text {
           font-size: 11px;
           color: #666;
           margin-top: 4px;
           font-style: italic;
         }
         
-        .price-format-badge {
+        .integer-format-badge {
           font-size: 11px;
           color: #2e7d32;
           font-weight: normal;
