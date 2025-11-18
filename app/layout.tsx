@@ -211,6 +211,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "permissions": "InternetConnection",
               "description": "SaaS platform for generating authentic receipts for 100+ luxury and streetwear brands",
               "url": "https://www.hubreceipts.com",
+              "image": "https://www.hubreceipts.com/og-image.jpg",
               "offers": {
                 "@type": "Offer",
                 "price": "0",
@@ -233,6 +234,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@context": "https://schema.org",
               "@type": "Service",
               "serviceType": "Digital Receipt Generation",
+              "image": "https://www.hubreceipts.com/og-image.jpg",
               "provider": {
                 "@type": "Organization",
                 "name": "HubReceipts"

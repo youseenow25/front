@@ -126,6 +126,7 @@ const structuredData = {
   '@type': 'Service',
   'name': `${brandName} Receipt Generator`,
   'description': `Generate authentic ${brandName} receipts with official designs and formatting. Create professional ${brandName} invoice templates instantly.`,
+  'image': logoUrl,
   'provider': {
     '@type': 'Organization',
     'name': 'HubReceipts',
