@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: 'HubReceipts - Generate Authentic Receipts for 100+ Luxury & Streetwear Brands',
   description: 'Create realistic receipts for StockX, Louis Vuitton, Dior, Gucci, Nike, Supreme, Balenciaga, Off-White & 100+ premium brands. Professional receipt generator for luxury documentation and purchase verification.',
   metadataBase: new URL('https://www.hubreceipts.com'),
+  alternates: {
+    canonical: '/',
+  },
   
   openGraph: {
     title: 'HubReceipts - Professional Receipt Generator for Luxury Brands',
@@ -121,7 +124,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://www.hubreceipts.com" />
 
         {/* FAVICONS */}
         <link rel="icon" href="/favicon.ico" sizes="any" />

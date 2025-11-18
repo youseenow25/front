@@ -481,21 +481,8 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
     if (finalBrand && allBrands.includes(finalBrand)) {
       setBrand(finalBrand);
       setBrandSearch(toLabel(finalBrand));
-      
-      // Update page title for SEO
-      if (isBrandPage || finalBrand) {
-        document.title = `${toLabel(finalBrand)} Receipt Generator - Create Authentic ${toLabel(finalBrand)} Receipts | HubReceipts`;
-        
-        // Update meta description
-        const metaDescription = document.querySelector('meta[name="description"]');
-        if (metaDescription) {
-          metaDescription.setAttribute('content', 
-            `Generate authentic ${toLabel(finalBrand)} receipts instantly. Create professional ${toLabel(finalBrand)} invoice templates with official designs and formatting. Free ${toLabel(finalBrand)} receipt maker.`
-          );
-        }
-      }
     }
-  }, [preSelectedBrand, allBrands, isBrandPage]);
+  }, [preSelectedBrand, allBrands]);
 
   // Detect browser language on component mount and set default date values
   useEffect(() => {

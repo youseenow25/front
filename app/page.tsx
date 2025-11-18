@@ -47,11 +47,16 @@ export default function Page() {
             
             <div className="receipts-grid">
               {brands.map((brand) => (
-                <div key={brand} className="receipt-card">
+                <Link
+                  key={brand}
+                  href={`/brands/${brand}`}
+                  className="receipt-card"
+                  aria-label={`View the ${toLabel(brand)} receipt generator`}
+                >
                   <div className="receipt-image">
                     <Image
                       src={`/${brand}_example.png`}
-                      alt={`${brand} receipt example`}
+                      alt={`${toLabel(brand)} receipt example`}
                       width={120}
                       height={160}
                       style={{
@@ -59,7 +64,7 @@ export default function Page() {
                       }}
                     />
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>

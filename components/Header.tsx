@@ -145,6 +145,20 @@ export default function Header() {
       </button>
 
       <button
+        onClick={() => navigateTo("/brands")}
+        style={{
+          background: "none",
+          border: "none",
+          fontSize: 20,
+          fontWeight: 600,
+          color: "#000",
+          cursor: "pointer",
+        }}
+      >
+        🏷️ Brands
+      </button>
+
+      <button
         onClick={() => navigateTo("/#examples")}
         style={{
           background: "none",
@@ -371,6 +385,28 @@ export default function Header() {
                 </div>
               )}
             </div>
+
+            <button
+              onClick={() => router.push('/brands')}
+              style={{
+                background: "none",
+                border: "none",
+                display: "flex",
+                alignItems: "center",
+                gap: 4,
+                cursor: "pointer",
+                fontWeight: 500,
+                color: "#000",
+                fontSize: "16px",
+                padding: "8px 12px",
+                borderRadius: 6,
+              }}
+            >
+              <span style={{ color: 'black', fontWeight:'bold' }}>
+                🏷️ Brands
+              </span>
+              <ChevronRight size={20}/>
+            </button>
 
             {/* Examples */}
             <a

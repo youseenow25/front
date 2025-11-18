@@ -119,6 +119,7 @@ function ensureCurrencySymbol(value: string): string {
   if (symbol) return symbol;
   
   // If it's unknown, return the original value
+  
   return value;
 }
 

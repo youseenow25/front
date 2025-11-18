@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from 'react';
+import React from 'react';
 import ImageUploader from './ImageUploaderSeo';
 
 interface BrandReceiptGeneratorProps {
@@ -7,29 +7,6 @@ interface BrandReceiptGeneratorProps {
 }
 
 export default function BrandReceiptGenerator({ preSelectedBrand }: BrandReceiptGeneratorProps) {
-  useEffect(() => {
-    // Update page title dynamically
-    const brandLabel = toLabel(preSelectedBrand);
-    document.title = `${brandLabel} Receipt Generator - Create Authentic ${brandLabel} Receipts | HubReceipts`;
-    
-    // Update meta description
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 
-        `Generate authentic ${brandLabel} receipts instantly. Create professional ${brandLabel} invoice templates with official designs and formatting. Free ${brandLabel} receipt maker.`
-      );
-    }
-
-    // Update canonical URL
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement('link');
-      canonical.setAttribute('rel', 'canonical');
-      document.head.appendChild(canonical);
-    }
-    canonical.setAttribute('href', `https://hubreceipts.com/brands/${preSelectedBrand}`);
-  }, [preSelectedBrand]);
-
   function toLabel(name: string): string {
     const special: Record<string, string> = {
       zip_code: "ZIP Code",

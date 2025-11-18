@@ -26,7 +26,7 @@ export async function generateMetadata(
 
   const brandName = toLabel(brand)
   const description = `Generate authentic ${brandName} receipts instantly. Create professional ${brandName} invoice templates with real designs, logos, and formatting. Free ${brandName} receipt maker.`
-  const logoUrl = `https://hubreceipts.com/brand-logos/${brand.toLowerCase().replace(/[^a-z0-9]/g, '_')}.png`
+  const logoUrl = `https://www.hubreceipts.com/brand-logos/${brand.toLowerCase().replace(/[^a-z0-9]/g, '_')}.png`
   
   return {
     title: `${brandName} Receipt Generator - Create Authentic ${brandName} Invoices | HubReceipts`,
@@ -46,7 +46,7 @@ export async function generateMetadata(
       description: description,
       type: 'website',
       locale: 'en_US',
-      url: `https://hubreceipts.com/brands/${brand}`,
+      url: `https://www.hubreceipts.com/brands/${brand}`,
       siteName: 'HubReceipts',
       images: [
         {
@@ -64,7 +64,7 @@ export async function generateMetadata(
       images: [logoUrl],
     },
     alternates: {
-      canonical: `https://hubreceipts.com/brands/${brand}`
+      canonical: `https://www.hubreceipts.com/brands/${brand}`
     },
     robots: {
       index: true,
@@ -117,7 +117,7 @@ export default function BrandPage({ params }: Props) {
   }
 
   const brandName = toLabel(brand)
-  const logoUrl = `https://hubreceipts.com/brand-logos/${brand.toLowerCase().replace(/[^a-z0-9]/g, '_')}.png`
+  const logoUrl = `https://www.hubreceipts.com/brand-logos/${brand.toLowerCase().replace(/[^a-z0-9]/g, '_')}.png`
 
   // ✅ CORRECT: Page-specific structured data for THIS brand only
   // ✅ CORRECTO para SaaS - Service Schema apropiado
