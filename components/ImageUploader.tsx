@@ -253,7 +253,7 @@ const ResultModal = ({
   return (
     <div className="result-modal-overlay">
           <div className="result-modal">
-            <div className="modal-header">
+            <div style={{display:'column'}} className="modal-header">
               <h3 style={{color:'white'}}>Receipt Generated Successfully, check your inbox.</h3>
                <h2 style={{color:'white'}}>⚠️ Check your spam if you don't see it in your inbox</h2>
                        <h2 style={{color:'white'}}>⚠️ If there's any error contact us in the Discord</h2>
