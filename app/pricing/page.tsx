@@ -132,7 +132,7 @@ export default function PricingPage() {
             disabled={loadingPlan === plan.id}
             className="block w-full rounded-lg bg-green-600 px-0 py-1 text-center font-medium text-white hover:bg-green-700 disabled:opacity-60"
           >
-            {loadingPlan === plan.id ? 'Redirecting...' : `Get ${plan.name}`}
+            {loadingPlan === plan.id ? 'Redirecting...' : `Pay with Apple Pay +3 processors`}
           </button>
         </div>
       </div>
@@ -163,7 +163,7 @@ export default function PricingPage() {
       </section>
 
       {/* Top Row */}
-      <section className="mx-auto w-full max-w-0xl px-6 pb-0">
+      <section className="mx-auto w-full max-w-0xl px-6 pb-5">
         <div className="grid gap-1 lg:grid-cols-3">
           {topRowPlans.map(renderPlanCard)}
         </div>
