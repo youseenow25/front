@@ -78,7 +78,7 @@ export default function Page() {
 
         <section className="luxury-features">
           <div className="container">
-            <h2 className="features-title">Check our video example</h2>
+            <h2 className="features-title">Check our videos of examples</h2>
             <div className="video-wrapper">
               <iframe
                 width="560"
@@ -89,6 +89,32 @@ export default function Page() {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
               ></iframe>
+
+              <iframe
+                width="560"
+                height="405"
+                src="https://www.youtube.com/embed/afOwQ4U1Z9Y?si=59fr5TSkEIQvqe5_"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              ></iframe>
+
+
+                <iframe
+                width="560"
+                height="405"
+                src="https://www.youtube.com/embed/Q0NXwfHljS8?si=WItRqdp-htOqAPqg"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              ></iframe>
+
+            </div>
+
+            <div className="video-wrapper">
+              
             </div>
           </div>
         </section>
