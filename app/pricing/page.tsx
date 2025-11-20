@@ -152,19 +152,19 @@ export default function PricingPage() {
   return (
     <div className="flex min-h-screen flex-col bg-white">
       <Header  />
-       <span style={{fontSize:15, textAlign:'center', marginTop:5}} >
+       <span style={{fontSize:20, textAlign:'center', marginTop:5}} >
         If you dont like the result we give you back the money
       </span>
 
       {/* Header */}
-      <section className="mx-auto max-w-6xl px-6 pt-10 text-center">
+      <section className="mx-auto max-w-6xl px-6 pt-2 text-center">
 
      
       </section>
 
       {/* Top Row */}
-      <section className="mx-auto w-full max-w-6xl px-6 pb-8">
-        <div className="grid gap-6 lg:grid-cols-3">
+      <section className="mx-auto w-full max-w-0xl px-6 pb-0">
+        <div className="grid gap-1 lg:grid-cols-3">
           {topRowPlans.map(renderPlanCard)}
         </div>
       </section>
