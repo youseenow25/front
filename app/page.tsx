@@ -79,43 +79,46 @@ export default function Page() {
         <section className="luxury-features">
           <div className="container">
             <h2 className="features-title">Check our videos of examples</h2>
-            <div className="video-wrapper">
-              <iframe
-                width="560"
-                height="405"
-                src="https://www.youtube.com/embed/lSIbSG7K5MM?si=_T6UfwB3XPKVFNhA"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              ></iframe>
+           <div
+  style={{
+    display: 'flex',
+    justifyContent: 'center',
+    gap: '20px',
+    flexWrap: 'wrap'
+  }}
+>
+  <iframe
+    width="560"
+    height="405"
+    src="https://www.youtube.com/embed/lSIbSG7K5MM?si=_T6UfwB3XPKVFNhA"
+    title="YouTube video player"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowFullScreen
+  ></iframe>
 
-              <iframe
-                width="560"
-                height="405"
-                src="https://www.youtube.com/embed/afOwQ4U1Z9Y?si=59fr5TSkEIQvqe5_"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              ></iframe>
+  <iframe
+    width="560"
+    height="405"
+    src="https://www.youtube.com/embed/afOwQ4U1Z9Y?si=59fr5TSkEIQvqe5_"
+    title="YouTube video player"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowFullScreen
+  ></iframe>
+
+  <iframe
+    width="560"
+    height="405"
+    src="https://www.youtube.com/embed/Q0NXwfHljS8?si=WItRqdp-htOqAPqg"
+    title="YouTube video player"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowFullScreen
+  ></iframe>
+</div>
 
 
-                <iframe
-                width="560"
-                height="405"
-                src="https://www.youtube.com/embed/Q0NXwfHljS8?si=WItRqdp-htOqAPqg"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              ></iframe>
-
-            </div>
-
-            <div className="video-wrapper">
-              
-            </div>
           </div>
         </section>
 
