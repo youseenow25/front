@@ -153,7 +153,7 @@ export default function PricingPage() {
     <div className="flex min-h-screen flex-col bg-white">
       <Header  />
        <span style={{fontSize:20, textAlign:'center', marginTop:5}} >
-        If you dont like the result we give you back the money
+        💬 If you dont like the result we give you back the money
       </span>
 
       {/* Header */}
