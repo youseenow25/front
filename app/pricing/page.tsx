@@ -128,9 +128,10 @@ export default function PricingPage() {
 
         <div className="mt-2">
           <button
+          style={{backgroundColor:'#1c73e7'}}
             onClick={() => handleCheckout(plan.id)}
             disabled={loadingPlan === plan.id}
-            className="block w-full rounded-lg bg-green-600 px-0 py-1 text-center font-medium text-white hover:bg-green-700 disabled:opacity-60"
+            className="block w-full rounded-lg px-2 py-2 text-center font-medium text-white hover:bg-green-700 disabled:opacity-60"
           >
             {loadingPlan === plan.id ? 'Redirecting...' : `Pay with Apple Pay +3 processors`}
           </button>
