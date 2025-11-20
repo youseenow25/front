@@ -90,12 +90,15 @@ export default function PricingPage() {
   ];
 
   const renderPlanCard = (plan: any) => (
+
+    
     <div
       key={plan.id}
       className={`relative rounded-2xl border bg-white transition hover:shadow-lg ${
         plan.popular ? 'border-yellow-400 shadow-md scale-[1.02]' : 'border-gray-200'
       }`}
     >
+     
       {/* Badge */}
       {plan.badge && (
         <div className="absolute -top-3 right-4">
@@ -123,11 +126,11 @@ export default function PricingPage() {
 
         <p className="mt-1 text-sm text-gray-500">One-time payment • No auto-renewal</p>
 
-        <div className="mt-6">
+        <div className="mt-2">
           <button
             onClick={() => handleCheckout(plan.id)}
             disabled={loadingPlan === plan.id}
-            className="block w-full rounded-lg bg-green-600 px-4 py-3 text-center font-medium text-white hover:bg-green-700 disabled:opacity-60"
+            className="block w-full rounded-lg bg-green-600 px-0 py-1 text-center font-medium text-white hover:bg-green-700 disabled:opacity-60"
           >
             {loadingPlan === plan.id ? 'Redirecting...' : `Get ${plan.name}`}
           </button>
@@ -135,7 +138,7 @@ export default function PricingPage() {
       </div>
 
       {/* Features */}
-      <ul className="grid gap-4 border-t border-gray-200 p-8 text-sm">
+      <ul className="grid gap-1 border-t border-gray-200 p-3 text-sm">
         {plan.features.map((feature: string) => (
           <li key={feature} className="flex items-start gap-2">
             <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-green-500" />
@@ -148,7 +151,10 @@ export default function PricingPage() {
 
   return (
     <div className="flex min-h-screen flex-col bg-white">
-      <Header />
+      <Header  />
+       <span style={{fontSize:15, textAlign:'center', marginTop:5}} >
+        If you dont like the result we give you back the money
+      </span>
 
       {/* Header */}
       <section className="mx-auto max-w-6xl px-6 pt-10 text-center">
