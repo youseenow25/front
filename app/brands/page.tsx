@@ -30,7 +30,7 @@ export default function BrandsIndexPage() {
         <Header />
 
         <section className="brands-directory">
-          <div className="container">
+          <div className="container centered">
             <p className="eyebrow">All Brands</p>
             <h1>Explore Every Receipt Generator</h1>
             <p className="subtitle">
@@ -65,6 +65,14 @@ export default function BrandsIndexPage() {
           position: relative;
         }
 
+        /* NEW: center everything */
+        .container.centered {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+
         .eyebrow {
           font-size: 0.9rem;
           letter-spacing: 0.2em;
@@ -77,6 +85,7 @@ export default function BrandsIndexPage() {
           font-size: clamp(2rem, 4vw, 3rem);
           margin-bottom: 12px;
           color: #111;
+          text-align: center;
         }
 
         .subtitle {
@@ -84,12 +93,15 @@ export default function BrandsIndexPage() {
           color: #555;
           max-width: 640px;
           margin-bottom: 40px;
+          text-align: center;
         }
 
         .brands-directory-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
           gap: 14px;
+          width: 100%;
+          max-width: 900px;
         }
 
         .brands-directory-card {
@@ -124,4 +136,3 @@ export default function BrandsIndexPage() {
     </>
   )
 }
-
