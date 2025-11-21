@@ -133,7 +133,7 @@ export default function PricingPage() {
             disabled={loadingPlan === plan.id}
             className="block w-full rounded-lg px-2 py-2 text-center font-medium text-white hover:bg-green-700 disabled:opacity-60"
           >
-            {loadingPlan === plan.id ? 'Redirecting...' : `Pay with Apple Pay or + 3 processors`}
+            {loadingPlan === plan.id ? 'Redirecting...' : `Pay with Apple Pay + 3 options`}
           </button>
         </div>
       </div>
