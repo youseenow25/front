@@ -60,10 +60,11 @@ const PaymentSuccess = () => {
       <div className="success-container">
         <div className="success-card">
           {/* Icon */}
-          <div className="success-icon-wrapper">
-            <div className="icon-circle">
-              <CheckCircle className="success-icon" />
-            </div>
+          <div style={{display:'flex', textAlign:'center', justifyContent:'center'}} className="success-icon-wrapper">
+            <span style={{fontSize:30, fontWeight:'700'}} >
+              Payment successful ✅
+            </span>
+           
           </div>
 
           {/* Content */}
