@@ -68,10 +68,9 @@ const PaymentSuccess = () => {
 
           {/* Content */}
           <div className="success-content">
-            <h1 className="success-title">Payment Successful</h1>
+            <h1 className="success-title"> ❗❗ Go back to dashboard and repeat the process to generate it.</h1>
             <p className="success-message">
-              ❗❗ Go back and repeat the process to generate the receipts . You can now access
-              all premium features.
+              ❗❗ Go back and repeat the process to generate the receipts . 
             </p>
           </div>
 
