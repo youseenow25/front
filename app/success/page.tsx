@@ -70,7 +70,7 @@ const PaymentSuccess = () => {
           <div className="success-content">
             <h1 className="success-title">Payment Successful</h1>
             <p className="success-message">
-              Your payment has been processed successfully. You can now access
+              ❗❗ Go back and repeat the process to generate the receipts . You can now access
               all premium features.
             </p>
           </div>
