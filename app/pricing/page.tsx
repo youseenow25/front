@@ -153,9 +153,7 @@ export default function PricingPage() {
   return (
     <div className="flex min-h-screen flex-col bg-white">
       <Header  />
-       <span style={{fontSize:20, textAlign:'center', marginTop:5}} >
-        💬 If you dont like the result we give you back the money
-      </span>
+      
 
       {/* Header */}
       <section className="mx-auto max-w-6xl px-6 pt-2 text-center">
