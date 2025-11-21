@@ -239,6 +239,7 @@ const Toast = ({ message, type = "success", onClose }: {
 };
 
 // Result Modal Component
+// Result Modal Component
 const ResultModal = ({ 
   html, 
   email, 
@@ -252,19 +253,32 @@ const ResultModal = ({
 }) => {
   return (
     <div className="result-modal-overlay">
-          <div className="result-modal">
-            <div style={{display:'column'}} className="modal-header">
-              <h3 style={{color:'white'}}>Receipt Generated Successfully, check your inbox.</h3>
-               <h2 style={{color:'white'}}>⚠️ Check your spam if you don't see it in your inbox</h2>
-                       <h2 style={{color:'white'}}>⚠️ If there's any error contact us in the Discord</h2>
-              <button className="close-button" onClick={onClose}>
-                <X size={24} />
-              </button>
-            </div>
-          </div>
+      <div className="result-modal" style={{ background: '#efefef', padding: '20px', borderRadius: '12px' }}>
+        
+        <div
+          className="modal-header"
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '10px',
+            color: '#000',
+            position: 'relative'
+          }}
+        >
+          <h3>Receipt Generated Successfully, check your inbox.</h3>
+          <h2>⚠️ Check your spam if you don't see it in your inbox</h2>
+          <h2>⚠️ If there's any error contact us in the Discord</h2>
+
+          <button className="close-button" onClick={onClose} style={{ position: 'absolute', top: 0, right: 0 }}>
+            <X size={24} />
+          </button>
         </div>
+
+      </div>
+    </div>
   );
 };
+
 
 // Custom Select Component for consistent styling
 const CustomSelect = ({ 
