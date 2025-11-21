@@ -55,14 +55,14 @@ export default function PricingPage() {
     },
     {
       id: '1-day',
-      name: 'Day Pass',
+      name: '1 Day Access',
       price: 6.99,
       description: '24 hours of unlimited access.',
       features: ['Unlimited receipts for 24 hours', 'All templates'],
     },
     {
       id: '1-week',
-      name: 'Weekly',
+      name: '1 Week Access',
       price: 10.99,
       description: 'Ideal for short-term projects.',
       features: ['7 days unlimited access', 'All templates', 'Priority support'],
