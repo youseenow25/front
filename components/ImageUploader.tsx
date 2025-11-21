@@ -267,7 +267,7 @@ const ResultModal = ({
         >
           <h3>📧 Receipt Generated Successfully, check your inbox.</h3>
           <h2>🗑️ Check your spam if you don't see it in your inbox </h2>
-          <h2>💬 If there's any error contact us in the Discord </h2>
+          <h2>💬 If there's any error contact us in Discord </h2>
 
           <button className="close-button" onClick={onClose} style={{ position: 'absolute', top: 0, right: 0 }}>
             <X size={24} />
