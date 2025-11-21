@@ -68,9 +68,11 @@ const PaymentSuccess = () => {
 
           {/* Content */}
           <div className="success-content">
-            <h1 className="success-title"> ❗❗ Go back to dashboard and repeat the process to generate it.</h1>
+            <h1 className="success-title">
+              ❗❗ Go back to dashboard and repeat the process to generate it.
+            </h1>
             <p className="success-message">
-              ❗❗ Go back and repeat the process to generate the receipts . 
+              ❗❗ Go back and repeat the process to generate the receipts.
             </p>
           </div>
 
@@ -95,17 +97,22 @@ const PaymentSuccess = () => {
 
         .success-container {
           width: 100%;
-          max-width: 400px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
 
         .success-card {
+          width: 1000px;
+          max-width: 90%;
           background: white;
           border-radius: 20px;
-          padding: 48px 32px;
+          padding: 48px 40px;
           text-align: center;
           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08),
             0 1px 3px rgba(0, 0, 0, 0.04);
           border: 1px solid rgba(255, 255, 255, 0.2);
+          margin: 0 auto;
         }
 
         .success-icon-wrapper {
@@ -133,21 +140,27 @@ const PaymentSuccess = () => {
 
         .success-content {
           margin-bottom: 32px;
+          width: 100%;
         }
 
         .success-title {
-          font-size: 28px;
+          font-size: 24px;
           font-weight: 700;
           color: #1f2937;
-          margin-bottom: 12px;
+          margin-bottom: 16px;
+          line-height: 1.4;
+          word-wrap: break-word;
+          text-align: center;
         }
 
         .success-message {
           color: #6b7280;
           font-size: 16px;
           line-height: 1.5;
-          max-width: 320px;
           margin: 0 auto;
+          word-wrap: break-word;
+          text-align: center;
+          max-width: 800px;
         }
 
         .continue-button {
@@ -160,9 +173,12 @@ const PaymentSuccess = () => {
           font-weight: 600;
           cursor: pointer;
           transition: all 0.2s ease;
-          width: 100%;
-          max-width: 240px;
+          width: auto;
+          min-width: 240px;
+          max-width: 300px;
           box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+          margin: 0 auto;
+          display: block;
         }
 
         .continue-button:hover {
@@ -177,6 +193,95 @@ const PaymentSuccess = () => {
           }
           50% {
             transform: scale(1.05);
+          }
+        }
+
+        /* Tablet */
+        @media (max-width: 1024px) {
+          .success-card {
+            width: 90%;
+            max-width: 800px;
+            padding: 40px 30px;
+          }
+          
+          .success-title {
+            font-size: 22px;
+          }
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+          .success-page {
+            padding: 15px;
+          }
+          
+          .success-card {
+            width: 95%;
+            max-width: 600px;
+            padding: 32px 20px;
+          }
+          
+          .success-title {
+            font-size: 20px;
+            margin-bottom: 12px;
+          }
+          
+          .success-message {
+            font-size: 14px;
+          }
+          
+          .icon-circle {
+            width: 70px;
+            height: 70px;
+          }
+          
+          .success-icon {
+            width: 35px;
+            height: 35px;
+          }
+          
+          .continue-button {
+            min-width: 200px;
+            padding: 12px 24px;
+            font-size: 15px;
+          }
+        }
+
+        /* Small Mobile */
+        @media (max-width: 480px) {
+          .success-page {
+            padding: 10px;
+          }
+          
+          .success-card {
+            width: 98%;
+            max-width: 400px;
+            padding: 24px 16px;
+            border-radius: 16px;
+          }
+          
+          .success-title {
+            font-size: 18px;
+          }
+          
+          .success-message {
+            font-size: 13px;
+          }
+          
+          .icon-circle {
+            width: 60px;
+            height: 60px;
+          }
+          
+          .success-icon {
+            width: 30px;
+            height: 30px;
+          }
+          
+          .continue-button {
+            min-width: 180px;
+            padding: 10px 20px;
+            font-size: 14px;
           }
         }
       `}</style>
