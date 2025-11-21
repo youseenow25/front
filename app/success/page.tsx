@@ -69,7 +69,7 @@ const PaymentSuccess = () => {
 
           {/* Content */}
           <div className="success-content">
-            <h1 className="success-title">
+            <h1 style={{fontSize:30}} className="success-title">
               ❗❗ Go back to dashboard and repeat the process to generate it.
             </h1>
             <p className="success-message">
