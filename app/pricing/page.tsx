@@ -130,10 +130,10 @@ export default function PricingPage() {
 
 
         <div className="mt-6 flex items-baseline gap-2">
-          <span className="text-5xl font-light text-gray-900">€{plan.priceeur} / </span>
+          <span className="text-4xl font-light text-gray-900">€{plan.priceeur} / </span>
         </div>
          <div style={{marginLeft:5}} className="mt-6 flex items-baseline gap-">
-          <span className="text-5xl font-light text-gray-900">${plan.priceusd}</span>
+          <span className="text-4xl font-light text-gray-900">${plan.priceusd}</span>
         </div>
 
                 </div>
