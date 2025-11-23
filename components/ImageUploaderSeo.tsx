@@ -19,8 +19,7 @@ const SUPPORTED_LANGUAGES = [
   { code: "dutch", name: "Dutch", flag: "🇳🇱" },
   { code: "spanish", name: "Spanish", flag: "🇪🇸" },
   { code: "italian", name: "Italian", flag: "🇮🇹" },
-  { code: "swedish", name: "Swedish", flag: "🇮🇸" },
-  { code: "danish", name: "Danish", flag: "🇩🇰" },
+ 
 ];
 
 // Currency configuration - SYMBOLS ONLY

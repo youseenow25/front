@@ -51,7 +51,7 @@ export default function PricingPage() {
       priceusd: 4.99,
       priceeur:4.5,
       description: 'Perfect for trying out our generator.',
-      features: ['1 professional receipt', 'All templates'],
+ 
       badge: 'Pay per use'
     },
     {
@@ -60,7 +60,7 @@ export default function PricingPage() {
       priceusd: 8.99,
       priceeur: 7.99,
       description: '24 hours of unlimited access.',
-      features: ['Unlimited receipts for 24 hours', 'All templates'],
+
     },
     {
       id: '1-week',
@@ -68,7 +68,7 @@ export default function PricingPage() {
       priceusd: 14.99,
       priceeur: 16.99,
       description: 'Ideal for short-term projects.',
-      features: ['7 days unlimited access', 'All templates', 'Priority support'],
+
       badge: 'Most Flexible'
     },
   ];
@@ -81,7 +81,7 @@ export default function PricingPage() {
       priceeur:24.99,
       description: 'Best for regular business use.',
       popular: true,
-      features: ['30 days unlimited access', 'All premium features', 'Dedicated support'],
+
     },
     {
       id: '6-months',
@@ -89,7 +89,7 @@ export default function PricingPage() {
       priceusd: 39.99,
       priceeur:34.99,
       description: 'Maximum value for power users.',
-      features: ['6 months unlimited access', 'All enterprise features', '24/7 dedicated support'],
+
       badge: 'Best Value'
     },
   ];
@@ -121,19 +121,19 @@ export default function PricingPage() {
       )}
 
       {/* Content */}
-      <div className="p-8">
-        <h2 className="text-3xl font-semibold text-gray-900">{plan.name}</h2>
+      <div className="p-3">
+        <h2 style={{fontSize:20}} className=" font-semibold text-gray-900">{plan.name}</h2>
         <p className="mt-2 text-gray-600">{plan.description}</p>
 
         <div style={{display:'flex'}} >
 
 
 
-        <div className="mt-6 flex items-baseline gap-2">
-          <span className="text-4xl font-light text-gray-900">€{plan.priceeur} / </span>
+        <div className="mt-2 ">
+          <span className="text-3xl font-light text-gray-900">€{plan.priceeur} / </span>
         </div>
-         <div style={{marginLeft:5}} className="mt-6 flex items-baseline gap-">
-          <span className="text-4xl font-light text-gray-900">${plan.priceusd}</span>
+         <div style={{marginLeft:5}} className="mt-2 flex items-baseline gap-">
+          <span className="text-3xl font-light text-gray-900">${plan.priceusd}</span>
         </div>
 
                 </div>
@@ -152,15 +152,7 @@ export default function PricingPage() {
         </div>
       </div>
 
-      {/* Features */}
-      <ul className="grid gap-1 border-t border-gray-200 p-3 text-sm">
-        {plan.features.map((feature: string) => (
-          <li key={feature} className="flex items-start gap-2">
-            <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-green-500" />
-            <span className="text-gray-700">{feature}</span>
-          </li>
-        ))}
-      </ul>
+      
     </div>
   );
 
