@@ -3,42 +3,88 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Check } from 'lucide-react';
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
 import { useRouter } from "next/navigation";
 
 export default function PricingPage() {
   const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [userEmail, setUserEmail] = useState<string | null>(null);
+  const router = useRouter();
 
-   const router = useRouter();
+  useEffect(() => {
+    // Check authentication status on component mount
+    const checkAuth = () => {
+      try {
+        const userData = localStorage.getItem("user");
+        const user = userData ? JSON.parse(userData) : null;
+        const email = user?.email;
+        
+        setIsLoggedIn(!!email);
+        setUserEmail(email);
+      } catch (error) {
+        console.error('Error checking auth:', error);
+        setIsLoggedIn(false);
+        setUserEmail(null);
+      }
+    };
 
-  // ✅ Handle checkout
+    checkAuth();
+    
+    // Listen for storage changes (login/logout in other tabs)
+    window.addEventListener('storage', checkAuth);
+    
+    return () => {
+      window.removeEventListener('storage', checkAuth);
+    };
+  }, []);
+
+  // ✅ Handle checkout with proper authentication
   const handleCheckout = async (productId: string) => {
     try {
       setLoadingPlan(productId);
 
-      
+      // Double-check authentication before proceeding
       const userData = localStorage.getItem("user");
       const user = userData ? JSON.parse(userData) : null;
-      const email = user?.email || null;
+      const email = user?.email;
+
+      if (!email) {
+        alert('Please log in to proceed with checkout.');
+        router.push("/register");
+        return;
+      }
 
       const response = await fetch('https://api.hubreceipts.com/api/payment/create-checkout-session', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({ productId, email }),
       });
 
       const data = await response.json();
-      if (response.ok && data.url) {
-        window.location.href = data.url; 
-      } else {
-          router.push("/register");
 
-       
+      if (!response.ok) {
+        throw new Error(data.error || `Checkout failed: ${response.status}`);
       }
-    } catch (err) {
+
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        throw new Error('No checkout URL received from server');
+      }
+    } catch (err: any) {
       console.error('Checkout error:', err);
-      alert('Something went wrong. Please try again.');
+      
+      if (err.message.includes('authentication') || err.message.includes('401')) {
+        alert('Session expired. Please log in again.');
+        router.push("/register");
+      } else if (err.message.includes('400')) {
+        alert('Invalid request. Please try again.');
+      } else {
+        alert(err.message || 'Something went wrong. Please try again.');
+      }
     } finally {
       setLoadingPlan(null);
     }
@@ -49,9 +95,8 @@ export default function PricingPage() {
       id: '1-receipt',
       name: '1 Receipt',
       priceusd: 4.99,
-      priceeur:4.5,
+      priceeur: 4.5,
       description: 'Perfect for trying out our generator.',
- 
       badge: 'Pay per use'
     },
     {
@@ -60,7 +105,6 @@ export default function PricingPage() {
       priceusd: 8.99,
       priceeur: 7.99,
       description: '24 hours of unlimited access.',
-
     },
     {
       id: '1-week',
@@ -68,7 +112,6 @@ export default function PricingPage() {
       priceusd: 14.99,
       priceeur: 16.99,
       description: 'Ideal for short-term projects.',
-
       badge: 'Most Flexible'
     },
   ];
@@ -78,32 +121,27 @@ export default function PricingPage() {
       id: '1-month',
       name: '1 Month',
       priceusd: 21.99,
-      priceeur:24.99,
+      priceeur: 24.99,
       description: 'Best for regular business use.',
       popular: true,
-
     },
     {
       id: '6-months',
       name: '6 Months',
       priceusd: 39.99,
-      priceeur:34.99,
+      priceeur: 34.99,
       description: 'Maximum value for power users.',
-
       badge: 'Best Value'
     },
   ];
 
   const renderPlanCard = (plan: any) => (
-
-    
     <div
       key={plan.id}
       className={`relative rounded-2xl border bg-white transition hover:shadow-lg ${
         plan.popular ? 'border-yellow-400 shadow-md scale-[1.02]' : 'border-gray-200'
       }`}
     >
-     
       {/* Badge */}
       {plan.badge && (
         <div className="absolute -top-3 right-4">
@@ -122,54 +160,63 @@ export default function PricingPage() {
 
       {/* Content */}
       <div className="p-3">
-        <h2 style={{fontSize:20}} className=" font-semibold text-gray-900">{plan.name}</h2>
+        <h2 style={{fontSize:20}} className="font-semibold text-gray-900">{plan.name}</h2>
         <p className="mt-2 text-gray-600">{plan.description}</p>
 
-        <div style={{display:'flex'}} >
-
-
-
-        <div className="mt-2 ">
-          <span className="text-3xl font-light text-gray-900">€{plan.priceeur} / </span>
+        <div style={{display:'flex'}}>
+          <div className="mt-2">
+            <span className="text-3xl font-light text-gray-900">€{plan.priceeur} / </span>
+          </div>
+          <div style={{marginLeft:5}} className="mt-2 flex items-baseline">
+            <span className="text-3xl font-light text-gray-900">${plan.priceusd}</span>
+          </div>
         </div>
-         <div style={{marginLeft:5}} className="mt-2 flex items-baseline gap-">
-          <span className="text-3xl font-light text-gray-900">${plan.priceusd}</span>
-        </div>
-
-                </div>
 
         <p className="mt-1 text-sm text-gray-500">One-time payment • No auto-renewal</p>
 
         <div className="mt-2">
           <button
-          style={{backgroundColor:'#1c73e7'}}
+            style={{backgroundColor: '#1c73e7'}}
             onClick={() => handleCheckout(plan.id)}
-            disabled={loadingPlan === plan.id}
-            className="block w-full rounded-lg px-2 py-2 text-center font-medium text-white hover:bg-green-700 disabled:opacity-60"
+            disabled={loadingPlan === plan.id || !isLoggedIn}
+            className="block w-full rounded-lg px-2 py-2 text-center font-medium text-white hover:bg-green-700 disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            {loadingPlan === plan.id ? 'Redirecting...' : `Pay with Apple Pay + 3 options`}
+            {!isLoggedIn ? 'Login to Purchase' : 
+             loadingPlan === plan.id ? 'Redirecting...' : 
+             `Pay with Apple Pay + 3 options`}
           </button>
+          
+          {!isLoggedIn && (
+            <p className="mt-2 text-xs text-red-600 text-center">
+              Please log in to purchase
+            </p>
+          )}
         </div>
       </div>
-
-      
     </div>
   );
 
   return (
     <div className="flex min-h-screen flex-col bg-white">
-      <Header  />
+      <Header />
       
+      {/* Authentication Status Banner */}
+      {!isLoggedIn && (
+        <div className="bg-yellow-50 border border-yellow-200 py-2 px-4 text-center">
+          <p className="text-yellow-800 text-sm">
+            Please <button onClick={() => router.push("/register")} className="underline font-semibold">log in</button> to purchase a plan
+          </p>
+        </div>
+      )}
 
       {/* Header */}
       <section className="mx-auto max-w-6xl px-6 pt-2 text-center">
-
-     
+        {/* Your header content */}
       </section>
 
       {/* Top Row */}
-      <section className="mx-auto w-full max-w-0xl px-6 pb-5">
-        <div className="grid gap-1 lg:grid-cols-3">
+      <section className="mx-auto w-full max-w-6xl px-6 pb-5">
+        <div className="grid gap-6 lg:grid-cols-3">
           {topRowPlans.map(renderPlanCard)}
         </div>
       </section>
@@ -185,6 +232,3 @@ export default function PricingPage() {
     </div>
   );
 }
-
-
-
