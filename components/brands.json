@@ -1058,7 +1058,8 @@
         "product_price",
         "street",
         "total",
-        "zip_code"
+        "zip_code",
+        "card_end"
       ],
       "counts": {
         "order_number": 10,
