@@ -73,7 +73,7 @@ const PaymentSuccess = () => {
               ❗❗ Repeat the process to generate it.
             </h1>
             <p className="success-message">
-              ❗❗ Go back and repeat the process to generate the receipts.
+              ❗❗ If there's any problem dm us at Discord or telegram at @torontognr 
             </p>
           </div>
 
