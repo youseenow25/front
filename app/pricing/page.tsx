@@ -121,7 +121,7 @@ export default function PricingPage() {
       id: '1-month',
       name: '1 Month',
       priceusd: 21.99,
-      priceeur: 24.99,
+      priceeur: 20.99,
       description: 'Best for regular business use.',
       popular: true,
     },
