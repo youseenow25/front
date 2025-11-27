@@ -253,7 +253,7 @@ const ResultModal = ({
 }) => {
   return (
     <div className="result-modal-overlay">
-      <div className="result-modal" style={{ background: '#efefef', padding: '20px', borderRadius: '12px' }}>
+      <div className="result-modal" style={{ background: '#efefef', padding: '2px', borderRadius: '5px' }}>
         
         <div
           className="modal-header"
@@ -265,9 +265,9 @@ const ResultModal = ({
             position: 'relative'
           }}
         >
-          <h3>📧 ⚠️🚨Check your spam if it's not in your inbox,</h3>
+          <h3>📧 ⚠️🚨Instructions</h3>
       
-          <h2>💬 If there's any error contact us in Discord </h2>
+          <h2>Check spam, and if doesnt have the image just put that the email is not spam</h2>
 
           <button className="close-button" onClick={onClose} style={{ position: 'absolute', top: 0, right: 0 }}>
             <X size={24} />
