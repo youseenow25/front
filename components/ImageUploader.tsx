@@ -265,7 +265,7 @@ const ResultModal = ({
             position: 'relative'
           }}
         >
-          <h3>📧 ⚠️🚨Instructions</h3>
+             <h3>🚨🚨 IMPORTANT !!</h3>
       
           <h2 style={{textAlign:'center'}} >1. Check spam if it doesn't arrive to your email.</h2>
 
