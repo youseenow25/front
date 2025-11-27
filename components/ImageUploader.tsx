@@ -258,7 +258,7 @@ const ResultModal = ({
         <div
           className="modal-header"
           style={{
-            display: 'flex',
+            
             flexDirection: 'column',
             gap: '10px',
             color: '#000',
@@ -267,7 +267,10 @@ const ResultModal = ({
         >
           <h3>📧 ⚠️🚨Instructions</h3>
       
-          <h2>Check spam, and if doesnt have the image just put that the email is not spam</h2>
+          <h2>1. Check spam if doesnt arrive to your email.</h2>
+
+              <h2>2. If the images don't show of the receipt, just set the email as not spam.</h2>
+
 
           <button className="close-button" onClick={onClose} style={{ position: 'absolute', top: 0, right: 0 }}>
             <X size={24} />
