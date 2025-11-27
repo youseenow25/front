@@ -252,9 +252,13 @@ const ResultModal = ({
     <div className="result-modal-overlay">
       <div className="result-modal">
         <div className="modal-header">
-          <h3 style={{color:'white'}}>⚠️🚨Check your spam if it's not in your inbox,</h3>
-           
-                   <h2 style={{color:'white'}}>⚠️ If there's any error contact us in the Discord</h2>
+            <h3>📧 ⚠️🚨Instructions</h3>
+      
+          <h2 style={{textAlign:'center'}} >1. Check spam if it doesn't arrive to your email.</h2>
+
+              <h2 style={{textAlign:'center'}} >2. If the images don't show in the receipt, just set the email as not spam.</h2>
+
+
           <button className="close-button" onClick={onClose}>
             <X size={24} />
           </button>

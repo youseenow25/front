@@ -267,9 +267,9 @@ const ResultModal = ({
         >
           <h3>📧 ⚠️🚨Instructions</h3>
       
-          <h2>1. Check spam if doesnt arrive to your email.</h2>
+          <h2 style={{textAlign:'center'}} >1. Check spam if it doesn't arrive to your email.</h2>
 
-              <h2>2. If the images don't show in the receipt, just set the email as not spam.</h2>
+              <h2 style={{textAlign:'center'}} >2. If the images don't show in the receipt, just set the email as not spam.</h2>
 
 
           <button className="close-button" onClick={onClose} style={{ position: 'absolute', top: 0, right: 0 }}>
