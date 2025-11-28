@@ -110,7 +110,7 @@ export default function PricingPage() {
       id: '1-week',
       name: '1 Week Access',
       priceusd: 14.99,
-      priceeur: 16.99,
+      priceeur: 12.99,
       description: 'Ideal for short-term projects.',
       badge: 'Most Flexible'
     },
