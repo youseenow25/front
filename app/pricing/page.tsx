@@ -345,9 +345,7 @@ export default function PricingPage() {
             <div className="flex justify-between items-center p-4 sm:p-6 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50">
               <div className="flex-1 min-w-0">
                 <h2 className="text-lg sm:text-2xl font-bold text-gray-900 truncate">Receipt Preview</h2>
-                <p className="text-gray-600 mt-1 text-sm sm:text-base hidden sm:block">
-                  Your generated receipt is ready to download
-                </p>
+              
               </div>
               <div className="flex gap-2 sm:gap-3 flex-shrink-0">
                 <button
