@@ -72,110 +72,110 @@ export default function PricingPage() {
     return () => window.removeEventListener('storage', handleStorageChange);
   }, []);
 
-  // Transform receipt HTML to look like email client display
-  const transformReceiptForEmailDisplay = (html: string) => {
-    // Remove complex styling and make it look like email client rendering
-    let transformedHtml = html
-      // Remove position:absolute elements (watermarks, overlays)
-      .replace(/<div[^>]*style="[^"]*position:\s*absolute[^>]*>[\s\S]*?<\/div>/g, '')
-      // Remove complex backgrounds and gradients
-      .replace(/background:[^;"]*;?/g, '')
-      .replace(/background-[^:;"]*:[^;"]*;?/g, '')
-      // Remove box-shadows and complex effects
-      .replace(/box-shadow:[^;"]*;?/g, '')
-      .replace(/text-shadow:[^;"]*;?/g, '')
-      .replace(/backdrop-filter:[^;"]*;?/g, '')
-      .replace(/transform:[^;"]*;?/g, '')
-      // Remove complex positioning
-      .replace(/position:[^;"]*;?/g, '')
-      .replace(/z-index:[^;"]*;?/g, '')
-      .replace(/pointer-events:[^;"]*;?/g, '')
-      // Simplify borders
-      .replace(/border[^:]*:[^;"]*;?/g, 'border: 1px solid #e0e0e0;')
-      // Make it more email-like with simpler styling
-      .replace(/style="([^"]*)"/g, (match: string, style: string) => {
-        // Keep only essential styles for email display
-        const essentialStyles = style
-          .split(';')
-          .filter(styleRule => {
-            const prop = styleRule.split(':')[0]?.trim();
-            return [
-              'color',
-              'font-size',
-              'font-weight',
-              'text-align',
-              'padding',
-              'margin',
-              'width',
-              'height',
-              'border',
-              'background-color',
-              'display'
-            ].includes(prop);
-          })
-          .join(';');
-        
-        return `style="${essentialStyles}"`;
-      });
-
-    // Wrap in email-like container
-    transformedHtml = `
-      <div style="
-        max-width: 100%;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        line-height: 1.4;
-        color: #333;
-        background: #f8f9fa;
-        padding: 16px;
-        border-radius: 8px;
-        border: 1px solid #e0e0e0;
-      ">
+  // Add mobile-responsive watermark to receipt HTML
+  const addWatermarkToReceipt = (html: string) => {
+    const watermarkedHtml = `
+      <div style="position: relative; display: inline-block; width: 100%; min-height: 400px;">
         <div style="
-          background: white;
-          border-radius: 8px;
-          padding: 20px;
-          box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+          max-width: 100%;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
         ">
-          ${transformedHtml}
+          ${html}
         </div>
         <div style="
-          text-align: center;
-          margin-top: 16px;
-          padding: 12px;
-          background: #fff8e6;
-          border: 1px solid #ffeaa7;
-          border-radius: 6px;
-          font-size: 12px;
-          color: #e67e22;
-        ">
-          🔒 Preview - Purchase to get clean version without watermarks
-        </div>
-      </div>
-    `;
-
-    return transformedHtml;
-  };
-
-  // Add subtle watermark for email-like preview
-  const addEmailStyleWatermark = (html: string) => {
-    return `
-      <div style="position: relative;">
-        ${html}
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+          z-index: 9999;
+          background: repeating-linear-gradient(
+            -45deg,
+            transparent,
+            transparent 20px,
+            rgba(255, 0, 0, 0.03) 20px,
+            rgba(255, 0, 0, 0.03) 40px
+          );
+        "></div>
         <div style="
           position: absolute;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%) rotate(-45deg);
-          font-size: 32px;
-          font-weight: 300;
-          color: rgba(0, 0, 0, 0.08);
+          font-size: clamp(24px, 6vw, 48px);
+          font-weight: 900;
+          color: rgba(255, 0, 0, 0.12);
           pointer-events: none;
-          z-index: 100;
+          z-index: 10000;
           white-space: nowrap;
-          opacity: 0.6;
-        ">PREVIEW</div>
+          text-transform: uppercase;
+          letter-spacing: 3px;
+          text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+          width: 100%;
+          text-align: center;
+        ">PREVIEW ONLY</div>
+        <div style="
+          position: absolute;
+          bottom: 10px;
+          left: 10px;
+          background: rgba(0, 0, 0, 0.85);
+          color: white;
+          padding: 8px 12px;
+          border-radius: 6px;
+          font-size: 10px;
+          font-weight: 500;
+          pointer-events: none;
+          z-index: 10000;
+          backdrop-filter: blur(4px);
+          max-width: calc(100% - 20px);
+          box-sizing: border-box;
+        ">Generated by HubReceipts.com - Not a valid receipt</div>
       </div>
     `;
+    return watermarkedHtml;
+  };
+
+  // Make receipt HTML mobile responsive
+  const makeReceiptMobileResponsive = (html: string) => {
+    // Add mobile-responsive styles to the receipt HTML
+    const mobileResponsiveHtml = html
+      .replace(/width:\s*600px/g, 'width: 100%')
+      .replace(/max-width:\s*600px/g, 'max-width: 100%')
+      .replace(/width="600"/g, 'width="100%"')
+      .replace(/style="([^"]*)"/g, (match: string, style: string) => {
+        // Add responsive font sizes and padding
+        let newStyle = style
+          .replace(/font-size:\s*small/g, 'font-size: 14px')
+          .replace(/font-size:\s*(\d+)px/g, (sizeMatch: string, size: string) => {
+            const numericSize = parseInt(size);
+            if (numericSize > 16) {
+              return `font-size: clamp(14px, ${numericSize * 0.8}px, ${size}px)`;
+            }
+            return sizeMatch;
+          })
+          .replace(/padding:\s*(\d+)px/g, (paddingMatch: string, padding: string) => {
+            const numericPadding = parseInt(padding);
+            return `padding: clamp(8px, ${numericPadding * 0.6}px, ${padding}px)`;
+          })
+          .replace(/width:\s*(\d+)px/g, (widthMatch: string, width: string) => {
+            const numericWidth = parseInt(width);
+            if (numericWidth > 300) {
+              return `width: 100%`;
+            }
+            return widthMatch;
+          });
+        
+        // Ensure horizontal scrolling for tables on mobile
+        if (style.includes('table') || style.includes('td') || style.includes('tr')) {
+          newStyle += '; min-width: fit-content';
+        }
+        
+        return `style="${newStyle}"`;
+      });
+
+    return mobileResponsiveHtml;
   };
 
   // Clear receipt preview
@@ -338,60 +338,73 @@ export default function PricingPage() {
     <div className="flex min-h-screen flex-col bg-gradient-to-br from-slate-50 to-blue-50">
       <Header />
       
-      {/* Email-style Receipt Preview Modal */}
+      {/* Mobile-Responsive Receipt Preview Modal */}
       {showPreview && receiptPreview && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-2 sm:p-4">
-          <div className="bg-white rounded-xl w-full max-w-full sm:max-w-2xl max-h-[90vh] overflow-hidden shadow-lg border border-gray-300 mx-2 sm:mx-0">
-            <div className="flex justify-between items-center p-4 border-b border-gray-200 bg-white">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-2 sm:p-4">
+          <div className="bg-white rounded-2xl w-full max-w-full sm:max-w-5xl max-h-[95vh] overflow-hidden shadow-2xl border border-gray-200 mx-2 sm:mx-0">
+            <div className="flex justify-between items-center p-4 sm:p-6 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50">
               <div className="flex-1 min-w-0">
-                <h2 className="text-lg sm:text-xl font-semibold text-gray-900">Receipt Preview</h2>
-                <p className="text-gray-600 mt-1 text-sm">
-                  How it will look in your email
+                <h2 className="text-lg sm:text-2xl font-bold text-gray-900 truncate">Receipt Preview</h2>
+                <p className="text-gray-600 mt-1 text-sm sm:text-base hidden sm:block">
+                  Your generated receipt is ready to download
                 </p>
               </div>
-              <div className="flex gap-2 flex-shrink-0">
+              <div className="flex gap-2 sm:gap-3 flex-shrink-0">
                 <button
                   onClick={clearReceiptPreview}
-                  className="px-3 sm:px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors flex items-center gap-2 font-medium text-sm"
+                  className="px-3 sm:px-5 py-2 sm:py-2.5 bg-gradient-to-r from-gray-500 to-gray-600 text-white rounded-lg sm:rounded-xl hover:from-gray-600 hover:to-gray-700 transition-colors flex items-center gap-1 sm:gap-2 font-semibold text-sm sm:text-base"
                 >
-                  <X size={16} />
+                  <X size={16} className="sm:w-5 sm:h-5" />
                   <span className="hidden sm:inline">Close</span>
                 </button>
               </div>
             </div>
-            <div className="p-3 sm:p-4 overflow-auto max-h-[calc(90vh-80px)] bg-gray-50">
+            <div className="p-2 sm:p-6 overflow-auto max-h-[calc(95vh-80px)] bg-gray-50">
+              {/* Mobile Warning Banner */}
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg sm:rounded-xl p-3 sm:p-4 mb-4 sm:mb-6">
+                <div className="flex items-start gap-2 sm:gap-3">
+                  <div className="text-yellow-600 flex-shrink-0 mt-0.5">
+                    <Eye size={18} className="sm:w-5 sm:h-5" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-semibold text-yellow-800 text-sm sm:text-base">Preview Mode</h4>
+                    <p className="text-yellow-700 text-xs sm:text-sm">
+                      This is a watermarked preview. Purchase any plan to send the receipt to your email without watermarks.
+                      <span className="block sm:hidden mt-1">Scroll horizontally to view full receipt →</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
               
-              {/* Email-style Receipt Display */}
-              <div className="bg-white rounded-lg border border-gray-200">
+              {/* Receipt Container with Horizontal Scroll on Mobile */}
+              <div className="bg-white rounded-lg sm:rounded-xl border-2 border-blue-100 shadow-inner overflow-hidden">
                 <div 
                   dangerouslySetInnerHTML={{ 
-                    __html: addEmailStyleWatermark(transformReceiptForEmailDisplay(receiptPreview)) 
+                    __html: addWatermarkToReceipt(makeReceiptMobileResponsive(receiptPreview)) 
                   }}
-                  className="email-receipt-preview"
+                  className="receipt-preview p-3 sm:p-6 min-w-0"
+                  style={{
+                    WebkitOverflowScrolling: 'touch',
+                    overflowX: 'auto'
+                  }}
                 />
               </div>
               
-              {/* Simple Call to Action */}
-              <div className="text-center mt-4 bg-white rounded-lg p-4 border border-gray-200">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Ready to get the clean version?</h3>
-                <p className="text-gray-600 mb-4 text-sm">
-                  Purchase any plan to receive this receipt in your email without watermarks
+              {/* Call to Action Section */}
+              <div className="text-center mt-4 sm:mt-8 bg-white rounded-lg sm:rounded-2xl p-4 sm:p-8 border-2 border-dashed border-green-200">
+                <h3 className="text-lg sm:text-2xl font-bold text-gray-900 mb-2 sm:mb-4">Ready to send the receipt to your email?</h3>
+                <p className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-lg max-w-md mx-auto">
+                  Purchase any plan to download this receipt without watermarks and get full access to our receipt generator.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-2 justify-center items-center">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
                   <button
                     onClick={() => {
                       setShowPreview(false);
                       document.getElementById('pricing-plans')?.scrollIntoView({ behavior: 'smooth' });
                     }}
-                    className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-all duration-200 flex items-center gap-2 font-medium text-sm w-full sm:w-auto justify-center"
+                    className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-4 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl hover:from-green-700 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 sm:gap-3 font-bold text-base sm:text-lg shadow-lg w-full sm:w-auto justify-center"
                   >
                     Choose Plan
-                  </button>
-                  <button
-                    onClick={clearReceiptPreview}
-                    className="bg-gray-500 text-white px-4 py-3 rounded-lg hover:bg-gray-600 transition-colors font-medium text-sm w-full sm:w-auto"
-                  >
-                    Maybe Later
                   </button>
                 </div>
               </div>
@@ -400,25 +413,25 @@ export default function PricingPage() {
         </div>
       )}
 
-      {/* Subtle Receipt Preview Banner */}
+      {/* Mobile-Responsive Receipt Preview Banner */}
       {receiptPreview && !showPreview && (
-        <div className="bg-blue-600 text-white py-3 px-4 shadow-sm">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between max-w-7xl mx-auto gap-2 sm:gap-0">
+        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 sm:py-2 px-3 sm:px-5 shadow-lg">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between max-w-7xl mx-auto gap-3 sm:gap-0">
             <div className="flex items-center gap-3">
               <div className="flex-1 min-w-0">
-                <h3 className="text-base sm:text-lg font-semibold">Receipt Ready for Preview</h3>
-                <p className="text-blue-100 mt-1 text-xs sm:text-sm hidden sm:block">
-                  See how it will look when delivered to your email
+                <h3 className="text-lg sm:text-xl font-bold truncate">Your Receipt is Ready! 🎉</h3>
+                <p className="text-blue-100 mt-1 text-sm hidden sm:block">
+                  Preview your generated receipt and purchase to download the clean version
                 </p>
               </div>
             </div>
-            <div className="flex gap-2 justify-end">
+            <div className="flex gap-2 sm:gap-3 justify-end">
               <button 
                 onClick={() => setShowPreview(true)}
-                className="bg-white text-blue-600 px-4 py-2 rounded-lg hover:bg-blue-50 transition-all flex items-center gap-2 font-medium text-sm w-full sm:w-auto justify-center"
+                className="bg-white text-blue-600 px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 font-bold shadow-lg text-sm sm:text-base flex-1 sm:flex-none justify-center"
               >
-                <Eye size={16} />
-                Preview Email View
+                <Eye size={16} className="sm:w-5 sm:h-5" />
+                View Preview
               </button>
             </div>
           </div>
@@ -427,7 +440,7 @@ export default function PricingPage() {
 
       {/* Authentication Status Banner */}
       {!isLoggedIn && !receiptPreview && (
-        <div className="bg-amber-500 text-white py-2 px-4 text-center">
+        <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white py-3 px-4 text-center">
           <p className="text-sm font-medium">
             Please <button onClick={() => router.push("/register")} className="underline font-bold bg-white/20 px-2 py-1 rounded">log in</button> to purchase a plan
           </p>
