@@ -369,8 +369,8 @@ export default function PricingPage() {
                   <div className="flex-1 min-w-0">
                     <h4 className="font-semibold text-yellow-800 text-sm sm:text-base">Preview Mode</h4>
                     <p className="text-yellow-700 text-xs sm:text-sm">
-                      This is a watermarked preview. Purchase any plan to send the receipt to your email without watermarks.
-                      <span className="block sm:hidden mt-1">Scroll horizontally to view full receipt →</span>
+                      It looks bad the receipt in the browser, but once it's sent via email looks legit haha.
+                      <span className="block sm:hidden mt-1">Scroll horizontally to view full receipt </span>
                     </p>
                   </div>
                 </div>
