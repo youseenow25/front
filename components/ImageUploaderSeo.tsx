@@ -252,7 +252,7 @@ const ResultModal = ({
     <div className="result-modal-overlay">
       <div className="result-modal">
         <div className="modal-header">
-            <h3>📧 ⚠️🚨Instructions</h3>
+            <h3>🚨🚨 IMPORTANT !!</h3>
       
           <h2 style={{textAlign:'center'}} >1. Check spam if it doesn't arrive to your email.</h2>
 
