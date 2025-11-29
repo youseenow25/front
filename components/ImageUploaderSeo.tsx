@@ -1680,21 +1680,20 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
           color: #d32f2f;
           margin-top: 4px;
         }
-       .submit-btn {
-  margin-top: 6px;
-  padding: 12px 24px;
-  background: black;
-  color: white;
-  font-weight: 600;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  transition: background 0.2s ease;
-  width: 100%;        /* full width */
-  font-size: 16px;
-  display: block;     /* optional but helps in some cases */
-}
-
+        
+        .submit-btn {
+          margin-top: 6px;
+          padding: 12px 24px;
+          background: black;
+          color: white;
+          font-weight: 600;
+          border-radius: 8px;
+          border: none;
+          cursor: pointer;
+          transition: background 0.2s ease;
+          width: fit-content;
+          font-size: 16px;
+        }
         
         .submit-btn:disabled {
           background: #bbb;
