@@ -486,9 +486,9 @@ const SafeImagePreview = ({ imageSrc, alt = "Preview" }: { imageSrc: string | nu
   }
 
   return (
-    <>
+    <div className="image-preview-container">
       {isLoading && (
-        <div className="image-loading">
+        <div className="image-loading-overlay">
           <div className="loading-spinner"></div>
           <span>Loading preview...</span>
         </div>
@@ -507,9 +507,12 @@ const SafeImagePreview = ({ imageSrc, alt = "Preview" }: { imageSrc: string | nu
           setIsLoading(false);
         }}
         loading="lazy"
-        style={{ display: isLoading ? 'none' : 'block' }}
+        style={{ 
+          opacity: isLoading ? 0 : 1,
+          transition: 'opacity 0.3s ease-in'
+        }}
       />
-    </>
+    </div>
   );
 };
 
@@ -723,7 +726,7 @@ export default function ImageUploader() {
     setBrandSearch(value);
   }, []);
 
-  // Safe image processing with abort capability
+  // Safe image processing with abort capability - FIXED for Chrome preview issue
   const processImageFile = useCallback((selectedFile: File) => {
     // Abort any ongoing FileReader
     if (fileReaderRef.current) {
@@ -788,48 +791,8 @@ export default function ImageUploader() {
         fileReaderRef.current = null;
       };
 
-      // Limit file size for preview to prevent memory issues
-      if (selectedFile.size > 2 * 1024 * 1024) { // 2MB
-        // For large files, use a smaller version
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        const img = new Image();
-        
-        img.onload = () => {
-          // Calculate new dimensions (max 800px width/height)
-          const maxDimension = 800;
-          let width = img.width;
-          let height = img.height;
-          
-          if (width > maxDimension || height > maxDimension) {
-            if (width > height) {
-              height = (height * maxDimension) / width;
-              width = maxDimension;
-            } else {
-              width = (width * maxDimension) / height;
-              height = maxDimension;
-            }
-          }
-          
-          canvas.width = width;
-          canvas.height = height;
-          ctx?.drawImage(img, 0, 0, width, height);
-          
-          const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.7);
-          setImage(compressedDataUrl);
-          setIsProcessingImage(false);
-        };
-        
-        img.onerror = () => {
-          // Fall back to FileReader if canvas method fails
-          reader.readAsDataURL(selectedFile);
-        };
-        
-        img.src = URL.createObjectURL(selectedFile);
-      } else {
-        // For smaller files, use regular FileReader
-        reader.readAsDataURL(selectedFile);
-      }
+      // Read the file as data URL - Chrome will handle this properly
+      reader.readAsDataURL(selectedFile);
 
     } catch (error) {
       console.error('Unexpected error processing image:', error);
@@ -1434,12 +1397,37 @@ export default function ImageUploader() {
         
         .image-uploader:hover { background: #f0f0f0; }
         
+        .image-preview-container {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        
         .image-preview {
           max-width: 100%;
           max-height: 500px;
           border-radius: 12px;
           object-fit: contain;
           width: 100%;
+        }
+        
+        .image-loading-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 12px;
+          background: rgba(255, 255, 255, 0.9);
+          z-index: 10;
+          border-radius: 12px;
         }
         
         .image-error-fallback {
@@ -1460,24 +1448,6 @@ export default function ImageUploader() {
           font-size: 12px;
           color: #888;
           font-style: italic;
-        }
-        
-        .image-loading {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          gap: 12px;
-          padding: 20px;
-        }
-        
-        .loading-spinner {
-          width: 40px;
-          height: 40px;
-          border: 3px solid #f0f0f0;
-          border-top: 3px solid #0070f3;
-          border-radius: 50%;
-          animation: spin 1s linear infinite;
         }
         
         .upload-placeholder {
