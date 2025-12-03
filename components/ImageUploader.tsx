@@ -1,5 +1,5 @@
 "use client";
-import React, { useMemo, useRef, useState, useEffect } from "react";
+import React, { useMemo, useRef, useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import brandsSchema from "./brands";
 
@@ -119,7 +119,6 @@ function ensureCurrencySymbol(value: string): string {
   if (symbol) return symbol;
   
   // If it's unknown, return the original value
-  
   return value;
 }
 
@@ -160,11 +159,40 @@ function extractNumericValue(formattedValue: string): string {
   return numericValue;
 }
 
-// Brand Logo Component
+// Validate image file with comprehensive checks
+function validateImageFile(file: File | null): { isValid: boolean; message?: string } {
+  if (!file) {
+    return { isValid: false, message: "Please select an image file" };
+  }
+
+  // Check if it's an image file
+  if (!file.type.startsWith("image/")) {
+    return { isValid: false, message: "File must be an image (PNG, JPG, JPEG, GIF, WEBP)" };
+  }
+
+  // Check file size (5MB limit)
+  const maxSize = 5 * 1024 * 1024; // 5MB
+  if (file.size > maxSize) {
+    return { isValid: false, message: "Image size must be less than 5MB" };
+  }
+
+  // Check for specific supported image types
+  const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml'];
+  const fileType = file.type.toLowerCase();
+  
+  if (!allowedTypes.includes(fileType)) {
+    return { isValid: false, message: "Unsupported image format. Use PNG, JPG, JPEG, GIF, or WEBP" };
+  }
+
+  return { isValid: true };
+}
+
+// Brand Logo Component with better error handling
 const BrandLogo = ({ brand, size = 24 }: { brand: string; size?: number }) => {
   const [logoError, setLogoError] = useState(false);
   
-  const getLogoPath = (brandName: string) => {
+  const getLogoPath = useCallback((brandName: string) => {
+    if (!brandName) return '';
     // Convert brand name to filename format
     const filename = brandName
       .toLowerCase()
@@ -173,9 +201,47 @@ const BrandLogo = ({ brand, size = 24 }: { brand: string; size?: number }) => {
       .replace(/^_|_$/g, '') + '.png';
     
     return `/brand-logos/${filename}`;
-  };
+  }, []);
 
-  if (logoError) {
+  try {
+    if (logoError || !brand) {
+      return (
+        <div 
+          className="brand-logo-fallback"
+          style={{ 
+            width: size, 
+            height: size, 
+            borderRadius: 4,
+            background: '#f0f0f0',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: size * 0.6,
+            color: '#666',
+            fontWeight: 'bold'
+          }}
+        >
+          {brand ? brand.charAt(0).toUpperCase() : '?'}
+        </div>
+      );
+    }
+
+    return (
+      <img
+        src={getLogoPath(brand)}
+        alt={brand}
+        style={{
+          width: size,
+          height: size,
+          objectFit: 'contain',
+          borderRadius: 4
+        }}
+        onError={() => setLogoError(true)}
+        loading="lazy"
+      />
+    );
+  } catch (error) {
+    console.error('Error rendering brand logo:', error);
     return (
       <div 
         className="brand-logo-fallback"
@@ -192,24 +258,10 @@ const BrandLogo = ({ brand, size = 24 }: { brand: string; size?: number }) => {
           fontWeight: 'bold'
         }}
       >
-        {brand.charAt(0).toUpperCase()}
+        ?
       </div>
     );
   }
-
-  return (
-    <img
-      src={getLogoPath(brand)}
-      alt={brand}
-      style={{
-        width: size,
-        height: size,
-        objectFit: 'contain',
-        borderRadius: 4
-      }}
-      onError={() => setLogoError(true)}
-    />
-  );
 };
 
 // Toast Component
@@ -239,7 +291,6 @@ const Toast = ({ message, type = "success", onClose }: {
 };
 
 // Result Modal Component
-// Result Modal Component
 const ResultModal = ({ 
   html, 
   email, 
@@ -254,34 +305,26 @@ const ResultModal = ({
   return (
     <div className="result-modal-overlay">
       <div className="result-modal" style={{ background: '#efefef', padding: '2px', borderRadius: '5px' }}>
-        
         <div
           className="modal-header"
           style={{
-            
             flexDirection: 'column',
             gap: '10px',
             color: '#000',
             position: 'relative'
           }}
         >
-             <h3>🚨🚨 IMPORTANT !!</h3>
-      
+          <h3>🚨🚨 IMPORTANT !!</h3>
           <h2 style={{textAlign:'center'}} >1. Check spam if it doesn't arrive to your email.</h2>
-
-              <h2 style={{textAlign:'center'}} >2. If the images don't show in the receipt, just set the email as not spam.</h2>
-
-
+          <h2 style={{textAlign:'center'}} >2. If the images don't show in the receipt, just set the email as not spam.</h2>
           <button className="close-button" onClick={onClose} style={{ position: 'absolute', top: 0, right: 0 }}>
             <X size={24} />
           </button>
         </div>
-
       </div>
     </div>
   );
 };
-
 
 // Custom Select Component for consistent styling
 const CustomSelect = ({ 
@@ -370,12 +413,12 @@ const IntegerInput = ({
   onBlur?: () => void;
 }) => {
   // Extract just the numeric part for display (remove currency symbol)
-  const getDisplayValue = (val: string) => {
+  const getDisplayValue = useCallback((val: string) => {
     if (!val) return '';
     // Remove currency symbol if present
     const numericValue = val.replace(currencySymbol, '');
     return numericValue;
-  };
+  }, [currencySymbol]);
 
   const displayValue = getDisplayValue(value);
 
@@ -402,7 +445,6 @@ const IntegerInput = ({
 
   return (
     <div className="integer-input-container">
-      
       <input
         type="text"
         inputMode="numeric"
@@ -413,9 +455,61 @@ const IntegerInput = ({
         className={`integer-input ${error ? 'error' : ''}`}
       />
       {error && <div className="integer-error-message">{error}</div>}
-           <span className="integer-format-badge"> (enter whole numbers only)</span>
+      <span className="integer-format-badge"> (enter whole numbers only)</span>
       <div className="integer-help-text">We'll add {currencySymbol} automatically</div>
     </div>
+  );
+};
+
+// Safe Image Preview Component with error boundary
+const SafeImagePreview = ({ imageSrc, alt = "Preview" }: { imageSrc: string | null; alt?: string }) => {
+  const [hasError, setHasError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setHasError(false);
+    setIsLoading(true);
+  }, [imageSrc]);
+
+  if (!imageSrc) return null;
+
+  if (hasError) {
+    return (
+      <div className="image-error-fallback">
+        <div className="error-icon">
+          <AlertCircle size={48} />
+        </div>
+        <p>Failed to load image preview</p>
+        <p className="error-subtext">The image file is still valid for upload</p>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      {isLoading && (
+        <div className="image-loading">
+          <div className="loading-spinner"></div>
+          <span>Loading preview...</span>
+        </div>
+      )}
+      <img 
+        src={imageSrc} 
+        alt={alt} 
+        className={`image-preview ${isLoading ? 'loading' : 'loaded'}`}
+        onLoad={() => {
+          setIsLoading(false);
+          setHasError(false);
+        }}
+        onError={(e) => {
+          console.error('Image preview error:', e);
+          setHasError(true);
+          setIsLoading(false);
+        }}
+        loading="lazy"
+        style={{ display: isLoading ? 'none' : 'block' }}
+      />
+    </>
   );
 };
 
@@ -436,10 +530,12 @@ export default function ImageUploader() {
   const [userEmail, setUserEmail] = useState<string>("");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null);
+  const [isProcessingImage, setIsProcessingImage] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const brandPickerRef = useRef<HTMLDivElement>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
+  const fileReaderRef = useRef<FileReader | null>(null);
 
   const allBrands = useMemo(() => Object.keys(brandsSchema.brands || {}).sort(), []);
   const visibleFields = useMemo<string[]>(
@@ -477,6 +573,16 @@ export default function ImageUploader() {
     
     return true;
   }, [brand, file, visibleFields, formData, userEmail]);
+
+  // Cleanup FileReader on unmount
+  useEffect(() => {
+    return () => {
+      if (fileReaderRef.current) {
+        fileReaderRef.current.abort();
+        fileReaderRef.current = null;
+      }
+    };
+  }, []);
 
   // Detect browser language on component mount and set default date values
   useEffect(() => {
@@ -581,7 +687,7 @@ export default function ImageUploader() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  function updateField(name: string, value: string) {
+  const updateField = useCallback((name: string, value: string) => {
     // For price fields, store the formatted value (with currency symbol) for display
     // The actual numeric value will be extracted when submitting
     if (PRICE_FIELDS.test(name)) {
@@ -596,10 +702,10 @@ export default function ImageUploader() {
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: "" }));
     }
-  }
+  }, [errors]);
 
   // Handle price field validation on blur
-  function handleIntegerBlur(fieldName: string, value: string) {
+  const handleIntegerBlur = useCallback((fieldName: string, value: string) => {
     if (value.trim()) {
       const validation = validateInteger(value);
       if (!validation.isValid) {
@@ -610,69 +716,173 @@ export default function ImageUploader() {
         setFormData(prev => ({ ...prev, [fieldName]: formattedValue }));
       }
     }
-  }
+  }, [selectedCurrency.symbol]);
 
-  // Fixed: Separate handler for brand search
-  function handleBrandSearchChange(value: string) {
+  // Handle brand search change
+  const handleBrandSearchChange = useCallback((value: string) => {
     setBrandSearch(value);
-  }
+  }, []);
 
-  function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
+  // Safe image processing with abort capability
+  const processImageFile = useCallback((selectedFile: File) => {
+    // Abort any ongoing FileReader
+    if (fileReaderRef.current) {
+      fileReaderRef.current.abort();
+      fileReaderRef.current = null;
+    }
+
+    // Validate the file first
+    const validation = validateImageFile(selectedFile);
+    if (!validation.isValid) {
+      setErrors(prev => ({ ...prev, image: validation.message || "Invalid image file" }));
+      setFile(null);
+      setImage(null);
+      return;
+    }
+
+    setFile(selectedFile);
+    setErrors(prev => ({ ...prev, image: "" }));
+    setIsProcessingImage(true);
+
+    try {
+      // Create new FileReader
+      const reader = new FileReader();
+      fileReaderRef.current = reader;
+
+      reader.onloadstart = () => {
+        // Can show loading indicator if needed
+      };
+
+      reader.onload = (e) => {
+        try {
+          if (e.target?.result && typeof e.target.result === 'string') {
+            setImage(e.target.result);
+          }
+        } catch (error) {
+          console.error('Error setting image data:', error);
+          setErrors(prev => ({ 
+            ...prev, 
+            image: "Failed to process image preview. The file will still be uploaded." 
+          }));
+        } finally {
+          setIsProcessingImage(false);
+          fileReaderRef.current = null;
+        }
+      };
+
+      reader.onerror = (error) => {
+        console.error('FileReader error:', error);
+        setErrors(prev => ({ 
+          ...prev, 
+          image: "Error reading image file. Please try a different file." 
+        }));
+        setFile(null);
+        setImage(null);
+        setIsProcessingImage(false);
+        fileReaderRef.current = null;
+      };
+
+      reader.onabort = () => {
+        console.log('FileReader aborted');
+        setIsProcessingImage(false);
+        fileReaderRef.current = null;
+      };
+
+      // Limit file size for preview to prevent memory issues
+      if (selectedFile.size > 2 * 1024 * 1024) { // 2MB
+        // For large files, use a smaller version
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        const img = new Image();
+        
+        img.onload = () => {
+          // Calculate new dimensions (max 800px width/height)
+          const maxDimension = 800;
+          let width = img.width;
+          let height = img.height;
+          
+          if (width > maxDimension || height > maxDimension) {
+            if (width > height) {
+              height = (height * maxDimension) / width;
+              width = maxDimension;
+            } else {
+              width = (width * maxDimension) / height;
+              height = maxDimension;
+            }
+          }
+          
+          canvas.width = width;
+          canvas.height = height;
+          ctx?.drawImage(img, 0, 0, width, height);
+          
+          const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.7);
+          setImage(compressedDataUrl);
+          setIsProcessingImage(false);
+        };
+        
+        img.onerror = () => {
+          // Fall back to FileReader if canvas method fails
+          reader.readAsDataURL(selectedFile);
+        };
+        
+        img.src = URL.createObjectURL(selectedFile);
+      } else {
+        // For smaller files, use regular FileReader
+        reader.readAsDataURL(selectedFile);
+      }
+
+    } catch (error) {
+      console.error('Unexpected error processing image:', error);
+      setErrors(prev => ({ 
+        ...prev, 
+        image: "Unexpected error processing image. Please try again." 
+      }));
+      setFile(null);
+      setImage(null);
+      setIsProcessingImage(false);
+      fileReaderRef.current = null;
+    }
+  }, []);
+
+  const handleFileChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     const selected = event.target.files?.[0];
     if (!selected) return;
     
-    // Validate file type and size
-    if (!selected.type.startsWith("image/")) {
-      setErrors(prev => ({ ...prev, image: "Please upload an image file" }));
-      return;
+    // Reset file input to allow selecting the same file again
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
     }
     
-    if (selected.size > 5 * 1024 * 1024) {
-      setErrors(prev => ({ ...prev, image: "File size must be less than 5MB" }));
-      return;
-    }
-    
-    setFile(selected);
-    setErrors(prev => ({ ...prev, image: "" }));
-    const reader = new FileReader();
-    reader.onload = () => setImage(reader.result as string);
-    reader.readAsDataURL(selected);
-  }
+    processImageFile(selected);
+  }, [processImageFile]);
 
-  function handleDrop(event: React.DragEvent<HTMLDivElement>) {
+  const handleDrop = useCallback((event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
+    event.stopPropagation();
+    
     const selected = event.dataTransfer.files?.[0];
-    if (!selected || !selected.type.startsWith("image/")) return;
+    if (!selected) return;
     
-    // Validate file size
-    if (selected.size > 5 * 1024 * 1024) {
-      setErrors(prev => ({ ...prev, image: "File size must be less than 5MB" }));
-      return;
-    }
-    
-    setFile(selected);
-    setErrors(prev => ({ ...prev, image: "" }));
-    const reader = new FileReader();
-    reader.onload = () => setImage(reader.result as string);
-    reader.readAsDataURL(selected);
-  }
+    processImageFile(selected);
+  }, [processImageFile]);
 
-  function handleDragOver(event: React.DragEvent<HTMLDivElement>) {
+  const handleDragOver = useCallback((event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
-  }
+    event.stopPropagation();
+  }, []);
 
-  function toggleBrandPicker() {
+  const toggleBrandPicker = useCallback(() => {
     setBrandPickerOpen(!brandPickerOpen);
-  }
+  }, [brandPickerOpen]);
 
-  function handleLanguageChange(value: string) {
+  const handleLanguageChange = useCallback((value: string) => {
     const selectedLang = SUPPORTED_LANGUAGES.find(
       lang => lang.code === value
     ) || SUPPORTED_LANGUAGES[0];
     setSelectedLanguage(selectedLang);
-  }
+  }, []);
 
-  function handleCurrencyChange(value: string) {
+  const handleCurrencyChange = useCallback((value: string) => {
     const selectedCurr = SUPPORTED_CURRENCIES.find(
       curr => curr.code === value
     ) || SUPPORTED_CURRENCIES[0];
@@ -694,7 +904,7 @@ export default function ImageUploader() {
       });
       return updated;
     });
-  }
+  }, [priceFields, updateField]);
 
   function validateForm(): boolean {
     const newErrors: Record<string, string> = {};
@@ -705,6 +915,12 @@ export default function ImageUploader() {
 
     if (!file) {
       newErrors.image = "Please upload a product image";
+    } else {
+      // Re-validate file on submit
+      const validation = validateImageFile(file);
+      if (!validation.isValid) {
+        newErrors.image = validation.message || "Invalid image file";
+      }
     }
 
     // Check all visible fields
@@ -828,7 +1044,8 @@ export default function ImageUploader() {
       });
 
       if (res.status===401){
-        router.push("/login")
+        router.push("/login");
+        return;
       }
 
       // Handle subscription required cases (402, 403, 405)
@@ -902,7 +1119,19 @@ export default function ImageUploader() {
     setBrand("");
     setFormData({});
     setBrandSearch("");
+    
+    // Clean up any FileReader
+    if (fileReaderRef.current) {
+      fileReaderRef.current.abort();
+      fileReaderRef.current = null;
+    }
   }
+
+  const handleUploadAreaClick = useCallback(() => {
+    if (!isProcessingImage && fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  }, [isProcessingImage]);
 
   return (
     <div className="wrap" ref={wrapRef}>
@@ -930,32 +1159,43 @@ export default function ImageUploader() {
         className="image-uploader"
         onDrop={handleDrop}
         onDragOver={handleDragOver}
-        onClick={() => fileInputRef.current?.click()}
+        onClick={handleUploadAreaClick}
         role="button"
         aria-label="Upload image"
         tabIndex={0}
+        style={{ 
+          cursor: isProcessingImage ? 'wait' : 'pointer',
+          opacity: isProcessingImage ? 0.7 : 1 
+        }}
       >
-        {image ? (
-          <img src={image} alt="Preview" className="image-preview" />
+        {image || isProcessingImage ? (
+          <SafeImagePreview imageSrc={image} />
         ) : (
           <div className="upload-placeholder">
-             <div className="upload-icon">
-             <span style={{fontSize:30}} >
-              📎
+            <div className="upload-icon">
+              <span style={{fontSize:30}}>
+                📎
               </span> 
-              </div>
-              <div className="upload-text">
-                <p>Upload the product image</p>
-                <span>PNG, JPG up to 5MB</span>
-              </div>
+            </div>
+            <div className="upload-text">
+              <p>Upload the product image</p>
+              <span>PNG, JPG up to 5MB</span>
+              {isProcessingImage && (
+                <div className="processing-indicator">
+                  <div className="processing-spinner"></div>
+                  <span>Processing image...</span>
+                </div>
+              )}
+            </div>
           </div>
         )}
         <input
           ref={fileInputRef}
           type="file"
-          accept="image/*"
+          accept="image/jpeg,image/jpg,image/png,image/gif,image/webp"
           onChange={handleFileChange}
           style={{ display: "none" }}
+          disabled={isProcessingImage}
         />
         {errors.image && <div className="error-message">{errors.image}</div>}
       </div>
@@ -986,6 +1226,7 @@ export default function ImageUploader() {
               type="button"
               className={`picker-btn ${errors.brand ? 'error' : ''}`}
               onClick={toggleBrandPicker}
+              disabled={isProcessingImage}
             >
               <div className="selected-option-content">
                 <Search className="select-icon" />
@@ -1009,6 +1250,7 @@ export default function ImageUploader() {
                   onChange={(e) => handleBrandSearchChange(e.target.value)}
                   className="picker-search"
                   autoFocus
+                  disabled={isProcessingImage}
                 />
                 <div className="picker-list">
                   {filteredBrands.length > 0 ? (
@@ -1074,6 +1316,7 @@ export default function ImageUploader() {
             onChange={(e) => updateField("email", e.target.value)}
             placeholder="Enter email address"
             className={`${userEmail && !formData.email ? "email-field" : ''} ${errors.email ? 'error' : ''}`}
+            disabled={isProcessingImage}
           />
           {userEmail && !formData.email && (
             <div className="email-note">
@@ -1122,6 +1365,7 @@ export default function ImageUploader() {
                         onChange={(e) => updateField(field, e.target.value)}
                         placeholder={toLabel(field)}
                         className={errors[field] ? 'error' : ''}
+                        disabled={isProcessingImage}
                         {...(type === "number" ? { step: "any" } : {})}
                       />
                     )}
@@ -1143,13 +1387,13 @@ export default function ImageUploader() {
         <button
           type="submit"
           className="submit-btn"
-          disabled={!isFormValid || loading}
+          disabled={!isFormValid || loading || isProcessingImage}
         >
           {loading ? "Generating..." : "Send receipt to my email"}
         </button>
       </form>
 
-      <style>{`
+      <style jsx>{`
         .wrap {
           display: grid;
           grid-template-columns: 1fr 1.4fr;
@@ -1178,7 +1422,7 @@ export default function ImageUploader() {
           padding: 24px;
           text-align: center;
           cursor: pointer;
-          transition: background 0.2s ease;
+          transition: all 0.2s ease;
           min-height: 320px;
           display: flex;
           align-items: center;
@@ -1186,9 +1430,18 @@ export default function ImageUploader() {
           position: relative;
           width: 100%;
           box-sizing: border-box;
+          background: #fafafa;
         }
         
-        .image-uploader:hover { background: #f0f0f0; }
+        .image-uploader:hover:not(:disabled) { 
+          background: #f0f0f0; 
+          border-color: #999;
+        }
+        
+        .image-uploader:disabled {
+          cursor: not-allowed;
+          opacity: 0.6;
+        }
         
         .image-preview {
           max-width: 100%;
@@ -1198,23 +1451,100 @@ export default function ImageUploader() {
           width: 100%;
         }
         
+        .image-preview.loading {
+          display: none;
+        }
+        
+        .image-preview.loaded {
+          display: block;
+          animation: fadeIn 0.3s ease;
+        }
+        
+        .image-error-fallback {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 12px;
+          padding: 20px;
+          color: #666;
+        }
+        
+        .error-icon {
+          color: #ff6b6b;
+        }
+        
+        .error-subtext {
+          font-size: 12px;
+          color: #888;
+          font-style: italic;
+        }
+        
+        .image-loading {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 12px;
+          padding: 20px;
+        }
+        
+        .loading-spinner {
+          width: 40px;
+          height: 40px;
+          border: 3px solid #f0f0f0;
+          border-top: 3px solid #0070f3;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+        }
+        
         .upload-placeholder {
           color: #666;
           width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 12px;
         }
         
         .upload-icon {
-          margin-bottom: 12px;
+          margin-bottom: 8px;
+        }
+        
+        .upload-text {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          align-items: center;
         }
         
         .upload-text p {
-          margin: 0 0 4px 0;
+          margin: 0;
           font-weight: 500;
+          color: #333;
         }
         
         .upload-text span {
           font-size: 14px;
           color: #888;
+        }
+        
+        .processing-indicator {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          margin-top: 12px;
+          color: #666;
+          font-size: 14px;
+        }
+        
+        .processing-spinner {
+          width: 16px;
+          height: 16px;
+          border: 2px solid #f0f0f0;
+          border-top: 2px solid #0070f3;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
         }
         
         .data-form {
@@ -1235,18 +1565,24 @@ export default function ImageUploader() {
           width: 100%;
           padding: 12px 16px;
           background: #efefef;
-          border: none;
-         
+          border: 1px solid #ddd;
+          border-radius: 8px;
           font-size: 16px;
           cursor: pointer;
           display: flex;
           justify-content: space-between;
           align-items: center;
           transition: all 0.2s ease;
+          color: #333;
         }
         
         .custom-select-button:hover {
           background: #e5e5e5;
+        }
+        
+        .custom-select-button:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
         }
         
         .selected-option-content {
@@ -1266,12 +1602,16 @@ export default function ImageUploader() {
         .selected-label {
           text-align: left;
           flex: 1;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
         
         .brand-option {
           display: flex;
           align-items: center;
           gap: 8px;
+          overflow: hidden;
         }
         
         .dropdown-arrow {
@@ -1342,14 +1682,15 @@ export default function ImageUploader() {
           width: 100%;
           padding: 12px 16px;
           background: #efefef;
-          border: none;
-          
+          border: 1px solid #ddd;
+          border-radius: 8px;
           font-size: 16px;
           cursor: pointer;
           display: flex;
           justify-content: space-between;
           align-items: center;
           transition: all 0.2s ease;
+          color: #333;
         }
         
         .picker-btn:hover {
@@ -1358,6 +1699,11 @@ export default function ImageUploader() {
         
         .picker-btn.error {
           border: 1px solid #d32f2f;
+        }
+        
+        .picker-btn:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
         }
         
         .picker-panel {
@@ -1396,6 +1742,11 @@ export default function ImageUploader() {
           border-color: #000;
         }
         
+        .picker-search:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
+        
         .picker-list {
           max-height: 300px;
           overflow-y: auto;
@@ -1432,7 +1783,12 @@ export default function ImageUploader() {
           width: 100%;
         }
         
-        .brand-hint { color: #777; margin: 6px 0 12px; }
+        .brand-hint { 
+          color: #777; 
+          margin: 6px 0 12px; 
+          font-size: 14px;
+          font-style: italic;
+        }
         
         .form-grid {
           display: grid;
@@ -1464,6 +1820,8 @@ export default function ImageUploader() {
           width: 100%;
           background: transparent;
           box-sizing: border-box;
+          color: #333;
+          transition: border-color 0.2s ease;
         }
         
         .field input:focus {
@@ -1473,6 +1831,12 @@ export default function ImageUploader() {
         
         .field input.error {
           border-color: #d32f2f;
+        }
+        
+        .field input:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+          background: #f8f8f8;
         }
         
         /* SIMPLIFIED Integer Input Styles */
@@ -1488,6 +1852,7 @@ export default function ImageUploader() {
           width: 100%;
           background: transparent;
           box-sizing: border-box;
+          color: #333;
         }
         
         .integer-input:focus {
@@ -1574,17 +1939,22 @@ export default function ImageUploader() {
           border-radius: 8px;
           border: none;
           cursor: pointer;
-          transition: background 0.2s ease;
+          transition: all 0.2s ease;
           width: fit-content;
           font-size: 16px;
+          align-self: flex-start;
         }
         
         .submit-btn:disabled {
           background: #bbb;
           cursor: not-allowed;
+          opacity: 0.7;
         }
         
-        .submit-btn:hover:not(:disabled) { background: #333; }
+        .submit-btn:hover:not(:disabled) { 
+          background: #333; 
+          transform: translateY(-1px);
+        }
         
         /* Toast Styles */
         .toast {
@@ -1602,26 +1972,31 @@ export default function ImageUploader() {
           justify-content: space-between;
           gap: 12px;
         }
+        
         .toast-success {
           background: #d4edda;
           border: 1px solid #c3e6cb;
           color: #155724;
         }
+        
         .toast-error {
           background: #f8d7da;
           border: 1px solid #f5c6cb;
           color: #721c24;
         }
+        
         .toast-content {
           display: flex;
           align-items: center;
           gap: 12px;
         }
+        
         .toast-message {
           flex: 1;
           font-size: 14px;
           font-weight: 500;
         }
+        
         .toast-close {
           background: none;
           border: none;
@@ -1632,7 +2007,10 @@ export default function ImageUploader() {
           display: flex;
           align-items: center;
           justify-content: center;
+          border-radius: 4px;
+          transition: opacity 0.2s ease;
         }
+        
         .toast-close:hover {
           opacity: 1;
         }
@@ -1650,17 +2028,18 @@ export default function ImageUploader() {
           justify-content: center;
           z-index: 10000;
           padding: 20px;
+          animation: fadeIn 0.3s ease;
         }
         
         .result-modal {
           background: black;
-          
           max-width: 90%;
           max-height: 90vh;
           width: 800px;
           display: flex;
           flex-direction: column;
           box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+          animation: scaleIn 0.3s ease;
         }
         
         .modal-header {
@@ -1687,6 +2066,7 @@ export default function ImageUploader() {
           align-items: center;
           justify-content: center;
           color: #666;
+          transition: all 0.2s ease;
         }
         
         .close-button:hover {
@@ -1694,79 +2074,7 @@ export default function ImageUploader() {
           color: #333;
         }
         
-        .modal-content {
-          padding: 24px;
-          overflow-y: auto;
-          flex: 1;
-        }
-        
-        .success-message {
-          text-align: center;
-          margin-bottom: 20px;
-          padding: 16px;
-          background: #f8f9fa;
-          border-radius: 8px;
-        }
-        
-        .success-message p {
-          margin: 0 0 8px 0;
-          font-size: 16px;
-        }
-        
-        .preview-text {
-          font-weight: 600;
-          margin-top: 8px;
-          color: #333;
-          font-size: 14px;
-        }
-        
-        .html-preview {
-          border: 1px solid #e0e0e0;
-          border-radius: 8px;
-          padding: 20px;
-          background: white;
-          max-height: 400px;
-          overflow-y: auto;
-          margin-bottom: 20px;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        
-        .modal-actions {
-          display: flex;
-          gap: 12px;
-          justify-content: flex-end;
-        }
-        
-        .primary-btn {
-          background: #000;
-          color: white;
-          border: none;
-          padding: 10px 20px;
-          border-radius: 6px;
-          cursor: pointer;
-          font-weight: 500;
-          font-size: 14px;
-        }
-        
-        .primary-btn:hover {
-          background: #333;
-        }
-        
-        .secondary-btn {
-          background: #f0f0f0;
-          color: #333;
-          border: none;
-          padding: 10px 20px;
-          border-radius: 6px;
-          cursor: pointer;
-          font-weight: 500;
-          font-size: 14px;
-        }
-        
-        .secondary-btn:hover {
-          background: #e0e0e0;
-        }
-        
+        /* Animations */
         @keyframes slideIn {
           from {
             transform: translateX(100%);
@@ -1776,6 +2084,31 @@ export default function ImageUploader() {
             transform: translateX(0);
             opacity: 1;
           }
+        }
+        
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+        
+        @keyframes scaleIn {
+          from {
+            transform: scale(0.9);
+            opacity: 0;
+          }
+          to {
+            transform: scale(1);
+            opacity: 1;
+          }
+        }
+        
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
         }
         
         /* Mobile optimizations */
@@ -1795,19 +2128,21 @@ export default function ImageUploader() {
             padding: 20px;
           }
           
-          .modal-actions {
-            flex-direction: column;
-          }
-          
           .result-modal {
             width: 95%;
             max-height: 85vh;
+          }
+          
+          .submit-btn {
+            width: 100%;
+            text-align: center;
           }
         }
         
         @media (max-width: 480px) {
           .wrap {
             padding: 0 12px;
+            gap: 16px;
           }
           
           .image-uploader {
@@ -1823,8 +2158,18 @@ export default function ImageUploader() {
             font-size: 18px;
           }
           
-          .modal-content {
-            padding: 20px;
+          .custom-select-button,
+          .picker-btn,
+          .field input {
+            padding: 10px 12px;
+            font-size: 15px;
+          }
+          
+          .toast {
+            left: 16px;
+            right: 16px;
+            top: 16px;
+            max-width: none;
           }
         }
       `}</style>
