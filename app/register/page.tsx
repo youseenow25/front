@@ -128,7 +128,7 @@ export default function RegisterPage() {
 
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Email address
+                Email address , 🚨🚨 make sure that is your real email, is where the receipt will be sent.
               </label>
               <div className="mt-1">
                 <input
