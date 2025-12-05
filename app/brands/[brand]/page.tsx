@@ -25,11 +25,11 @@ export async function generateMetadata(
   }
 
   const brandName = toLabel(brand)
-  const description = `Generate authentic ${brandName} receipts instantly. Create professional ${brandName} invoice templates with real designs, logos, and formatting. Free ${brandName} receipt maker.`
+  const description = `Generate authentic ${brandName} 1:1 receipts instantly. Create professional ${brandName} invoice templates with real designs, logos, and formatting. Free ${brandName} receipt maker.`
   const logoUrl = `https://www.hubreceipts.com/brand-logos/${brand.toLowerCase().replace(/[^a-z0-9]/g, '_')}.webp`
   
   return {
-    title: `${brandName} Receipt Generator - Create Authentic ${brandName} Invoices | HubReceipts`,
+    title: `${brandName} 1:1 receipt template`,
     description: description,
     keywords: [
       `${brandName} receipt`,
@@ -42,7 +42,7 @@ export async function generateMetadata(
       'authentic receipt generator'
     ],
     openGraph: {
-      title: `${brandName} Receipt Generator - HubReceipts`,
+      title: `${brandName} 1:1 receipt template`,
       description: description,
       type: 'website',
       locale: 'en_US',
