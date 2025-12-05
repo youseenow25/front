@@ -39,7 +39,7 @@ export default function Page() {
         <div className="luxury-radial" aria-hidden />
         <Header />
         <section className="container" style={{ padding: '24px 20px 0 20px', textAlign: 'center' }}>
-          <h1 style={{ fontSize: 'clamp(2.2rem, 4vw, 3rem)', fontWeight: 700, color: '#111', marginBottom: 8 }}>
+          <h1 className="seo-h1">
             HubReceipts – Authentic Luxury & Streetwear Receipt Generator
           </h1>
           <p style={{ maxWidth: 760, margin: '0 auto', color: '#444', fontSize: '1rem', lineHeight: 1.6 }}>
@@ -518,6 +518,13 @@ export default function Page() {
             width: 75px !important;
             height: 100px !important;
           }
+        }
+        /* Subtle, accessible visible H1 */
+        .seo-h1 {
+          font-size: 1rem;
+          font-weight: 600;
+          color: #444;
+          margin-bottom: 6px;
         }
       `}</style>
     </>
