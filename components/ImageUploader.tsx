@@ -187,7 +187,7 @@ function validateImageFile(file: File | null): { isValid: boolean; message?: str
   return { isValid: true };
 }
 
-// Brand Logo Component with better error handling
+// Brand Logo Component with better error handling (uses next/image for optimizations)
 const BrandLogo = ({ brand, size = 24 }: { brand: string; size?: number }) => {
   const [logoError, setLogoError] = useState(false);
   
@@ -198,7 +198,7 @@ const BrandLogo = ({ brand, size = 24 }: { brand: string; size?: number }) => {
       .toLowerCase()
       .replace(/[^a-z0-9]/g, '_')
       .replace(/_+/g, '_')
-      .replace(/^_|_$/g, '') + '.png';
+      .replace(/^_|_$/g, '') + '.webp';
     
     return `/brand-logos/${filename}`;
   }, []);
@@ -227,9 +227,12 @@ const BrandLogo = ({ brand, size = 24 }: { brand: string; size?: number }) => {
     }
 
     return (
-      <img
+      <Image
         src={getLogoPath(brand)}
-        alt={brand}
+        alt={`${brand} logo`}
+        width={size}
+        height={size}
+        sizes={`${size}px`}
         style={{
           width: size,
           height: size,

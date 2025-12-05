@@ -15,7 +15,7 @@ const BrandLogo = ({ brand, size = 20 }: { brand: string; size?: number }) => {
       .toLowerCase()
       .replace(/[^a-z0-9]/g, '_')
       .replace(/_+/g, '_')
-      .replace(/^_|_$/g, '') + '.png';
+      .replace(/^_|_$/g, '') + '.webp';
     
     return `/brand-logos/${filename}`;
   };

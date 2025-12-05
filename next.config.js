@@ -3,6 +3,9 @@ const nextConfig = {
   output: 'standalone', // Optional: for better deployment
   images: {
     domains: ['api.hubreceipts.com'], // Add your image domains if needed
+    formats: ['image/avif', 'image/webp'],
+    deviceSizes: [32, 48, 64, 96, 128, 256, 384, 512, 640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [16, 24, 32, 48, 64, 96],
   },
   // Add any other config you need
 }

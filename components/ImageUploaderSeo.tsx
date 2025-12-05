@@ -164,12 +164,12 @@ const getLogoPath = (brandName: string) => {
     .toLowerCase()
     .replace(/[^a-z0-9]/g, '_')
     .replace(/_+/g, '_')
-    .replace(/^_|_$/g, '') + '.png';
+    .replace(/^_|_$/g, '') + '.webp';
   
   return `/brand-logos/${filename}`;
 };
 
-// Brand Logo Component
+// Brand Logo Component with next/image for optimized delivery
 const BrandLogo = ({ brand, size = 24 }: { brand: string; size?: number }) => {
   const [logoError, setLogoError] = useState(false);
 
@@ -196,15 +196,19 @@ const BrandLogo = ({ brand, size = 24 }: { brand: string; size?: number }) => {
   }
 
   return (
-    <img
+    <Image
       src={getLogoPath(brand)}
-      alt={brand}
+      alt={`${brand} logo`}
+      width={size}
+      height={size}
+      sizes={`${size}px`}
       style={{
         width: size,
         height: size,
         objectFit: 'contain',
         borderRadius: 4
       }}
+      loading="lazy"
       onError={() => setLogoError(true)}
     />
   );

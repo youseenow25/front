@@ -119,11 +119,12 @@ export default function Header() {
     >
       <button
         onClick={() => navigateTo("/")}
+        aria-label="Go to homepage"
         style={{ display: "flex", alignItems: "center", gap: 8, border: "none", background: "none" }}
       >
-        <Image width={60} height={60} alt="Logo" src={"/logoheader.png"} />
+        <Image width={60} height={60} alt="HubReceipts logo" src={"/logoheader.png"} />
       </button>
-      <button onClick={toggleMobileMenu} style={{ border: "none", background: "none" }}>
+      <button onClick={toggleMobileMenu} aria-label="Close menu" style={{ border: "none", background: "none" }}>
         <X size={28} color="black" />
       </button>
     </div>
@@ -317,11 +318,11 @@ export default function Header() {
         }}
       >
         {/* Left: Brand */}
-        <button onClick={() => router.push("/")} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        <button onClick={() => router.push("/")} aria-label="Go to homepage" style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <Image 
             width={isMobile ? 60 : 90} 
-            height={isMobile ? 60 : 900} 
-            alt="Webpage logo" 
+            height={isMobile ? 60 : 90} 
+            alt="HubReceipts logo" 
             src={'/logoheader.png'} 
           />
         </button>
@@ -495,6 +496,7 @@ export default function Header() {
             ) : (
               <button
                 onClick={toggleMobileMenu}
+                aria-label="Open menu"
                 style={{ background: "none", border: "none", padding: 8 }}
               >
                 <Menu size={24} color="black" />
@@ -554,6 +556,7 @@ export default function Header() {
             ) : (
               <button
                 onClick={toggleMobileMenu}
+                aria-label="Open menu"
                 style={{ background: "none", border: "none", padding: 8 }}
               >
                 <Menu size={24} color="black" />
