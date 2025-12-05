@@ -113,6 +113,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           async
           src="https://www.googletagmanager.com/gtag/js?id=AW-17728207333"
         />
+        {/* Ahrefs Analytics */}
+        <Script
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key="D+3qURzx7DwG72aE6NMklA"
+          async
+        />
         <Script id="google-analytics">
           {`
             window.dataLayer = window.dataLayer || [];
