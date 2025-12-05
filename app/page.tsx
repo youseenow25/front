@@ -40,10 +40,10 @@ export default function Page() {
         <Header />
         <section className="container" style={{ padding: '24px 20px 0 20px', textAlign: 'center' }}>
           <h1 className="seo-h1">
-            HubReceipts – Authentic Luxury & Streetwear Receipt Generator
+            Generate 1:1 Receipts for StockX, Farfetch +70 brands
           </h1>
           <p style={{ maxWidth: 760, margin: '0 auto', color: '#444', fontSize: '1rem', lineHeight: 1.6 }}>
-            Generate professional, brand-accurate receipts for 100+ luxury and streetwear brands with instant templates, secure processing, and SEO-friendly structured data.
+            Generate email, paper and A4 receipts for more than 70 luxury brands.
           </p>
         </section>
 
