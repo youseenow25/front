@@ -1,3 +1,4 @@
+import Image from "next/image";
 "use client";
 import React from "react";
 
@@ -41,10 +42,13 @@ const BrandLogo = ({ brand, size = 20 }: { brand: string; size?: number }) => {
   }
 
   return (
-    <img
+    <Image
       src={getLogoPath(brand)}
-      alt={brand}
+      alt={`${brand} logo`}
       loading="lazy"
+      width={size}
+      height={size}
+      sizes={`${size}px`}
       style={{
         width: size,
         height: size,
