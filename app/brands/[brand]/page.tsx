@@ -40,7 +40,7 @@ export async function generateMetadata(
       'free receipt generator',
       'luxury brand receipts',
       'authentic receipt generator'
-    ].join(', '),
+    ],
     openGraph: {
       title: `${brandName} Receipt Generator - HubReceipts`,
       description: description,

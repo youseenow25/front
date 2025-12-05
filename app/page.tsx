@@ -35,10 +35,17 @@ function toLabel(name: string): string {
 export default function Page() {
   return (
     <>
-  
       <main className="main">
         <div className="luxury-radial" aria-hidden />
         <Header />
+        <section className="container" style={{ padding: '24px 20px 0 20px', textAlign: 'center' }}>
+          <h1 style={{ fontSize: 'clamp(2.2rem, 4vw, 3rem)', fontWeight: 700, color: '#111', marginBottom: 8 }}>
+            HubReceipts – Authentic Luxury & Streetwear Receipt Generator
+          </h1>
+          <p style={{ maxWidth: 760, margin: '0 auto', color: '#444', fontSize: '1rem', lineHeight: 1.6 }}>
+            Generate professional, brand-accurate receipts for 100+ luxury and streetwear brands with instant templates, secure processing, and SEO-friendly structured data.
+          </p>
+        </section>
 
         {/* Receipts Examples Section */}
         <section className="receipts-examples">
@@ -93,6 +100,7 @@ export default function Page() {
     src="https://www.youtube.com/embed/lSIbSG7K5MM?si=_T6UfwB3XPKVFNhA"
     title="YouTube video player"
     frameBorder="0"
+    loading="lazy"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
     allowFullScreen
   ></iframe>
@@ -103,6 +111,7 @@ export default function Page() {
     src="https://www.youtube.com/embed/afOwQ4U1Z9Y?si=59fr5TSkEIQvqe5_"
     title="YouTube video player"
     frameBorder="0"
+    loading="lazy"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
     allowFullScreen
   ></iframe>
@@ -113,6 +122,7 @@ export default function Page() {
     src="https://www.youtube.com/embed/w50nDYGEiqw?si=TbSN2YuJnzurLZMD"
     title="YouTube video player"
     frameBorder="0"
+    loading="lazy"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
     allowFullScreen
   ></iframe>

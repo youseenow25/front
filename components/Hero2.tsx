@@ -44,6 +44,7 @@ const BrandLogo = ({ brand, size = 20 }: { brand: string; size?: number }) => {
     <img
       src={getLogoPath(brand)}
       alt={brand}
+      loading="lazy"
       style={{
         width: size,
         height: size,
