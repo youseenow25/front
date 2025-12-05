@@ -227,12 +227,12 @@ const BrandLogo = ({ brand, size = 24 }: { brand: string; size?: number }) => {
     }
 
     return (
-      <Image
+      <img
         src={getLogoPath(brand)}
         alt={`${brand} logo`}
         width={size}
         height={size}
-        sizes={`${size}px`}
+        loading="lazy"
         style={{
           width: size,
           height: size,
@@ -240,7 +240,6 @@ const BrandLogo = ({ brand, size = 24 }: { brand: string; size?: number }) => {
           borderRadius: 4
         }}
         onError={() => setLogoError(true)}
-        loading="lazy"
       />
     );
   } catch (error) {
