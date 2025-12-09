@@ -25,7 +25,7 @@ export async function generateMetadata(
   }
 
   const brandName = toLabel(brand)
-  const description = `Generate authentic ${brandName} 1:1 receipts instantly. Create professional ${brandName} invoice templates with real designs, logos, and formatting. Free ${brandName} receipt maker.`
+  const description = `Generate authentic ${brandName} receipts, 1:1 receipts`
   const logoUrl = `https://www.hubreceipts.com/brand-logos/${brand.toLowerCase().replace(/[^a-z0-9]/g, '_')}.webp`
   
   return {
