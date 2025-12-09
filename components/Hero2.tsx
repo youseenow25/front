@@ -55,8 +55,11 @@ const BrandLogo = ({ brand, size = 20 }: { brand: string; size?: number }) => {
       style={{
         width: size,
         height: size,
+        minWidth: size,
+        minHeight: size,
         objectFit: 'contain',
-        flexShrink: 0
+        flexShrink: 0,
+        aspectRatio: '1/1'
       }}
       onError={() => setLogoError(true)}
     />
@@ -189,18 +192,30 @@ export default function Hero({ brandName = "" }: HeroProps) {
     return () => clearInterval(blinkInterval);
   }, []);
 
+  const typedLineHeight = isMobile ? "3.2rem" : "4rem";
+
   return (
     <section className="hero">
       <div style={{ width: '100%' }}>
-        <h5 style={{ 
-          fontSize: isMobile ? "clamp(2rem, 8vw, 3rem)" : "clamp(3.5rem, 5vw, 5rem)", 
-          fontWeight: 500,
-          lineHeight: 1.2,
-          marginBottom: "1rem",
-          textAlign: "center"
-        }}>
-          {phrases[index].substring(0, subIndex)}
-          <span style={{ opacity: blink ? 1 : 0 }}>|</span>
+        <h5
+          style={{ 
+            fontSize: isMobile ? "clamp(2rem, 8vw, 3rem)" : "clamp(3.5rem, 5vw, 5rem)", 
+            fontWeight: 500,
+            lineHeight: 1.2,
+            marginBottom: "1rem",
+            textAlign: "center",
+            minHeight: typedLineHeight,
+            height: typedLineHeight,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            overflow: "hidden"
+          }}
+        >
+          <span style={{ minHeight: typedLineHeight, height: typedLineHeight, display: "inline-flex", alignItems: "center" }}>
+            {phrases[index].substring(0, subIndex)}
+            <span style={{ opacity: blink ? 1 : 0, width: "2px" }}>|</span>
+          </span>
         </h5>
 
         {/* CTA Banner */}
@@ -291,7 +306,7 @@ export default function Hero({ brandName = "" }: HeroProps) {
           padding: isMobile ? '0 16px' : '0 20px'
         }} className="overflow-hidden space-y-2">
           {/* Row 1 (Right → Left) */}
-          <div className="w-full overflow-hidden">
+          <div className="w-full overflow-hidden marquee-row">
             <ul className="flex animate-marquee-slow gap-2">
               {doubledBrands.map((brand, index) => (
                 <li
@@ -318,7 +333,7 @@ export default function Hero({ brandName = "" }: HeroProps) {
           </div>
 
           {/* Row 2 (Left → Right) */}
-          <div className="w-full overflow-hidden">
+          <div className="w-full overflow-hidden marquee-row">
             <ul className="flex animate-marquee-reverse-slow gap-2">
               {doubledBrands.map((brand, index) => (
                 <li
@@ -352,9 +367,8 @@ export default function Hero({ brandName = "" }: HeroProps) {
           text-align: center;
           position: relative;
           z-index: 1;
-          width: 100vw;
-          margin-left: calc(-50vw + 50%);
-          margin-right: calc(-50vw + 50%);
+          width: 100%;
+          overflow: hidden;
         }
 
         .btn {
@@ -393,6 +407,11 @@ export default function Hero({ brandName = "" }: HeroProps) {
         .animate-marquee-reverse-slow {
           animation: marquee-reverse-slow 60s linear infinite;
           width: max-content;
+        }
+
+        .marquee-row {
+          min-height: ${isMobile ? '38px' : '46px'};
+          height: ${isMobile ? '38px' : '46px'};
         }
 
         /* Mobile optimizations */

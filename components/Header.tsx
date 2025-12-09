@@ -122,7 +122,20 @@ export default function Header() {
         aria-label="Go to homepage"
         style={{ display: "flex", alignItems: "center", gap: 8, border: "none", background: "none" }}
       >
-        <Image width={60} height={60} alt="HubReceipts logo" src={"/logoheader.png"} />
+        <Image 
+          width={60} 
+          height={60} 
+          alt="HubReceipts logo" 
+          src={"/logoheader.png"}
+          style={{
+            width: 60,
+            height: 60,
+            minWidth: 60,
+            minHeight: 60,
+            aspectRatio: '1/1',
+            objectFit: 'contain'
+          }}
+        />
       </button>
       <button onClick={toggleMobileMenu} aria-label="Close menu" style={{ border: "none", background: "none" }}>
         <X size={28} color="black" />
@@ -272,6 +285,7 @@ export default function Header() {
           zIndex: 50,
           borderBottom: "1px solid #eee",
           backgroundColor: "white",
+          minHeight: 80,
           height: 80,
         }}
       >
@@ -288,7 +302,20 @@ export default function Header() {
         >
           {/* Simple static header during SSR */}
           <button onClick={() => router.push("/")} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <Image width={110} height={110} alt="Webpage logo" src={'/hublogo.png'} />
+            <Image 
+              width={110} 
+              height={110} 
+              alt="Webpage logo" 
+              src={'/hublogo.png'}
+              style={{
+                width: 110,
+                height: 110,
+                minWidth: 110,
+                minHeight: 110,
+                aspectRatio: '1/1',
+                objectFit: 'contain'
+              }}
+            />
           </button>
         </div>
       </header>
@@ -303,6 +330,8 @@ export default function Header() {
         zIndex: 50,
         borderBottom: "1px solid #eee",
         backgroundColor: "white",
+        minHeight: isMobile ? 60 : 80,
+        height: isMobile ? 60 : 80,
       }}
     >
       <div
@@ -323,7 +352,15 @@ export default function Header() {
             width={isMobile ? 60 : 90} 
             height={isMobile ? 60 : 90} 
             alt="HubReceipts logo" 
-            src={'/logoheader.png'} 
+            src={'/logoheader.png'}
+            style={{
+              width: isMobile ? 60 : 90,
+              height: isMobile ? 60 : 90,
+              minWidth: isMobile ? 60 : 90,
+              minHeight: isMobile ? 60 : 90,
+              aspectRatio: '1/1',
+              objectFit: 'contain'
+            }}
           />
         </button>
 

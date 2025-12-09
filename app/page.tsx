@@ -68,6 +68,7 @@ export default function Page() {
                       height={160}
                       style={{
                         objectFit: "contain",
+                        aspectRatio: "3/4",
                       }}
                     />
                   </div>
@@ -94,38 +95,47 @@ export default function Page() {
     flexWrap: 'wrap'
   }}
 >
-  <iframe
-    width="560"
-    height="405"
-    src="https://www.youtube.com/embed/lSIbSG7K5MM?si=_T6UfwB3XPKVFNhA"
-    title="YouTube video player"
-    frameBorder="0"
-    loading="lazy"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowFullScreen
-  ></iframe>
+  <div style={{ width: '100%', maxWidth: '560px', aspectRatio: '560/405', position: 'relative' }}>
+    <iframe
+      width="560"
+      height="405"
+      src="https://www.youtube.com/embed/lSIbSG7K5MM?si=_T6UfwB3XPKVFNhA"
+      title="YouTube video player"
+      frameBorder="0"
+      loading="lazy"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowFullScreen
+      style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+    ></iframe>
+  </div>
 
-  <iframe
-    width="560"
-    height="405"
-    src="https://www.youtube.com/embed/afOwQ4U1Z9Y?si=59fr5TSkEIQvqe5_"
-    title="YouTube video player"
-    frameBorder="0"
-    loading="lazy"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowFullScreen
-  ></iframe>
+  <div style={{ width: '100%', maxWidth: '560px', aspectRatio: '560/405', position: 'relative' }}>
+    <iframe
+      width="560"
+      height="405"
+      src="https://www.youtube.com/embed/afOwQ4U1Z9Y?si=59fr5TSkEIQvqe5_"
+      title="YouTube video player"
+      frameBorder="0"
+      loading="lazy"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowFullScreen
+      style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+    ></iframe>
+  </div>
 
-  <iframe
-    width="560"
-    height="405"
-    src="https://www.youtube.com/embed/w50nDYGEiqw?si=TbSN2YuJnzurLZMD"
-    title="YouTube video player"
-    frameBorder="0"
-    loading="lazy"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowFullScreen
-  ></iframe>
+  <div style={{ width: '100%', maxWidth: '560px', aspectRatio: '560/405', position: 'relative' }}>
+    <iframe
+      width="560"
+      height="405"
+      src="https://www.youtube.com/embed/w50nDYGEiqw?si=TbSN2YuJnzurLZMD"
+      title="YouTube video player"
+      frameBorder="0"
+      loading="lazy"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowFullScreen
+      style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+    ></iframe>
+  </div>
 </div>
 
 
@@ -274,6 +284,11 @@ export default function Page() {
           display: flex;
           align-items: center;
           justify-content: center;
+          width: 120px;
+          height: 160px;
+          min-width: 120px;
+          min-height: 160px;
+          aspect-ratio: 3 / 4;
         }
 
         /* Luxury Brands Section */
@@ -447,6 +462,13 @@ export default function Page() {
             padding: 0 10px;
           }
 
+          .receipt-image {
+            width: 100px !important;
+            height: 130px !important;
+            min-width: 100px !important;
+            min-height: 130px !important;
+          }
+          
           .receipt-image img {
             width: 100px !important;
             height: 130px !important;
@@ -480,9 +502,14 @@ export default function Page() {
             padding: 30px 20px;
           }
 
-          .video-wrapper iframe {
+          .video-wrapper iframe,
+          .video-wrapper > div {
             width: 100%;
-            height: 300px;
+            max-width: 100%;
+          }
+          
+          .video-wrapper > div {
+            aspect-ratio: 560/405;
           }
         }
 
@@ -491,6 +518,13 @@ export default function Page() {
             gap: 3px;
           }
 
+          .receipt-image {
+            width: 85px !important;
+            height: 110px !important;
+            min-width: 85px !important;
+            min-height: 110px !important;
+          }
+          
           .receipt-image img {
             width: 85px !important;
             height: 110px !important;
@@ -508,12 +542,19 @@ export default function Page() {
             margin-bottom: 20px;
           }
 
-          .video-wrapper iframe {
-            height: 250px;
+          .video-wrapper > div {
+            aspect-ratio: 560/405;
           }
         }
 
         @media (max-width: 360px) {
+          .receipt-image {
+            width: 75px !important;
+            height: 100px !important;
+            min-width: 75px !important;
+            min-height: 100px !important;
+          }
+          
           .receipt-image img {
             width: 75px !important;
             height: 100px !important;

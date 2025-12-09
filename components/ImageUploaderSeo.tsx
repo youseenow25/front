@@ -205,8 +205,12 @@ const BrandLogo = ({ brand, size = 24 }: { brand: string; size?: number }) => {
       style={{
         width: size,
         height: size,
+        minWidth: size,
+        minHeight: size,
         objectFit: 'contain',
-        borderRadius: 4
+        borderRadius: 4,
+        aspectRatio: '1/1',
+        display: 'block'
       }}
       onError={() => setLogoError(true)}
     />
@@ -929,13 +933,21 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
 
       {/* Brand Header for SEO Pages */}
       {isBrandPage && brand && (
-        <div className="brand-seo-header" style={{ display: 'flex', gap: '6px', justifyContent:'center' }}>
+        <div className="brand-seo-header" style={{ display: 'flex', gap: '6px', justifyContent:'center', alignItems: 'center', flexWrap: 'wrap' }}>
           <img 
             alt="Brand Logo"
-            style={{width:80, height:80}}
+            style={{
+              width: 80, 
+              height: 80,
+              minWidth: 80,
+              minHeight: 80,
+              aspectRatio: '1/1',
+              objectFit: 'contain',
+              display: 'block'
+            }}
             src={getLogoPath(brand)}
           />
-          <h1 style={{ backgroundColor: 'black', color: 'white', padding: '8px', borderRadius: '8px' }}>
+          <h1 style={{ backgroundColor: 'black', color: 'white', padding: '8px', borderRadius: '8px', margin: 0 }}>
             Create 1:1 {toLabel(brand)} Receipt and receive it in your inbox 
           </h1>
         </div>
@@ -1104,7 +1116,7 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
         </div>
 
         {brand ? (
-          <div className="form-grid">
+          <div className="form-grid" style={{ minHeight: visibleFields.length > 0 ? '200px' : '0' }}>
             {visibleFields
               .filter(field => field !== "email" && field !== "currency")
               .map((field) => {
@@ -1157,7 +1169,9 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
               })}
           </div>
         ) : (
-          <p className="brand-hint">Choose a brand to see its required fields.</p>
+          <div style={{ minHeight: '60px', display: 'flex', alignItems: 'center' }}>
+            <p className="brand-hint">Choose a brand to see its required fields.</p>
+          </div>
         )}
 
         <button
@@ -1236,6 +1250,7 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
           cursor: pointer;
           transition: background 0.2s ease;
           min-height: 320px;
+          height: 320px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -1252,6 +1267,9 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
           border-radius: 12px;
           object-fit: contain;
           width: 100%;
+          height: auto;
+          aspect-ratio: auto;
+          display: block;
         }
         
         .upload-placeholder {

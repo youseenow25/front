@@ -23,8 +23,7 @@ export async function generateMetadata(
       title: 'Brand Not Found - HubReceipts',
     }
   }
-
-  const brandName = toLabel(brand)
+const brandName = toLabel(brand)
   const description = `Generate authentic ${brandName} receipts, 1:1 receipts`
   const logoUrl = `https://www.hubreceipts.com/brand-logos/${brand.toLowerCase().replace(/[^a-z0-9]/g, '_')}.webp`
   
@@ -100,7 +99,7 @@ function toLabel(name: string): string {
 // Loading component for Suspense fallback
 function BrandPageLoading() {
   return (
-    <div className="brand-receipt-generator">
+    <div className="brand-receipt-generator" style={{ minHeight: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <div className="brand-header">
         <h1>Loading....</h1>
       </div>
@@ -176,7 +175,7 @@ const structuredData = {
         <Hero brandName={brandName} />
         
         {/* Brand Receipt Generator */}
-        <div style={{width:'100%'}}>
+        <div style={{width:'100%', minHeight: '400px'}}>
           <Suspense fallback={<BrandPageLoading />}>
             <BrandReceiptGenerator preSelectedBrand={brand} />
           </Suspense>
@@ -235,6 +234,8 @@ const structuredData = {
         .main {
           position: relative;
           overflow: hidden;
+          min-height: 100vh;
+          padding-top: 12px;
         }
 
         /* Responsive Design */
