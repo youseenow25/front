@@ -53,7 +53,7 @@ export default function Page() {
            
             
             <div className="receipts-grid">
-              {brands.map((brand) => (
+              {brands.map((brand, index) => (
                 <Link
                   key={brand}
                   href={`/brands/${brand}`}
@@ -66,9 +66,10 @@ export default function Page() {
                       alt={`${toLabel(brand)} receipt example`}
                       width={120}
                       height={160}
+                      loading={index < 4 ? "eager" : "lazy"}
+                      priority={index < 2}
                       style={{
                         objectFit: "contain",
-                        aspectRatio: "3/4",
                       }}
                     />
                   </div>
@@ -95,7 +96,7 @@ export default function Page() {
     flexWrap: 'wrap'
   }}
 >
-  <div style={{ width: '100%', maxWidth: '560px', aspectRatio: '560/405', position: 'relative' }}>
+  <div className="video-container">
     <iframe
       width="560"
       height="405"
@@ -105,11 +106,10 @@ export default function Page() {
       loading="lazy"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       allowFullScreen
-      style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
     ></iframe>
   </div>
 
-  <div style={{ width: '100%', maxWidth: '560px', aspectRatio: '560/405', position: 'relative' }}>
+  <div className="video-container">
     <iframe
       width="560"
       height="405"
@@ -119,11 +119,10 @@ export default function Page() {
       loading="lazy"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       allowFullScreen
-      style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
     ></iframe>
   </div>
 
-  <div style={{ width: '100%', maxWidth: '560px', aspectRatio: '560/405', position: 'relative' }}>
+  <div className="video-container">
     <iframe
       width="560"
       height="405"
@@ -133,7 +132,6 @@ export default function Page() {
       loading="lazy"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       allowFullScreen
-      style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
     ></iframe>
   </div>
 </div>
@@ -281,14 +279,9 @@ export default function Page() {
           overflow: hidden;
           background: transparent;
           padding: 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          display: block;
           width: 120px;
           height: 160px;
-          min-width: 120px;
-          min-height: 160px;
-          aspect-ratio: 3 / 4;
         }
 
         /* Luxury Brands Section */
@@ -439,6 +432,24 @@ export default function Page() {
           box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
+        .video-container {
+          width: 100%;
+          max-width: 560px;
+          aspect-ratio: 560 / 405;
+          position: relative;
+          contain: layout style paint;
+        }
+
+        .video-container iframe {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          border-radius: 12px;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
           .receipts-examples {
@@ -463,15 +474,8 @@ export default function Page() {
           }
 
           .receipt-image {
-            width: 100px !important;
-            height: 130px !important;
-            min-width: 100px !important;
-            min-height: 130px !important;
-          }
-          
-          .receipt-image img {
-            width: 100px !important;
-            height: 130px !important;
+            width: 100px;
+            height: 130px;
           }
 
           .luxury-brands,
@@ -502,14 +506,8 @@ export default function Page() {
             padding: 30px 20px;
           }
 
-          .video-wrapper iframe,
-          .video-wrapper > div {
-            width: 100%;
+          .video-container {
             max-width: 100%;
-          }
-          
-          .video-wrapper > div {
-            aspect-ratio: 560/405;
           }
         }
 
@@ -519,15 +517,8 @@ export default function Page() {
           }
 
           .receipt-image {
-            width: 85px !important;
-            height: 110px !important;
-            min-width: 85px !important;
-            min-height: 110px !important;
-          }
-          
-          .receipt-image img {
-            width: 85px !important;
-            height: 110px !important;
+            width: 85px;
+            height: 110px;
           }
 
           .examples-title,
@@ -542,22 +533,12 @@ export default function Page() {
             margin-bottom: 20px;
           }
 
-          .video-wrapper > div {
-            aspect-ratio: 560/405;
-          }
         }
 
         @media (max-width: 360px) {
           .receipt-image {
-            width: 75px !important;
-            height: 100px !important;
-            min-width: 75px !important;
-            min-height: 100px !important;
-          }
-          
-          .receipt-image img {
-            width: 75px !important;
-            height: 100px !important;
+            width: 75px;
+            height: 100px;
           }
         }
         /* Subtle, accessible visible H1 */

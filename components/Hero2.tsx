@@ -55,11 +55,8 @@ const BrandLogo = ({ brand, size = 20 }: { brand: string; size?: number }) => {
       style={{
         width: size,
         height: size,
-        minWidth: size,
-        minHeight: size,
         objectFit: 'contain',
-        flexShrink: 0,
-        aspectRatio: '1/1'
+        flexShrink: 0
       }}
       onError={() => setLogoError(true)}
     />
@@ -205,16 +202,14 @@ export default function Hero({ brandName = "" }: HeroProps) {
             marginBottom: "1rem",
             textAlign: "center",
             minHeight: typedLineHeight,
-            height: typedLineHeight,
             display: "flex",
             justifyContent: "center",
-            alignItems: "center",
-            overflow: "hidden"
+            alignItems: "center"
           }}
         >
-          <span style={{ minHeight: typedLineHeight, height: typedLineHeight, display: "inline-flex", alignItems: "center" }}>
+          <span style={{ display: "inline-flex", alignItems: "center" }}>
             {phrases[index].substring(0, subIndex)}
-            <span style={{ opacity: blink ? 1 : 0, width: "2px" }}>|</span>
+            <span style={{ opacity: blink ? 1 : 0 }}>|</span>
           </span>
         </h5>
 
@@ -411,7 +406,6 @@ export default function Hero({ brandName = "" }: HeroProps) {
 
         .marquee-row {
           min-height: ${isMobile ? '38px' : '46px'};
-          height: ${isMobile ? '38px' : '46px'};
         }
 
         /* Mobile optimizations */

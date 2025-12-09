@@ -102,7 +102,6 @@ export default function BrandsIndexPage() {
           gap: 14px;
           width: 100%;
           max-width: 900px;
-          min-height: 200px;
         }
 
         .brands-directory-card {
@@ -117,7 +116,6 @@ export default function BrandsIndexPage() {
           color: #111;
           font-weight: 600;
           transition: transform 0.2s ease, box-shadow 0.2s ease;
-          min-height: 60px;
         }
 
         .brands-directory-card:hover {

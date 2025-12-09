@@ -30,8 +30,6 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
-  /* Prevent layout shifts from font loading */
-  font-display: swap;
 }
 
 /* Ensure fast text rendering when using remote fonts */
@@ -39,7 +37,7 @@ body {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  font-display: swap;
+  font-display: optional;
   src: local('Inter'), local('Inter-Regular');
 }
 
@@ -47,9 +45,17 @@ body {
 img {
   max-width: 100%;
   height: auto;
+  display: block;
 }
 
 /* Prevent layout shifts from iframes */
 iframe {
   max-width: 100%;
+}
+
+/* CSS containment for better performance */
+.receipts-grid,
+.brands-directory-grid,
+.features-grid {
+  contain: layout;
 }

@@ -108,18 +108,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
-        {/* ✅ UPDATED GOOGLE TAG (GTAG.JS) */}
+        {/* ✅ UPDATED GOOGLE TAG (GTAG.JS) - Deferred for performance */}
         <Script
-          async
           src="https://www.googletagmanager.com/gtag/js?id=AW-17728207333"
+          strategy="afterInteractive"
         />
-        {/* Ahrefs Analytics */}
+        {/* Ahrefs Analytics - Deferred */}
         <Script
           src="https://analytics.ahrefs.com/analytics.js"
           data-key="D+3qURzx7DwG72aE6NMklA"
-          async
+          strategy="afterInteractive"
         />
-        <Script id="google-analytics">
+        <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}

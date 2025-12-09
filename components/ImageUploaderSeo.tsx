@@ -205,11 +205,8 @@ const BrandLogo = ({ brand, size = 24 }: { brand: string; size?: number }) => {
       style={{
         width: size,
         height: size,
-        minWidth: size,
-        minHeight: size,
         objectFit: 'contain',
         borderRadius: 4,
-        aspectRatio: '1/1',
         display: 'block'
       }}
       onError={() => setLogoError(true)}
@@ -936,12 +933,12 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
         <div className="brand-seo-header" style={{ display: 'flex', gap: '6px', justifyContent:'center', alignItems: 'center', flexWrap: 'wrap' }}>
           <img 
             alt="Brand Logo"
+            width={80}
+            height={80}
+            loading="lazy"
             style={{
               width: 80, 
               height: 80,
-              minWidth: 80,
-              minHeight: 80,
-              aspectRatio: '1/1',
               objectFit: 'contain',
               display: 'block'
             }}
@@ -1116,7 +1113,7 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
         </div>
 
         {brand ? (
-          <div className="form-grid" style={{ minHeight: visibleFields.length > 0 ? '200px' : '0' }}>
+          <div className="form-grid">
             {visibleFields
               .filter(field => field !== "email" && field !== "currency")
               .map((field) => {
@@ -1169,9 +1166,7 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
               })}
           </div>
         ) : (
-          <div style={{ minHeight: '60px', display: 'flex', alignItems: 'center' }}>
-            <p className="brand-hint">Choose a brand to see its required fields.</p>
-          </div>
+          <p className="brand-hint">Choose a brand to see its required fields.</p>
         )}
 
         <button
@@ -1250,7 +1245,6 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
           cursor: pointer;
           transition: background 0.2s ease;
           min-height: 320px;
-          height: 320px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -1268,7 +1262,6 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
           object-fit: contain;
           width: 100%;
           height: auto;
-          aspect-ratio: auto;
           display: block;
         }
         

@@ -99,7 +99,7 @@ function toLabel(name: string): string {
 // Loading component for Suspense fallback
 function BrandPageLoading() {
   return (
-    <div className="brand-receipt-generator" style={{ minHeight: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <div className="brand-receipt-generator">
       <div className="brand-header">
         <h1>Loading....</h1>
       </div>
@@ -175,7 +175,7 @@ const structuredData = {
         <Hero brandName={brandName} />
         
         {/* Brand Receipt Generator */}
-        <div style={{width:'100%', minHeight: '400px'}}>
+        <div style={{width:'100%'}}>
           <Suspense fallback={<BrandPageLoading />}>
             <BrandReceiptGenerator preSelectedBrand={brand} />
           </Suspense>

@@ -63,7 +63,6 @@ export default function BrandReceiptGenerator({ preSelectedBrand }: BrandReceipt
         .brand-receipt-generator {
           margin: 0 auto;
           padding: 20px;
-          min-height: 400px;
         }
         
         .brand-header {

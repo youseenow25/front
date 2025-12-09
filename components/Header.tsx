@@ -127,14 +127,7 @@ export default function Header() {
           height={60} 
           alt="HubReceipts logo" 
           src={"/logoheader.png"}
-          style={{
-            width: 60,
-            height: 60,
-            minWidth: 60,
-            minHeight: 60,
-            aspectRatio: '1/1',
-            objectFit: 'contain'
-          }}
+          priority
         />
       </button>
       <button onClick={toggleMobileMenu} aria-label="Close menu" style={{ border: "none", background: "none" }}>
@@ -285,8 +278,6 @@ export default function Header() {
           zIndex: 50,
           borderBottom: "1px solid #eee",
           backgroundColor: "white",
-          minHeight: 80,
-          height: 80,
         }}
       >
         <div
@@ -307,14 +298,7 @@ export default function Header() {
               height={110} 
               alt="Webpage logo" 
               src={'/hublogo.png'}
-              style={{
-                width: 110,
-                height: 110,
-                minWidth: 110,
-                minHeight: 110,
-                aspectRatio: '1/1',
-                objectFit: 'contain'
-              }}
+              priority
             />
           </button>
         </div>
@@ -330,8 +314,6 @@ export default function Header() {
         zIndex: 50,
         borderBottom: "1px solid #eee",
         backgroundColor: "white",
-        minHeight: isMobile ? 60 : 80,
-        height: isMobile ? 60 : 80,
       }}
     >
       <div
@@ -353,14 +335,7 @@ export default function Header() {
             height={isMobile ? 60 : 90} 
             alt="HubReceipts logo" 
             src={'/logoheader.png'}
-            style={{
-              width: isMobile ? 60 : 90,
-              height: isMobile ? 60 : 90,
-              minWidth: isMobile ? 60 : 90,
-              minHeight: isMobile ? 60 : 90,
-              aspectRatio: '1/1',
-              objectFit: 'contain'
-            }}
+            priority
           />
         </button>
 
