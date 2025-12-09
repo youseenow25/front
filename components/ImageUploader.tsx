@@ -463,7 +463,7 @@ const IntegerInput = ({
   );
 };
 
-// Safe Image Preview Component with error boundary
+// Safe Image Preview Component with error boundary - reserves layout to reduce CLS
 const SafeImagePreview = ({ imageSrc, alt = "Preview" }: { imageSrc: string | null; alt?: string }) => {
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -477,7 +477,7 @@ const SafeImagePreview = ({ imageSrc, alt = "Preview" }: { imageSrc: string | nu
 
   if (hasError) {
     return (
-      <div className="image-error-fallback">
+      <div className="image-error-fallback" aria-live="polite">
         <div className="error-icon">
           <AlertCircle size={48} />
         </div>
@@ -488,16 +488,19 @@ const SafeImagePreview = ({ imageSrc, alt = "Preview" }: { imageSrc: string | nu
   }
 
   return (
-    <div className="image-preview-container">
+    <div className="image-preview-container" aria-live="polite" aria-busy={isLoading}>
       {isLoading && (
-        <div className="image-loading-overlay">
+        <div className="image-loading-overlay" aria-hidden="true">
           <div className="loading-spinner"></div>
           <span>Loading preview...</span>
         </div>
       )}
+      {/* Provide intrinsic width/height to reserve layout space and avoid CLS */}
       <img 
         src={imageSrc} 
         alt={alt} 
+        width={800}
+        height={600}
         className="image-preview"
         onLoad={() => {
           setIsLoading(false);
@@ -1291,63 +1294,66 @@ export default function ImageUploader() {
           {errors.email && <div className="error-message">{errors.email}</div>}
         </div>
 
-        {brand ? (
-          <div className="form-grid">
-            {visibleFields
-              .filter(field => field !== "email" && field !== "currency")
-              .map((field) => {
-                const type = inputTypeFor(field);
-                const isDateField = DATE_HINT.test(field);
-                const isPriceField = PRICE_FIELDS.test(field);
-                
-                return (
-                  <div key={field} className="field">
-                    <label htmlFor={field}>
-                      {toLabel(field)} *
+        {/* Reserve vertical space to avoid CLS when brand fields appear */}
+        <div className="dynamic-fields">
+          {brand ? (
+            <div className="form-grid">
+              {visibleFields
+                .filter(field => field !== "email" && field !== "currency")
+                .map((field) => {
+                  const type = inputTypeFor(field);
+                  const isDateField = DATE_HINT.test(field);
+                  const isPriceField = PRICE_FIELDS.test(field);
+                  
+                  return (
+                    <div key={field} className="field">
+                      <label htmlFor={field}>
+                        {toLabel(field)} *
+                        {isDateField && !formData[field] && (
+                          <span className="auto-detected-badge"> (auto-filled)</span>
+                        )}
+                        {isPriceField && (
+                          <span className="integer-format-badge"> </span>
+                        )}
+                      </label>
+                      
+                      {isPriceField ? (
+                        <IntegerInput
+                          value={formData[field] || ""}
+                          onChange={(value) => updateField(field, value)}
+                          currencySymbol={selectedCurrency.symbol}
+                          fieldName={field}
+                          error={errors[field]}
+                          onBlur={() => handleIntegerBlur(field, formData[field] || "")}
+                        />
+                      ) : (
+                        <input
+                          id={field}
+                          name={field}
+                          type={type}
+                          value={formData[field] || ""}
+                          onChange={(e) => updateField(field, e.target.value)}
+                          placeholder={toLabel(field)}
+                          className={errors[field] ? 'error' : ''}
+                          disabled={isProcessingImage}
+                          {...(type === "number" ? { step: "any" } : {})}
+                        />
+                      )}
+                      
                       {isDateField && !formData[field] && (
-                        <span className="auto-detected-badge"> (auto-filled)</span>
+                        <div className="email-note">
+                          Today's date will be used if not specified
+                        </div>
                       )}
-                      {isPriceField && (
-                        <span className="integer-format-badge"> </span>
-                      )}
-                    </label>
-                    
-                    {isPriceField ? (
-                      <IntegerInput
-                        value={formData[field] || ""}
-                        onChange={(value) => updateField(field, value)}
-                        currencySymbol={selectedCurrency.symbol}
-                        fieldName={field}
-                        error={errors[field]}
-                        onBlur={() => handleIntegerBlur(field, formData[field] || "")}
-                      />
-                    ) : (
-                      <input
-                        id={field}
-                        name={field}
-                        type={type}
-                        value={formData[field] || ""}
-                        onChange={(e) => updateField(field, e.target.value)}
-                        placeholder={toLabel(field)}
-                        className={errors[field] ? 'error' : ''}
-                        disabled={isProcessingImage}
-                        {...(type === "number" ? { step: "any" } : {})}
-                      />
-                    )}
-                    
-                    {isDateField && !formData[field] && (
-                      <div className="email-note">
-                        Today's date will be used if not specified
-                      </div>
-                    )}
-                    {errors[field] && <div className="error-message">{errors[field]}</div>}
-                  </div>
-                );
-              })}
-          </div>
-        ) : (
-          <p className="brand-hint">Choose a brand to see its required fields.</p>
-        )}
+                      {errors[field] && <div className="error-message">{errors[field]}</div>}
+                    </div>
+                  );
+                })}
+            </div>
+          ) : (
+            <p className="brand-hint">Choose a brand to see its required fields.</p>
+          )}
+        </div>
 
         <button
           type="submit"
@@ -1399,21 +1405,26 @@ export default function ImageUploader() {
         
         .image-uploader:hover { background: #f0f0f0; }
         
+        /* Reserve a stable preview area to avoid layout jumps when image loads */
         .image-preview-container {
           position: relative;
           width: 100%;
-          height: 100%;
           display: flex;
           align-items: center;
           justify-content: center;
+          aspect-ratio: 4 / 3;
+          min-height: 280px;
+          max-height: 500px;
         }
         
         .image-preview {
           max-width: 100%;
-          max-height: 500px;
+          max-height: 100%;
           border-radius: 12px;
           object-fit: contain;
           width: 100%;
+          height: auto;
+          display: block;
         }
         
         .image-loading-overlay {
@@ -1866,6 +1877,16 @@ export default function ImageUploader() {
         
         .submit-btn:hover:not(:disabled) { background: #333; }
         
+        /* Reserve vertical space for dynamic fields to reduce layout shifts */
+        .dynamic-fields {
+          min-height: 220px;
+          transition: min-height 220ms ease;
+        }
+
+        @media (max-width: 768px) {
+          .dynamic-fields { min-height: 180px; }
+        }
+
         /* Toast Styles */
         .toast {
           position: fixed;
