@@ -201,15 +201,16 @@ export default function Hero({ brandName = "" }: HeroProps) {
             lineHeight: 1.2,
             marginBottom: "1rem",
             textAlign: "center",
-            minHeight: typedLineHeight,
+            height: typedLineHeight,
             display: "flex",
             justifyContent: "center",
-            alignItems: "center"
+            alignItems: "center",
+            overflow: "hidden"
           }}
         >
-          <span style={{ display: "inline-flex", alignItems: "center" }}>
+          <span style={{ display: "inline-flex", alignItems: "center", height: typedLineHeight }}>
             {phrases[index].substring(0, subIndex)}
-            <span style={{ opacity: blink ? 1 : 0 }}>|</span>
+            <span style={{ opacity: blink ? 1 : 0, width: "2px", display: "inline-block" }}>|</span>
           </span>
         </h5>
 
@@ -222,7 +223,8 @@ export default function Hero({ brandName = "" }: HeroProps) {
             justifyContent: "center",
             gap: 12,
             flexWrap: isMobile ? "wrap" : "nowrap",
-            width: '100%'
+            width: '100%',
+            minHeight: isMobile ? '60px' : '40px'
           }}
         >
           <div
@@ -364,6 +366,7 @@ export default function Hero({ brandName = "" }: HeroProps) {
           z-index: 1;
           width: 100%;
           overflow: hidden;
+          min-height: ${isMobile ? '300px' : '250px'};
         }
 
         .btn {
@@ -405,7 +408,9 @@ export default function Hero({ brandName = "" }: HeroProps) {
         }
 
         .marquee-row {
+          height: ${isMobile ? '38px' : '46px'};
           min-height: ${isMobile ? '38px' : '46px'};
+          overflow: hidden;
         }
 
         /* Mobile optimizations */

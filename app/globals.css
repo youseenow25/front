@@ -59,3 +59,24 @@ iframe {
 .features-grid {
   contain: layout;
 }
+
+/* Prevent layout shifts globally */
+* {
+  box-sizing: border-box;
+}
+
+/* Reserve space for dynamic content */
+[class*="grid"],
+[class*="container"] {
+  contain: layout style;
+}
+
+/* Prevent font loading shifts */
+body {
+  font-display: optional;
+}
+
+/* Ensure all images have proper sizing */
+img[width][height] {
+  height: auto;
+}

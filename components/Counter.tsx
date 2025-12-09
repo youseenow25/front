@@ -44,8 +44,6 @@ export default function SubscriptionTimer() {
     }
   }, []);
 
-  if (!timeLeft) return null;
-
   return (
     <div
       style={{
@@ -53,10 +51,13 @@ export default function SubscriptionTimer() {
         width:'95%',
         padding: "8px 12px",
         backgroundColor: "#e9ecff",
-     
         color: "#333",
         textAlign: "center",
         fontWeight: 500,
+        minHeight: "40px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
       }}
     >
      {timeLeft === "lifetime" ? (
@@ -65,8 +66,10 @@ export default function SubscriptionTimer() {
   <p style={{ margin: 0, color: "red" }}>⏰ Subscription expired</p>
 ) : timeLeft === "single" ? (
   <p style={{ margin: 0 }}>🧾 You can make 1 receipt</p>
-) : (
+) : timeLeft ? (
   <p style={{ margin: 0 }}>⏳ Time left: {timeLeft}</p>
+) : (
+  <p style={{ margin: 0, visibility: "hidden" }}>⏳ Time left: 0d 0h 0m 0s</p>
 )}
 
     </div>

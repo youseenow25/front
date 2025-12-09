@@ -196,21 +196,23 @@ const BrandLogo = ({ brand, size = 24 }: { brand: string; size?: number }) => {
   }
 
   return (
-    <img
-      src={getLogoPath(brand)}
-      alt={`${brand} logo`}
-      width={size}
-      height={size}
-      loading="lazy"
-      style={{
-        width: size,
-        height: size,
-        objectFit: 'contain',
-        borderRadius: 4,
-        display: 'block'
-      }}
-      onError={() => setLogoError(true)}
-    />
+    <span style={{ display: 'inline-block', width: size, height: size, flexShrink: 0 }}>
+      <img
+        src={getLogoPath(brand)}
+        alt={`${brand} logo`}
+        width={size}
+        height={size}
+        loading="lazy"
+        style={{
+          width: size,
+          height: size,
+          objectFit: 'contain',
+          borderRadius: 4,
+          display: 'block'
+        }}
+        onError={() => setLogoError(true)}
+      />
+    </span>
   );
 };
 
@@ -930,21 +932,30 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
 
       {/* Brand Header for SEO Pages */}
       {isBrandPage && brand && (
-        <div className="brand-seo-header" style={{ display: 'flex', gap: '6px', justifyContent:'center', alignItems: 'center', flexWrap: 'wrap' }}>
-          <img 
-            alt="Brand Logo"
-            width={80}
-            height={80}
-            loading="lazy"
-            style={{
-              width: 80, 
-              height: 80,
-              objectFit: 'contain',
-              display: 'block'
-            }}
-            src={getLogoPath(brand)}
-          />
-          <h1 style={{ backgroundColor: 'black', color: 'white', padding: '8px', borderRadius: '8px', margin: 0 }}>
+        <div className="brand-seo-header" style={{ 
+          display: 'flex', 
+          gap: '6px', 
+          justifyContent:'center', 
+          alignItems: 'center', 
+          flexWrap: 'wrap',
+          minHeight: '100px'
+        }}>
+          <div style={{ width: 80, height: 80, flexShrink: 0 }}>
+            <img 
+              alt="Brand Logo"
+              width={80}
+              height={80}
+              loading="lazy"
+              style={{
+                width: 80, 
+                height: 80,
+                objectFit: 'contain',
+                display: 'block'
+              }}
+              src={getLogoPath(brand)}
+            />
+          </div>
+          <h1 style={{ backgroundColor: 'black', color: 'white', padding: '8px', borderRadius: '8px', margin: 0, minHeight: '40px', display: 'flex', alignItems: 'center' }}>
             Create 1:1 {toLabel(brand)} Receipt and receive it in your inbox 
           </h1>
         </div>
@@ -1113,7 +1124,7 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
         </div>
 
         {brand ? (
-          <div className="form-grid">
+          <div className="form-grid" style={{ minHeight: visibleFields.length > 2 ? '300px' : '200px' }}>
             {visibleFields
               .filter(field => field !== "email" && field !== "currency")
               .map((field) => {
@@ -1166,7 +1177,9 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
               })}
           </div>
         ) : (
-          <p className="brand-hint">Choose a brand to see its required fields.</p>
+          <div style={{ minHeight: '60px', display: 'flex', alignItems: 'center' }}>
+            <p className="brand-hint">Choose a brand to see its required fields.</p>
+          </div>
         )}
 
         <button
@@ -1244,6 +1257,7 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
           text-align: center;
           cursor: pointer;
           transition: background 0.2s ease;
+          height: 320px;
           min-height: 320px;
           display: flex;
           align-items: center;
@@ -1257,12 +1271,13 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
         
         .image-preview {
           max-width: 100%;
-          max-height: 500px;
+          max-height: 100%;
           border-radius: 12px;
           object-fit: contain;
-          width: 100%;
+          width: auto;
           height: auto;
           display: block;
+          margin: 0 auto;
         }
         
         .upload-placeholder {

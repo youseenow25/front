@@ -257,6 +257,7 @@ export default function Page() {
           flex-wrap: nowrap;
           max-width: 900px;
           margin: 0 auto;
+          min-height: 160px;
         }
 
         .receipt-card {
@@ -282,6 +283,14 @@ export default function Page() {
           display: block;
           width: 120px;
           height: 160px;
+          aspect-ratio: 3 / 4;
+          position: relative;
+        }
+        
+        .receipt-image img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
         }
 
         /* Luxury Brands Section */
@@ -476,6 +485,12 @@ export default function Page() {
           .receipt-image {
             width: 100px;
             height: 130px;
+            aspect-ratio: 3 / 4;
+          }
+          
+          .receipt-image img {
+            width: 100%;
+            height: 100%;
           }
 
           .luxury-brands,
@@ -519,6 +534,12 @@ export default function Page() {
           .receipt-image {
             width: 85px;
             height: 110px;
+            aspect-ratio: 3 / 4;
+          }
+          
+          .receipt-image img {
+            width: 100%;
+            height: 100%;
           }
 
           .examples-title,
@@ -539,6 +560,12 @@ export default function Page() {
           .receipt-image {
             width: 75px;
             height: 100px;
+            aspect-ratio: 3 / 4;
+          }
+          
+          .receipt-image img {
+            width: 100%;
+            height: 100%;
           }
         }
         /* Subtle, accessible visible H1 */
