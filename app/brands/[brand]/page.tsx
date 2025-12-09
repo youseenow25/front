@@ -29,11 +29,11 @@ export async function generateMetadata(
   const logoUrl = `https://www.hubreceipts.com/brand-logos/${brand.toLowerCase().replace(/[^a-z0-9]/g, '_')}.webp`
   
   return {
-    title: `${brandName} 1:1 receipt template`,
+    title: `${brandName} receipt template`,
     description: description,
     keywords: [
       `${brandName} receipt`,
-      `${brandName} invoice`,
+      `${brandName} email receipt`,
       `${brandName} receipt generator`,
       `${brandName} invoice template`,
       `${brandName.toLowerCase()} receipt maker`,
