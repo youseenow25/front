@@ -100,7 +100,7 @@ function EmailReceiptLoading() {
   return (
     <div className="brand-receipt-generator">
       <div className="brand-header">
-        <h1>Loading...</h1>
+        <h1>Loading..</h1>
       </div>
     </div>
   )
