@@ -5,9 +5,7 @@ import BrandReceiptGenerator from '@/components/BrandReceiptGenerator'
 import { Suspense } from 'react'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero2'
-
-
-import Image from 'next/image'
+import Link from 'next/link'
 
 type Props = {
   params: { brand: string }
@@ -222,6 +220,12 @@ const structuredData = {
               <li>Mobile-friendly editor to tweak numbers or names on the go.</li>
               <li>Structured data and meta tags so search engines understand the page context.</li>
             </ul>
+            <p className="brand-links">
+              Explore other flows: <Link href={`/receipt/${brand}`}>downloadable PDF receipts</Link> ·{' '}
+              <Link href={`/email-receipt/${brand}`}>email receipt builder</Link> ·{' '}
+              <Link href="/brands">all brands directory</Link> ·{' '}
+              <Link href="/pricing">pricing</Link>
+            </p>
             <p>
               Start by selecting {brandName}, enter your order details, and export. Your receipt stays editable
               until you download, letting you correct typos or adjust quantities before you share it. The goal

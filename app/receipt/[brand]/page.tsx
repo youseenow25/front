@@ -5,6 +5,7 @@ import Header from '@/components/Header'
 import Hero from '@/components/Hero2'
 import BrandReceiptGenerator from '@/components/BrandReceiptGenerator'
 import brandsSchema from '@/components/brands'
+import Link from 'next/link'
 
 type Props = {
   params: { brand: string }
@@ -179,6 +180,10 @@ export default function ReceiptBrandPage({ params }: Props) {
               <li>Mobile-friendly fields so you can edit quantities or names on the go.</li>
               <li>Structured data baked into the page for better indexing and relevance.</li>
             </ul>
+            <p className="brand-links">
+              Need other formats? Try the <Link href={`/email-receipt/${brand}`}>email receipt version</Link>, the{' '}
+              <Link href={`/brands/${brand}`}>interactive generator</Link>, or browse <Link href="/brands">all brands</Link>.
+            </p>
             <p>
               Fill the fields, verify totals, and export. The goal is a professional {brandName} receipt
               template that balances brand accuracy with clear line items and tax detail, ready for

@@ -5,6 +5,7 @@ import Header from '@/components/Header'
 import Hero from '@/components/Hero2'
 import BrandReceiptGenerator from '@/components/BrandReceiptGenerator'
 import brandsSchema from '@/components/brands'
+import Link from 'next/link'
 
 type Props = {
   params: { brand: string }
@@ -179,6 +180,10 @@ export default function EmailReceiptBrandPage({ params }: Props) {
               <li>Mobile-ready editor so you can fix quantities or names on the go.</li>
               <li>Structured metadata to help search engines understand page relevance.</li>
             </ul>
+            <p className="brand-links">
+              Also see the <Link href={`/receipt/${brand}`}>PDF receipt template</Link>,{' '}
+              <Link href={`/brands/${brand}`}>full generator</Link>, or browse <Link href="/brands">all brands</Link>.
+            </p>
             <p>
               Enter your order data, verify amounts, and export. The output aims to look like a native
               {brandName} email receipt while keeping your details organized for customers, finance teams, or
