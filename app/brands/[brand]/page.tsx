@@ -6,6 +6,9 @@ import { Suspense } from 'react'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero2'
 
+
+import Image from 'next/image'
+
 type Props = {
   params: { brand: string }
   searchParams: { [key: string]: string | string[] | undefined }
@@ -111,12 +114,16 @@ export default function BrandPage({ params }: Props) {
   const brand = params.brand
   const brandData = brandsSchema.brands[brand]
   
+  
   if (!brandData) {
     notFound()
   }
 
   const brandName = toLabel(brand)
   const logoUrl = `https://www.hubreceipts.com/brand-logos/${brand.toLowerCase().replace(/[^a-z0-9]/g, '_')}.webp`
+  const brands = [
+    "apple", "gucci", "stockx", "nike", "flightclub", "louisvuitton", "saintlaurent","trapstar"
+  ]
 
   // ✅ CORRECT: Page-specific structured data for THIS brand only
   // ✅ CORRECTO para SaaS - Service Schema apropiado
@@ -173,6 +180,7 @@ const structuredData = {
         <div className="luxury-radial" aria-hidden />
         <Header />
         <Hero brandName={brandName} />
+
       
         
         {/* Brand Receipt Generator */}
