@@ -173,7 +173,7 @@ const structuredData = {
         <div className="luxury-radial" aria-hidden />
         <Header />
         <Hero brandName={brandName} />
-        <h1 style={{ backgroundColor: 'black', color: 'white', padding: '8px', borderRadius: '8px', margin: 0, minHeight: '40px', display: 'flex', alignItems: 'center' }}>
+        <h1 style={{ color:'black', textAlign:'center'}}>
             Create spow
           </h1>
         
