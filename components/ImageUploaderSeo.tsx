@@ -955,9 +955,7 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
               src={getLogoPath(brand)}
             />
           </div>
-          <h1 style={{ backgroundColor: 'black', color: 'white', padding: '8px', borderRadius: '8px', margin: 0, minHeight: '40px', display: 'flex', alignItems: 'center' }}>
-            Create 1:1 {toLabel(brand)} Receipt and receive it in your inbox 
-          </h1>
+          
         </div>
       )}
 
