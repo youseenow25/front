@@ -4,9 +4,10 @@ import ImageUploader from './ImageUploaderSeo';
 
 interface BrandReceiptGeneratorProps {
   preSelectedBrand: string;
+  title?: string;
 }
 
-export default function BrandReceiptGenerator({ preSelectedBrand }: BrandReceiptGeneratorProps) {
+export default function BrandReceiptGenerator({ preSelectedBrand, title }: BrandReceiptGeneratorProps) {
   function toLabel(name: string): string {
     const special: Record<string, string> = {
       zip_code: "ZIP Code",
@@ -31,7 +32,7 @@ export default function BrandReceiptGenerator({ preSelectedBrand }: BrandReceipt
       
       {/* SEO Content comes below ImageUploader */}
       <div className="brand-seo-content">
-        <h2>Create Professional {toLabel(preSelectedBrand)} Receipts</h2>
+        <h2>{title ?? `Create 1:1 ${toLabel(preSelectedBrand)} Receipt`}</h2>
         <p>
           Our {toLabel(preSelectedBrand)} receipt generator allows you to create authentic-looking 
           {toLabel(preSelectedBrand)} receipts for your purchases, returns, or business records. 

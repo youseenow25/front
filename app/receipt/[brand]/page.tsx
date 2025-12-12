@@ -145,7 +145,10 @@ export default function ReceiptBrandPage({ params }: Props) {
 
         <div style={{ width: '100%' }}>
           <Suspense fallback={<ReceiptPageLoading />}>
-            <BrandReceiptGenerator preSelectedBrand={brand} />
+            <BrandReceiptGenerator
+              preSelectedBrand={brand}
+              title={`Receipt Template ${brandName}`}
+            />
           </Suspense>
         </div>
       </main>
