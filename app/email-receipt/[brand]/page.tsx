@@ -152,6 +152,40 @@ export default function EmailReceiptBrandPage({ params }: Props) {
             />
           </Suspense>
         </div>
+
+        {/* SEO-rich unique content (~230 words) */}
+        <section className="brand-seo-rich">
+          <div className="brand-seo-inner">
+            <h2>Create {brandName} email receipts that match brand formatting</h2>
+            <p>
+              Use this editor to assemble {brandName} email receipts that mirror the layout customers expect in
+              their inbox: itemized lines, totals, taxes, and payment method, all wrapped with the correct
+              logo sizing and spacing. Because the content is structured, your totals remain accurate across
+              currencies, and you can localize fields for the region you send to. The generator is pre-loaded
+              with {brandName} placeholders so you spend less time formatting and more time confirming details.
+            </p>
+            <p>
+              Attach product photos or order screenshots, then export or send the receipt for confirmations,
+              returns, or support flows. Data stays client-side while you edit, reducing exposure of order
+              info. Popular brands for email receipts include Apple, Gucci, StockX, Nike, Flight Club, Louis
+              Vuitton, Saint Laurent, and Trapstar, but the tool covers 100+ options with consistent results.
+              Use it for warranty proofs, delivery confirmations, or to resend lost receipts with accurate
+              branding and line items.
+            </p>
+            <ul>
+              <li>Brand-correct headers and typography tailored to {brandName} email receipts.</li>
+              <li>Currency-aware totals with optional tax rows for compliance.</li>
+              <li>Downloadable PDF plus email-friendly formatting for quick forwarding.</li>
+              <li>Mobile-ready editor so you can fix quantities or names on the go.</li>
+              <li>Structured metadata to help search engines understand page relevance.</li>
+            </ul>
+            <p>
+              Enter your order data, verify amounts, and export. The output aims to look like a native
+              {brandName} email receipt while keeping your details organized for customers, finance teams, or
+              support agents who need clean proof of purchase.
+            </p>
+          </div>
+        </section>
       </main>
 
       <style>{`

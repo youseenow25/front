@@ -152,6 +152,40 @@ export default function ReceiptBrandPage({ params }: Props) {
             />
           </Suspense>
         </div>
+
+        {/* SEO-rich unique content (~230 words) */}
+        <section className="brand-seo-rich">
+          <div className="brand-seo-inner">
+            <h2>{brandName} receipt templates ready for print or PDF export</h2>
+            <p>
+              This {brandName} receipt template page is tuned for authenticity: line spacing, logo sizing, and
+              common receipt fields are pre-configured so you don&apos;t start from a blank canvas. Enter item
+              details, taxes, payment method, and store info to mirror what customers normally receive in
+              their inbox or at checkout. Because values are structured, totals and tax amounts stay aligned
+              across currencies, and you can localize the text to match your region.
+            </p>
+            <p>
+              Add product images or order screenshots for your records, then download a crisp PDF you can file
+              with accounting tools or share as proof of purchase. The editor stays client-side until you
+              export, so sensitive order data is not exposed while you adjust numbers. Frequent use cases
+              include warranty claims, expense submissions, lost-receipt replacements, and reconciling
+              returns. Brands users generate most here include Apple, Gucci, StockX, Nike, Flight Club, Louis
+              Vuitton, Saint Laurent, and Trapstar, but we support 100+ templates.
+            </p>
+            <ul>
+              <li>Brand-correct logo placement and typography for {brandName} receipts.</li>
+              <li>Currency-aware subtotals and tax rows that stay aligned when printed.</li>
+              <li>Optional email delivery plus instant PDF download for quick sharing.</li>
+              <li>Mobile-friendly fields so you can edit quantities or names on the go.</li>
+              <li>Structured data baked into the page for better indexing and relevance.</li>
+            </ul>
+            <p>
+              Fill the fields, verify totals, and export. The goal is a professional {brandName} receipt
+              template that balances brand accuracy with clear line items and tax detail, ready for
+              customers, finance teams, or support agents who need proof of purchase.
+            </p>
+          </div>
+        </section>
       </main>
 
       <style>{`

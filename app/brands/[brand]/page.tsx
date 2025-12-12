@@ -193,6 +193,42 @@ const structuredData = {
             />
           </Suspense>
         </div>
+
+        {/* SEO-rich unique content (~230 words) */}
+        <section className="brand-seo-rich">
+          <div className="brand-seo-inner">
+            <h2>{brandName} receipt templates that mirror real store formatting</h2>
+            <p>
+              Every {brandName} receipt you generate here is structured with the same fields customers
+              expect on a legitimate proof of purchase—dates, taxes, totals, payment method, and itemized
+              lines. We tune each template for the brand&apos;s usual fonts, spacing, and logo usage so your
+              PDF looks polished when you download or share it. Because the generator is pre-loaded with
+              {` ${brandName} `}placeholders, you can fill orders, warranty claims, or expense reports without
+              wrestling with generic invoice builders that ignore luxury layout nuances.
+            </p>
+            <p>
+              Use the uploader to attach product photos or order confirmations and keep everything in one
+              place. You can switch currencies, adjust taxes, and localize content so the receipt fits
+              the market you are submitting to. If you handle returns or customer support, the structured
+              fields help teams verify purchases faster. Our system saves you time on formatting while
+              keeping sensitive info local in your browser until you export. Frequent brands our users
+              generate include Apple, Gucci, StockX, Nike, Flight Club, Louis Vuitton, Saint Laurent, and
+              Trapstar, but the tool supports 100+ options with consistent accuracy.
+            </p>
+            <ul>
+              <li>Accurate brand logos rendered at optimal size for printing and PDF.</li>
+              <li>Currency-aware totals with optional tax lines to match regional norms.</li>
+              <li>Email delivery or instant download so you can forward receipts quickly.</li>
+              <li>Mobile-friendly editor to tweak numbers or names on the go.</li>
+              <li>Structured data and meta tags so search engines understand the page context.</li>
+            </ul>
+            <p>
+              Start by selecting {brandName}, enter your order details, and export. Your receipt stays editable
+              until you download, letting you correct typos or adjust quantities before you share it. The goal
+              is a crisp, authentic-looking {brandName} receipt with the right balance of branding and clarity.
+            </p>
+          </div>
+        </section>
       </main>
 
       <style>{`

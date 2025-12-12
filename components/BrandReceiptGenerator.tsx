@@ -178,6 +178,52 @@ export default function BrandReceiptGenerator({ preSelectedBrand, title, headerT
           }
         }
       `}</style>
+
+      <style jsx>{`
+        .brand-seo-rich {
+          width: 100%;
+          margin: 60px auto 0;
+          padding: 0 20px;
+        }
+
+        .brand-seo-inner {
+          max-width: 900px;
+          margin: 0 auto;
+          background: #fafafa;
+          border: 1px solid #eee;
+          border-radius: 12px;
+          padding: 28px;
+          line-height: 1.7;
+          color: #333;
+        }
+
+        .brand-seo-inner h2 {
+          margin-top: 0;
+          margin-bottom: 16px;
+          font-size: clamp(1.6rem, 2vw, 2rem);
+          color: #111;
+        }
+
+        .brand-seo-inner p {
+          margin-bottom: 16px;
+          font-size: 1.05rem;
+        }
+
+        .brand-seo-inner ul {
+          padding-left: 20px;
+          margin: 0 0 16px 0;
+        }
+
+        .brand-seo-inner li {
+          margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+          .brand-seo-inner {
+            padding: 20px;
+          }
+        }
+      `}</style>
     </div>
   );
 }
