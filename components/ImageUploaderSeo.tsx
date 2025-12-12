@@ -412,10 +412,11 @@ const IntegerInput = ({
 interface ImageUploaderProps {
   preSelectedBrand?: string;
   isBrandPage?: boolean;
+  title?: string;
 }
 
 // Main component that doesn't use useSearchParams directly
-function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUploaderProps) {
+function ImageUploaderContent({ preSelectedBrand, isBrandPage = false, title }: ImageUploaderProps) {
   const router = useRouter();
 
   const [image, setImage] = useState<string | null>(null);
@@ -955,7 +956,9 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
               src={getLogoPath(brand)}
             />
           </div>
-          
+          <h1 style={{ backgroundColor: 'black', color: 'white', padding: '8px', borderRadius: '8px', margin: 0, minHeight: '40px', display: 'flex', alignItems: 'center' }}>
+            {title ? title.replace('{brand}', toLabel(brand)) : `Receipt Generator for ${toLabel(brand)}`}
+          </h1>
         </div>
       )}
 
@@ -1987,7 +1990,7 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false }: ImageUp
 }
 
 // Main export with Suspense boundary
-export default function ImageUploader({ preSelectedBrand, isBrandPage = false }: ImageUploaderProps) {
+export default function ImageUploader({ preSelectedBrand, isBrandPage = false, title }: ImageUploaderProps) {
   return (
     <Suspense fallback={
       <div className="wrap">
@@ -2011,7 +2014,7 @@ export default function ImageUploader({ preSelectedBrand, isBrandPage = false }:
         </form>
       </div>
     }>
-      <ImageUploaderContent preSelectedBrand={preSelectedBrand} isBrandPage={isBrandPage} />
+      <ImageUploaderContent preSelectedBrand={preSelectedBrand} isBrandPage={isBrandPage} title={title} />
     </Suspense>
   );
 }

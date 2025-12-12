@@ -148,6 +148,7 @@ export default function EmailReceiptBrandPage({ params }: Props) {
             <BrandReceiptGenerator
               preSelectedBrand={brand}
               title={`Generate Email Receipt ${brandName}`}
+              headerTitle={`Create Email Receipt ${brandName}`}
             />
           </Suspense>
         </div>

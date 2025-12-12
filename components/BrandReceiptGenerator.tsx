@@ -5,9 +5,10 @@ import ImageUploader from './ImageUploaderSeo';
 interface BrandReceiptGeneratorProps {
   preSelectedBrand: string;
   title?: string;
+  headerTitle?: string;
 }
 
-export default function BrandReceiptGenerator({ preSelectedBrand, title }: BrandReceiptGeneratorProps) {
+export default function BrandReceiptGenerator({ preSelectedBrand, title, headerTitle }: BrandReceiptGeneratorProps) {
   function toLabel(name: string): string {
     const special: Record<string, string> = {
       zip_code: "ZIP Code",
@@ -28,7 +29,11 @@ export default function BrandReceiptGenerator({ preSelectedBrand, title }: Brand
   return (
     <div className="brand-receipt-generator">
       {/* ImageUploader comes first */}
-      <ImageUploader preSelectedBrand={preSelectedBrand} isBrandPage={true} />
+      <ImageUploader
+        preSelectedBrand={preSelectedBrand}
+        isBrandPage={true}
+        title={headerTitle}
+      />
       
       {/* SEO Content comes below ImageUploader */}
       <div className="brand-seo-content">

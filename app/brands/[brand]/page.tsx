@@ -173,9 +173,7 @@ const structuredData = {
         <div className="luxury-radial" aria-hidden />
         <Header />
         <Hero brandName={brandName} />
-        <h1 style={{ color:'black', textAlign:'center'}}>
-            Create spow
-          </h1>
+      
         
         {/* Brand Receipt Generator */}
         <div style={{width:'100%'}}>
@@ -183,6 +181,7 @@ const structuredData = {
             <BrandReceiptGenerator
               preSelectedBrand={brand}
               title={`Create 1:1 ${brandName} Receipt`}
+              headerTitle={`Create 1:1 ${brandName} Receipt`}
             />
           </Suspense>
         </div>
