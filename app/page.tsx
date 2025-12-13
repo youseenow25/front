@@ -9,10 +9,6 @@ import Image from "next/image";
 import { Analytics } from "@vercel/analytics/next"
 import StructuredData from "@/components/StructuredData";
 
-// Force dynamic rendering to prevent build timeout
-export const dynamic = 'force-dynamic'
-export const dynamicParams = true
-
 const brands = [
   "apple", "gucci", "stockx", "nike", "flightclub", "louisvuitton", "saintlaurent","trapstar"
 ]

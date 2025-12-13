@@ -2,10 +2,6 @@
 const nextConfig = {
   // Use standalone output for better deployment
   output: 'standalone',
-  // Skip static optimization to prevent build timeouts
-  experimental: {
-    missingSuspenseWithCSRBailout: false,
-  },
   images: {
     domains: ['api.hubreceipts.com', 'lh3.googleusercontent.com'],
     formats: ['image/avif', 'image/webp'],
