@@ -488,17 +488,23 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false, title }: 
 
   // Detect browser language on component mount and set default date values
   useEffect(() => {
-    const userData = localStorage.getItem("user");
-    if (userData) {
-      try {
-        const user = JSON.parse(userData);
-        if (user.email) {
-          setUserEmail(user.email);
-          setFormData(prev => ({ ...prev, email: user.email }));
+    if (typeof window === 'undefined') return;
+    
+    try {
+      const userData = localStorage.getItem("user");
+      if (userData) {
+        try {
+          const user = JSON.parse(userData);
+          if (user.email) {
+            setUserEmail(user.email);
+            setFormData(prev => ({ ...prev, email: user.email }));
+          }
+        } catch (error) {
+          console.error("Error parsing user data:", error);
         }
-      } catch (error) {
-        console.error("Error parsing user data:", error);
       }
+    } catch (error) {
+      console.error("Error accessing localStorage:", error);
     }
 
     // Detect browser language
@@ -751,6 +757,8 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false, title }: 
       return;
     }
 
+    if (typeof window === 'undefined') return;
+    
     const token = localStorage.getItem("auth_token");
 
     if (!token) {
