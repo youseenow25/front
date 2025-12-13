@@ -594,29 +594,49 @@ export default function ImageUploader() {
 
   // Detect browser language on component mount and set default date values
   useEffect(() => {
-    const userData = localStorage.getItem("user");
-    if (userData) {
-      try {
-        const user = JSON.parse(userData);
-        if (user.email) {
-          setUserEmail(user.email);
-          setFormData(prev => ({ ...prev, email: user.email }));
+    if (typeof window === 'undefined') return;
+    
+    let isMounted = true;
+
+    try {
+      const userData = localStorage.getItem("user");
+      if (userData && isMounted) {
+        try {
+          const user = JSON.parse(userData);
+          if (user.email) {
+            setUserEmail(user.email);
+            setFormData(prev => ({ ...prev, email: user.email }));
+          }
+        } catch (error) {
+          console.error("Error parsing user data:", error);
         }
-      } catch (error) {
-        console.error("Error parsing user data:", error);
       }
+
+      // Detect browser language
+      if (typeof navigator !== 'undefined' && isMounted) {
+        try {
+          const browserLanguage = navigator.language || (navigator as any).userLanguage;
+          const detectedLangCode = LANGUAGE_MAP[browserLanguage] || 'english';
+          
+          // Find the matching language object
+          const detectedLanguage = SUPPORTED_LANGUAGES.find(
+            lang => lang.code === detectedLangCode
+          ) || SUPPORTED_LANGUAGES[0];
+          
+          if (isMounted) {
+            setSelectedLanguage(detectedLanguage);
+          }
+        } catch (error) {
+          console.error("Error detecting language:", error);
+        }
+      }
+    } catch (error) {
+      console.error("Error in useEffect:", error);
     }
 
-    // Detect browser language
-    const browserLanguage = navigator.language || (navigator as any).userLanguage;
-    const detectedLangCode = LANGUAGE_MAP[browserLanguage] || 'english';
-    
-    // Find the matching language object
-    const detectedLanguage = SUPPORTED_LANGUAGES.find(
-      lang => lang.code === detectedLangCode
-    ) || SUPPORTED_LANGUAGES[0];
-    
-    setSelectedLanguage(detectedLanguage);
+    return () => {
+      isMounted = false;
+    };
 
     // Set default order date to today if not already set
     const today = formatDate(new Date());

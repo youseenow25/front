@@ -154,39 +154,77 @@ export default function Hero({ brandName = "" }: HeroProps) {
 
   // Check if mobile on mount and resize
   React.useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      try {
+        setIsMobile(window.innerWidth < 768);
+      } catch (err) {
+        console.error('Error checking mobile:', err);
+      }
     };
 
     checkMobile();
     window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+    return () => {
+      try {
+        window.removeEventListener("resize", checkMobile);
+      } catch (err) {
+        // Ignore cleanup errors
+      }
+    };
   }, []);
 
   React.useEffect(() => {
+    let timeoutId: NodeJS.Timeout | null = null;
+    let isMounted = true;
+
     if (subIndex === phrases[index].length + 1 && !deleting) {
-      setTimeout(() => setDeleting(true), 1000);
-      return;
+      timeoutId = setTimeout(() => {
+        if (isMounted) setDeleting(true);
+      }, 1000);
+      return () => {
+        isMounted = false;
+        if (timeoutId) clearTimeout(timeoutId);
+      };
     }
 
     if (subIndex === 0 && deleting) {
-      setDeleting(false);
-      setIndex((prev) => (prev + 1) % phrases.length);
-      return;
+      if (isMounted) {
+        setDeleting(false);
+        setIndex((prev) => (prev + 1) % phrases.length);
+      }
+      return () => {
+        isMounted = false;
+      };
     }
 
-    const timeout = setTimeout(() => {
-      setSubIndex((prev) => (deleting ? prev - 1 : prev + 1));
+    timeoutId = setTimeout(() => {
+      if (isMounted) {
+        setSubIndex((prev) => (deleting ? prev - 1 : prev + 1));
+      }
     }, deleting ? 50 : 120);
 
-    return () => clearTimeout(timeout);
-  }, [subIndex, index, deleting]);
+    return () => {
+      isMounted = false;
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [subIndex, index, deleting, phrases]);
 
   React.useEffect(() => {
-    const blinkInterval = setInterval(() => {
-      setBlink((prev) => !prev);
+    let blinkInterval: NodeJS.Timeout | null = null;
+    let isMounted = true;
+
+    blinkInterval = setInterval(() => {
+      if (isMounted) {
+        setBlink((prev) => !prev);
+      }
     }, 500);
-    return () => clearInterval(blinkInterval);
+
+    return () => {
+      isMounted = false;
+      if (blinkInterval) clearInterval(blinkInterval);
+    };
   }, []);
 
   const typedLineHeight = isMobile ? "3.2rem" : "4rem";

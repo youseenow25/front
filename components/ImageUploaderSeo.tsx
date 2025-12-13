@@ -508,31 +508,42 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false, title }: 
     }
 
     // Detect browser language
-    const browserLanguage = navigator.language || (navigator as any).userLanguage;
-    const detectedLangCode = LANGUAGE_MAP[browserLanguage] || 'english';
-    
-    // Find the matching language object
-    const detectedLanguage = SUPPORTED_LANGUAGES.find(
-      lang => lang.code === detectedLangCode
-    ) || SUPPORTED_LANGUAGES[0];
-    
-    setSelectedLanguage(detectedLanguage);
+    if (typeof navigator !== 'undefined') {
+      try {
+        const browserLanguage = navigator.language || (navigator as any).userLanguage;
+        const detectedLangCode = LANGUAGE_MAP[browserLanguage] || 'english';
+        
+        // Find the matching language object
+        const detectedLanguage = SUPPORTED_LANGUAGES.find(
+          lang => lang.code === detectedLangCode
+        ) || SUPPORTED_LANGUAGES[0];
+        
+        setSelectedLanguage(detectedLanguage);
+      } catch (error) {
+        console.error("Error detecting language:", error);
+      }
+    }
 
     // Set default order date to today if not already set
-    const today = formatDate(new Date());
-    setFormData(prev => {
-      const updated = { ...prev };
-      
-      // Set default order_date if it's a visible field and not already set
-      if (brand && visibleFields.includes("order_date") && !prev.order_date) {
-        updated.order_date = today;
-      }
+    try {
+      const today = formatDate(new Date());
+      setFormData(prev => {
+        const updated = { ...prev };
+        
+        // Set default order_date if it's a visible field and not already set
+        if (brand && visibleFields.includes("order_date") && !prev.order_date) {
+          updated.order_date = today;
+        }
       
       // Set default delivery_date if it's a visible field and not already set
       if (brand && visibleFields.includes("delivery_date") && !prev.delivery_date) {
-        const deliveryDate = new Date();
-        deliveryDate.setDate(deliveryDate.getDate() + 3);
-        updated.delivery_date = formatDate(deliveryDate);
+        try {
+          const deliveryDate = new Date();
+          deliveryDate.setDate(deliveryDate.getDate() + 3);
+          updated.delivery_date = formatDate(deliveryDate);
+        } catch (error) {
+          console.error("Error setting delivery date:", error);
+        }
       }
       
       // Set default invoice_date if it's a visible field and not already set
@@ -547,6 +558,9 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false, title }: 
       
       return updated;
     });
+    } catch (error) {
+      console.error("Error setting default dates:", error);
+    }
   }, [brand, visibleFields, selectedCurrency]);
 
   // Update default dates when brand changes

@@ -81,8 +81,21 @@ export default function SubscriptionTimer() {
           };
 
           update();
-          const interval = setInterval(update, 1000);
-          return () => clearInterval(interval);
+          const interval = setInterval(() => {
+            try {
+              update();
+            } catch (err) {
+              console.error("Error in timer update:", err);
+              clearInterval(interval);
+            }
+          }, 1000);
+          return () => {
+            try {
+              clearInterval(interval);
+            } catch (err) {
+              // Ignore cleanup errors
+            }
+          };
         } else {
           // Fallback: if no usable time data, hide the banner
           setShouldShow(false);
