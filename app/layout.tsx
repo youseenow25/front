@@ -114,9 +114,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Script
           id="gtm-base"
           strategy="afterInteractive"
-          onError={(e) => {
-            console.error('GTM script error:', e);
-          }}
           dangerouslySetInnerHTML={{
             __html: `
               try {
@@ -146,9 +143,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Script 
           id="google-analytics" 
           strategy="afterInteractive"
-          onError={(e) => {
-            console.error('Google Analytics script error:', e);
-          }}
         >
           {`
             try {
