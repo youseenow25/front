@@ -1,5 +1,9 @@
 import type { Metadata } from 'next'
 
+// Force dynamic rendering to prevent build timeout
+export const dynamic = 'force-dynamic'
+export const dynamicParams = true
+
 export const metadata: Metadata = {
   robots: {
     index: false,

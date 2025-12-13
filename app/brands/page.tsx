@@ -13,6 +13,10 @@ function toLabel(name: string): string {
     .join(' ')
 }
 
+// Force dynamic rendering to prevent build timeout
+export const dynamic = 'force-dynamic'
+export const dynamicParams = true
+
 export const metadata: Metadata = {
   title: 'Browse All Brand Receipt Generators | HubReceipts',
   description:
