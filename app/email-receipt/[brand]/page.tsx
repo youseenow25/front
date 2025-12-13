@@ -222,12 +222,23 @@ export default function EmailReceiptBrandPage({ params }: Props) {
   )
 }
 
+// Use dynamic rendering to avoid build timeout
+export const dynamic = 'force-dynamic'
+export const dynamicParams = true
+
+// Optionally generate only popular brands at build time
 export async function generateStaticParams() {
-  const brands = Object.keys(brandsSchema.brands || {})
-
-  return brands.map((brand) => ({
-    brand,
-  }))
+  // Only generate top 20 most popular brands to avoid timeout
+  const popularBrands = [
+    'apple', 'nike', 'gucci', 'stockx', 'louisvuitton', 
+    'adidas', 'amazon', 'supreme', 'balenciaga', 'dior',
+    'offwhite', 'prada', 'saintlaurent', 'trapstar', 'flightclub',
+    'goat', 'farfetch', 'ssense', 'end', 'canadagoose'
+  ]
+  
+  return popularBrands
+    .filter(brand => brandsSchema.brands[brand])
+    .map((brand) => ({
+      brand,
+    }))
 }
-
-export const revalidate = 86400

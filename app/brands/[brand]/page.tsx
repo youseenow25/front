@@ -12,6 +12,23 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined }
 }
 
+function toLabel(name: string): string {
+  const special: Record<string, string> = {
+    zip_code: "ZIP Code",
+    product_id: "Product ID",
+    order_number: "Order Number",
+    phone_number: "Phone Number",
+    brand_name: "Brand Name",
+    taxes_percentatge: "Taxes Percentatge",
+    currency: "Currency",
+  };
+  if (special[name]) return special[name];
+  return name
+    .split("_")
+    .map((w) => (w.length ? w[0].toUpperCase() + w.slice(1) : w))
+    .join(" ");
+}
+
 export async function generateMetadata(
   { params, searchParams }: Props,
   parent: ResolvingMetadata
@@ -24,7 +41,7 @@ export async function generateMetadata(
       title: 'Brand Not Found - HubReceipts',
     }
   }
-const brandName = toLabel(brand)
+  const brandName = toLabel(brand)
   const description = `Generate authentic ${brandName} receipts, 1:1 receipts`
   const logoUrl = `https://www.hubreceipts.com/brand-logos/${brand.toLowerCase().replace(/[^a-z0-9]/g, '_')}.webp`
   
@@ -78,23 +95,6 @@ const brandName = toLabel(brand)
       },
     },
   }
-}
-
-function toLabel(name: string): string {
-  const special: Record<string, string> = {
-    zip_code: "ZIP Code",
-    product_id: "Product ID",
-    order_number: "Order Number",
-    phone_number: "Phone Number",
-    brand_name: "Brand Name",
-    taxes_percentatge: "Taxes Percentatge",
-    currency: "Currency",
-  };
-  if (special[name]) return special[name];
-  return name
-    .split("_")
-    .map((w) => (w.length ? w[0].toUpperCase() + w.slice(1) : w))
-    .join(" ");
 }
 
 // Loading component for Suspense fallback
@@ -321,14 +321,23 @@ const structuredData = {
   )
 }
 
-// Generate static params for all brands
-export async function generateStaticParams() {
-  const brands = Object.keys(brandsSchema.brands || {})
-  
-  return brands.map((brand) => ({
-    brand: brand,
-  }))
-}
+// Use dynamic rendering to avoid build timeout
+export const dynamic = 'force-dynamic'
+export const dynamicParams = true
 
-// Revalidate every 24 hours
-export const revalidate = 86400
+// Optionally generate only popular brands at build time
+export async function generateStaticParams() {
+  // Only generate top 20 most popular brands to avoid timeout
+  const popularBrands = [
+    'apple', 'nike', 'gucci', 'stockx', 'louisvuitton', 
+    'adidas', 'amazon', 'supreme', 'balenciaga', 'dior',
+    'offwhite', 'prada', 'saintlaurent', 'trapstar', 'flightclub',
+    'goat', 'farfetch', 'ssense', 'end', 'canadagoose'
+  ]
+  
+  return popularBrands
+    .filter(brand => brandsSchema.brands[brand])
+    .map((brand) => ({
+      brand: brand,
+    }))
+}
