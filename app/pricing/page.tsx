@@ -244,6 +244,7 @@ export default function PricingPage() {
       priceusd: 4.99,
       priceeur: 4.5,
       description: 'Perfect for trying out our generator.',
+      oneTime: true,
     },
     {
       id: '1-day',
@@ -251,6 +252,7 @@ export default function PricingPage() {
       priceusd: 8.99,
       priceeur: 7.99,
       description: '24 hours of unlimited access.',
+      oneTime: true,
     },
     {
       id: '1-week',
@@ -258,9 +260,10 @@ export default function PricingPage() {
       priceusd: 14.99,
       priceeur: 12.99,
       description: 'Ideal for short-term projects.',
+      oneTime: true,
     },
   ];
-
+  
   const bottomRowPlans = [
     {
       id: '1-month',
@@ -268,6 +271,7 @@ export default function PricingPage() {
       priceusd: 21.99,
       priceeur: 20.99,
       description: 'Best for regular business use.',
+      oneTime: false,
     },
     {
       id: '6-months',
@@ -275,8 +279,10 @@ export default function PricingPage() {
       priceusd: 39.99,
       priceeur: 34.99,
       description: 'Maximum value for power users.',
+      oneTime: false,
     },
   ];
+  
 
   const renderPlanCard = (plan: any) => (
     <div
@@ -296,7 +302,12 @@ export default function PricingPage() {
           <span style={{marginLeft:6}} className="text-4xl font-light text-gray-900"> ${plan.priceusd}</span>
         </div>
 
-        <p className="text-sm text-gray-500 text-center mb-2">One-time payment • No auto-renewal</p>
+        {plan.oneTime && (
+  <p className="text-sm text-gray-500 text-center mb-2">
+    One-time payment • No auto-renewal
+  </p>
+)}
+
 
         <div className="mt-2">
           <button
