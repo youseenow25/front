@@ -1059,7 +1059,8 @@
         "street",
         "total",
         "zip_code",
-        "card_end"
+        "card_end",
+        "shipping_cost"
       ],
       "counts": {
         "order_number": 10,
