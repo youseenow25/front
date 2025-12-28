@@ -1384,6 +1384,7 @@
         "order_number",
         "product_name",
         "product_price",
+        "shipping_cost",
         "quantity",
         "size",
         "tax_amount",
