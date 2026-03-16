@@ -125,7 +125,7 @@ export default function Header() {
         <Image 
           width={60} 
           height={60} 
-          alt="HubReceipts logo" 
+          alt="RepReceipts logo" 
           src={"/logoheader.png"}
           priority
         />
@@ -297,7 +297,7 @@ export default function Header() {
             <Image 
               width={110} 
               height={110} 
-              alt="Webpage logo" 
+              alt="RepReceipts logo" 
               src={'/hublogo.png'}
               priority
             />
@@ -335,7 +335,7 @@ export default function Header() {
           <Image 
             width={isMobile ? 60 : 90} 
             height={isMobile ? 60 : 90} 
-            alt="HubReceipts logo" 
+            alt="RepReceipts logo" 
             src={'/logoheader.png'}
             priority
           />
