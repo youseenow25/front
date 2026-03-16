@@ -144,7 +144,7 @@ export default function Page() {
 
         <section className="luxury-features">
           <div className="container">
-            <h2 className="features-title">Why Choose HubReceipts?</h2>
+            <h2 className="features-title">Why Choose RepReceipts?</h2>
             
             <div className="features-grid">
               <div className="feature-card">

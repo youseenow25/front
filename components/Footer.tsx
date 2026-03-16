@@ -187,7 +187,7 @@ const Footer = () => {
       </div>
 
       <div className="mt-6 text-center text-white/90 text-xs">
-        ©2025, HubReceipts - Professional Receipt Generator
+        ©2025, RepReceipts - Professional Receipt Generator
       </div>
 
       <div className="mt-2 text-center text-white/90 text-sm">

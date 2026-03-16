@@ -14,7 +14,7 @@ function toLabel(name: string): string {
 }
 
 export const metadata: Metadata = {
-  title: 'Browse All Brand Receipt Generators | HubReceipts',
+  title: 'Browse All Brand Receipt Generators | RepReceipts',
   description:
     'Access individual receipt generators for 100+ luxury and streetwear brands. Jump directly to Apple, Nike, Louis Vuitton, StockX, and more.',
   alternates: {

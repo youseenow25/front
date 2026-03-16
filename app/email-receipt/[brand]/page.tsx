@@ -38,7 +38,7 @@ export async function generateMetadata(
 
   if (!brandData) {
     return {
-      title: 'Brand Not Found - HubReceipts',
+      title: 'Brand Not Found - RepReceipts',
     }
   }
 
@@ -64,7 +64,7 @@ export async function generateMetadata(
       type: 'website',
       locale: 'en_US',
       url: `https://www.repsreceipt.com/email-receipt/${brand}`,
-      siteName: 'HubReceipts',
+      siteName: 'RepReceipts',
       images: [
         {
           url: logoUrl,
@@ -76,7 +76,7 @@ export async function generateMetadata(
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${brandName} Email Receipt - HubReceipts`,
+      title: `${brandName} Email Receipt - RepReceipts`,
       description,
       images: [logoUrl],
     },
@@ -126,7 +126,7 @@ export default function EmailReceiptBrandPage({ params }: Props) {
     image: logoUrl,
     provider: {
       '@type': 'Organization',
-      name: 'HubReceipts',
+      name: 'RepReceipts',
       url: 'https://www.repsreceipt.com',
     },
     areaServed: 'Worldwide',

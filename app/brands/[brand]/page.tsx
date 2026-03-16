@@ -38,7 +38,7 @@ export async function generateMetadata(
   
   if (!brandData) {
     return {
-      title: 'Brand Not Found - HubReceipts',
+      title: 'Brand Not Found - RepReceipts',
     }
   }
   const brandName = toLabel(brand)
@@ -64,7 +64,7 @@ export async function generateMetadata(
       type: 'website',
       locale: 'en_US',
       url: `https://www.repsreceipt.com/brands/${brand}`,
-      siteName: 'HubReceipts',
+      siteName: 'RepReceipts',
       images: [
         {
           url: logoUrl,
@@ -76,7 +76,7 @@ export async function generateMetadata(
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${brandName} Receipt Generator - HubReceipts`,
+      title: `${brandName} Receipt Generator - RepReceipts`,
       description: description,
       images: [logoUrl],
     },
@@ -133,7 +133,7 @@ const structuredData = {
   'image': logoUrl,
   'provider': {
     '@type': 'Organization',
-    'name': 'HubReceipts',
+    'name': 'RepReceipts',
     'url': 'https://www.repsreceipt.com'
   },
   'areaServed': 'Worldwide',

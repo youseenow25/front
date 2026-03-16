@@ -23,7 +23,7 @@ export default function StructuredData() {
   const websiteStructuredData = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'HubReceipts',
+    name: 'RepReceipts',
     url: 'https://www.repsreceipt.com',
     description: 'Generate authentic brand receipts instantly. Create professional receipt templates for luxury brands.',
     potentialAction: {
@@ -36,7 +36,7 @@ export default function StructuredData() {
   const organizationStructuredData = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'HubReceipts',
+    name: 'RepReceipts',
     url: 'https://www.repsreceipt.com',
     logo: 'https://www.repsreceipt.com/hublogo.png',
     description: 'Professional brand receipt generator for luxury brands and premium products.',
@@ -54,7 +54,7 @@ export default function StructuredData() {
     description: `Generate authentic ${toLabel(brand)} receipts with official designs and formatting. Create professional ${toLabel(brand)} invoice templates instantly.`,
     provider: {
       '@type': 'Organization',
-      name: 'HubReceipts'
+      name: 'RepReceipts'
     },
     serviceType: 'Receipt Generation',
     areaServed: 'Worldwide',
