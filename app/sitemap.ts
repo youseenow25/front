@@ -3,7 +3,7 @@ import brandsSchema from '@/components/brands'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // CAMBIA ESTA LÍNEA:
-  const baseUrl = 'https://www.hubreceipts.com' // ← Agregar WWW aquí
+  const baseUrl = 'https://www.repsreceipt.com' // ← Agregar WWW aquí
 
   const brands = Object.keys(brandsSchema.brands || {})
 

@@ -6,7 +6,7 @@ import Script from 'next/script'
 export const metadata: Metadata = {
   title: 'HubReceipts - Generate Authentic Receipts for 100+ Luxury & Streetwear Brands',
   description: 'Create realistic receipts for StockX, Louis Vuitton, Dior, Gucci, Nike, Supreme, Balenciaga, Off-White & 100+ premium brands. Professional receipt generator for luxury documentation and purchase verification.',
-  metadataBase: new URL('https://www.hubreceipts.com'),
+  metadataBase: new URL('https://www.repsreceipt.com'),
   alternates: {
     canonical: '/',
   },
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'HubReceipts - Professional Receipt Generator for Luxury Brands',
     description: 'Generate authentic receipts for 100+ luxury and streetwear brands. Create professional receipt templates instantly.',
-    url: 'https://www.hubreceipts.com',
+    url: 'https://www.repsreceipt.com',
     siteName: 'HubReceipts',
     images: [
       {
@@ -193,12 +193,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@context": "https://schema.org",
               "@type": "WebSite", 
               "name": "HubReceipts",
-              "url": "https://www.hubreceipts.com",
+              "url": "https://www.repsreceipt.com",
               "description": "SaaS platform for generating authentic receipts for 100+ luxury and streetwear brands",
-              "thumbnailUrl": "https://www.hubreceipts.com/og-image.jpg",
+              "thumbnailUrl": "https://www.repsreceipt.com/og-image.jpg",
               "potentialAction": {
                 "@type": "SearchAction",
-                "target": "https://www.hubreceipts.com/search?q={search_term_string}",
+                "target": "https://www.repsreceipt.com/search?q={search_term_string}",
                 "query-input": "required name=search_term_string"
               }
             })
@@ -213,8 +213,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@context": "https://schema.org",
               "@type": "Organization",
               "name": "HubReceipts",
-              "url": "https://www.hubreceipts.com",
-              "logo": "https://www.hubreceipts.com/hublogo.png",
+              "url": "https://www.repsreceipt.com",
+              "logo": "https://www.repsreceipt.com/hublogo.png",
               "description": "SaaS platform providing professional receipt generation services for luxury brands",
               "sameAs": [],
               "address": {
@@ -223,7 +223,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               },
               "contactPoint": {
                 "@type": "ContactPoint",
-                "email": "support@hubreceipts.com",
+                "email": "support@repsreceipt.com",
                 "contactType": "customer service",
                 "areaServed": "US",
                 "availableLanguage": ["English", "Spanish", "French"]
@@ -244,8 +244,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "operatingSystem": "Web Browser",
               "permissions": "InternetConnection",
               "description": "SaaS platform for generating authentic receipts for 100+ luxury and streetwear brands",
-              "url": "https://www.hubreceipts.com",
-              "image": "https://www.hubreceipts.com/og-image.jpg",
+              "url": "https://www.repsreceipt.com",
+              "image": "https://www.repsreceipt.com/og-image.jpg",
               "offers": {
                 "@type": "Offer",
                 "price": "0",
@@ -268,7 +268,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@context": "https://schema.org",
               "@type": "Service",
               "serviceType": "Digital Receipt Generation",
-              "image": "https://www.hubreceipts.com/og-image.jpg",
+              "image": "https://www.repsreceipt.com/og-image.jpg",
               "provider": {
                 "@type": "Organization",
                 "name": "HubReceipts"

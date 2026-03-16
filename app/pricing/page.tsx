@@ -202,7 +202,7 @@ export default function PricingPage() {
         return;
       }
 
-      const response = await fetch('https://api.hubreceipts.com/api/payment/create-checkout-session', {
+      const response = await fetch('https://api.repsreceipt.com/api/payment/create-checkout-session', {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',

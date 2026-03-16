@@ -44,7 +44,7 @@ export async function generateMetadata(
 
   const brandName = toLabel(brand)
   const description = `Generate downloadable ${brandName} receipt templates with authentic formatting and fields.`
-  const logoUrl = `https://www.hubreceipts.com/brand-logos/${brand.toLowerCase().replace(/[^a-z0-9]/g, '_')}.webp`
+  const logoUrl = `https://www.repsreceipt.com/brand-logos/${brand.toLowerCase().replace(/[^a-z0-9]/g, '_')}.webp`
 
   return {
     title: `${brandName} receipt template`,
@@ -63,7 +63,7 @@ export async function generateMetadata(
       description,
       type: 'website',
       locale: 'en_US',
-      url: `https://www.hubreceipts.com/receipt/${brand}`,
+      url: `https://www.repsreceipt.com/receipt/${brand}`,
       siteName: 'HubReceipts',
       images: [
         {
@@ -81,7 +81,7 @@ export async function generateMetadata(
       images: [logoUrl],
     },
     alternates: {
-      canonical: `https://www.hubreceipts.com/receipt/${brand}`,
+      canonical: `https://www.repsreceipt.com/receipt/${brand}`,
     },
     robots: {
       index: true,
@@ -116,7 +116,7 @@ export default function ReceiptBrandPage({ params }: Props) {
   }
 
   const brandName = toLabel(brand)
-  const logoUrl = `https://www.hubreceipts.com/brand-logos/${brand.toLowerCase().replace(/[^a-z0-9]/g, '_')}.webp`
+  const logoUrl = `https://www.repsreceipt.com/brand-logos/${brand.toLowerCase().replace(/[^a-z0-9]/g, '_')}.webp`
 
   const structuredData = {
     '@context': 'https://schema.org',
@@ -127,7 +127,7 @@ export default function ReceiptBrandPage({ params }: Props) {
     provider: {
       '@type': 'Organization',
       name: 'HubReceipts',
-      url: 'https://www.hubreceipts.com',
+      url: 'https://www.repsreceipt.com',
     },
     areaServed: 'Worldwide',
   }

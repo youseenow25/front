@@ -24,11 +24,11 @@ export default function StructuredData() {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'HubReceipts',
-    url: 'https://www.hubreceipts.com',
+    url: 'https://www.repsreceipt.com',
     description: 'Generate authentic brand receipts instantly. Create professional receipt templates for luxury brands.',
     potentialAction: {
       '@type': 'SearchAction',
-      target: 'https://www.hubreceipts.com/brands?search={search_term_string}',
+      target: 'https://www.repsreceipt.com/brands?search={search_term_string}',
       'query-input': 'required name=search_term_string'
     }
   }
@@ -37,8 +37,8 @@ export default function StructuredData() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'HubReceipts',
-    url: 'https://www.hubreceipts.com',
-    logo: 'https://www.hubreceipts.com/hublogo.png',
+    url: 'https://www.repsreceipt.com',
+    logo: 'https://www.repsreceipt.com/hublogo.png',
     description: 'Professional brand receipt generator for luxury brands and premium products.',
     sameAs: [
       'https://twitter.com/hubreceipts',
@@ -60,7 +60,7 @@ export default function StructuredData() {
     areaServed: 'Worldwide',
     offers: {
       '@type': 'Offer',
-      url: `https://www.hubreceipts.com/brands/${brand}`,
+      url: `https://www.repsreceipt.com/brands/${brand}`,
       price: '0',
       priceCurrency: 'USD'
     }

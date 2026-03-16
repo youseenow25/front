@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/api/',
     },
-    sitemap: 'https://www.hubreceipts.com/sitemap.xml',
+    sitemap: 'https://www.repsreceipt.com/sitemap.xml',
   }
 }
