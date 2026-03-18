@@ -214,7 +214,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@type": "Organization",
               "name": "RepReceipts",
               "url": "https://www.repsreceipt.com",
-              "logo": "https://www.repsreceipt.com/hublogo.png",
+              "logo": "https://www.repsreceipt.com/logoreps.png",
               "description": "SaaS platform providing professional receipt generation services for luxury brands",
               "sameAs": [],
               "address": {
