@@ -46,7 +46,7 @@ export async function generateMetadata(
   const logoUrl = `https://www.repsreceipt.com/brand-logos/${brand.toLowerCase().replace(/[^a-z0-9]/g, '_')}.webp`
   
   return {
-    title: `${brandName} receipt template`,
+    title: `${brandName} Receipt Generator - Create Authentic Receipts | RepReceipts`,
     description: description,
     keywords: [
       `${brandName} receipt`,
@@ -59,7 +59,7 @@ export async function generateMetadata(
       'authentic receipt generator'
     ],
     openGraph: {
-      title: `${brandName} 1:1 receipt template`,
+      title: `${brandName} Receipt Generator - RepReceipts`,
       description: description,
       type: 'website',
       locale: 'en_US',
@@ -321,6 +321,12 @@ const structuredData = {
   )
 }
 
-// Use dynamic rendering to avoid build timeout - no static generation
-export const dynamic = 'force-dynamic'
+// Generate all brand pages at build time for Google indexing
+export async function generateStaticParams() {
+  const brands = Object.keys(brandsSchema.brands || {})
+  return brands.map((brand) => ({ brand }))
+}
+
+// Revalidate every 24 hours instead of force-dynamic
+export const revalidate = 86400
 export const dynamicParams = true

@@ -2,28 +2,28 @@ import { MetadataRoute } from 'next'
 import brandsSchema from '@/components/brands'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // CAMBIA ESTA LÍNEA:
-  const baseUrl = 'https://www.repsreceipt.com' // ← Agregar WWW aquí
+  const baseUrl = 'https://www.repsreceipt.com'
+  const lastMod = new Date().toISOString()
 
   const brands = Object.keys(brandsSchema.brands || {})
 
   const brandPages = brands.map((brand) => ({
     url: `${baseUrl}/brands/${brand}`,
-    lastModified: new Date(),
+    lastModified: lastMod,
     changeFrequency: 'weekly' as const,
     priority: 0.8,
   }))
 
   const receiptTemplatePages = brands.map((brand) => ({
     url: `${baseUrl}/receipt/${brand}`,
-    lastModified: new Date(),
+    lastModified: lastMod,
     changeFrequency: 'weekly' as const,
     priority: 0.7,
   }))
 
   const emailReceiptPages = brands.map((brand) => ({
     url: `${baseUrl}/email-receipt/${brand}`,
-    lastModified: new Date(),
+    lastModified: lastMod,
     changeFrequency: 'weekly' as const,
     priority: 0.7,
   }))
@@ -31,22 +31,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: baseUrl,
-      lastModified: new Date(),
+      lastModified: lastMod,
       changeFrequency: 'monthly',
       priority: 1,
     },
     {
       url: `${baseUrl}/brands`,
-      lastModified: new Date(),
+      lastModified: lastMod,
       changeFrequency: 'weekly',
       priority: 0.9,
-    },
-    // Exclude auth/payment/pricing routes from indexing via sitemap
-    {
-      url: `${baseUrl}/success`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.5,
     },
     ...brandPages,
     ...receiptTemplatePages,

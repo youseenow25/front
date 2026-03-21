@@ -222,6 +222,12 @@ export default function EmailReceiptBrandPage({ params }: Props) {
   )
 }
 
-// Use dynamic rendering to avoid build timeout - no static generation
-export const dynamic = 'force-dynamic'
+// Generate all email receipt pages at build time for Google indexing
+export async function generateStaticParams() {
+  const brands = Object.keys(brandsSchema.brands || {})
+  return brands.map((brand) => ({ brand }))
+}
+
+// Revalidate every 24 hours instead of force-dynamic
+export const revalidate = 86400
 export const dynamicParams = true

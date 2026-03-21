@@ -197,9 +197,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "description": "SaaS platform for generating authentic receipts for 100+ luxury and streetwear brands",
               "thumbnailUrl": "https://www.repsreceipt.com/og-image.jpg",
               "potentialAction": {
-                "@type": "SearchAction",
-                "target": "https://www.repsreceipt.com/search?q={search_term_string}",
-                "query-input": "required name=search_term_string"
+                "@type": "ViewAction",
+                "target": "https://www.repsreceipt.com/brands",
+                "name": "Browse All Brands"
               }
             })
           }}
@@ -250,7 +250,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 "@type": "Offer",
                 "price": "0",
                 "priceCurrency": "USD",
-                "priceValidUntil": "2025-12-31"
+                "priceValidUntil": "2027-12-31"
               },
               "author": {
                 "@type": "Organization",
