@@ -64,8 +64,7 @@ const Footer = () => {
         <div>
           <h3 className="text-lg font-semibold mb-3">About us</h3>
           <p className="text-white/90 mb-4 leading-relaxed">
-            Best quality receipts 1:1 in the market, over 70 brands templates.
-            <br />
+            Professional receipt generator for over 100 luxury and streetwear brands. Create receipt templates, email confirmations and PDF invoices.
           </p>
 
           <div className="space-y-2 text-white/90">
@@ -125,24 +124,34 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-3">Quick Links</h3>
           <ul className="space-y-2 text-white/90 mb-6">
             <li>
-              <a href="https://discord.com/invite/2ZRQu2uT62" target="_blank" rel="noopener noreferrer" className="hover:underline">
-                Our Discord Server
-              </a>
-            </li>
-            <li>
-              <a href="mailto:hubreceipts@outlook.com?subject=Support Request" className="hover:underline">
-                Our Email
-              </a>
-            </li>
-            <li>
               <Link href="/" className="hover:underline">
                 Home
+              </Link>
+            </li>
+            <li>
+              <Link href="/brands" className="hover:underline">
+                All Brands
+              </Link>
+            </li>
+            <li>
+              <Link href="/about" className="hover:underline">
+                About Us
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact" className="hover:underline">
+                Contact
               </Link>
             </li>
             <li>
               <Link href="/pricing" className="hover:underline">
                 Pricing
               </Link>
+            </li>
+            <li>
+              <a href="https://discord.com/invite/2ZRQu2uT62" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                Discord
+              </a>
             </li>
           </ul>
 
@@ -179,15 +188,15 @@ const Footer = () => {
 
         {/* Policies */}
         <div className="text-white/90 flex flex-wrap justify-center gap-4">
-          <a href="#" className="hover:underline">Privacy Policy</a>
-          <a href="#" className="hover:underline">Refund Policy</a>
-          <a href="#" className="hover:underline">Cookie Preferences</a>
-          <a href="#" className="hover:underline">Terms of Service</a>
+          <Link href="/privacy-policy" className="hover:underline">Privacy Policy</Link>
+          <Link href="/terms-of-service" className="hover:underline">Terms of Service</Link>
+          <Link href="/about" className="hover:underline">About</Link>
+          <Link href="/contact" className="hover:underline">Contact</Link>
         </div>
       </div>
 
       <div className="mt-6 text-center text-white/90 text-xs">
-        ©2025, RepReceipts - Professional Receipt Generator
+        ©2026, RepReceipts - Professional Receipt Generator
       </div>
 
       <div className="mt-2 text-center text-white/90 text-sm">

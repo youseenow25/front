@@ -42,11 +42,11 @@ export async function generateMetadata(
     }
   }
   const brandName = toLabel(brand)
-  const description = `Generate authentic ${brandName} receipts, 1:1 receipts`
+  const description = `${brandName} receipt generator - create professional ${brandName} receipts with brand formatting, itemized details, and instant PDF export. Free online tool.`
   const logoUrl = `https://www.repsreceipt.com/brand-logos/${brand.toLowerCase().replace(/[^a-z0-9]/g, '_')}.webp`
   
   return {
-    title: `${brandName} Receipt Generator - Create Authentic Receipts | RepReceipts`,
+    title: `${brandName} Receipt Generator - Create ${brandName} Receipts Online | RepReceipts`,
     description: description,
     keywords: [
       `${brandName} receipt`,
@@ -54,9 +54,10 @@ export async function generateMetadata(
       `${brandName} receipt generator`,
       `${brandName} invoice template`,
       `${brandName.toLowerCase()} receipt maker`,
-      'free receipt generator',
+      `${brandName.toLowerCase()} receipt template`,
+      'receipt generator online',
       'luxury brand receipts',
-      'authentic receipt generator'
+      'professional receipt creator'
     ],
     openGraph: {
       title: `${brandName} Receipt Generator - RepReceipts`,
@@ -129,7 +130,7 @@ const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'Service',
   'name': `${brandName} Receipt Generator`,
-  'description': `Generate authentic ${brandName} receipts with official designs and formatting. Create professional ${brandName} invoice templates instantly.`,
+  'description': `Professional ${brandName} receipt generator with brand formatting and layout. Create ${brandName} invoice templates instantly.`,
   'image': logoUrl,
   'provider': {
     '@type': 'Organization',
@@ -163,15 +164,49 @@ const structuredData = {
       }
     ]
   },
-  'termsOfService': 'https://www.repsreceipt.com/tos'
+  'termsOfService': 'https://www.repsreceipt.com/terms-of-service'
 }
+
+  const faqData = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'mainEntity': [
+      {
+        '@type': 'Question',
+        'name': `Is the ${brandName} receipt generator free?`,
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'Yes, basic receipt generation is free. Premium features like batch export and advanced templates are available with a paid plan.'
+        }
+      },
+      {
+        '@type': 'Question',
+        'name': `What formats can I export ${brandName} receipts in?`,
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'You can export as PDF for printing, or use the email receipt format for digital delivery.'
+        }
+      },
+      {
+        '@type': 'Question',
+        'name': `Can I customize the currency on ${brandName} receipts?`,
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'Yes, the generator supports multiple currencies including USD, EUR, GBP, and more with automatic formatting.'
+        }
+      }
+    ]
+  }
 
   return (
     <>
-      {/* ✅ Add structured data for THIS specific brand page */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqData) }}
       />
       
       <main className="main">
@@ -192,44 +227,50 @@ const structuredData = {
           </Suspense>
         </div>
 
-        {/* SEO-rich unique content (~230 words) */}
+        {/* SEO-rich unique content */}
         <section className="brand-seo-rich">
           <div className="brand-seo-inner">
-            <h2>{brandName} receipt templates that mirror real store formatting</h2>
+            <h2>How the {brandName} Receipt Generator Works</h2>
             <p>
-              Every {brandName} receipt you generate here is structured with the same fields customers
-              expect on a legitimate proof of purchase—dates, taxes, totals, payment method, and itemized
-              lines. We tune each template for the brand&apos;s usual fonts, spacing, and logo usage so your
-              PDF looks polished when you download or share it. Because the generator is pre-loaded with
-              {` ${brandName} `}placeholders, you can fill orders, warranty claims, or expense reports without
-              wrestling with generic invoice builders that ignore luxury layout nuances.
+              The {brandName} receipt generator lets you build complete receipts with itemized product lines,
+              tax calculations, payment method details, and order numbers. Each field is pre-configured with
+              {` ${brandName}`}-specific formatting so you get a professional result without starting from scratch.
+              Select your currency, enter product details, adjust quantities and prices, then export as PDF
+              or send via email.
             </p>
+
+            <h3>What You Can Customize</h3>
             <p>
-              Use the uploader to attach product photos or order confirmations and keep everything in one
-              place. You can switch currencies, adjust taxes, and localize content so the receipt fits
-              the market you are submitting to. If you handle returns or customer support, the structured
-              fields help teams verify purchases faster. Our system saves you time on formatting while
-              keeping sensitive info local in your browser until you export. Frequent brands our users
-              generate include Apple, Gucci, StockX, Nike, Flight Club, Louis Vuitton, Saint Laurent, and
-              Trapstar, but the tool supports 100+ options with consistent accuracy.
+              Every {brandName} receipt includes editable fields for store location, date, item descriptions,
+              unit prices, tax rates, and payment type. You can add multiple line items, upload product images,
+              and switch between currencies to match your region. The generator handles subtotals and tax
+              calculations automatically as you type.
             </p>
+
+            <h3>Output Formats</h3>
             <ul>
-              <li>Accurate brand logos rendered at optimal size for printing and PDF.</li>
-              <li>Currency-aware totals with optional tax lines to match regional norms.</li>
-              <li>Email delivery or instant download so you can forward receipts quickly.</li>
-              <li>Mobile-friendly editor to tweak numbers or names on the go.</li>
-              <li>Structured data and meta tags so search engines understand the page context.</li>
+              <li>PDF download for printing or filing with accounting software.</li>
+              <li>Email receipt format for sending order confirmations directly.</li>
+              <li>Mobile-optimized layout that works on phones and tablets.</li>
+              <li>Multi-currency support with automatic tax calculation.</li>
             </ul>
+
+            <h3>Frequently Asked Questions</h3>
+            <dl>
+              <dt>Is the {brandName} receipt generator free?</dt>
+              <dd>Yes, basic receipt generation is free. Premium features like batch export and advanced templates are available with a paid plan.</dd>
+              <dt>What formats can I export {brandName} receipts in?</dt>
+              <dd>You can export as PDF for printing, or use the email receipt format for digital delivery.</dd>
+              <dt>Can I customize the currency on {brandName} receipts?</dt>
+              <dd>Yes, the generator supports multiple currencies including USD, EUR, GBP, and more with automatic formatting.</dd>
+            </dl>
+
             <p className="brand-links">
-              Explore other flows: <Link href={`/receipt/${brand}`}>downloadable PDF receipts</Link> ·{' '}
-              <Link href={`/email-receipt/${brand}`}>email receipt builder</Link> ·{' '}
-              <Link href="/brands">all brands directory</Link> ·{' '}
-              <Link href="/pricing">pricing</Link>
-            </p>
-            <p>
-              Start by selecting {brandName}, enter your order details, and export. Your receipt stays editable
-              until you download, letting you correct typos or adjust quantities before you share it. The goal
-              is a crisp, authentic-looking {brandName} receipt with the right balance of branding and clarity.
+              Related tools: <Link href={`/receipt/${brand}`}>{brandName} PDF receipt template</Link> ·{' '}
+              <Link href={`/email-receipt/${brand}`}>{brandName} email receipt</Link> ·{' '}
+              <Link href="/brands">all brands</Link> ·{' '}
+              <Link href="/about">about us</Link> ·{' '}
+              <Link href="/contact">contact</Link>
             </p>
           </div>
         </section>

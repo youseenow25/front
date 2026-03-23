@@ -4,16 +4,16 @@ import { Analytics } from "@vercel/analytics/react"
 import Script from 'next/script'
 
 export const metadata: Metadata = {
-  title: 'RepReceipts - Generate Authentic Receipts for 100+ Luxury & Streetwear Brands',
-  description: 'Create realistic receipts for StockX, Louis Vuitton, Dior, Gucci, Nike, Supreme, Balenciaga, Off-White & 100+ premium brands. Professional receipt generator for luxury documentation and purchase verification.',
+  title: 'RepReceipts - Receipt Generator for 100+ Luxury & Streetwear Brands',
+  description: 'Professional receipt generator for StockX, Louis Vuitton, Dior, Gucci, Nike, Supreme, Balenciaga & 100+ brands. Create receipt templates, email confirmations and order documentation instantly.',
   metadataBase: new URL('https://www.repsreceipt.com'),
   alternates: {
     canonical: '/',
   },
   
   openGraph: {
-    title: 'RepReceipts - Professional Receipt Generator for Luxury Brands',
-    description: 'Generate authentic receipts for 100+ luxury and streetwear brands. Create professional receipt templates instantly.',
+    title: 'RepReceipts - Receipt Generator for Luxury & Streetwear Brands',
+    description: 'Professional receipt generator for 100+ luxury and streetwear brands. Create receipt templates, email confirmations and invoices instantly.',
     url: 'https://www.repsreceipt.com',
     siteName: 'RepReceipts',
     images: [
@@ -30,24 +30,26 @@ export const metadata: Metadata = {
 
   twitter: {
     card: 'summary_large_image',
-    title: 'RepReceipts - Professional Receipt Generator',
-    description: 'Generate authentic receipts for 100+ luxury and streetwear brands',
+    title: 'RepReceipts - Receipt Generator for 100+ Brands',
+    description: 'Professional receipt generator for 100+ luxury and streetwear brands. Create templates, email confirmations and invoices.',
     images: ['/og-image.jpg'],
   },
 
   keywords: [
     'receipt generator',
-    'luxury brand receipts', 
+    'luxury brand receipts',
     'invoice generator',
-    'stockx receipt',
-    'nike receipt',
+    'stockx receipt generator',
+    'nike receipt generator',
     'louis vuitton receipt',
     'receipt maker',
-    'fake receipt generator',
-    'email receipt',
-    'professional receipts',
+    'receipt template',
+    'email receipt generator',
+    'professional receipt generator',
     'luxury fashion receipts',
-    'streetwear receipts'
+    'streetwear receipt generator',
+    'order confirmation generator',
+    'purchase receipt creator'
   ],
   authors: [{ name: 'RepReceipts' }],
   creator: 'RepReceipts',
@@ -194,7 +196,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@type": "WebSite", 
               "name": "RepReceipts",
               "url": "https://www.repsreceipt.com",
-              "description": "SaaS platform for generating authentic receipts for 100+ luxury and streetwear brands",
+              "description": "Professional receipt generator platform for 100+ luxury and streetwear brands",
               "thumbnailUrl": "https://www.repsreceipt.com/og-image.jpg",
               "potentialAction": {
                 "@type": "ViewAction",
@@ -215,7 +217,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "name": "RepReceipts",
               "url": "https://www.repsreceipt.com",
               "logo": "https://www.repsreceipt.com/logoreps.png",
-              "description": "SaaS platform providing professional receipt generation services for luxury brands",
+              "description": "Professional receipt generation platform for luxury and streetwear brands",
               "sameAs": [],
               "address": {
                 "@type": "PostalAddress",
@@ -243,7 +245,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Web Browser",
               "permissions": "InternetConnection",
-              "description": "SaaS platform for generating authentic receipts for 100+ luxury and streetwear brands",
+              "description": "Professional receipt generator platform for 100+ luxury and streetwear brands",
               "url": "https://www.repsreceipt.com",
               "image": "https://www.repsreceipt.com/og-image.jpg",
               "offers": {

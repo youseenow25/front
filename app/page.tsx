@@ -9,6 +9,21 @@ import Image from "next/image";
 import { Analytics } from "@vercel/analytics/next"
 import StructuredData from "@/components/StructuredData";
 
+export const metadata: Metadata = {
+  title: 'RepReceipts - Receipt Generator for 100+ Luxury & Streetwear Brands',
+  description: 'Professional receipt generator for StockX, Nike, Louis Vuitton, Gucci, Apple, Supreme & 100+ brands. Create receipt templates, email confirmations and PDF invoices instantly online.',
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: 'RepReceipts - Receipt Generator for Luxury & Streetwear Brands',
+    description: 'Professional receipt generator for 100+ luxury and streetwear brands. Create receipt templates, email confirmations and invoices instantly.',
+    url: 'https://www.repsreceipt.com',
+    type: 'website',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'RepReceipts - Receipt Generator' }],
+  },
+}
+
 const brands = [
   "apple", "gucci", "stockx", "nike", "flightclub", "louisvuitton", "saintlaurent","trapstar"
 ]
@@ -40,10 +55,10 @@ export default function Page() {
         <Header />
         <section className="container" style={{ padding: '24px 20px 0 20px', textAlign: 'center' }}>
           <h1 className="seo-h1">
-            Generate 1:1 Receipts for StockX, Farfetch +70 brands
+            Receipt Generator for StockX, Nike, Louis Vuitton & 100+ Brands
           </h1>
           <p style={{ maxWidth: 760, margin: '0 auto', color: '#444', fontSize: '1rem', lineHeight: 1.6 }}>
-            Generate email, paper and A4 receipts for more than 70 luxury brands.
+            Create professional email receipts, printable templates and PDF invoices for over 100 luxury and streetwear brands. Free online receipt maker.
           </p>
         </section>
 
@@ -149,8 +164,8 @@ export default function Page() {
             <div className="features-grid">
               <div className="feature-card">
                 <div className="feature-icon">🎨</div>
-                <h3>Authentic Designs</h3>
-                <p>StockX, Apple, Canada Goose +70 luxury brand receipts.</p>
+                <h3>Brand Templates</h3>
+                <p>StockX, Apple, Nike, Louis Vuitton, Gucci & 100+ brand receipt templates.</p>
               </div>
               
               <div className="feature-card">
@@ -170,6 +185,34 @@ export default function Page() {
                 <h3>Business Ready</h3>
                 <p>Perfect for luxury resellers, investors, and business documentation.</p>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SEO content section */}
+        <section className="luxury-features">
+          <div className="container">
+            <h2 className="features-title">Professional Receipt Generator</h2>
+            <div style={{ maxWidth: 800, margin: '0 auto', textAlign: 'left', color: '#555', lineHeight: 1.8 }}>
+              <p style={{ marginBottom: 16 }}>
+                RepReceipts is an online receipt generator supporting over 100 luxury and streetwear brands.
+                Create receipt templates for StockX, Nike, Louis Vuitton, Gucci, Apple, Dior, Balenciaga,
+                Supreme, Chanel, Prada, Moncler, and many more. Each template is formatted with brand-specific
+                layouts, logos, and field structures.
+              </p>
+              <p style={{ marginBottom: 16 }}>
+                The platform supports three receipt formats: interactive receipt generators with live preview,
+                downloadable PDF receipt templates for printing, and email receipt formats for digital order
+                confirmations. All receipts include customizable fields for items, prices, taxes, payment
+                methods, and currency selection.
+              </p>
+              <p>
+                Browse the <Link href="/brands" style={{ color: '#d4af37', textDecoration: 'underline' }}>full brand directory</Link> to
+                get started. Learn more on our <Link href="/about" style={{ color: '#d4af37', textDecoration: 'underline' }}>about page</Link>,
+                or reach out via the <Link href="/contact" style={{ color: '#d4af37', textDecoration: 'underline' }}>contact page</Link>.
+                Read our <Link href="/privacy-policy" style={{ color: '#d4af37', textDecoration: 'underline' }}>privacy policy</Link> and{' '}
+                <Link href="/terms-of-service" style={{ color: '#d4af37', textDecoration: 'underline' }}>terms of service</Link>.
+              </p>
             </div>
           </div>
         </section>
@@ -568,12 +611,15 @@ export default function Page() {
             height: 100%;
           }
         }
-        /* Subtle, accessible visible H1 */
         .seo-h1 {
-          font-size: 1rem;
-          font-weight: 600;
-          color: #444;
-          margin-bottom: 6px;
+          font-size: 1.75rem;
+          font-weight: 700;
+          color: #1a1a1a;
+          margin-bottom: 8px;
+          background: linear-gradient(135deg, #d4af37, #c9b037);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
         }
       `}</style>
     </>

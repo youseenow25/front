@@ -34,8 +34,8 @@ export default function BrandsIndexPage() {
             <p className="eyebrow">All Brands</p>
             <h1>Explore Every Receipt Generator</h1>
             <p className="subtitle">
-              Choose a brand below to open its dedicated receipt generator page with tailored metadata,
-              structured data, and fields.
+              Choose a brand below to open its receipt generator. Each brand page includes
+              customizable fields, PDF export, and email receipt formatting.
             </p>
 
             <div className="brands-directory-grid">

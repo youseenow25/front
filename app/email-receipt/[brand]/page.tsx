@@ -47,19 +47,19 @@ export async function generateMetadata(
   const logoUrl = `https://www.repsreceipt.com/brand-logos/${brand.toLowerCase().replace(/[^a-z0-9]/g, '_')}.webp`
 
   return {
-    title: `${brandName} email receipt`,
+    title: `${brandName} Email Receipt Generator - Order Confirmation | RepReceipts`,
     description,
     keywords: [
       `${brandName} email receipt`,
-      `${brandName} receipt email`,
       `${brandName} order confirmation`,
-      `${brandName} e-receipt generator`,
-      `${brandName} invoice email`,
-      'email receipt template',
-      'digital receipt generator',
+      `${brandName} e-receipt`,
+      `${brandName} digital receipt`,
+      `${brandName} purchase confirmation email`,
+      'email receipt generator',
+      'order confirmation template',
     ],
     openGraph: {
-      title: `${brandName} email receipt`,
+      title: `${brandName} Email Receipt Generator | RepReceipts`,
       description,
       type: 'website',
       locale: 'en_US',
@@ -154,40 +154,38 @@ export default function EmailReceiptBrandPage({ params }: Props) {
           </Suspense>
         </div>
 
-        {/* SEO-rich unique content (~230 words) */}
+        {/* SEO content - focused on email/digital receipts */}
         <section className="brand-seo-rich">
           <div className="brand-seo-inner">
-            <h2>Create {brandName} email receipts that match brand formatting</h2>
+            <h2>{brandName} Email Receipt and Order Confirmation Generator</h2>
             <p>
-              Use this editor to assemble {brandName} email receipts that mirror the layout customers expect in
-              their inbox: itemized lines, totals, taxes, and payment method, all wrapped with the correct
-              logo sizing and spacing. Because the content is structured, your totals remain accurate across
-              currencies, and you can localize fields for the region you send to. The generator is pre-loaded
-              with {brandName} placeholders so you spend less time formatting and more time confirming details.
+              Create {brandName} email receipts formatted for digital delivery. This tool generates order
+              confirmation emails with {brandName} branding, including header logos, order summaries,
+              shipping details, and payment breakdowns. The email receipt format is optimized for inbox
+              rendering across Gmail, Outlook, and mobile email clients.
             </p>
+
+            <h3>Email Receipt vs PDF Receipt</h3>
             <p>
-              Attach product photos or order screenshots, then export or send the receipt for confirmations,
-              returns, or support flows. Data stays client-side while you edit, reducing exposure of order
-              info. Popular brands for email receipts include Apple, Gucci, StockX, Nike, Flight Club, Louis
-              Vuitton, Saint Laurent, and Trapstar, but the tool covers 100+ options with consistent results.
-              Use it for warranty proofs, delivery confirmations, or to resend lost receipts with accurate
-              branding and line items.
+              While <Link href={`/receipt/${brand}`}>PDF receipt templates</Link> are designed for printing and
+              file storage, email receipts follow the HTML email format that customers receive after online
+              purchases. The {brandName} email receipt includes order confirmation numbers, estimated delivery
+              dates, and clickable order tracking sections that match the brand&apos;s digital communication style.
             </p>
+
+            <h3>What the {brandName} Email Receipt Includes</h3>
             <ul>
-              <li>Brand-correct headers and typography tailored to {brandName} email receipts.</li>
-              <li>Currency-aware totals with optional tax rows for compliance.</li>
-              <li>Downloadable PDF plus email-friendly formatting for quick forwarding.</li>
-              <li>Mobile-ready editor so you can fix quantities or names on the go.</li>
-              <li>Structured metadata to help search engines understand page relevance.</li>
+              <li>Branded email header with {brandName} logo and order confirmation number.</li>
+              <li>Itemized product list with images, sizes, and individual prices.</li>
+              <li>Order summary with subtotal, shipping, tax, and total breakdown.</li>
+              <li>Shipping address and estimated delivery information fields.</li>
             </ul>
+
             <p className="brand-links">
-              Also see the <Link href={`/receipt/${brand}`}>PDF receipt template</Link>,{' '}
-              <Link href={`/brands/${brand}`}>full generator</Link>, or browse <Link href="/brands">all brands</Link>.
-            </p>
-            <p>
-              Enter your order data, verify amounts, and export. The output aims to look like a native
-              {brandName} email receipt while keeping your details organized for customers, finance teams, or
-              support agents who need clean proof of purchase.
+              More {brandName} tools: <Link href={`/brands/${brand}`}>{brandName} receipt generator</Link> ·{' '}
+              <Link href={`/receipt/${brand}`}>{brandName} PDF template</Link> ·{' '}
+              <Link href="/brands">browse all brands</Link> ·{' '}
+              <Link href="/contact">contact us</Link>
             </p>
           </div>
         </section>

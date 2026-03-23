@@ -43,23 +43,23 @@ export async function generateMetadata(
   }
 
   const brandName = toLabel(brand)
-  const description = `Generate downloadable ${brandName} receipt templates with authentic formatting and fields.`
+  const description = `Download ${brandName} receipt templates as PDF. Professional ${brandName} receipt maker with brand formatting, itemized lines, and print-ready export.`
   const logoUrl = `https://www.repsreceipt.com/brand-logos/${brand.toLowerCase().replace(/[^a-z0-9]/g, '_')}.webp`
 
   return {
-    title: `${brandName} receipt template`,
+    title: `${brandName} Receipt Template - Download PDF | RepReceipts`,
     description,
     keywords: [
       `${brandName} receipt template`,
       `${brandName} receipt download`,
+      `${brandName} receipt PDF`,
+      `${brandName} printable receipt`,
       `${brandName} invoice template`,
-      `${brandName} receipt maker`,
-      `${brandName} PDF receipt`,
-      'free receipt generator',
-      'luxury receipt template',
+      'receipt template download',
+      'PDF receipt generator',
     ],
     openGraph: {
-      title: `${brandName} receipt template`,
+      title: `${brandName} Receipt Template - Download PDF | RepReceipts`,
       description,
       type: 'website',
       locale: 'en_US',
@@ -154,40 +154,38 @@ export default function ReceiptBrandPage({ params }: Props) {
           </Suspense>
         </div>
 
-        {/* SEO-rich unique content (~230 words) */}
+        {/* SEO content - focused on PDF/print receipt templates */}
         <section className="brand-seo-rich">
           <div className="brand-seo-inner">
-            <h2>{brandName} receipt templates ready for print or PDF export</h2>
+            <h2>Download {brandName} Receipt Templates as PDF</h2>
             <p>
-              This {brandName} receipt template page is tuned for authenticity: line spacing, logo sizing, and
-              common receipt fields are pre-configured so you don&apos;t start from a blank canvas. Enter item
-              details, taxes, payment method, and store info to mirror what customers normally receive in
-              their inbox or at checkout. Because values are structured, totals and tax amounts stay aligned
-              across currencies, and you can localize the text to match your region.
+              This page provides downloadable {brandName} receipt templates formatted for printing and PDF export.
+              Unlike generic invoice tools, each template uses {brandName}-specific layout structures including
+              correct logo placement, font styling, and field arrangement. Fill in your order details — items,
+              prices, taxes, payment method — and download a print-ready PDF instantly.
             </p>
+
+            <h3>PDF Receipt Features</h3>
             <p>
-              Add product images or order screenshots for your records, then download a crisp PDF you can file
-              with accounting tools or share as proof of purchase. The editor stays client-side until you
-              export, so sensitive order data is not exposed while you adjust numbers. Frequent use cases
-              include warranty claims, expense submissions, lost-receipt replacements, and reconciling
-              returns. Brands users generate most here include Apple, Gucci, StockX, Nike, Flight Club, Louis
-              Vuitton, Saint Laurent, and Trapstar, but we support 100+ templates.
+              The {brandName} PDF template supports multiple line items with individual pricing, automatic
+              subtotal and tax calculation, and customizable store location details. Receipts export at
+              standard print resolution so they look sharp on paper or when attached to digital documents.
+              You can generate receipts in any supported currency with regional tax formatting.
             </p>
+
+            <h3>Common Uses for {brandName} Receipt Templates</h3>
             <ul>
-              <li>Brand-correct logo placement and typography for {brandName} receipts.</li>
-              <li>Currency-aware subtotals and tax rows that stay aligned when printed.</li>
-              <li>Optional email delivery plus instant PDF download for quick sharing.</li>
-              <li>Mobile-friendly fields so you can edit quantities or names on the go.</li>
-              <li>Structured data baked into the page for better indexing and relevance.</li>
+              <li>Expense report documentation with itemized purchase details.</li>
+              <li>Record keeping for warranty registration and product returns.</li>
+              <li>Business accounting and purchase order reconciliation.</li>
+              <li>Print-ready format optimized for A4 and letter paper sizes.</li>
             </ul>
+
             <p className="brand-links">
-              Need other formats? Try the <Link href={`/email-receipt/${brand}`}>email receipt version</Link>, the{' '}
-              <Link href={`/brands/${brand}`}>interactive generator</Link>, or browse <Link href="/brands">all brands</Link>.
-            </p>
-            <p>
-              Fill the fields, verify totals, and export. The goal is a professional {brandName} receipt
-              template that balances brand accuracy with clear line items and tax detail, ready for
-              customers, finance teams, or support agents who need proof of purchase.
+              Other {brandName} tools: <Link href={`/brands/${brand}`}>{brandName} receipt generator</Link> ·{' '}
+              <Link href={`/email-receipt/${brand}`}>{brandName} email receipt</Link> ·{' '}
+              <Link href="/brands">all brands</Link> ·{' '}
+              <Link href="/about">about us</Link>
             </p>
           </div>
         </section>
