@@ -221,8 +221,8 @@ const structuredData = {
           <Suspense fallback={<BrandPageLoading />}>
             <BrandReceiptGenerator
               preSelectedBrand={brand}
-              title={`Create 1:1 ${brandName} Receipt`}
-              headerTitle={`Create 1:1 ${brandName} Receipt`}
+              title={`${brandName} Receipt Generator`}
+              headerTitle={`${brandName} Receipt Generator`}
             />
           </Suspense>
         </div>

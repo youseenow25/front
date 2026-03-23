@@ -37,31 +37,29 @@ export default function BrandReceiptGenerator({ preSelectedBrand, title, headerT
       
       {/* SEO Content comes below ImageUploader */}
       <div className="brand-seo-content">
-        <h2>{title ?? `Create 1:1 ${toLabel(preSelectedBrand)} Receipt`}</h2>
+        <h2>{title ?? `${toLabel(preSelectedBrand)} Receipt Generator`}</h2>
         <p>
-          Our {toLabel(preSelectedBrand)} receipt generator allows you to create authentic-looking 
-          {toLabel(preSelectedBrand)} receipts for your purchases, returns, or business records. 
-          Whether you need a {toLabel(preSelectedBrand)} invoice for accounting purposes or a 
-          receipt for personal records, our tool provides the most accurate and professional 
-          {toLabel(preSelectedBrand)} receipt templates available online.
+          Generate {toLabel(preSelectedBrand)} receipts with professional formatting and brand-specific
+          layouts. Create {toLabel(preSelectedBrand)} receipt templates for expense reports,
+          record keeping, or business documentation with our online receipt maker.
         </p>
-        
-        <h3>Why Use Our {toLabel(preSelectedBrand)} Receipt Maker?</h3>
+
+        <h3>Features</h3>
         <ul>
-          <li><strong>Authentic Designs:</strong> Pixel-perfect replicas of real {toLabel(preSelectedBrand)} receipt layouts</li>
+          <li><strong>Brand Templates:</strong> {toLabel(preSelectedBrand)} receipt layouts with correct formatting</li>
           <li><strong>Multiple Currencies:</strong> Support for USD, EUR, GBP, and more</li>
           <li><strong>Multi-language:</strong> Generate receipts in English, French, German, and other languages</li>
           <li><strong>Instant Delivery:</strong> Receipts sent directly to your email</li>
-          <li><strong>Mobile Friendly:</strong> Works perfectly on all devices</li>
+          <li><strong>Mobile Friendly:</strong> Works on all devices</li>
         </ul>
-        
+
         <h3>How to Generate Your {toLabel(preSelectedBrand)} Receipt</h3>
         <ol>
-          <li>Upload your product image (optional but recommended)</li>
-          <li>Fill in the required {toLabel(preSelectedBrand)} receipt fields</li>
+          <li>Upload your product image (optional)</li>
+          <li>Fill in the {toLabel(preSelectedBrand)} receipt fields</li>
           <li>Select your preferred currency and language</li>
           <li>Enter your email address for delivery</li>
-          <li>Click "Generate {toLabel(preSelectedBrand)} Receipt"</li>
+          <li>Click &quot;Generate Receipt&quot;</li>
         </ol>
       </div>
 

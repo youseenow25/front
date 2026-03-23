@@ -2,7 +2,7 @@ export default function Features() {
 const items = [
 {
 title: 'Receipt Generator',
-desc: 'Pixel‑perfect 1:1 receipts with auditable metadata and exportable PDFs.'
+desc: 'Professional receipt templates with structured metadata and exportable PDFs.'
 },
 {
 title: 'Emulator Orchestration',

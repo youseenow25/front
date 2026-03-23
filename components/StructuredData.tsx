@@ -25,7 +25,7 @@ export default function StructuredData() {
     '@type': 'WebSite',
     name: 'RepReceipts',
     url: 'https://www.repsreceipt.com',
-    description: 'Generate authentic brand receipts instantly. Create professional receipt templates for luxury brands.',
+    description: 'Professional receipt generator for luxury and streetwear brands. Create receipt templates instantly.',
     potentialAction: {
       '@type': 'SearchAction',
       target: 'https://www.repsreceipt.com/brands?search={search_term_string}',
@@ -51,7 +51,7 @@ export default function StructuredData() {
     '@context': 'https://schema.org',
     '@type': 'Service', // ✅ CHANGED FROM "Product" TO "Service"
     name: `${toLabel(brand)} Receipt Generator`,
-    description: `Generate authentic ${toLabel(brand)} receipts with official designs and formatting. Create professional ${toLabel(brand)} invoice templates instantly.`,
+    description: `${toLabel(brand)} receipt generator with brand-specific formatting. Create professional ${toLabel(brand)} receipt templates and invoices.`,
     provider: {
       '@type': 'Organization',
       name: 'RepReceipts'

@@ -183,7 +183,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta property="og:image:alt" content="RepReceipts - Professional Receipt Generator for Luxury Brands" />
         
         {/* TWITTER ADDITIONAL TAGS */}
-        <meta name="twitter:image:alt" content="RepReceipts - Generate authentic receipts for luxury brands" />
+        <meta name="twitter:image:alt" content="RepReceipts - Receipt Generator for Luxury Brands" />
 
         {/* ✅ SCHEMA MARKUP FOR SaaS */}
 
