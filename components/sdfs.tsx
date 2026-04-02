@@ -53,11 +53,11 @@ export default function Header() {
           <div style={{ display: "flex", gap: 4 }}>
        
             <a
-              href="https://discord.gg/your-server"
+              href="https://t.me/+BF4byc1lOas4MDVk"
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                backgroundColor: "#5462ea",
+                backgroundColor: "#229ED9",
                 padding: "8px 16px",
                 color: "white",
               
@@ -68,8 +68,8 @@ export default function Header() {
                 whiteSpace: "nowrap",
               }}
             >
-              <Image src="/discord.png" alt="Discord" width={20} height={20} />
-              <span style={{ fontWeight: 500 }}>Go to Discord</span>
+              <Image src="/telegram.svg" alt="Telegram" width={20} height={20} />
+              <span style={{ fontWeight: 500 }}>Go to Telegram</span>
               <span style={{ fontSize: 18, lineHeight: 1 }}>↗</span>
             </a>
 

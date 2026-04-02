@@ -276,16 +276,16 @@ export default function Hero() {
 
             {isMobile
     ? "For any assistance, go to"
-    : "For any assistance or help, contact us at this Discord"}
+    : "For any assistance or help, contact us at this Telegram"}
   <br />
 
             <a
-              href="https://discord.gg/2ZRQu2uT62"
+              href="https://t.me/+BF4byc1lOas4MDVk"
               target="_blank"
               rel="noopener noreferrer"
               style={{
                 padding: "3px 16px",
-                backgroundColor: "#5462ea",
+                backgroundColor: "#229ED9",
                 display: "flex",
                 alignItems: "center",
                 cursor: "pointer",
@@ -302,7 +302,7 @@ export default function Hero() {
                 gap: 4,
                 whiteSpace: "nowrap"
               }}>
-                Discord <span style={{ fontSize: "14px" }}>↗</span>
+                Telegram <span style={{ fontSize: "14px" }}>↗</span>
               </p>
             </a>
           </div>

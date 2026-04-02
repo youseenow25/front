@@ -149,8 +149,8 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <a href="https://discord.com/invite/2ZRQu2uT62" target="_blank" rel="noopener noreferrer" className="hover:underline">
-                Discord
+              <a href="https://t.me/+BF4byc1lOas4MDVk" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                Telegram
               </a>
             </li>
           </ul>
