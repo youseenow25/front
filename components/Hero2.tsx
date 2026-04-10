@@ -172,7 +172,7 @@ export default function Hero({ brandName = "" }: HeroProps) {
         <div
           className="cta"
           style={{
-            marginTop: 24,
+            marginTop: 8,
             display: "flex",
             justifyContent: "center",
             gap: 12,
@@ -250,9 +250,9 @@ export default function Hero({ brandName = "" }: HeroProps) {
           <Counter />
         </div>
 
-        {/* Scrolling Brand Rows - Reduced spacing */}
-        <div style={{ 
-          marginTop: isMobile ? '5%' : '1%',
+        {/* Scrolling Brand Rows */}
+        <div style={{
+          marginTop: isMobile ? '8px' : '8px',
           width: '100%',
           padding: isMobile ? '0 16px' : '0 20px'
         }} className="overflow-hidden space-y-2">
@@ -314,13 +314,13 @@ export default function Hero({ brandName = "" }: HeroProps) {
 
       <style>{`
         .hero {
-          padding: ${isMobile ? '40px 0px 0px' : '20px 0px 0px'};
+          padding: ${isMobile ? '12px 0px 0px' : '8px 0px 0px'};
           text-align: center;
           position: relative;
           z-index: 1;
           width: 100%;
           overflow: hidden;
-          min-height: ${isMobile ? '300px' : '250px'};
+          min-height: ${isMobile ? '200px' : '180px'};
         }
 
         .btn {
