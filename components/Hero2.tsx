@@ -320,7 +320,7 @@ export default function Hero({ brandName = "" }: HeroProps) {
           z-index: 1;
           width: 100%;
           overflow: hidden;
-          min-height: ${isMobile ? '200px' : '180px'};
+          min-height: auto;
         }
 
         .btn {
