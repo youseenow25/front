@@ -68,10 +68,6 @@ interface HeroProps {
 }
 
 export default function Hero({ brandName = "" }: HeroProps) {
-  const phrases = [
-    "🌍 +6500 users worlwide using it",
-  ];
-
   const brands = [
     "Acne Studios",
     "Adidas",
@@ -144,10 +140,6 @@ export default function Hero({ brandName = "" }: HeroProps) {
   // Duplicate brands to create seamless scroll
   const doubledBrands = [...brands, ...brands];
 
-  const [index, setIndex] = React.useState(0);
-  const [subIndex, setSubIndex] = React.useState(0);
-  const [deleting, setDeleting] = React.useState(false);
-  const [blink, setBlink] = React.useState(true);
   const [isMobile, setIsMobile] = React.useState(false);
 
   // Check if mobile on mount and resize
@@ -173,83 +165,9 @@ export default function Hero({ brandName = "" }: HeroProps) {
     };
   }, []);
 
-  React.useEffect(() => {
-    let timeoutId: NodeJS.Timeout | null = null;
-    let isMounted = true;
-
-    if (subIndex === phrases[index].length + 1 && !deleting) {
-      timeoutId = setTimeout(() => {
-        if (isMounted) setDeleting(true);
-      }, 1000);
-      return () => {
-        isMounted = false;
-        if (timeoutId) clearTimeout(timeoutId);
-      };
-    }
-
-    if (subIndex === 0 && deleting) {
-      if (isMounted) {
-        setDeleting(false);
-        setIndex((prev) => (prev + 1) % phrases.length);
-      }
-      return () => {
-        isMounted = false;
-      };
-    }
-
-    timeoutId = setTimeout(() => {
-      if (isMounted) {
-        setSubIndex((prev) => (deleting ? prev - 1 : prev + 1));
-      }
-    }, deleting ? 50 : 120);
-
-    return () => {
-      isMounted = false;
-      if (timeoutId) clearTimeout(timeoutId);
-    };
-  }, [subIndex, index, deleting, phrases]);
-
-  React.useEffect(() => {
-    let blinkInterval: NodeJS.Timeout | null = null;
-    let isMounted = true;
-
-    blinkInterval = setInterval(() => {
-      if (isMounted) {
-        setBlink((prev) => !prev);
-      }
-    }, 500);
-
-    return () => {
-      isMounted = false;
-      if (blinkInterval) clearInterval(blinkInterval);
-    };
-  }, []);
-
-  const typedLineHeight = isMobile ? "3.2rem" : "4rem";
-
   return (
     <section className="hero">
       <div style={{ width: '100%' }}>
-        <h5
-          style={{ 
-            fontSize: isMobile ? "clamp(2rem, 8vw, 3rem)" : "clamp(3.5rem, 5vw, 5rem)", 
-            fontWeight: 500,
-            lineHeight: 1.2,
-            marginBottom: "1rem",
-            textAlign: "center",
-            height: typedLineHeight,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            overflow: "hidden"
-          }}
-        >
-          <span style={{ display: "inline-flex", alignItems: "center", height: typedLineHeight }}>
-            {phrases[index].substring(0, subIndex)}
-            <span style={{ opacity: blink ? 1 : 0, width: "2px", display: "inline-block" }}>|</span>
-          </span>
-        </h5>
-
         {/* CTA Banner */}
         <div
           className="cta"
