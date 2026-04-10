@@ -69,7 +69,6 @@ interface HeroProps {
 
 export default function Hero({ brandName = "" }: HeroProps) {
   const phrases = [
-    "🏆 Top #1 receipt generator ",
     "🌍 +6500 users worlwide using it",
   ];
 
