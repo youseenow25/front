@@ -20,7 +20,7 @@ function toLabel(name: string): string {
 export default function ReceiptExamplesHero() {
   return (
     <>
-      <section className="container" style={{ padding: '4px 20px 0 20px', textAlign: 'center' }}>
+      <section className="container" style={{ padding: '24px 20px 0 20px', textAlign: 'center' }}>
         <h1 className="seo-h1">
           Receipt Generator for StockX, Nike, Louis Vuitton & 100+ Brands
         </h1>
