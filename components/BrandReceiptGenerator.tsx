@@ -66,7 +66,7 @@ export default function BrandReceiptGenerator({ preSelectedBrand, title, headerT
       <style jsx>{`
         .brand-receipt-generator {
           margin: 0 auto;
-          padding: 20px;
+          padding: 8px 20px 20px;
         }
         
         .brand-header {

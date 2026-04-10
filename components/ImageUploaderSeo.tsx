@@ -1235,7 +1235,7 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false, title }: 
           align-items: start;
           width: 100%;
           max-width: none;
-          margin: 20px 0 40px;
+          margin: 6px 0 40px;
           position: relative;
           min-height: 400px;
           padding: 0 20px;
