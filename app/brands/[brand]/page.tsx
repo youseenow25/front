@@ -6,6 +6,7 @@ import { Suspense } from 'react'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero2'
 import Link from 'next/link'
+import ReceiptExamplesHero from '@/components/ReceiptExamplesHero'
 
 type Props = {
   params: { brand: string }
@@ -212,10 +213,9 @@ const structuredData = {
       <main className="main">
         <div className="luxury-radial" aria-hidden />
         <Header />
+        <ReceiptExamplesHero />
         <Hero brandName={brandName} />
 
-      
-        
         {/* Brand Receipt Generator */}
         <div style={{width:'100%'}}>
           <Suspense fallback={<BrandPageLoading />}>

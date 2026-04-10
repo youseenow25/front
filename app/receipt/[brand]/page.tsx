@@ -6,6 +6,7 @@ import Hero from '@/components/Hero2'
 import BrandReceiptGenerator from '@/components/BrandReceiptGenerator'
 import brandsSchema from '@/components/brands'
 import Link from 'next/link'
+import ReceiptExamplesHero from '@/components/ReceiptExamplesHero'
 
 type Props = {
   params: { brand: string }
@@ -142,6 +143,7 @@ export default function ReceiptBrandPage({ params }: Props) {
       <main className="main">
         <div className="luxury-radial" aria-hidden />
         <Header />
+        <ReceiptExamplesHero />
         <Hero brandName={`${brandName} Receipt Template`} />
 
         <div style={{ width: '100%' }}>
