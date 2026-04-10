@@ -54,29 +54,25 @@ export default function RegisterPage() {
         body: JSON.stringify({ email, password, name }),
       });
 
-      if (res.ok) {
-        const data = await res.json();
-        
-        // Save all data to localStorage as specified
-        localStorage.setItem("auth_token", data.token);
-        
-        if (data.user) {
-          localStorage.setItem("user", JSON.stringify(data.user));
-        }
-        if (data.subscription) {
-          localStorage.setItem("subscription", JSON.stringify(data.subscription));
-        }
-        
-        console.log("✅ Registration successful - Data saved to localStorage:");
-        console.log("Token:", data.token);
-        console.log("User:", data.user);
-        console.log("Subscription:", data.subscription);
-        
-        router.push("/");
-      } else {
-        const err = await res.json();
-        setError(err.error || "Registration failed. Please try again.");
+      if (!res.ok) {
+        let errorMsg = "Registration failed. Please try again.";
+        try { const errData = await res.json(); errorMsg = errData.error || errorMsg; } catch {}
+        setError(errorMsg);
+        return;
       }
+
+      const data = await res.json();
+
+      localStorage.setItem("auth_token", data.token);
+
+      if (data.user) {
+        localStorage.setItem("user", JSON.stringify(data.user));
+      }
+      if (data.subscription) {
+        localStorage.setItem("subscription", JSON.stringify(data.subscription));
+      }
+
+      router.push("/");
     } catch (error) {
       setError("Network error. Please check your connection.");
     } finally {

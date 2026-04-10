@@ -63,11 +63,14 @@ export default function PricingPage() {
         body: JSON.stringify({ productId, email }),
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
-        throw new Error(data.error || `Checkout failed: ${response.status}`);
+        const text = await response.text();
+        let errorMsg = `Checkout failed: ${response.status}`;
+        try { errorMsg = JSON.parse(text).error || errorMsg; } catch {}
+        throw new Error(errorMsg);
       }
+
+      const data = await response.json();
 
       if (data.url) {
         window.location.href = data.url;
@@ -76,14 +79,15 @@ export default function PricingPage() {
       }
     } catch (err: any) {
       console.error('Checkout error:', err);
-      
-      if (err.message.includes('authentication') || err.message.includes('401')) {
+      const message = err?.message || '';
+
+      if (message.includes('authentication') || message.includes('401')) {
         alert('Session expired. Please log in again.');
         router.push("/register");
-      } else if (err.message.includes('400')) {
+      } else if (message.includes('400')) {
         alert('Invalid request. Please try again.');
       } else {
-        alert(err.message || 'Something went wrong. Please try again.');
+        alert(message || 'Something went wrong. Please try again.');
       }
     } finally {
       setLoadingPlan(null);

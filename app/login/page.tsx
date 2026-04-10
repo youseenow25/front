@@ -25,28 +25,25 @@ export default function LoginPage() {
         body: JSON.stringify({ email, password }),
       });
 
+      if (!res.ok) {
+        let errorMsg = "Invalid email or password. Please try again.";
+        try { const errData = await res.json(); errorMsg = errData.error || errorMsg; } catch {}
+        setError(errorMsg);
+        return;
+      }
+
       const data = await res.json();
 
-      if (res.ok) {
+      localStorage.setItem("auth_token", data.token);
 
-        localStorage.setItem("auth_token", data.token);
-        
-        
-
-
-        if (data.user) {
-          localStorage.setItem("user", JSON.stringify(data.user));
-        }
-        if (data.subscription) {
-          localStorage.setItem("subscription", JSON.stringify(data.subscription));
-                }
-
-
-        
-        router.push("/");
-      } else {
-        setError(data.error || "Invalid email or password. Please try again.");
+      if (data.user) {
+        localStorage.setItem("user", JSON.stringify(data.user));
       }
+      if (data.subscription) {
+        localStorage.setItem("subscription", JSON.stringify(data.subscription));
+      }
+
+      router.push("/");
     } catch (error) {
       setError("Network error. Please check your connection.");
     } finally {
