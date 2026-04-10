@@ -955,13 +955,13 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false, title }: 
 
       {/* Brand Header for SEO Pages */}
       {isBrandPage && brand && (
-        <div className="brand-seo-header" style={{ 
-          display: 'flex', 
-          gap: '6px', 
-          justifyContent:'center', 
-          alignItems: 'center', 
+        <div className="brand-seo-header" style={{
+          display: 'flex',
+          gap: '6px',
+          justifyContent:'center',
+          alignItems: 'center',
           flexWrap: 'wrap',
-          minHeight: '100px'
+          minHeight: 'auto'
         }}>
           <div style={{ width: 80, height: 80, flexShrink: 0 }}>
             <img 
@@ -1235,7 +1235,7 @@ function ImageUploaderContent({ preSelectedBrand, isBrandPage = false, title }: 
           align-items: start;
           width: 100%;
           max-width: none;
-          margin: 6px 0 40px;
+          margin: 0 0 40px;
           position: relative;
           min-height: 400px;
           padding: 0 20px;
