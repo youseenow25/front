@@ -172,7 +172,7 @@ export default function Hero({ brandName = "" }: HeroProps) {
         <div
           className="cta"
           style={{
-            marginTop: 8,
+            marginTop: 4,
             display: "flex",
             justifyContent: "center",
             gap: 12,
@@ -252,7 +252,7 @@ export default function Hero({ brandName = "" }: HeroProps) {
 
         {/* Scrolling Brand Rows */}
         <div style={{
-          marginTop: isMobile ? '8px' : '8px',
+          marginTop: '4px',
           width: '100%',
           padding: isMobile ? '0 16px' : '0 20px'
         }} className="overflow-hidden space-y-2">
@@ -314,7 +314,7 @@ export default function Hero({ brandName = "" }: HeroProps) {
 
       <style>{`
         .hero {
-          padding: ${isMobile ? '12px 0px 0px' : '8px 0px 0px'};
+          padding: ${isMobile ? '4px 0px 0px' : '4px 0px 0px'};
           text-align: center;
           position: relative;
           z-index: 1;
