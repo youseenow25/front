@@ -73,7 +73,15 @@ const PaymentSuccess = () => {
               ❗❗ Repeat the process to generate it.
             </h1>
             <p className="success-message">
-              ❗❗ If there's any problem dm us at Telegram at @torontognr
+              ❗❗ If there's any problem contact us on{" "}
+              <a
+                href="https://t.me/+BF4byc1lOas4MDVk"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "#229ED9", textDecoration: "underline" }}
+              >
+                our Telegram group
+              </a>
             </p>
           </div>
 

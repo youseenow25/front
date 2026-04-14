@@ -179,8 +179,10 @@ export default function Header() {
         🧾 Examples of Usage
       </button>
 
-      <button
-        onClick={() => navigateTo("/#faq")}
+      <a
+        href="https://t.me/+BF4byc1lOas4MDVk"
+        target="_blank"
+        rel="noopener noreferrer"
         style={{
           background: "none",
           border: "none",
@@ -188,10 +190,11 @@ export default function Header() {
           fontWeight: 600,
           color: "#000",
           cursor: "pointer",
+          textDecoration: "none",
         }}
       >
-        ❓ FAQ
-      </button>
+        💬 Help
+      </a>
     </div>
 
     {/* Bottom: Auth Actions */}
@@ -443,9 +446,11 @@ export default function Header() {
                  <ChevronRight size={20}/>
             </a>
 
-            {/* FAQ */}
+            {/* Help */}
             <a
-              href="#faq"
+              href="https://t.me/+BF4byc1lOas4MDVk"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
                 textDecoration: "none",
                 color: "#000",
@@ -458,7 +463,7 @@ export default function Header() {
               }}
             >
                  <span style={{ color: 'black', fontWeight:'bold' }}>
-               ❓ FAQ
+               💬 Help
               </span>
               <ChevronRight size={20}/>
             </a>
