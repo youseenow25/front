@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Phone, MapPin } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -66,15 +66,6 @@ const Footer = () => {
           <p className="text-white/90 mb-4 leading-relaxed">
             Professional receipt generator for over 100 luxury and streetwear brands. Create receipt templates, email confirmations and PDF invoices.
           </p>
-
-          <div className="space-y-2 text-white/90">
-            <div className="flex items-center gap-2">
-              <Mail size={16} />
-              <a href="mailto:hubreceipts@outlook.com" className="hover:underline">
-                hubreceipts@outlook.com
-              </a>
-            </div>
-          </div>
 
           {/* Social Icons */}
           <div className="flex gap-4 mt-4 text-white">
