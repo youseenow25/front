@@ -107,13 +107,6 @@ export default function PricingPage() {
       priceusd: 8.99,
       description: '24 hours of unlimited access.',
     },
-    {
-      id: '1-week',
-      name: '1 Week Access',
-      priceusd: 13.99,
-      description: 'Ideal for short-term projects.',
-      popular: true,
-    },
   ];
 
   const bottomRowPlans = [
